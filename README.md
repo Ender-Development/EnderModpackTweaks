@@ -1,19 +1,41 @@
-## TemplateDevEnv
+# Ender's Modpack Tweaks
 
-Template workspace for modding Minecraft 1.12.2. Licensed under MIT, it is made for public use.
+This is a collection of tweaks and changes for the modpacks I'm working on. I will be adding more as I go along. Now that I'm somewhat comfortable with writing mods, I don't have to rely on other mods to make the changes I want. Each feature can be enabled or disabled in the config file. So you can pick and choose what features you need for your own modpack.
+If you have any suggestions, feel free to let me know.
 
-This template runs on Java 21! Currently utilizies **Gradle 8.10.1** + **[RetroFuturaGradle](https://github.com/GTNewHorizons/RetroFuturaGradle) 1.4.1** + **Forge 14.23.5.2847**.
+<a href="https://www.akliz.net/enderman"><img src="https://github.com/Ender-Development/PatchouliBooks/raw/master/banner.png" align="center"/></a>
 
-With **coremod and mixin support** that is easy to configure.
+##  Possible Features
 
-### Instructions:
+- 🔳 adapting [PerfectSpawn](https://github.com/lumien231/Perfect-Spawn)
+  - the mod is ancient and not maintained anymore
+  - the way to configure it is not user-friendly as it doesn't generate a default config file and the file isn't placed in the config folder, but in the main directory or world save directory instead
+  - is uses ASM to modify the spawn code, which is not ideal, when it comes to compatibility
+- ✅ adapting [Dragon Murder](https://www.curseforge.com/minecraft/mc-mods/dragon-murder)
+  - the mod is ancient and not maintained anymore
+  - it lacks in config options and doesn't fit my needs
 
-1. Click `use this template` at the top.
-2. Clone the repository that you have created with this template to your local machine.
-3. Make sure IDEA is using Java 21 for Gradle before you sync the project. Verify this by going to IDEA's `Settings > Build, Execution, Deployment > Build Tools > Gradle > Gradle JVM`.
-4. Open the project folder in IDEA. When prompted, click "Load Gradle Project" as it detects the `build.gradle`, if you weren't prompted, right-click the project's `build.gradle` in IDEA, select `Link Gradle Project`, after completion, hit `Refresh All` in the gradle tab on the right.
-5. Run gradle tasks such as `runClient` and `runServer` in the IDEA gradle tab, or use the auto-imported run configurations like `1. Run Client`.
+## [Ender-Development](https://github.com/Ender-Development)
 
-### Mixins:
+Our Team currently includes:
+- `_MasterEnderman_` - Project-Manager, Developer
+- `Klebestreifen` - Developer
 
-- When writing Mixins on IntelliJ, it is advisable to use latest [MinecraftDev Fork for RetroFuturaGradle](https://github.com/eigenraven/MinecraftDev/releases).
+You can contact us on our [Discord](https://discord.gg/JF7x2vG).
+
+## Contributing
+Feel free to contribute to the project. We are always happy about pull requests.
+If you want to help us, you can find potential tasks in the [issue tracker](https://github.com/Ender-Development/EnderModpackTweaks/issues).
+Of course, you can also create new issues if you find a bug or have a suggestion for a new feature.
+Should you have any questions, feel free to ask us on [Discord](https://discord.gg/JF7x2vG).
+
+## Partnership with Akliz
+
+> It's a pleasure to be partnered with Akliz. Besides being a fantastic server provider, which makes it incredibly easy to set up a server of your choice, they help me to push myself and the quality of my projects to the next level. Furthermore, you can click on the banner below to get a discount. :')
+
+<a href="https://www.akliz.net/enderman"><img src="https://github.com/MasterEnderman/Zerblands-Remastered/raw/master/Akliz_Partner.png" align="center"/></a>
+
+If you aren't located in the [US](https://www.akliz.net/enderman), Akliz now offers servers in:
+
+- [Europe](https://www.akliz.net/enderman-eu)
+- [Oceania](https://www.akliz.net/enderman-oce)
