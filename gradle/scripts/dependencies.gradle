@@ -73,7 +73,7 @@ dependencies {
 
     runtimeOnly "curse.maven:red-core-873867:5618189"
     runtimeOnly "curse.maven:alfheim-lighting-engine-910715:5637644"
-    // runtimeOnly "curse.maven:valkyrie-874067:5235356"
+    runtimeOnly "curse.maven:valkyrie-874067:5891664"
 
     // For the lulz
     runtimeOnly "curse.maven:enchantchanger-enchantment-changing-system-237295:2682225"
