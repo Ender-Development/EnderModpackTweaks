@@ -5,17 +5,19 @@ If you have any suggestions, feel free to let me know.
 
 <a href="https://www.akliz.net/enderman"><img src="https://github.com/Ender-Development/PatchouliBooks/raw/master/banner.png" align="center"/></a>
 
-## Possible Features
+## Current Features
 
-- 🔳 adapting [PerfectSpawn](https://github.com/lumien231/Perfect-Spawn)
+- ✅ tweaking [PerfectSpawn](https://github.com/lumien231/Perfect-Spawn)
   - the mod is ancient and not maintained anymore
-  - the way to configure it is not user-friendly as it doesn't generate a default config file and the file isn't placed in the config folder, but in the main directory or world save directory instead
-  - is uses ASM to modify the spawn code, which is not ideal, when it comes to compatibility
+  - generate a default config file if it doesn't exist
+  - moved the config file to the config folder
 - ✅ adapting [Dragon Murder](https://www.curseforge.com/minecraft/mc-mods/dragon-murder)
-  - the mod is ancient and not maintained anymore
-  - it lacks in config options and doesn't fit my needs
+  - autokill the first "free" ender dragon
+  - a bunch of config options to tweak the initial end to your likings 
 - ✅ option to disable the 2x2 crafting field in the inventory
-  - the implementation isn't optimal as I would like to remove it completly, but it is a start
+  - the implementation isn't optimal as I would like to remove it completely, but it is a start
+- ✅ End Gateway tweak to change the bedrock to something else
+- ✅ End Portal tweak to change the bedrock / torches / endstone that is generated
 
 ## Possible Bugfixes
 
