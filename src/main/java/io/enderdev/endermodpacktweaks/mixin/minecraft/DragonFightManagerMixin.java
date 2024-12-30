@@ -1,7 +1,7 @@
 package io.enderdev.endermodpacktweaks.mixin.minecraft;
 
 import io.enderdev.endermodpacktweaks.EnderModpackTweaks;
-import io.enderdev.endermodpacktweaks.config.ConfigMain;
+import io.enderdev.endermodpacktweaks.config.EMTConfigMinecraft;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.WorldServer;
@@ -31,6 +31,8 @@ public abstract class DragonFightManagerMixin {
 
     @Shadow private boolean previouslyKilled;
 
+    @Shadow protected abstract void spawnNewGateway();
+
     @Inject(method = "hasDragonBeenKilled", at = @At("HEAD"), cancellable = true)
     private void hasDragonBeenKilled(CallbackInfoReturnable<Boolean> cir) {
         if (!this.enderModpackTweaks$firstTime) {
@@ -38,17 +40,34 @@ public abstract class DragonFightManagerMixin {
         }
         enderModpackTweaks$firstTime = false;
         EnderModpackTweaks.LOGGER.info("Killing the dragon for the first time.");
-        this.generatePortal(ConfigMain.DRAGON.createPortal);
-        if (ConfigMain.DRAGON.dropEgg) {
+        this.generatePortal(EMTConfigMinecraft.DRAGON.createPortal);
+        if (EMTConfigMinecraft.DRAGON.dropEgg) {
             this.world.setBlockState(this.world.getHeight(WorldGenEndPodium.END_PODIUM_LOCATION), Blocks.DRAGON_EGG.getDefaultState());
+        }
+        if (EMTConfigMinecraft.DRAGON.createGateway) {
+            spawnNewGateway();
         }
         cir.setReturnValue(true);
     }
 
     @Inject(method = "processDragonDeath", at = @At("RETURN"))
     private void processDragonDeath(EntityDragon dragon, CallbackInfo ci) {
-        if (ConfigMain.DRAGON.multipleEgg && this.previouslyKilled) {
+        if (EMTConfigMinecraft.DRAGON.multipleEgg && this.previouslyKilled) {
             this.world.setBlockState(this.world.getHeight(WorldGenEndPodium.END_PODIUM_LOCATION), Blocks.DRAGON_EGG.getDefaultState());
+        }
+    }
+
+    @Inject(method = "spawnNewGateway", at = @At("HEAD"), cancellable = true)
+    private void spawnNewGateway(CallbackInfo ci) {
+        if (EMTConfigMinecraft.DRAGON.disableGateway) {
+            ci.cancel();
+        }
+    }
+
+    @Inject(method = "generatePortal", at = @At("HEAD"), cancellable = true)
+    private void generatePortal(boolean active, CallbackInfo ci) {
+        if (EMTConfigMinecraft.DRAGON.disablePortal) {
+            ci.cancel();
         }
     }
 }

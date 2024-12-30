@@ -1,7 +1,7 @@
 package io.enderdev.endermodpacktweaks.core;
 
 import com.google.common.collect.ImmutableMap;
-import io.enderdev.endermodpacktweaks.config.ConfigMain;
+import io.enderdev.endermodpacktweaks.config.EMTConfigMinecraft;
 import net.minecraftforge.common.ForgeVersion;
 import net.minecraftforge.fml.relauncher.FMLLaunchHandler;
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
@@ -26,7 +26,9 @@ public class EMTLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader {
 
     private static final Map<String, BooleanSupplier> commonMixinConfigs = ImmutableMap.copyOf(new HashMap<String, BooleanSupplier>() {
         {
-            put("mixins.endermodpacktweaks.minecraft.dragonfightmanager.json", () -> ConfigMain.DRAGON.enable);
+            put("mixins.emt.minecraft.dragonfightmanager.json", () -> EMTConfigMinecraft.DRAGON.enable);
+            put("mixins.emt.minecraft.endgateway.json", () -> EMTConfigMinecraft.END_GATEWAY.enable);
+            put("mixins.emt.minecraft.endpodium.json", () -> EMTConfigMinecraft.END_PODIUM.enable);
         }
     });
 

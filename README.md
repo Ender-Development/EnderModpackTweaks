@@ -5,7 +5,7 @@ If you have any suggestions, feel free to let me know.
 
 <a href="https://www.akliz.net/enderman"><img src="https://github.com/Ender-Development/PatchouliBooks/raw/master/banner.png" align="center"/></a>
 
-##  Possible Features
+## Possible Features
 
 - 🔳 adapting [PerfectSpawn](https://github.com/lumien231/Perfect-Spawn)
   - the mod is ancient and not maintained anymore
@@ -14,6 +14,13 @@ If you have any suggestions, feel free to let me know.
 - ✅ adapting [Dragon Murder](https://www.curseforge.com/minecraft/mc-mods/dragon-murder)
   - the mod is ancient and not maintained anymore
   - it lacks in config options and doesn't fit my needs
+- ✅ option to disable the 2x2 crafting field in the inventory
+  - the implementation isn't optimal as I would like to remove it completly, but it is a start
+
+## Possible Bugfixes
+
+- 🔳 [Hearth Well Cores](https://github.com/wolforcept/hearthwell/issues/60)
+- 🔳 [Campfire Client Code on server](https://github.com/jbredwards/Campfire-Mod/issues/9)
 
 ## [Ender-Development](https://github.com/Ender-Development)
 

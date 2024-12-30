@@ -75,11 +75,19 @@ dependencies {
     runtimeOnly "curse.maven:alfheim-lighting-engine-910715:5637644"
     // runtimeOnly "curse.maven:valkyrie-874067:5235356"
 
+    // For the lulz
+    runtimeOnly "curse.maven:enchantchanger-enchantment-changing-system-237295:2682225"
+
     implementation "com.cleanroommc:configanytime:3.0"
 
     // Mod Compatibility
     compileOnly "mezz:jei:4.26.1" // HEI
     if (project.debug_hei.toBoolean()) {
         runtimeOnly "mezz:jei:4.26.1"
+    }
+
+    compileOnly "curse.maven:perfect-spawn-221418:2543507"
+    if (project.debug_perfect_spawn.toBoolean()) {
+        runtimeOnly "curse.maven:perfect-spawn-221418:2543507"
     }
 }

@@ -1,6 +1,7 @@
 package io.enderdev.endermodpacktweaks.events;
 
-import io.enderdev.endermodpacktweaks.config.ConfigMain;
+import io.enderdev.endermodpacktweaks.config.EMTConfig;
+import io.enderdev.endermodpacktweaks.config.EMTConfigMinecraft;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -28,13 +29,13 @@ public class ClientEvents {
                 Slot s = container.inventorySlots.get(i);
 
                 if (s instanceof SlotCrafting) {
-                    if (ConfigMain.CLIENT.disableInventoryCrafting) {
+                    if (EMTConfigMinecraft.CLIENT.disableInventoryCrafting) {
                         s.yPos = -1000;
                     } else {
                         s.yPos = 28;
                     }
                 } else if (s.inventory instanceof InventoryCrafting) {
-                    if (ConfigMain.CLIENT.disableInventoryCrafting) {
+                    if (EMTConfigMinecraft.CLIENT.disableInventoryCrafting) {
                         s.inventory.closeInventory(Minecraft.getMinecraft().player);
                     }
                 }
@@ -46,7 +47,7 @@ public class ClientEvents {
     @SubscribeEvent
     public void renderBackground(GuiContainerEvent.DrawForeground event) {
         GuiContainer gui = event.getGuiContainer();
-        if (ConfigMain.CLIENT.disableInventoryCrafting) {
+        if (EMTConfigMinecraft.CLIENT.disableInventoryCrafting) {
             if (gui instanceof GuiInventory) {
                 GlStateManager.pushMatrix();
                 GlStateManager.disableLighting();

@@ -1,0 +1,15 @@
+config.endermodpacktweaks.minecraft=Minecraft Tweaks
+config.endermodpacktweaks.minecraft.desc=Tweaks to Minecraft itself
+
+config.endermodpacktweaks.minecraft.client=Client Tweaks
+config.endermodpacktweaks.minecraft.client.desc=Client side changes
+config.endermodpacktweaks.minecraft.dragon=Ender Dragon Tweaks
+config.endermodpacktweaks.minecraft.dragon.desc=Changes to the Ender Dragon
+config.endermodpacktweaks.minecraft.end_portal=End Portal Tweaks
+config.endermodpacktweaks.minecraft.end_portal.desc=Change the blocks of the End Portal
+
+config.endermodpacktweaks.mods=Mod Tweaks
+config.endermodpacktweaks.mods.desc=Tweaks to other mods
+
+config.endermodpacktweaks.mods.perfectspawn=Perfect Spawn
+config.endermodpacktweaks.mods.perfectspawn.desc=Tweaks to the Perfect Spawn mod

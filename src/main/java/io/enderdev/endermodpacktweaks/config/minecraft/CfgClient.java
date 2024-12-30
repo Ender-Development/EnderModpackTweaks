@@ -1,8 +1,8 @@
-package io.enderdev.endermodpacktweaks.config;
+package io.enderdev.endermodpacktweaks.config.minecraft;
 
 import net.minecraftforge.common.config.Config;
 
-public class CategoryClient {
+public class CfgClient {
     @Config.Name("Disable Inventory Crafting")
     @Config.Comment({
             "This tweak disables the crafting grid in the player inventory.",
