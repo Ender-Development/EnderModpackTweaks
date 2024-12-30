@@ -35,6 +35,7 @@ public abstract class DragonFightManagerMixin {
 
     @Inject(method = "hasDragonBeenKilled", at = @At("HEAD"), cancellable = true)
     private void hasDragonBeenKilled(CallbackInfoReturnable<Boolean> cir) {
+        EnderModpackTweaks.LOGGER.debug("Checking if the dragon has been killed before.");
         if (!this.enderModpackTweaks$firstTime) {
             return;
         }
@@ -45,9 +46,11 @@ public abstract class DragonFightManagerMixin {
             this.world.setBlockState(this.world.getHeight(WorldGenEndPodium.END_PODIUM_LOCATION), Blocks.DRAGON_EGG.getDefaultState());
         }
         if (EMTConfigMinecraft.DRAGON.createGateway) {
+            EnderModpackTweaks.LOGGER.debug("Creating gateway for the first time.");
             spawnNewGateway();
         }
         cir.setReturnValue(true);
+        cir.cancel();
     }
 
     @Inject(method = "processDragonDeath", at = @At("RETURN"))
