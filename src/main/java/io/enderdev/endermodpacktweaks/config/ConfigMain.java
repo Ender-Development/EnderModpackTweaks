@@ -11,6 +11,10 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 @Config(modid = Tags.MOD_ID)
 public class ConfigMain {
 
+    @Config.Name("Enable Category Client")
+    @Config.LangKey("config.endermodpacktweaks.client")
+    public static final CategoryClient CLIENT = new CategoryClient();
+
     @Config.Name("Enable Dragon Tweaks")
     @Config.LangKey("config.endermodpacktweaks.dragontweaks")
     public static final CategoryDragon DRAGON = new CategoryDragon();
