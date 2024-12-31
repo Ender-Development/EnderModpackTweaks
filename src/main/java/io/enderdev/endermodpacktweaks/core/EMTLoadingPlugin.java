@@ -29,6 +29,7 @@ public class EMTLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader {
             put("mixins.emt.minecraft.dragonfightmanager.json", () -> EMTConfigMinecraft.DRAGON.enable);
             put("mixins.emt.minecraft.endgateway.json", () -> EMTConfigMinecraft.END_GATEWAY.enable);
             put("mixins.emt.minecraft.endpodium.json", () -> EMTConfigMinecraft.END_PODIUM.enable);
+            put("mixins.emt.minecraft.netherportal.json", () -> EMTConfigMinecraft.NETHER_PORTAL.enable);
         }
     });
 

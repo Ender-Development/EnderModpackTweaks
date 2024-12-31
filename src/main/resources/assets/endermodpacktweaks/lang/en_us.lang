@@ -9,6 +9,8 @@ config.endermodpacktweaks.minecraft.end_gateway=End Gateway Tweaks
 config.endermodpacktweaks.minecraft.end_gateway.tooltip=Change the blocks of the End Gateway
 config.endermodpacktweaks.minecraft.end_portal=End Portal Tweaks
 config.endermodpacktweaks.minecraft.end_portal.tooltip=Change the blocks of the End Portal
+config.endermodpacktweaks.minecraft.nether_portal=Nether Portal Tweaks
+config.endermodpacktweaks.minecraft.nether_portal.tooltip=Change the behavior of Nether Portals
 
 config.endermodpacktweaks.mods=Mod Tweaks
 config.endermodpacktweaks.mods.tooltip=Tweaks to other mods

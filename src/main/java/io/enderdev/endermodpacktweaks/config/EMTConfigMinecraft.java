@@ -2,10 +2,7 @@ package io.enderdev.endermodpacktweaks.config;
 
 import com.cleanroommc.configanytime.ConfigAnytime;
 import io.enderdev.endermodpacktweaks.Tags;
-import io.enderdev.endermodpacktweaks.config.minecraft.CfgClient;
-import io.enderdev.endermodpacktweaks.config.minecraft.CfgDragon;
-import io.enderdev.endermodpacktweaks.config.minecraft.CfgEndGateway;
-import io.enderdev.endermodpacktweaks.config.minecraft.CfgEndPodium;
+import io.enderdev.endermodpacktweaks.config.minecraft.*;
 import net.minecraftforge.common.config.Config;
 
 @Config(modid = Tags.MOD_ID, category = "minecraft")
@@ -26,6 +23,10 @@ public class EMTConfigMinecraft {
     @Config.Name("End Portal Tweaks")
     @Config.LangKey("config.endermodpacktweaks.minecraft.end_portal")
     public static final CfgEndPodium END_PODIUM = new CfgEndPodium();
+
+    @Config.Name("Nether Portal Tweaks")
+    @Config.LangKey("config.endermodpacktweaks.minecraft.nether_portal")
+    public static final CfgNetherPortal NETHER_PORTAL = new CfgNetherPortal();
 
     static {
         ConfigAnytime.register(EMTConfigMinecraft.class);
