@@ -1,6 +1,6 @@
 {
     "package": "io.enderdev.endermodpacktweaks.mixin.perfectspawn",
-    "refmap": "mixins.${mod_id}.refmap.json",
+    "refmap": "mixins.endermodpacktweaks.refmap.json",
     "target": "@env(DEFAULT)",
     "minVersion": "0.8.5",
     "compatibilityLevel": "JAVA_8",
