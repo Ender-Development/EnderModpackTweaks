@@ -18,6 +18,10 @@ If you have any suggestions, feel free to let me know.
   - the implementation isn't optimal as I would like to remove it completely, but it is a start
 - ✅ End Gateway tweak to change the bedrock to something else
 - ✅ End Portal tweak to change the bedrock / torches / endstone that is generated
+- ✅ Nether Portal Tweaks
+  - allow portal creation in the end
+  - disallow the traverse of entities
+  - disallow the creation of portals in the first place
 
 ## Possible Bugfixes
 
