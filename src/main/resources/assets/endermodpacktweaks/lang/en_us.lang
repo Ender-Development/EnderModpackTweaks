@@ -17,3 +17,9 @@ config.endermodpacktweaks.mods.tooltip=Tweaks to other mods
 
 config.endermodpacktweaks.mods.perfectspawn=Perfect Spawn
 config.endermodpacktweaks.mods.perfectspawn.tooltip=Tweaks to the Perfect Spawn mod
+
+config.endermodpacktweaks.mods.pyrotech=Pyrotech
+config.endermodpacktweaks.mods.pyrotech.tooltip=Tweaks to the Pyrotech mod
+
+config.endermodpacktweaks.mods.rustic=Rustic
+config.endermodpacktweaks.mods.rustic.tooltip=Tweaks to the Rustic mod
