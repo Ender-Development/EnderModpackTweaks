@@ -23,11 +23,9 @@ import java.util.Objects;
 
 @Mixin(value = BlockBerryBush.class, remap = false)
 public abstract class BlockBerryBushMixin {
-    @Shadow protected abstract boolean canSustainBush(IBlockState state);
-
     @Unique
     @Final
-    private static final ImmutableList<Block> enderModpackTweaks$validBlocks = Arrays.stream(EMTConfigMods.RUSTIC.listBerryBushBlocks)
+    private static final ImmutableList<Block> enderModpackTweaks$validBlocks = Arrays.stream(EMTConfigMods.RUSTIC.listBerryBushBlocks.clone())
             .map(Block::getBlockFromName)
             .filter(Objects::nonNull)
             .collect(ImmutableList.toImmutableList());
@@ -43,7 +41,7 @@ public abstract class BlockBerryBushMixin {
     @Redirect(method = "canPlaceBlockAt", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/Block;canSustainPlant(Lnet/minecraft/block/state/IBlockState;Lnet/minecraft/world/IBlockAccess;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/EnumFacing;Lnet/minecraftforge/common/IPlantable;)Z"))
     private boolean canPlaceBlockAtMixin(Block block, IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side, IPlantable plantable) {
         if (EMTConfigMods.RUSTIC.overrideBerryBushPlacement) {
-            return canSustainBush(state);
+            return enderModpackTweaks$validBlocks.contains(state.getBlock());
         }
         return block.canSustainPlant(state, world, pos, side, plantable);
     }
@@ -51,7 +49,7 @@ public abstract class BlockBerryBushMixin {
     @Redirect(method = "canBlockStay", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/Block;canSustainPlant(Lnet/minecraft/block/state/IBlockState;Lnet/minecraft/world/IBlockAccess;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/EnumFacing;Lnet/minecraftforge/common/IPlantable;)Z"))
     private boolean canBlockStayMixin(Block block, IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side, IPlantable plantable) {
         if (EMTConfigMods.RUSTIC.overrideBerryBushPlacement) {
-            return canSustainBush(state);
+            return enderModpackTweaks$validBlocks.contains(state.getBlock());
         }
         return block.canSustainPlant(state, world, pos, side, plantable);
     }

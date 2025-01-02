@@ -29,7 +29,7 @@ public abstract class WorldGenWildberriesMixin extends WorldGenerator {
     @Overwrite
     public boolean generate(World world, Random rand, BlockPos pos) {
         Biome biome = world.getBiome(pos);
-        List<BiomeDictionary.Type> listBiomesBlacklist = Arrays.stream(EMTConfigMods.RUSTIC.listBiomesBlacklist)
+        List<BiomeDictionary.Type> listBiomesBlacklist = Arrays.stream(EMTConfigMods.RUSTIC.listBiomesBlacklist.clone())
                 .map(BiomeDictionary.Type::getType).collect(Collectors.toList());
 
         if (EMTConfigMods.RUSTIC.overrideBerryBushBiomeBlacklist) {
