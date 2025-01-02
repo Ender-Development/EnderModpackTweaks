@@ -1,0 +1,13 @@
+{
+    "package": "io.enderdev.endermodpacktweaks.mixin.rustic",
+    "refmap": "mixins.endermodpacktweaks.refmap.json",
+    "target": "@env(DEFAULT)",
+    "minVersion": "0.8.5",
+    "compatibilityLevel": "JAVA_8",
+    "mixins": [
+        "BlockBerryBushMixin",
+        "WorldGenWildberriesMixin"
+    ],
+    "server": [],
+    "client": []
+}
