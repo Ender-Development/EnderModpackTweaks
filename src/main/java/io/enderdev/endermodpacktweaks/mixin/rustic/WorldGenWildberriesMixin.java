@@ -4,6 +4,7 @@ import io.enderdev.endermodpacktweaks.config.EMTConfigMods;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.BiomeDictionary;
 import org.spongepowered.asm.mixin.*;
 import rustic.common.Config;
@@ -13,7 +14,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Mixin(value = WorldGenWildberries.class, remap = false)
-public abstract class WorldGenWildberriesMixin {
+public abstract class WorldGenWildberriesMixin extends WorldGenerator {
 
     @Shadow
     public static List<BiomeDictionary.Type> biomeBlacklist;
@@ -23,7 +24,7 @@ public abstract class WorldGenWildberriesMixin {
 
     /**
      * @author _MasterEnderman_
-     * @reason Override Rustic's biome blacklist
+     * @reason Override Rustic's biomes blacklist
      */
     @Overwrite
     public boolean generate(World world, Random rand, BlockPos pos) {

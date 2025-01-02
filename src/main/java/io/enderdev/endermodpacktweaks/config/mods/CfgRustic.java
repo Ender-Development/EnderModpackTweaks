@@ -43,4 +43,8 @@ public class CfgRustic {
             "DEAD",
             "WASTELAND",
     };
+
+    @Config.Name("[07] Enable Rustic WorldGen in Flat Worlds")
+    @Config.Comment("Set to true to enable Rustic WorldGen in flat worlds")
+    public boolean enableWorldGenInFlat = false;
 }
