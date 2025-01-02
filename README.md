@@ -11,6 +11,12 @@ If you have any suggestions, feel free to let me know.
   - the mod is ancient and not maintained anymore
   - generate a default config file if it doesn't exist
   - moved the config file to the config folder
+- ✅ tweaking [Pyrotech](https://github.com/codetaylor/pyrotech-1.12)
+  - added options to tweak the rock type that generates in the world
+  - you can now specify the weight of each rock type
+- ✅ tweaking [Rustic](https://www.curseforge.com/minecraft/mc-mods/rustic)
+  - added options to tweak the generation of Wildberry Bushes
+  - added options to allow placing the Wildberry Bushes on more blocks
 - ✅ adapting [Dragon Murder](https://www.curseforge.com/minecraft/mc-mods/dragon-murder)
   - autokill the first "free" ender dragon
   - a bunch of config options to tweak the initial end to your likings 
