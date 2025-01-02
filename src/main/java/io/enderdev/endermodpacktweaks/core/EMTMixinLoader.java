@@ -11,7 +11,9 @@ import java.util.stream.Collectors;
 
 public class EMTMixinLoader implements ILateMixinLoader {
     public static final Map<String, Boolean> modMixins = ImmutableMap.of(
-            "perfectspawn", EMTConfigMods.PERFECT_SPAWN.enable
+            "perfectspawn", EMTConfigMods.PERFECT_SPAWN.enable,
+            "pyrotech", EMTConfigMods.PYROTECH.enable,
+            "rustic", EMTConfigMods.RUSTIC.enable
     );
 
     @Override
