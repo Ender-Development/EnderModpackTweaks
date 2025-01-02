@@ -2,6 +2,7 @@ package io.enderdev.endermodpacktweaks.mixin.minecraft;
 
 import io.enderdev.endermodpacktweaks.EnderModpackTweaks;
 import io.enderdev.endermodpacktweaks.config.EMTConfigMinecraft;
+import net.minecraft.block.Block;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.WorldServer;
@@ -43,7 +44,10 @@ public abstract class DragonFightManagerMixin {
         EnderModpackTweaks.LOGGER.info("Killing the dragon for the first time.");
         this.generatePortal(EMTConfigMinecraft.DRAGON.createPortal);
         if (EMTConfigMinecraft.DRAGON.dropEgg) {
-            this.world.setBlockState(this.world.getHeight(WorldGenEndPodium.END_PODIUM_LOCATION), Blocks.DRAGON_EGG.getDefaultState());
+            String eggBlock = EMTConfigMinecraft.DRAGON.eggBlock;
+            Block block = Block.getBlockFromName(eggBlock) == null ? Blocks.DRAGON_EGG : Block.getBlockFromName(eggBlock);
+            this.world.setBlockState(this.world.getHeight(WorldGenEndPodium.END_PODIUM_LOCATION), block.getDefaultState());
+            this.world.notifyNeighborsOfStateChange(world.getHeight(WorldGenEndPodium.END_PODIUM_LOCATION), block, true);
         }
         if (EMTConfigMinecraft.DRAGON.createGateway) {
             EnderModpackTweaks.LOGGER.debug("Creating gateway for the first time.");
