@@ -90,4 +90,37 @@ dependencies {
     if (project.debug_perfect_spawn.toBoolean()) {
         runtimeOnly "curse.maven:perfect-spawn-221418:2543507"
     }
+
+    compileOnly "curse.maven:athenaeum-284350:4633750"
+    compileOnly "curse.maven:patchouli-rofl-edition-905159:5981115"
+    compileOnly "curse.maven:dropt-284973:5405050"
+    compileOnly rfg.deobf("curse.maven:pyrotech-306676:5822040")
+    if (project.debug_pyrotech.toBoolean()) {
+        runtimeOnly "curse.maven:athenaeum-284350:4633750"
+        runtimeOnly "curse.maven:patchouli-rofl-edition-905159:5981115"
+        runtimeOnly "curse.maven:dropt-284973:5405050"
+        runtimeOnly "curse.maven:pyrotech-306676:5822040"
+    }
+
+
+    compileOnly rfg.deobf("com.github.jbredwards:fluidlogged-api:47f153989e")
+    compileOnly rfg.deobf("curse.maven:forgelin-continuous-456403:5946402")
+    compileOnly rfg.deobf("curse.maven:greenery-574029:5913357")
+    if (project.debug_greenery.toBoolean()) {
+        runtimeOnly "com.github.jbredwards:fluidlogged-api:47f153989e"
+        runtimeOnly "curse.maven:forgelin-continuous-456403:5946402"
+        runtimeOnly "curse.maven:greenery-574029:5913357"
+    }
+
+    compileOnly rfg.deobf("curse.maven:rustic-256141:6031613")
+    if (project.debug_rustic.toBoolean()) {
+        runtimeOnly "curse.maven:rustic-256141:6031613"
+    }
+
+    compileOnly "curse.maven:patchouli-rofl-edition-905159:5981115"
+    compileOnly rfg.deobf("curse.maven:hearth-well-313368:2800056")
+    if (project.debug_hearthwell.toBoolean()) {
+        runtimeOnly "curse.maven:patchouli-rofl-edition-905159:5981115"
+        runtimeOnly "curse.maven:hearth-well-313368:2800056"
+    }
 }
