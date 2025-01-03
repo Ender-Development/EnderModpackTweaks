@@ -1,6 +1,8 @@
 package io.enderdev.endermodpacktweaks.mixin.rustic;
 
 import com.google.common.collect.ImmutableList;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import io.enderdev.endermodpacktweaks.config.EMTConfigMods;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -12,7 +14,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import rustic.common.blocks.crops.BlockBerryBush;
 
@@ -34,19 +35,19 @@ public abstract class BlockBerryBushMixin {
         }
     }
 
-    @Redirect(method = "canPlaceBlockAt", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/Block;canSustainPlant(Lnet/minecraft/block/state/IBlockState;Lnet/minecraft/world/IBlockAccess;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/EnumFacing;Lnet/minecraftforge/common/IPlantable;)Z", remap = false), remap = true)
-    private boolean canPlaceBlockAtMixin(Block block, IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side, IPlantable plantable) {
+    @WrapOperation(method = "canPlaceBlockAt", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/Block;canSustainPlant(Lnet/minecraft/block/state/IBlockState;Lnet/minecraft/world/IBlockAccess;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/EnumFacing;Lnet/minecraftforge/common/IPlantable;)Z", remap = false), remap = true)
+    private boolean canPlaceBlockAtMixin(Block block, IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side, IPlantable plantable, Operation<Boolean> original) {
         if (EMTConfigMods.RUSTIC.overrideBerryBushPlacement) {
             return enderModpackTweaks$validBlocks.contains(state.getBlock());
         }
-        return block.canSustainPlant(state, world, pos, side, plantable);
+        return original.call(block, state, world, pos, side, plantable);
     }
 
-    @Redirect(method = "canBlockStay", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/Block;canSustainPlant(Lnet/minecraft/block/state/IBlockState;Lnet/minecraft/world/IBlockAccess;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/EnumFacing;Lnet/minecraftforge/common/IPlantable;)Z"))
-    private boolean canBlockStayMixin(Block block, IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side, IPlantable plantable) {
+    @WrapOperation(method = "canBlockStay", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/Block;canSustainPlant(Lnet/minecraft/block/state/IBlockState;Lnet/minecraft/world/IBlockAccess;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/EnumFacing;Lnet/minecraftforge/common/IPlantable;)Z"))
+    private boolean canBlockStayMixin(Block block, IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side, IPlantable plantable, Operation<Boolean> original) {
         if (EMTConfigMods.RUSTIC.overrideBerryBushPlacement) {
             return enderModpackTweaks$validBlocks.contains(state.getBlock());
         }
-        return block.canSustainPlant(state, world, pos, side, plantable);
+        return original.call(block, state, world, pos, side, plantable);
     }
 }

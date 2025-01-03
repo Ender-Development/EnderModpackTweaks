@@ -54,7 +54,6 @@ public abstract class DragonFightManagerMixin {
             spawnNewGateway();
         }
         cir.setReturnValue(true);
-        cir.cancel();
     }
 
     @Inject(method = "processDragonDeath", at = @At("RETURN"))
