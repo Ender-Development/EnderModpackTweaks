@@ -26,10 +26,10 @@ public abstract class WorldGenWildberriesMixin extends WorldGenerator {
      * @author _MasterEnderman_
      * @reason Override Rustic's biomes blacklist
      */
-    @Overwrite
+    @Overwrite(remap = true)
     public boolean generate(World world, Random rand, BlockPos pos) {
         Biome biome = world.getBiome(pos);
-        List<BiomeDictionary.Type> listBiomesBlacklist = Arrays.stream(EMTConfigMods.RUSTIC.listBiomesBlacklist.clone())
+        List<BiomeDictionary.Type> listBiomesBlacklist = Arrays.stream(EMTConfigMods.RUSTIC.listBiomesBlacklist)
                 .map(BiomeDictionary.Type::getType).collect(Collectors.toList());
 
         if (EMTConfigMods.RUSTIC.overrideBerryBushBiomeBlacklist) {

@@ -8,9 +8,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.IPlantable;
-import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -24,8 +22,7 @@ import java.util.Objects;
 @Mixin(value = BlockBerryBush.class, remap = false)
 public abstract class BlockBerryBushMixin {
     @Unique
-    @Final
-    private static final ImmutableList<Block> enderModpackTweaks$validBlocks = Arrays.stream(EMTConfigMods.RUSTIC.listBerryBushBlocks.clone())
+    private static final ImmutableList<Block> enderModpackTweaks$validBlocks = Arrays.stream(EMTConfigMods.RUSTIC.listBerryBushBlocks)
             .map(Block::getBlockFromName)
             .filter(Objects::nonNull)
             .collect(ImmutableList.toImmutableList());
@@ -34,11 +31,10 @@ public abstract class BlockBerryBushMixin {
     private void canSustainBushMixin(IBlockState state, CallbackInfoReturnable<Boolean> cir) {
         if (EMTConfigMods.RUSTIC.overrideBerryBushPlacement) {
             cir.setReturnValue(enderModpackTweaks$validBlocks.contains(state.getBlock()));
-            cir.cancel();
         }
     }
 
-    @Redirect(method = "canPlaceBlockAt", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/Block;canSustainPlant(Lnet/minecraft/block/state/IBlockState;Lnet/minecraft/world/IBlockAccess;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/EnumFacing;Lnet/minecraftforge/common/IPlantable;)Z"))
+    @Redirect(method = "canPlaceBlockAt", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/Block;canSustainPlant(Lnet/minecraft/block/state/IBlockState;Lnet/minecraft/world/IBlockAccess;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/EnumFacing;Lnet/minecraftforge/common/IPlantable;)Z", remap = false), remap = true)
     private boolean canPlaceBlockAtMixin(Block block, IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side, IPlantable plantable) {
         if (EMTConfigMods.RUSTIC.overrideBerryBushPlacement) {
             return enderModpackTweaks$validBlocks.contains(state.getBlock());

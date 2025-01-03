@@ -25,7 +25,7 @@ public class WorldGeneratorRusticMixin {
         enderModpackTweaks$world = world;
     }
 
-    @Redirect(method = "generate", at = @At(value = "FIELD", target = "Lnet/minecraft/world/WorldType;FLAT:Lnet/minecraft/world/WorldType;"))
+    @Redirect(method = "generate", at = @At(value = "FIELD", target = "Lnet/minecraft/world/WorldType;FLAT:Lnet/minecraft/world/WorldType;", remap = true))
     private WorldType fixFlatWorldType() {
         if (EMTConfigMods.RUSTIC.enableWorldGenInFlat && enderModpackTweaks$world.getWorldType() == WorldType.FLAT) {
             return WorldType.DEFAULT;
