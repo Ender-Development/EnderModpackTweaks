@@ -123,4 +123,9 @@ dependencies {
         runtimeOnly "curse.maven:patchouli-rofl-edition-905159:5981115"
         runtimeOnly "curse.maven:hearth-well-313368:2800056"
     }
+
+    compileOnly rfg.deobf("curse.maven:default-world-generator-ssp-490698:3337685")
+    if (project.debug_defaultworldgenerator.toBoolean()) {
+        runtimeOnly "curse.maven:default-world-generator-ssp-490698:3337685"
+    }
 }

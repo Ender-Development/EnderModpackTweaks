@@ -2,6 +2,7 @@ package io.enderdev.endermodpacktweaks.config;
 
 import com.cleanroommc.configanytime.ConfigAnytime;
 import io.enderdev.endermodpacktweaks.Tags;
+import io.enderdev.endermodpacktweaks.config.mods.CfgDefaultWorldGenerator;
 import io.enderdev.endermodpacktweaks.config.mods.CfgPerfectSpawn;
 import io.enderdev.endermodpacktweaks.config.mods.CfgPyrotech;
 import io.enderdev.endermodpacktweaks.config.mods.CfgRustic;
@@ -21,6 +22,10 @@ public class EMTConfigMods {
     @Config.Name("Rustic")
     @Config.LangKey("config.endermodpacktweaks.mods.rustic")
     public static final CfgRustic RUSTIC = new CfgRustic();
+
+    @Config.Name("Default World Generator Port")
+    @Config.LangKey("config.endermodpacktweaks.mods.defaultworldgeneratorport")
+    public static final CfgDefaultWorldGenerator DEFAULT_WORLD_GENERATOR_PORT = new CfgDefaultWorldGenerator();
 
     static {
         ConfigAnytime.register(EMTConfigMinecraft.class);

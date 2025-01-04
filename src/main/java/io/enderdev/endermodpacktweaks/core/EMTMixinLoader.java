@@ -13,7 +13,8 @@ public class EMTMixinLoader implements ILateMixinLoader {
     public static final Map<String, Boolean> modMixins = ImmutableMap.of(
             "perfectspawn", EMTConfigMods.PERFECT_SPAWN.enable,
             "pyrotech", EMTConfigMods.PYROTECH.enable,
-            "rustic", EMTConfigMods.RUSTIC.enable
+            "rustic", EMTConfigMods.RUSTIC.enable,
+            "defaultworldgenerator-port", EMTConfigMods.DEFAULT_WORLD_GENERATOR_PORT.enable
     );
 
     @Override

@@ -20,6 +20,8 @@ If you have any suggestions, feel free to let me know.
 - ✅ adapting [Dragon Murder](https://www.curseforge.com/minecraft/mc-mods/dragon-murder)
   - autokill the first "free" ender dragon
   - a bunch of config options to tweak the initial end to your likings 
+- ✅ tweaking [Default World Generator without Server Side Prompts](https://www.curseforge.com/minecraft/mc-mods/default-world-generator-ssp)
+  - fixing a bug where the texture of the world selsction screen would break if your window is too large
 - ✅ option to disable the 2x2 crafting field in the inventory
   - the implementation isn't optimal as I would like to remove it completely, but it is a start
 - ✅ End Gateway tweak to change the bedrock to something else
