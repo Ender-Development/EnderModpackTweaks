@@ -11,7 +11,7 @@ import rustic.common.world.WorldGeneratorRustic;
 
 @Mixin(value = WorldGeneratorRustic.class, remap = false)
 public class WorldGeneratorRusticMixin {
-    @Redirect(method = "generate", at = @At(value = "FIELD", target = "Lnet/minecraft/world/WorldType;FLAT:Lnet/minecraft/world/WorldType;"))
+    @Redirect(method = "generate", at = @At(value = "FIELD", target = "Lnet/minecraft/world/WorldType;FLAT:Lnet/minecraft/world/WorldType;"), remap = true)
     private WorldType fixFlatWorldType(@Local(argsOnly = true) World world) {
         if (EMTConfigMods.RUSTIC.enableWorldGenInFlat && world.getWorldType() == WorldType.FLAT) {
             return WorldType.DEFAULT;

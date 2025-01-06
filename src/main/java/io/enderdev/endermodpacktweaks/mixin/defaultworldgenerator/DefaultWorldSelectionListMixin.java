@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 @Mixin(value = DefaultWorldSelectionList.class, remap = false)
 public class DefaultWorldSelectionListMixin {
 
-    @ModifyArgs(method = "initGui", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiButton;<init>(IIIIILjava/lang/String;)V"))
+    @ModifyArgs(method = "initGui", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiButton;<init>(IIIIILjava/lang/String;)V"), remap = true)
     private void modifyButtonH(Args args) {
         DefaultWorldSelectionList self = (DefaultWorldSelectionList) (Object) this;
         int width = 320;
