@@ -21,7 +21,7 @@ If you have any suggestions, feel free to let me know.
   - autokill the first "free" ender dragon
   - a bunch of config options to tweak the initial end to your likings 
 - ✅ tweaking [Default World Generator without Server Side Prompts](https://www.curseforge.com/minecraft/mc-mods/default-world-generator-ssp)
-  - fixing a bug where the texture of the world selsction screen would break if your window is too large
+  - fixing a bug where the texture of the world selection screen would break if your window is too large
 - ✅ option to disable the 2x2 crafting field in the inventory
   - the implementation isn't optimal as I would like to remove it completely, but it is a start
 - ✅ End Gateway tweak to change the bedrock to something else
@@ -30,6 +30,13 @@ If you have any suggestions, feel free to let me know.
   - allow portal creation in the end
   - disallow the traverse of entities
   - disallow the creation of portals in the first place
+- ✅ Difficulty Tweaks
+  - force a specific difficulty
+  - lock the difficulty so it can't be changed afterwards
+- ✅ Gamemode Tweaks
+  - force a specific Gamemode
+  - force Hardcore Gamemode
+  - allow commands
 
 ## Possible Bugfixes
 

@@ -28,6 +28,10 @@ public class EMTConfigMinecraft {
     @Config.LangKey("config.endermodpacktweaks.minecraft.nether_portal")
     public static final CfgNetherPortal NETHER_PORTAL = new CfgNetherPortal();
 
+    @Config.Name("World Tweaks")
+    @Config.LangKey("config.endermodpacktweaks.minecraft.world")
+    public static final CfgWorld WORLD = new CfgWorld();
+
     static {
         ConfigAnytime.register(EMTConfigMinecraft.class);
     }
