@@ -30,14 +30,16 @@ public abstract class DragonFightManagerMixin {
     @Unique
     private boolean enderModpackTweaks$firstTime = true;
 
-    @Shadow private boolean previouslyKilled;
+    @Shadow
+    private boolean previouslyKilled;
 
-    @Shadow protected abstract void spawnNewGateway();
+    @Shadow
+    protected abstract void spawnNewGateway();
 
     @Inject(method = "hasDragonBeenKilled", at = @At("HEAD"), cancellable = true)
     private void hasDragonBeenKilled(CallbackInfoReturnable<Boolean> cir) {
         EnderModpackTweaks.LOGGER.debug("Checking if the dragon has been killed before.");
-        if (!this.enderModpackTweaks$firstTime) {
+        if (!this.enderModpackTweaks$firstTime|| !EMTConfig.MINECRAFT.DRAGON.killDragon) {
             return;
         }
         enderModpackTweaks$firstTime = false;

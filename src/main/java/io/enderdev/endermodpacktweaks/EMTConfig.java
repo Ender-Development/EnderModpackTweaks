@@ -70,37 +70,41 @@ public class EMTConfig {
         public static class Dragon {
             @Config.RequiresMcRestart
             @Config.Name("[01] Enable Dragon Tweaks")
+            @Config.Comment("Allow you to customize the Ender Dragon Fight Mechanic.")
+            public boolean enable = false;
+
+            @Config.Name("[02] Kill Dragon")
             @Config.Comment({
                     "This tweak kills the first dragon when the player enters the end for the first time.",
                     "Useful for modpacks that want to make the dragon fight non-free."
             })
-            public boolean enable = false;
+            public boolean killDragon = false;
 
-            @Config.Name("[02] Drop Dragon Egg")
+            @Config.Name("[03] Drop Dragon Egg")
             @Config.Comment("Should the auto killed dragon drop the dragon egg?")
             public boolean dropEgg = false;
 
-            @Config.Name("[03] Replace the first Dragon Egg")
+            @Config.Name("[04] Replace the first Dragon Egg")
             @Config.Comment("Replace the dragon egg block with another block.")
             public String eggBlock = "minecraft:dragon_egg";
 
-            @Config.Name("[04] Create End Portal")
+            @Config.Name("[05] Create End Portal")
             @Config.Comment("Should the auto killed dragon create the end portal back to the overworld?")
             public boolean createPortal = false;
 
-            @Config.Name("[05] Create End Gateway")
+            @Config.Name("[06] Create End Gateway")
             @Config.Comment("Should the auto killed dragon create an end gateway?")
             public boolean createGateway = false;
 
-            @Config.Name("[06] Multiple Dragon Egg")
+            @Config.Name("[07] Multiple Dragon Egg")
             @Config.Comment("Should every dragon drop an egg?")
             public boolean multipleEgg = false;
 
-            @Config.Name("[07] Disable End Portal")
+            @Config.Name("[08] Disable End Portal")
             @Config.Comment("Should spawning the end portal when killing the dragon be disabled?")
             public boolean disablePortal = false;
 
-            @Config.Name("[08] Disable End Gateway")
+            @Config.Name("[09] Disable End Gateway")
             @Config.Comment("Should spawning the end gateway when killing the dragon be disabled?")
             public boolean disableGateway = false;
         }
@@ -166,20 +170,20 @@ public class EMTConfig {
 
         public static class NetherPortal {
             @Config.RequiresMcRestart
-            @Config.Name("Nether Portal Tweaks")
-            @Config.Comment("[1] Enable Nether Portal Tweaks")
+            @Config.Name("[1] Nether Portal Tweaks")
+            @Config.Comment("Enable Nether Portal Tweaks")
             public boolean enable = false;
 
-            @Config.Name("Nether Portal Creation")
-            @Config.Comment("[2] Allow Nether Portal Creation")
+            @Config.Name("[2] Nether Portal Creation")
+            @Config.Comment("Allow Nether Portal Creation")
             public boolean canBeCreated = true;
 
-            @Config.Name("End Nether Portal")
-            @Config.Comment("[3] Allow Nether Portal Creation in the End")
+            @Config.Name("[3] End Nether Portal")
+            @Config.Comment("Allow Nether Portal Creation in the End")
             public boolean canBeCreatedInEnd = false;
 
-            @Config.Name("No Entity Traverse")
-            @Config.Comment("[4] Disallow Entities to enter Nether Portals")
+            @Config.Name("[4] No Entity Traverse")
+            @Config.Comment("Disallow Entities to enter Nether Portals")
             public boolean disallowTraverse = false;
         }
 
@@ -236,16 +240,37 @@ public class EMTConfig {
 
     @Config.Name("Default World Generator")
     @Config.LangKey("config.endermodpacktweaks.default_world_generator")
+    @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/default-world-generator-ssp")
     public static final DefaultWorldGenerator DEFAULT_WORLD_GENERATOR = new DefaultWorldGenerator();
 
     public static class DefaultWorldGenerator {
-        @Config.Name("Enable Default World Generator Port")
-        @Config.Comment("This fixes the glitched button texture in the default world generator screen.")
+        @Config.Name("Enable Default World Generator Port Tweaks")
+        @Config.Comment({
+                "This fixes the glitched button texture in the default world generator screen,",
+                "which appears when using a wide screen by giving it a fixed width."
+        })
         public boolean enable = true;
+    }
+
+    @Config.Name("Item Physics")
+    @Config.LangKey("config.endermodpacktweaks.item_physics")
+    @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/itemphysic")
+    public static final ItemPhysics ITEM_PHYSICS = new ItemPhysics();
+
+    public static class ItemPhysics {
+        @Config.RequiresMcRestart
+        @Config.Name("[1] Enable Item Physics Tweaks")
+        @Config.Comment("Enable tweaks for the Item Physics mod.")
+        public boolean enable = true;
+
+        @Config.Name("[2] Add Stack Size to Tooltip")
+        @Config.Comment("Add the stack size to the item tooltip that shows in world, when using the alternative pickup method.")
+        public boolean addStackSizeToTooltip = true;
     }
 
     @Config.Name("Perfect Spawn")
     @Config.LangKey("config.endermodpacktweaks.perfect_spawn")
+    @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/perfect-spawn")
     public static final PerfectSpawn PERFECT_SPAWN = new PerfectSpawn();
 
     public static class PerfectSpawn {
@@ -260,6 +285,7 @@ public class EMTConfig {
 
     @Config.Name("Pyrotech")
     @Config.LangKey("config.endermodpacktweaks.pyrotech")
+    @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/pyrotech")
     public static final Pyrotech PYROTECH = new Pyrotech();
 
     public static class Pyrotech {
@@ -329,12 +355,13 @@ public class EMTConfig {
 
     @Config.Name("Rustic")
     @Config.LangKey("config.endermodpacktweaks.rustic")
+    @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/rustic")
     public static final Rustic RUSTIC = new Rustic();
 
     public static class Rustic {
+        @Config.RequiresMcRestart
         @Config.Name("[01] Enable Rustic Tweaks")
         @Config.Comment("Set to false to disable Rustic tweaks")
-        @Config.RequiresMcRestart
         public boolean enable = true;
 
         @Config.Name("[02] Berry Bush generation spread")
@@ -380,6 +407,7 @@ public class EMTConfig {
 
     @Config.Name("Simple Difficulty")
     @Config.LangKey("config.endermodpacktweaks.simple_difficulty")
+    @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/simpledifficulty-for-underdog")
     public static final SimpleDifficulty SIMPLE_DIFFICULTY = new SimpleDifficulty();
 
     public static class SimpleDifficulty {
