@@ -24,6 +24,9 @@ If you have any suggestions, feel free to let me know.
   - fixing a bug where the texture of the world selection screen would break if your window is too large
 - ✅ tweaking [Simple Difficulty](https://www.curseforge.com/minecraft/mc-mods/simpledifficulty)
   - allow moving the thirst bar if it does overlap with something else
+- ✅ tweaking [ItemPhysic Full](https://www.curseforge.com/minecraft/mc-mods/itemphysic)
+  - improve the tooltip in alternative pickup mode to show the size of the itemstack that is being looked at
+  - color the tooltip respectively to the item rarity
 - ✅ option to disable the 2x2 crafting field in the inventory
   - the implementation isn't optimal as I would like to remove it completely, but it is a start
 - ✅ End Gateway tweak to change the bedrock to something else
