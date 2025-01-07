@@ -2,10 +2,7 @@ package io.enderdev.endermodpacktweaks.config;
 
 import com.cleanroommc.configanytime.ConfigAnytime;
 import io.enderdev.endermodpacktweaks.Tags;
-import io.enderdev.endermodpacktweaks.config.mods.CfgDefaultWorldGenerator;
-import io.enderdev.endermodpacktweaks.config.mods.CfgPerfectSpawn;
-import io.enderdev.endermodpacktweaks.config.mods.CfgPyrotech;
-import io.enderdev.endermodpacktweaks.config.mods.CfgRustic;
+import io.enderdev.endermodpacktweaks.config.mods.*;
 import net.minecraftforge.common.config.Config;
 
 @Config(modid = Tags.MOD_ID, category = "mods")
@@ -26,6 +23,10 @@ public class EMTConfigMods {
     @Config.Name("Default World Generator Port")
     @Config.LangKey("config.endermodpacktweaks.mods.defaultworldgeneratorport")
     public static final CfgDefaultWorldGenerator DEFAULT_WORLD_GENERATOR_PORT = new CfgDefaultWorldGenerator();
+
+    @Config.Name("Simple Difficulty")
+    @Config.LangKey("config.endermodpacktweaks.mods.simpledifficulty")
+    public static final CfgSimpleDifficulty SIMPLE_DIFFICULTY = new CfgSimpleDifficulty();
 
     static {
         ConfigAnytime.register(EMTConfigMinecraft.class);

@@ -128,4 +128,9 @@ dependencies {
     if (project.debug_defaultworldgenerator.toBoolean()) {
         runtimeOnly "curse.maven:default-world-generator-ssp-490698:3337685"
     }
+
+    compileOnly rfg.deobf("curse.maven:simpledifficulty-for-underdog-574162:4651150")
+    if (project.debug_simpledifficulty.toBoolean()) {
+        runtimeOnly "curse.maven:simpledifficulty-for-underdog-574162:4651150"
+    }
 }

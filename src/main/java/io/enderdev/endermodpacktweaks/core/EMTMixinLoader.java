@@ -14,7 +14,8 @@ public class EMTMixinLoader implements ILateMixinLoader {
             "perfectspawn", EMTConfigMods.PERFECT_SPAWN.enable,
             "pyrotech", EMTConfigMods.PYROTECH.enable,
             "rustic", EMTConfigMods.RUSTIC.enable,
-            "defaultworldgenerator-port", EMTConfigMods.DEFAULT_WORLD_GENERATOR_PORT.enable
+            "defaultworldgenerator-port", EMTConfigMods.DEFAULT_WORLD_GENERATOR_PORT.enable,
+            "simpledifficulty", EMTConfigMods.SIMPLE_DIFFICULTY.enable
     );
 
     @Override

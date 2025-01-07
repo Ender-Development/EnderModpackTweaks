@@ -1,0 +1,12 @@
+{
+    "package": "io.enderdev.endermodpacktweaks.mixin.simpledifficulty",
+    "refmap": "mixins.endermodpacktweaks.refmap.json",
+    "target": "@env(DEFAULT)",
+    "minVersion": "0.8.5",
+    "compatibilityLevel": "JAVA_8",
+    "mixins": [
+        "ThirstGuiMixin"
+    ],
+    "server": [],
+    "client": []
+}

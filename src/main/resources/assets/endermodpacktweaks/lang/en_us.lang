@@ -32,3 +32,6 @@ config.endermodpacktweaks.mods.rustic.tooltip=Tweaks to the Rustic mod
 
 config.endermodpacktweaks.mods.defaultworldgeneratorport=Default World Generator Port
 config.endermodpacktweaks.mods.defaultworldgeneratorport.tooltip=Tweaks to the Default World Generator Port mod
+
+config.endermodpacktweaks.mods.simpledifficulty=Simple Difficulty
+config.endermodpacktweaks.mods.simpledifficulty.tooltip=Tweaks to the Simple Difficulty mod
