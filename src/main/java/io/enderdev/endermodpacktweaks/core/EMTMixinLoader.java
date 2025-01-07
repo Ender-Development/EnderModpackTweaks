@@ -5,21 +5,30 @@ import io.enderdev.endermodpacktweaks.EMTConfig;
 import net.minecraftforge.fml.common.Loader;
 import zone.rong.mixinbooter.ILateMixinLoader;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
+import java.util.function.BooleanSupplier;
 
 public class EMTMixinLoader implements ILateMixinLoader {
-    public static final Map<String, Boolean> modMixins = ImmutableMap.of(
-            "perfectspawn", EMTConfig.PERFECT_SPAWN.enable,
-            "pyrotech", EMTConfig.PYROTECH.enable,
-            "rustic", EMTConfig.RUSTIC.enable,
-            "defaultworldgenerator-port", EMTConfig.DEFAULT_WORLD_GENERATOR.enable,
-            "simpledifficulty", EMTConfig.SIMPLE_DIFFICULTY.enable
-    );
+    private static final Map<String, BooleanSupplier> mixinConfigs = ImmutableMap.copyOf(new HashMap<String, BooleanSupplier>(){
+        {
+            put("mixins.emt.perfectspawn.json", () -> Loader.isModLoaded("perfectspawn") && EMTConfig.PERFECT_SPAWN.enable);
+            put("mixins.emt.pyrotech.json", () -> Loader.isModLoaded("pyrotech") && EMTConfig.PYROTECH.enable);
+            put("mixins.emt.rustic.json", () -> Loader.isModLoaded("rustic") && EMTConfig.RUSTIC.enable);
+            put("mixins.emt.defaultworldgenerator.json", () -> Loader.isModLoaded("defaultworldgenerator-port") && EMTConfig.DEFAULT_WORLD_GENERATOR.enable);
+            put("mixins.emt.simpledifficulty.json", () -> Loader.isModLoaded("simpledifficulty") && EMTConfig.SIMPLE_DIFFICULTY.enable);
+        }
+    });
 
     @Override
     public List<String> getMixinConfigs() {
-        return modMixins.keySet().stream().filter(mod -> Loader.isModLoaded(mod) && modMixins.get(mod)).map(mod -> "mixins.emt." + mod + ".json").collect(Collectors.toList());
+        return new ArrayList<>(mixinConfigs.keySet());
+    }
+
+    @Override
+    public boolean shouldMixinConfigQueue(String config) {
+        return mixinConfigs.get(config).getAsBoolean();
     }
 }
