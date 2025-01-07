@@ -4,7 +4,7 @@ import com.codetaylor.mc.pyrotech.modules.core.block.BlockRock;
 import com.codetaylor.mc.pyrotech.modules.worldgen.feature.WorldGenRocks;
 import com.google.common.collect.ImmutableList;
 import com.llamalad7.mixinextras.sugar.Local;
-import io.enderdev.endermodpacktweaks.config.EMTConfigMods;
+import io.enderdev.endermodpacktweaks.EMTConfig;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -18,23 +18,23 @@ public class WorldGenRocksMixin {
 
     @Unique
     private List<Integer> enderModpackTweaks$rockTypeWeight = ImmutableList.of(
-            EMTConfigMods.PYROTECH.rock_stone,
-            EMTConfigMods.PYROTECH.rock_granite,
-            EMTConfigMods.PYROTECH.rock_diorite,
-            EMTConfigMods.PYROTECH.rock_andesite,
-            EMTConfigMods.PYROTECH.rock_dirt,
-            EMTConfigMods.PYROTECH.rock_sand,
-            EMTConfigMods.PYROTECH.rock_sandstone,
-            EMTConfigMods.PYROTECH.rock_wood_chips,
-            EMTConfigMods.PYROTECH.rock_limestone,
-            EMTConfigMods.PYROTECH.rock_sand_red,
-            EMTConfigMods.PYROTECH.rock_sandstone_red,
-            EMTConfigMods.PYROTECH.rock_mud
+            EMTConfig.PYROTECH.ROCK_WEIGHT.stone,
+            EMTConfig.PYROTECH.ROCK_WEIGHT.granite,
+            EMTConfig.PYROTECH.ROCK_WEIGHT.diorite,
+            EMTConfig.PYROTECH.ROCK_WEIGHT.andesite,
+            EMTConfig.PYROTECH.ROCK_WEIGHT.dirt,
+            EMTConfig.PYROTECH.ROCK_WEIGHT.sand,
+            EMTConfig.PYROTECH.ROCK_WEIGHT.sandstone,
+            EMTConfig.PYROTECH.ROCK_WEIGHT.wood_chips,
+            EMTConfig.PYROTECH.ROCK_WEIGHT.limestone,
+            EMTConfig.PYROTECH.ROCK_WEIGHT.sand_red,
+            EMTConfig.PYROTECH.ROCK_WEIGHT.sandstone_red,
+            EMTConfig.PYROTECH.ROCK_WEIGHT.mud
     );
 
     @Redirect(method = "lambda$generate$0", at = @At(value = "FIELD", target = "Lcom/codetaylor/mc/pyrotech/modules/core/block/BlockRock$EnumType;STONE:Lcom/codetaylor/mc/pyrotech/modules/core/block/BlockRock$EnumType;"))
     private BlockRock.EnumType modifyRockType(@Local(argsOnly = true) Random random) {
-        if (!EMTConfigMods.PYROTECH.randomRocks) {
+        if (!EMTConfig.PYROTECH.randomRocks) {
             return BlockRock.EnumType.STONE;
         }
         int totalWeight = 0;

@@ -1,37 +1,28 @@
-config.endermodpacktweaks.minecraft=Minecraft Tweaks
-config.endermodpacktweaks.minecraft.tooltip=Tweaks to Minecraft itself
-
-config.endermodpacktweaks.minecraft.client=Client Tweaks
-config.endermodpacktweaks.minecraft.client.tooltip=Client side changes
-config.endermodpacktweaks.minecraft.dragon=Ender Dragon Tweaks
-config.endermodpacktweaks.minecraft.dragon.tooltip=Changes to the Ender Dragon
-config.endermodpacktweaks.minecraft.end_gateway=End Gateway Tweaks
-config.endermodpacktweaks.minecraft.end_gateway.tooltip=Change the blocks of the End Gateway
-config.endermodpacktweaks.minecraft.end_portal=End Portal Tweaks
-config.endermodpacktweaks.minecraft.end_portal.tooltip=Change the blocks of the End Portal
-config.endermodpacktweaks.minecraft.nether_portal=Nether Portal Tweaks
-config.endermodpacktweaks.minecraft.nether_portal.tooltip=Change the behavior of Nether Portals
-config.endermodpacktweaks.minecraft.world=World Tweaks
-config.endermodpacktweaks.minecraft.world.tooltip=Changes things about the world
-config.endermodpacktweaks.minecraft.world.difficulty=Difficulty Tweaks
-config.endermodpacktweaks.minecraft.world.difficulty.tooltip=Change the difficulty of the game
-config.endermodpacktweaks.minecraft.world.gamemode=Game Mode Tweaks
-config.endermodpacktweaks.minecraft.world.gamemode.tooltip=Change the game mode of the game, enables commands or hardcore mode
-
-config.endermodpacktweaks.mods=Mod Tweaks
-config.endermodpacktweaks.mods.tooltip=Tweaks to other mods
-
-config.endermodpacktweaks.mods.perfectspawn=Perfect Spawn
-config.endermodpacktweaks.mods.perfectspawn.tooltip=Tweaks to the Perfect Spawn mod
-
-config.endermodpacktweaks.mods.pyrotech=Pyrotech
-config.endermodpacktweaks.mods.pyrotech.tooltip=Tweaks to the Pyrotech mod
-
-config.endermodpacktweaks.mods.rustic=Rustic
-config.endermodpacktweaks.mods.rustic.tooltip=Tweaks to the Rustic mod
-
-config.endermodpacktweaks.mods.defaultworldgeneratorport=Default World Generator Port
-config.endermodpacktweaks.mods.defaultworldgeneratorport.tooltip=Tweaks to the Default World Generator Port mod
-
-config.endermodpacktweaks.mods.simpledifficulty=Simple Difficulty
-config.endermodpacktweaks.mods.simpledifficulty.tooltip=Tweaks to the Simple Difficulty mod
+config.endermodpacktweaks.minecraft=Minecraft
+config.endermodpacktweaks.minecraft.tooltip=Tweaks to the base game
+config.endermodpacktweaks.minecraft.client=Client
+config.endermodpacktweaks.minecraft.client.tooltip=Tweaks to the client
+config.endermodpacktweaks.minecraft.dragon=Ender Dragon
+config.endermodpacktweaks.minecraft.dragon.tooltip=Tweaks to the Ender Dragon
+config.endermodpacktweaks.minecraft.end_gateway=The End Gateway
+config.endermodpacktweaks.minecraft.end_gateway.tooltip=Tweaks to the End Gateway
+config.endermodpacktweaks.minecraft.end_portal=The End Portal
+config.endermodpacktweaks.minecraft.end_portal.tooltip=Tweaks to the End Portal
+config.endermodpacktweaks.minecraft.nether_portal=The Nether Portal
+config.endermodpacktweaks.minecraft.nether_portal.tooltip=Tweaks to the Nether Portal
+config.endermodpacktweaks.minecraft.world=World
+config.endermodpacktweaks.minecraft.world.tooltip=Tweaks to the world
+config.endermodpacktweaks.minecraft.world.difficulty=Dificulty
+config.endermodpacktweaks.minecraft.world.difficulty.tooltip=Tweaks to the world difficulty
+config.endermodpacktweaks.minecraft.world.gamemode=Gamemode
+config.endermodpacktweaks.minecraft.world.gamemode.tooltip=Tweaks to the world gamemode
+config.endermodpacktweaks.default_world_generator=Default World Generator
+config.endermodpacktweaks.default_world_generator.tooltip=Tweaks to the default world generator mod
+config.endermodpacktweaks.perfect_spawn=Perfect Spawn
+config.endermodpacktweaks.perfect_spawn.tooltip=Tweaks to the perfect spawn mod
+config.endermodpacktweaks.pyrotech=Pyrotech
+config.endermodpacktweaks.pyrotech.tooltip=Tweaks to the pyrotech mod
+config.endermodpacktweaks.rustic=Rustic
+config.endermodpacktweaks.rustic.tooltip=Tweaks to the rustic mod
+config.endermodpacktweaks.simple_difficulty=Simple Difficulty
+config.endermodpacktweaks.simple_difficulty.tooltip=Tweaks to the simple difficulty mod

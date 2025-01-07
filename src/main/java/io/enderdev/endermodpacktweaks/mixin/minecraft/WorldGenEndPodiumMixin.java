@@ -1,6 +1,6 @@
 package io.enderdev.endermodpacktweaks.mixin.minecraft;
 
-import io.enderdev.endermodpacktweaks.config.EMTConfigMinecraft;
+import io.enderdev.endermodpacktweaks.EMTConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockTorch;
 import net.minecraft.init.Blocks;
@@ -36,33 +36,33 @@ public abstract class WorldGenEndPodiumMixin extends WorldGenerator {
             if (d0 <= 3.5D) {
                 if (blockpos$mutableblockpos.getY() < position.getY()) {
                     if (d0 <= 2.5D) {
-                        this.setBlockAndNotifyAdequately(worldIn, blockpos$mutableblockpos, Block.getBlockFromName(EMTConfigMinecraft.END_PODIUM.bedrock).getDefaultState());
+                        this.setBlockAndNotifyAdequately(worldIn, blockpos$mutableblockpos, Block.getBlockFromName(EMTConfig.MINECRAFT.END_PODIUM.bedrock).getDefaultState());
                     } else if (blockpos$mutableblockpos.getY() < position.getY()) {
-                        this.setBlockAndNotifyAdequately(worldIn, blockpos$mutableblockpos, Block.getBlockFromName(EMTConfigMinecraft.END_PODIUM.endStone).getDefaultState());
+                        this.setBlockAndNotifyAdequately(worldIn, blockpos$mutableblockpos, Block.getBlockFromName(EMTConfig.MINECRAFT.END_PODIUM.endStone).getDefaultState());
                     }
                 } else if (blockpos$mutableblockpos.getY() > position.getY()) {
-                    this.setBlockAndNotifyAdequately(worldIn, blockpos$mutableblockpos, Block.getBlockFromName(EMTConfigMinecraft.END_PODIUM.air).getDefaultState());
+                    this.setBlockAndNotifyAdequately(worldIn, blockpos$mutableblockpos, Block.getBlockFromName(EMTConfig.MINECRAFT.END_PODIUM.air).getDefaultState());
                 } else if (d0 > 2.5D) {
-                    this.setBlockAndNotifyAdequately(worldIn, blockpos$mutableblockpos, Block.getBlockFromName(EMTConfigMinecraft.END_PODIUM.bedrock).getDefaultState());
+                    this.setBlockAndNotifyAdequately(worldIn, blockpos$mutableblockpos, Block.getBlockFromName(EMTConfig.MINECRAFT.END_PODIUM.bedrock).getDefaultState());
                 } else if (activePortal) {
                     this.setBlockAndNotifyAdequately(worldIn, new BlockPos(blockpos$mutableblockpos), Blocks.END_PORTAL.getDefaultState());
                 } else {
-                    this.setBlockAndNotifyAdequately(worldIn, new BlockPos(blockpos$mutableblockpos), Block.getBlockFromName(EMTConfigMinecraft.END_PODIUM.air).getDefaultState());
+                    this.setBlockAndNotifyAdequately(worldIn, new BlockPos(blockpos$mutableblockpos), Block.getBlockFromName(EMTConfig.MINECRAFT.END_PODIUM.air).getDefaultState());
                 }
             }
         }
 
         for (int i = 0; i < 4; ++i) {
-            this.setBlockAndNotifyAdequately(worldIn, position.up(i), Block.getBlockFromName(EMTConfigMinecraft.END_PODIUM.bedrock).getDefaultState());
+            this.setBlockAndNotifyAdequately(worldIn, position.up(i), Block.getBlockFromName(EMTConfig.MINECRAFT.END_PODIUM.bedrock).getDefaultState());
         }
 
         BlockPos blockpos = position.up(2);
 
         for (EnumFacing enumfacing : EnumFacing.Plane.HORIZONTAL) {
-            if (Block.getBlockFromName(EMTConfigMinecraft.END_PODIUM.torch) instanceof BlockTorch) {
-                this.setBlockAndNotifyAdequately(worldIn, blockpos.offset(enumfacing), Block.getBlockFromName(EMTConfigMinecraft.END_PODIUM.torch).getDefaultState().withProperty(BlockTorch.FACING, enumfacing));
+            if (Block.getBlockFromName(EMTConfig.MINECRAFT.END_PODIUM.torch) instanceof BlockTorch) {
+                this.setBlockAndNotifyAdequately(worldIn, blockpos.offset(enumfacing), Block.getBlockFromName(EMTConfig.MINECRAFT.END_PODIUM.torch).getDefaultState().withProperty(BlockTorch.FACING, enumfacing));
             } else {
-                this.setBlockAndNotifyAdequately(worldIn, blockpos.offset(enumfacing), Block.getBlockFromName(EMTConfigMinecraft.END_PODIUM.torch).getDefaultState());
+                this.setBlockAndNotifyAdequately(worldIn, blockpos.offset(enumfacing), Block.getBlockFromName(EMTConfig.MINECRAFT.END_PODIUM.torch).getDefaultState());
             }
         }
 

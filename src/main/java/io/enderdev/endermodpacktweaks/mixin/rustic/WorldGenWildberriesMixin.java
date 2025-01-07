@@ -1,6 +1,6 @@
 package io.enderdev.endermodpacktweaks.mixin.rustic;
 
-import io.enderdev.endermodpacktweaks.config.EMTConfigMods;
+import io.enderdev.endermodpacktweaks.EMTConfig;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -29,10 +29,10 @@ public abstract class WorldGenWildberriesMixin extends WorldGenerator {
     @Overwrite(remap = true)
     public boolean generate(World world, Random rand, BlockPos pos) {
         Biome biome = world.getBiome(pos);
-        List<BiomeDictionary.Type> listBiomesBlacklist = Arrays.stream(EMTConfigMods.RUSTIC.listBiomesBlacklist)
+        List<BiomeDictionary.Type> listBiomesBlacklist = Arrays.stream(EMTConfig.RUSTIC.listBiomesBlacklist)
                 .map(BiomeDictionary.Type::getType).collect(Collectors.toList());
 
-        if (EMTConfigMods.RUSTIC.overrideBerryBushBiomeBlacklist) {
+        if (EMTConfig.RUSTIC.overrideBerryBushBiomeBlacklist) {
             if (listBiomesBlacklist.stream().anyMatch(type -> BiomeDictionary.hasType(biome, type))) {
                 return false;
             }
@@ -44,8 +44,8 @@ public abstract class WorldGenWildberriesMixin extends WorldGenerator {
 
         boolean ret = false;
         for (int i = 0; i < Config.MAX_WILDBERRY_ATTEMPTS; i++) {
-            int x = pos.getX() + rand.nextInt(EMTConfigMods.RUSTIC.maxWildberrySpread) - rand.nextInt(EMTConfigMods.RUSTIC.maxWildberrySpread);
-            int z = pos.getZ() + rand.nextInt(EMTConfigMods.RUSTIC.maxWildberrySpread) - rand.nextInt(EMTConfigMods.RUSTIC.maxWildberrySpread);
+            int x = pos.getX() + rand.nextInt(EMTConfig.RUSTIC.maxWildberrySpread) - rand.nextInt(EMTConfig.RUSTIC.maxWildberrySpread);
+            int z = pos.getZ() + rand.nextInt(EMTConfig.RUSTIC.maxWildberrySpread) - rand.nextInt(EMTConfig.RUSTIC.maxWildberrySpread);
             BlockPos genPos = world.getTopSolidOrLiquidBlock(new BlockPos(x, 0, z));
 
             if (generateBush(world, rand, genPos)) {

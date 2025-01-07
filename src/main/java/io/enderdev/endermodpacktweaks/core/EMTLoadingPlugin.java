@@ -1,7 +1,7 @@
 package io.enderdev.endermodpacktweaks.core;
 
 import com.google.common.collect.ImmutableMap;
-import io.enderdev.endermodpacktweaks.config.EMTConfigMinecraft;
+import io.enderdev.endermodpacktweaks.EMTConfig;
 import net.minecraftforge.common.ForgeVersion;
 import net.minecraftforge.fml.relauncher.FMLLaunchHandler;
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
@@ -26,10 +26,10 @@ public class EMTLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader {
 
     private static final Map<String, BooleanSupplier> commonMixinConfigs = ImmutableMap.copyOf(new HashMap<String, BooleanSupplier>() {
         {
-            put("mixins.emt.minecraft.dragonfightmanager.json", () -> EMTConfigMinecraft.DRAGON.enable);
-            put("mixins.emt.minecraft.endgateway.json", () -> EMTConfigMinecraft.END_GATEWAY.enable);
-            put("mixins.emt.minecraft.endpodium.json", () -> EMTConfigMinecraft.END_PODIUM.enable);
-            put("mixins.emt.minecraft.netherportal.json", () -> EMTConfigMinecraft.NETHER_PORTAL.enable);
+            put("mixins.emt.minecraft.dragonfightmanager.json", () -> EMTConfig.MINECRAFT.DRAGON.enable);
+            put("mixins.emt.minecraft.endgateway.json", () -> EMTConfig.MINECRAFT.END_GATEWAY.enable);
+            put("mixins.emt.minecraft.endpodium.json", () -> EMTConfig.MINECRAFT.END_PODIUM.enable);
+            put("mixins.emt.minecraft.netherportal.json", () -> EMTConfig.MINECRAFT.NETHER_PORTAL.enable);
         }
     });
 

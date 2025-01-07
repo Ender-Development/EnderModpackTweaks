@@ -1,6 +1,6 @@
 package io.enderdev.endermodpacktweaks.mixin.minecraft;
 
-import io.enderdev.endermodpacktweaks.config.EMTConfigMinecraft;
+import io.enderdev.endermodpacktweaks.EMTConfig;
 import net.minecraft.block.BlockPortal;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -17,7 +17,7 @@ public class BlockPortalMixin {
      */
     @Overwrite
     public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
-        if (EMTConfigMinecraft.NETHER_PORTAL.disallowTraverse) {
+        if (EMTConfig.MINECRAFT.NETHER_PORTAL.disallowTraverse) {
             return;
         }
         if (!entityIn.isRiding() && !entityIn.isBeingRidden() && entityIn.isNonBoss())

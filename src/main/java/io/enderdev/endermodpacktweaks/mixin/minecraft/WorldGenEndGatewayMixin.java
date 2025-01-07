@@ -1,6 +1,6 @@
 package io.enderdev.endermodpacktweaks.mixin.minecraft;
 
-import io.enderdev.endermodpacktweaks.config.EMTConfigMinecraft;
+import io.enderdev.endermodpacktweaks.EMTConfig;
 import net.minecraft.block.Block;
 import net.minecraft.world.gen.feature.WorldGenEndGateway;
 import org.spongepowered.asm.mixin.Mixin;
@@ -11,11 +11,11 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 public class WorldGenEndGatewayMixin {
     @Redirect(method = "generate", at = @At(value = "FIELD", target = "Lnet/minecraft/init/Blocks;AIR:Lnet/minecraft/block/Block;"))
     private Block generateAir() {
-        return Block.getBlockFromName(EMTConfigMinecraft.END_GATEWAY.air);
+        return Block.getBlockFromName(EMTConfig.MINECRAFT.END_GATEWAY.air);
     }
 
     @Redirect(method = "generate", at = @At(value = "FIELD", target = "Lnet/minecraft/init/Blocks;BEDROCK:Lnet/minecraft/block/Block;"))
     private Block generateBedrock() {
-        return Block.getBlockFromName(EMTConfigMinecraft.END_GATEWAY.bedrock);
+        return Block.getBlockFromName(EMTConfig.MINECRAFT.END_GATEWAY.bedrock);
     }
 }

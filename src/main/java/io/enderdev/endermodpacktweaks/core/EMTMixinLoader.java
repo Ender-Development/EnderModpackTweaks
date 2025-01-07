@@ -1,7 +1,7 @@
 package io.enderdev.endermodpacktweaks.core;
 
 import com.google.common.collect.ImmutableMap;
-import io.enderdev.endermodpacktweaks.config.EMTConfigMods;
+import io.enderdev.endermodpacktweaks.EMTConfig;
 import net.minecraftforge.fml.common.Loader;
 import zone.rong.mixinbooter.ILateMixinLoader;
 
@@ -11,11 +11,11 @@ import java.util.stream.Collectors;
 
 public class EMTMixinLoader implements ILateMixinLoader {
     public static final Map<String, Boolean> modMixins = ImmutableMap.of(
-            "perfectspawn", EMTConfigMods.PERFECT_SPAWN.enable,
-            "pyrotech", EMTConfigMods.PYROTECH.enable,
-            "rustic", EMTConfigMods.RUSTIC.enable,
-            "defaultworldgenerator-port", EMTConfigMods.DEFAULT_WORLD_GENERATOR_PORT.enable,
-            "simpledifficulty", EMTConfigMods.SIMPLE_DIFFICULTY.enable
+            "perfectspawn", EMTConfig.PERFECT_SPAWN.enable,
+            "pyrotech", EMTConfig.PYROTECH.enable,
+            "rustic", EMTConfig.RUSTIC.enable,
+            "defaultworldgenerator-port", EMTConfig.DEFAULT_WORLD_GENERATOR.enable,
+            "simpledifficulty", EMTConfig.SIMPLE_DIFFICULTY.enable
     );
 
     @Override
