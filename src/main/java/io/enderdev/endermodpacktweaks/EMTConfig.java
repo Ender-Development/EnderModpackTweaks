@@ -263,9 +263,12 @@ public class EMTConfig {
         @Config.Comment("Enable tweaks for the Item Physics mod.")
         public boolean enable = true;
 
-        @Config.Name("[2] Add Stack Size to Tooltip")
-        @Config.Comment("Add the stack size to the item tooltip that shows in world, when using the alternative pickup method.")
-        public boolean addStackSizeToTooltip = true;
+        @Config.Name("[2] Improved Item Tooltip")
+        @Config.Comment({
+                "This tweak overhauls the item tooltip that is displayed when using the alternative pickup mode.",
+                "It adds the stack size to the tooltip as well as coloring it based on the rarity of the item."
+        })
+        public boolean improveTooltip = true;
     }
 
     @Config.Name("Perfect Spawn")

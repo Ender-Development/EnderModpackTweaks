@@ -26,3 +26,5 @@ config.endermodpacktweaks.rustic=Rustic
 config.endermodpacktweaks.rustic.tooltip=Tweaks to the rustic mod
 config.endermodpacktweaks.simple_difficulty=Simple Difficulty
 config.endermodpacktweaks.simple_difficulty.tooltip=Tweaks to the simple difficulty mod
+
+endermodpacktweaks.itemphysic.render_tooltip=%dx %s

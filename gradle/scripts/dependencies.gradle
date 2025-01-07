@@ -133,4 +133,11 @@ dependencies {
     if (project.debug_simpledifficulty.toBoolean()) {
         runtimeOnly "curse.maven:simpledifficulty-for-underdog-574162:4651150"
     }
+
+    compileOnly "curse.maven:creativecore-257814:4722163"
+    compileOnly rfg.deobf("curse.maven:itemphysic-258587:3487676")
+    if (project.debug_itemphysic.toBoolean()) {
+        runtimeOnly "curse.maven:creativecore-257814:4722163"
+        runtimeOnly "curse.maven:itemphysic-258587:3487676"
+    }
 }
