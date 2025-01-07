@@ -140,4 +140,9 @@ dependencies {
         runtimeOnly "curse.maven:creativecore-257814:4722163"
         runtimeOnly "curse.maven:itemphysic-258587:3487676"
     }
+
+    compileOnly rfg.deobf("curse.maven:tool-progression-266550:3270468")
+    if (project.debug_toolprogression.toBoolean()) {
+        runtimeOnly "curse.maven:tool-progression-266550:3270468"
+    }
 }

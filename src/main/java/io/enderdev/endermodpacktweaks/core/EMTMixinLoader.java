@@ -20,6 +20,7 @@ public class EMTMixinLoader implements ILateMixinLoader {
             put("mixins.emt.defaultworldgenerator.json", () -> Loader.isModLoaded("defaultworldgenerator-port") && EMTConfig.DEFAULT_WORLD_GENERATOR.enable);
             put("mixins.emt.simpledifficulty.json", () -> Loader.isModLoaded("simpledifficulty") && EMTConfig.SIMPLE_DIFFICULTY.enable);
             put("mixins.emt.itemphysic.json", () -> Loader.isModLoaded("itemphysic") && EMTConfig.ITEM_PHYSICS.enable);
+            put("mixins.emt.toolprogression.json", () -> Loader.isModLoaded("toolprogression") && EMTConfig.TOOL_PROGRESSION.enable);
         }
     });
 

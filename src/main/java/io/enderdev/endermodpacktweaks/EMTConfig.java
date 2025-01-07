@@ -428,6 +428,21 @@ public class EMTConfig {
         public int thirstbarYOffset = -53;
     }
 
+    @Config.Name("Tool Progression")
+    @Config.LangKey("config.endermodpacktweaks.tool_progression")
+    @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/tool-progression")
+    public static final ToolProgression TOOL_PROGRESSION = new ToolProgression();
+
+    public static class ToolProgression {
+        @Config.RequiresMcRestart
+        @Config.Name("[1] Enable Tool Progression Tweaks")
+        @Config.Comment({
+                "This tweak allows changes how the configuration file of the mod are generated.",
+                "It creates a few subdirectories and moves the configuration files into them."
+        })
+        public boolean enable = true;
+    }
+
     @Mod.EventBusSubscriber(modid = Tags.MOD_ID)
     public static class ConfigEventHandler {
         @SubscribeEvent
