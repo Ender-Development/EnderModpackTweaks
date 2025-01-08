@@ -30,6 +30,7 @@ If you have any suggestions, feel free to let me know.
 - ✅ tweaking [Tool Progression](https://www.curseforge.com/minecraft/mc-mods/tool-progression)
   - restructures the config folder
   - prevents spamming the server chat everytime someone want's to write a command
+  - load the magic mushroom item only when tconstruct is loaded
 - ✅ option to disable the 2x2 crafting field in the inventory
   - the implementation isn't optimal as I would like to remove it completely, but it is a start
 - ✅ End Gateway tweak to change the bedrock to something else
