@@ -145,4 +145,9 @@ dependencies {
     if (project.debug_toolprogression.toBoolean()) {
         runtimeOnly "curse.maven:tool-progression-266550:3270468"
     }
+
+    compileOnly rfg.deobf("curse.maven:first-aid-276837:4414252")
+    if (project.debug_firstaid.toBoolean()) {
+        runtimeOnly "curse.maven:first-aid-276837:4414252"
+    }
 }

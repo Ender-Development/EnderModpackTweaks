@@ -252,6 +252,26 @@ public class EMTConfig {
         public boolean enable = true;
     }
 
+    @Config.Name("First Aid")
+    @Config.LangKey("config.endermodpacktweaks.first_aid")
+    @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/first-aid")
+    public static final FirstAid FIRST_AID = new FirstAid();
+
+    public static class FirstAid {
+        @Config.RequiresMcRestart
+        @Config.Name("[1] Enable First Aid Tweaks")
+        @Config.Comment("Enable tweaks for the First Aid mod.")
+        public boolean enable = true;
+
+        @Config.Name("[2] Disable Tutorial Message")
+        @Config.Comment("Disable the tutorial message that appears when joining a world.")
+        public boolean disableTutorial = false;
+
+        @Config.Name("[3] Overhaul HUD placement")
+        @Config.Comment("This centers the HUD on the x-axis.")
+        public boolean centerHUD = false;
+    }
+
     @Config.Name("Item Physics")
     @Config.LangKey("config.endermodpacktweaks.item_physics")
     @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/itemphysic")

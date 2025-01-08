@@ -27,10 +27,14 @@ If you have any suggestions, feel free to let me know.
 - ✅ tweaking [ItemPhysic Full](https://www.curseforge.com/minecraft/mc-mods/itemphysic)
   - improve the tooltip in alternative pickup mode to show the size of the itemstack that is being looked at
   - color the tooltip respectively to the item rarity
-- ✅ tweaking [Tool Progression](https://www.curseforge.com/minecraft/mc-mods/tool-progression)
+- ❌ [WIP] tweaking [Tool Progression](https://www.curseforge.com/minecraft/mc-mods/tool-progression)
   - restructures the config folder
   - prevents spamming the server chat everytime someone want's to write a command
   - load the magic mushroom item only when tconstruct is loaded
+  - currently unusable as the mod blocks mixins when outside of a dev environment
+- ✅ tweaking [First Aid](https://www.curseforge.com/minecraft/mc-mods/first-aid)
+  - added a config option to center the HUD, so it's easier to place next to the hotbar, independent of the screen width
+  - added a config option to disable the Tutorial Message
 - ✅ option to disable the 2x2 crafting field in the inventory
   - the implementation isn't optimal as I would like to remove it completely, but it is a start
 - ✅ End Gateway tweak to change the bedrock to something else
