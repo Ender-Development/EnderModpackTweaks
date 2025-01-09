@@ -150,4 +150,17 @@ dependencies {
     if (project.debug_firstaid.toBoolean()) {
         runtimeOnly "curse.maven:first-aid-276837:4414252"
     }
+
+    compileOnly rfg.deobf("curse.maven:autoreglib-250363:2746011")
+    compileOnly rfg.deobf("curse.maven:quark-rotn-edition-417392:5594720")
+    if (project.debug_quark.toBoolean()) {
+        runtimeOnly "curse.maven:autoreglib-250363:2746011"
+        runtimeOnly "curse.maven:quark-rotn-edition-417392:5594720"
+    }
+
+    compileOnly rfg.deobf("curse.maven:dark-utilities-242195:2813586")
+    if (project.debug_darkutilities.toBoolean()) {
+        runtimeOnly "curse.maven:bookshelf-228525:2836960"
+        runtimeOnly "curse.maven:dark-utilities-242195:2813586"
+    }
 }

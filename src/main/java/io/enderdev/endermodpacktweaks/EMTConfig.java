@@ -238,6 +238,37 @@ public class EMTConfig {
         }
     }
 
+    @Config.Name("Dark Utilities")
+    @Config.LangKey("config.endermodpacktweaks.dark_utils")
+    @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/dark-utilities")
+    public static final DarkUtils DARK_UTILS = new DarkUtils();
+
+    public static class DarkUtils {
+        @Config.RequiresMcRestart
+        @Config.Name("[1] Enable Dark Utils Tweaks")
+        @Config.Comment("Enable tweaks for the Dark Utils mod.")
+        public boolean enable = true;
+
+        @Config.Name("[2] Vector Plate Item Only")
+        @Config.Comment("Vector Plates can only move items.")
+        public boolean vectorPlateItemOnly = true;
+
+        @Config.Name("[3] Override Vector Plate Collision Box")
+        @Config.Comment({
+          "This tweak increases the height of the collision box of the vector plate.",
+          "This tweak was added so Item Physics can render the item on top of the vector plate."
+        })
+        public boolean overrideVectorPlateCollisionBox = true;
+
+        @Config.Name("[4] Vector Plates Insert - front")
+        @Config.Comment("Vector Plates can insert items into the inventory in front of them.")
+        public boolean vectorPlatesInsertFront = true;
+
+        @Config.Name("[5] Vector Plates Insert - below")
+        @Config.Comment("Vector Plates can insert items into the inventory below them.")
+        public boolean vectorPlatesInsertBelow = true;
+    }
+
     @Config.Name("Default World Generator")
     @Config.LangKey("config.endermodpacktweaks.default_world_generator")
     @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/default-world-generator-ssp")
@@ -289,6 +320,10 @@ public class EMTConfig {
                 "It adds the stack size to the tooltip as well as coloring it based on the rarity of the item."
         })
         public boolean improveTooltip = true;
+
+        @Config.Name("[3] Reach Distance")
+        @Config.Comment("Set the pickup range to the reach distance of the player.")
+        public boolean reachDistance = true;
     }
 
     @Config.Name("Perfect Spawn")
@@ -374,6 +409,30 @@ public class EMTConfig {
             @Config.Comment("The weight of Mud Rocks.")
             public int mud = 0;
         }
+    }
+
+    @Config.Name("Quark")
+    @Config.LangKey("config.endermodpacktweaks.quark")
+    @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/quark-rotn-edition")
+    public static final Quark QUARK = new Quark();
+
+    public static class Quark {
+        @Config.RequiresMcRestart
+        @Config.Name("[1] Enable Quark Tweaks")
+        @Config.Comment("Enable tweaks for the Quark mod.")
+        public boolean enable = true;
+
+        @Config.Name("[2] Always show the Usage Ticker")
+        @Config.Comment("Stops the Usage Ticker from disappearing.")
+        public boolean alwaysShowUsageTicker = true;
+
+        @Config.Name("[3] Enable End Stone Speleothems")
+        @Config.Comment("Add and generate End Stone Speleothems.")
+        public boolean enableEndSpeleothems = true;
+
+        @Config.Name("[4] Enable Obsidian Speleothems")
+        @Config.Comment("Add and generate Obsidian Speleothems.")
+        public boolean enableObsidianSpeleothems = true;
     }
 
     @Config.Name("Rustic")

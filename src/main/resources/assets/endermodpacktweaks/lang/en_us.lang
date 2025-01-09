@@ -16,6 +16,8 @@ config.endermodpacktweaks.minecraft.world.difficulty=Dificulty
 config.endermodpacktweaks.minecraft.world.difficulty.tooltip=Tweaks to the world difficulty
 config.endermodpacktweaks.minecraft.world.gamemode=Gamemode
 config.endermodpacktweaks.minecraft.world.gamemode.tooltip=Tweaks to the world gamemode
+config.endermodpacktweaks.dark_utils=Dark Utilities
+config.endermodpacktweaks.dark_utils.tooltip=Tweaks to the dark utilities mod
 config.endermodpacktweaks.default_world_generator=Default World Generator
 config.endermodpacktweaks.default_world_generator.tooltip=Tweaks to the default world generator mod
 config.endermodpacktweaks.first_aid=First Aid
@@ -26,6 +28,8 @@ config.endermodpacktweaks.perfect_spawn=Perfect Spawn
 config.endermodpacktweaks.perfect_spawn.tooltip=Tweaks to the perfect spawn mod
 config.endermodpacktweaks.pyrotech=Pyrotech
 config.endermodpacktweaks.pyrotech.tooltip=Tweaks to the pyrotech mod
+config.endermodpacktweaks.quark=Quark
+config.endermodpacktweaks.quark.tooltip=Tweaks to the quark mod
 config.endermodpacktweaks.rustic=Rustic
 config.endermodpacktweaks.rustic.tooltip=Tweaks to the rustic mod
 config.endermodpacktweaks.simple_difficulty=Simple Difficulty
@@ -34,3 +38,6 @@ config.endermodpacktweaks.tool_progression=Tool Progression
 config.endermodpacktweaks.tool_progression.tooltip=Tweaks to the tool progression mod
 
 endermodpacktweaks.itemphysic.render_tooltip=%dx %s
+
+tile.quark:endstone_speleothem.name=Endstone Speleothem
+tile.quark:obsidian_speleothem.name=Obsidian Speleothem

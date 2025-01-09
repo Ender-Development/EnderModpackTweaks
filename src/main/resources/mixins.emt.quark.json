@@ -1,0 +1,14 @@
+{
+    "package": "io.enderdev.endermodpacktweaks.mixin.quark",
+    "refmap": "mixins.endermodpacktweaks.refmap.json",
+    "target": "@env(DEFAULT)",
+    "minVersion": "0.8.5",
+    "compatibilityLevel": "JAVA_8",
+    "mixins": [
+        "SpeleothemGeneratorMixin",
+        "SpeleothemsMixin",
+        "UsageTickerMixin"
+    ],
+    "server": [],
+    "client": []
+}
