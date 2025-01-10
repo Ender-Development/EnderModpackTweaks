@@ -1,8 +1,13 @@
 package io.enderdev.endermodpacktweaks.mixin.minecraft;
 
+import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import io.enderdev.endermodpacktweaks.EMTConfig;
+import io.enderdev.endermodpacktweaks.EnderModpackTweaks;
+import io.enderdev.endermodpacktweaks.features.BetterEndPodium;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockTorch;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
@@ -11,8 +16,9 @@ import net.minecraft.world.gen.feature.WorldGenEndPodium;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.ModifyArg;
 
 import java.util.Random;
 
@@ -23,49 +29,42 @@ public abstract class WorldGenEndPodiumMixin extends WorldGenerator {
     @Shadow
     private boolean activePortal;
 
-    /**
-     * @author _MasterEnderman_
-     * @reason In over 10 years of playing this game I never encountered a single mod that tweaked the end pedestal.
-     * Yes now there are some, but only for versions after 1.12.2. so I do not care enough to fix all of this with multiple mixins.
-     */
-    @Overwrite
-    public boolean generate(World worldIn, Random rand, BlockPos position) {
-        for (BlockPos.MutableBlockPos blockpos$mutableblockpos : BlockPos.getAllInBoxMutable(new BlockPos(position.getX() - 4, position.getY() - 1, position.getZ() - 4), new BlockPos(position.getX() + 4, position.getY() + 32, position.getZ() + 4))) {
-            double d0 = blockpos$mutableblockpos.getDistance(position.getX(), blockpos$mutableblockpos.getY(), position.getZ());
+    @ModifyArg(method = "generate", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/gen/feature/WorldGenEndPodium;setBlockAndNotifyAdequately(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/state/IBlockState;)V"), index = 2)
+    private IBlockState generateEndPodium(IBlockState iBlockState) {
+        Block newBedrock = Block.getBlockFromName(EMTConfig.MINECRAFT.END_PODIUM.bedrock);
+        Block newAir = Block.getBlockFromName(EMTConfig.MINECRAFT.END_PODIUM.air);
+        Block newEndstone = Block.getBlockFromName(EMTConfig.MINECRAFT.END_PODIUM.endStone);
+        Block newTorch = Block.getBlockFromName(EMTConfig.MINECRAFT.END_PODIUM.torch);
 
-            if (d0 <= 3.5D) {
-                if (blockpos$mutableblockpos.getY() < position.getY()) {
-                    if (d0 <= 2.5D) {
-                        this.setBlockAndNotifyAdequately(worldIn, blockpos$mutableblockpos, Block.getBlockFromName(EMTConfig.MINECRAFT.END_PODIUM.bedrock).getDefaultState());
-                    } else if (blockpos$mutableblockpos.getY() < position.getY()) {
-                        this.setBlockAndNotifyAdequately(worldIn, blockpos$mutableblockpos, Block.getBlockFromName(EMTConfig.MINECRAFT.END_PODIUM.endStone).getDefaultState());
-                    }
-                } else if (blockpos$mutableblockpos.getY() > position.getY()) {
-                    this.setBlockAndNotifyAdequately(worldIn, blockpos$mutableblockpos, Block.getBlockFromName(EMTConfig.MINECRAFT.END_PODIUM.air).getDefaultState());
-                } else if (d0 > 2.5D) {
-                    this.setBlockAndNotifyAdequately(worldIn, blockpos$mutableblockpos, Block.getBlockFromName(EMTConfig.MINECRAFT.END_PODIUM.bedrock).getDefaultState());
-                } else if (activePortal) {
-                    this.setBlockAndNotifyAdequately(worldIn, new BlockPos(blockpos$mutableblockpos), Blocks.END_PORTAL.getDefaultState());
-                } else {
-                    this.setBlockAndNotifyAdequately(worldIn, new BlockPos(blockpos$mutableblockpos), Block.getBlockFromName(EMTConfig.MINECRAFT.END_PODIUM.air).getDefaultState());
-                }
+        if (iBlockState.getBlock() == Blocks.BEDROCK) {
+            return newBedrock == null ? Blocks.BEDROCK.getDefaultState() : newBedrock.getDefaultState();
+        } else if (iBlockState.getBlock() == Blocks.AIR) {
+            return newAir == null ? Blocks.AIR.getDefaultState() : newAir.getDefaultState();
+        } else if (iBlockState.getBlock() == Blocks.END_STONE) {
+            return newEndstone == null ? Blocks.END_STONE.getDefaultState() : newEndstone.getDefaultState();
+        } else if (iBlockState.getBlock() == Blocks.TORCH) {
+            EnumFacing enumfacing = iBlockState.getValue(BlockTorch.FACING);
+            if (newTorch instanceof BlockTorch) {
+                return newTorch.getDefaultState().withProperty(BlockTorch.FACING, enumfacing);
             }
+            return newTorch == null ? Blocks.TORCH.getDefaultState() : newTorch.getDefaultState();
         }
 
-        for (int i = 0; i < 4; ++i) {
-            this.setBlockAndNotifyAdequately(worldIn, position.up(i), Block.getBlockFromName(EMTConfig.MINECRAFT.END_PODIUM.bedrock).getDefaultState());
+        return iBlockState;
+    }
+
+    @WrapMethod(method = "generate")
+    private boolean generate(World worldIn, Random rand, BlockPos position, Operation<Boolean> original) {
+        if (EMTConfig.MINECRAFT.DRAGON.disablePortal) {
+            return false;
         }
-
-        BlockPos blockpos = position.up(2);
-
-        for (EnumFacing enumfacing : EnumFacing.Plane.HORIZONTAL) {
-            if (Block.getBlockFromName(EMTConfig.MINECRAFT.END_PODIUM.torch) instanceof BlockTorch) {
-                this.setBlockAndNotifyAdequately(worldIn, blockpos.offset(enumfacing), Block.getBlockFromName(EMTConfig.MINECRAFT.END_PODIUM.torch).getDefaultState().withProperty(BlockTorch.FACING, enumfacing));
-            } else {
-                this.setBlockAndNotifyAdequately(worldIn, blockpos.offset(enumfacing), Block.getBlockFromName(EMTConfig.MINECRAFT.END_PODIUM.torch).getDefaultState());
+        if (EMTConfig.MINECRAFT.END_PODIUM.replacePortal) {
+            BetterEndPodium betterEndPodium = new BetterEndPodium(activePortal);
+            if (betterEndPodium.generate(worldIn, rand, position)) {
+                return true;
             }
+            EnderModpackTweaks.LOGGER.warn("Failed to generate the end portal, generating the default one.");
         }
-
-        return true;
+        return original.call(worldIn, rand, position);
     }
 }

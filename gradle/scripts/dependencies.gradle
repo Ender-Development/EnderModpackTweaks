@@ -25,6 +25,10 @@ repositories {
             includeGroup 'maven.modrinth'
         }
     }
+    maven {
+        name 'JitPack'
+        url 'https://jitpack.io'
+    }
     mavenLocal() // Must be last for caching to work
 }
 
@@ -79,6 +83,7 @@ dependencies {
     runtimeOnly "curse.maven:enchantchanger-enchantment-changing-system-237295:2682225"
 
     implementation "com.cleanroommc:configanytime:3.0"
+    implementation rfg.deobf("maven.modrinth:nether-api:1m3gvzYh")
 
     // Mod Compatibility
     compileOnly "mezz:jei:4.26.1" // HEI
@@ -101,7 +106,6 @@ dependencies {
         runtimeOnly "curse.maven:dropt-284973:5405050"
         runtimeOnly "curse.maven:pyrotech-306676:5822040"
     }
-
 
     compileOnly rfg.deobf("com.github.jbredwards:fluidlogged-api:47f153989e")
     compileOnly rfg.deobf("curse.maven:forgelin-continuous-456403:5946402")
@@ -162,5 +166,10 @@ dependencies {
     if (project.debug_darkutilities.toBoolean()) {
         runtimeOnly "curse.maven:bookshelf-228525:2836960"
         runtimeOnly "curse.maven:dark-utilities-242195:2813586"
+    }
+
+    compileOnly rfg.deobf("curse.maven:betterendforge-backport-1165149:6055565")
+    if (project.debug_betterend.toBoolean()) {
+        runtimeOnly "curse.maven:betterendforge-backport-1165149:6055565"
     }
 }

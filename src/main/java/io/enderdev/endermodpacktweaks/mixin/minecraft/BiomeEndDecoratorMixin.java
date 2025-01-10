@@ -48,8 +48,10 @@ public class BiomeEndDecoratorMixin {
                 int j = (int) (enderModpackTweaks$pillarRadius * Math.cos(2.0D * (-Math.PI + (Math.PI / (double) enderModpackTweaks$pillarCount) * (double) i)));
                 int k = (int) (enderModpackTweaks$pillarRadius * Math.sin(2.0D * (-Math.PI + (Math.PI / (double) enderModpackTweaks$pillarCount) * (double) i)));
                 int l = (Integer) list.get(i);
-                // ceck if betterendforge is loaded an limit the radius to 5 so it still replaces the spikes
-                int i1 = enderModpackTweaks$baseRadius + random.nextInt(Loader.isModLoaded("betterendforge") ? 5 : l / 3 + 1);
+                // check if betterendforge is loaded and limit the radius from 2 to 5 so it still replaces all spikes
+                int i1 = Loader.isModLoaded("betterendforge") ?
+                        random.nextInt(4) + 2 :
+                        enderModpackTweaks$baseRadius + random.nextInt(l / 3 + 1);
                 int j1 = enderModpackTweaks$baseHeight + random.nextInt(l * 3 + 1);
 
                 boolean flag;

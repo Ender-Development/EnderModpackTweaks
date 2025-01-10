@@ -35,6 +35,12 @@ config.endermodpacktweaks.minecraft.world.gamemode.tooltip=Tweaks to the world g
 ####################
 # Mods
 ####################
+# BetterEnd
+####################
+config.endermodpacktweaks.better_end=Better End
+config.endermodpacktweaks.better_end.tooltip=Tweaks to the better end mod
+
+####################
 # Dark Utilities
 ####################
 config.endermodpacktweaks.dark_utils=Dark Utilities

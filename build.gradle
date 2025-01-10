@@ -107,10 +107,6 @@ repositories {
         name 'CleanroomMC Maven'
         url 'https://maven.cleanroommc.com'
     }
-    maven {
-        name 'JitPack'
-        url 'https://jitpack.io'
-    }
 }
 
 dependencies {

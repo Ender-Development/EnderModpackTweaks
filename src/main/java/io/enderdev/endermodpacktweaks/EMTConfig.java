@@ -170,7 +170,7 @@ public class EMTConfig {
             @Config.Name("[02] Island Size")
             @Config.Comment("Increase the size of the End Island.")
             @Config.RangeInt(min = 0, max = 8)
-            public int islandSize = 0;
+            public int islandSize = 4;
 
             @Config.Name("[03] Replace End Stone")
             @Config.Comment("Replace the end stone block in the End Island.")
@@ -361,6 +361,18 @@ public class EMTConfig {
                 public boolean hardcore = false;
             }
         }
+    }
+
+    @Config.Name("Better End")
+    @Config.LangKey("config.endermodpacktweaks.better_end")
+    @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/betterendforge-backport")
+    public static final BetterEnd BETTER_END = new BetterEnd();
+
+    public static class BetterEnd {
+        @Config.RequiresMcRestart
+        @Config.Name("[01] Enable Better End Tweaks")
+        @Config.Comment("Enable tweaks for the Better End mod.")
+        public boolean enable = true;
     }
 
     @Config.Name("Dark Utilities")
