@@ -1,45 +1,100 @@
+####################
+# Minecraft
+####################
 config.endermodpacktweaks.minecraft=Minecraft
 config.endermodpacktweaks.minecraft.tooltip=Tweaks to the base game
+
 config.endermodpacktweaks.minecraft.client=Client
 config.endermodpacktweaks.minecraft.client.tooltip=Tweaks to the client
+
 config.endermodpacktweaks.minecraft.dragon=Ender Dragon
 config.endermodpacktweaks.minecraft.dragon.tooltip=Tweaks to the Ender Dragon
+
 config.endermodpacktweaks.minecraft.end_gateway=The End Gateway
 config.endermodpacktweaks.minecraft.end_gateway.tooltip=Tweaks to the End Gateway
+
+config.endermodpacktweaks.minecraft.end_island=The End Island
+config.endermodpacktweaks.minecraft.end_island.tooltip=Tweaks to the End Island
+
 config.endermodpacktweaks.minecraft.end_portal=The End Portal
 config.endermodpacktweaks.minecraft.end_portal.tooltip=Tweaks to the End Portal
+
 config.endermodpacktweaks.minecraft.nether_portal=The Nether Portal
 config.endermodpacktweaks.minecraft.nether_portal.tooltip=Tweaks to the Nether Portal
+
 config.endermodpacktweaks.minecraft.obsidian_spike=Obsidian Pillars
 config.endermodpacktweaks.minecraft.obsidian_spike.tooltip=Tweaks to the Obsidian Pillars
+
 config.endermodpacktweaks.minecraft.world=World
 config.endermodpacktweaks.minecraft.world.tooltip=Tweaks to the world
 config.endermodpacktweaks.minecraft.world.difficulty=Dificulty
 config.endermodpacktweaks.minecraft.world.difficulty.tooltip=Tweaks to the world difficulty
 config.endermodpacktweaks.minecraft.world.gamemode=Gamemode
 config.endermodpacktweaks.minecraft.world.gamemode.tooltip=Tweaks to the world gamemode
+
+####################
+# Mods
+####################
+# Dark Utilities
+####################
 config.endermodpacktweaks.dark_utils=Dark Utilities
 config.endermodpacktweaks.dark_utils.tooltip=Tweaks to the dark utilities mod
+
+####################
+# Default World Generator
+####################
 config.endermodpacktweaks.default_world_generator=Default World Generator
 config.endermodpacktweaks.default_world_generator.tooltip=Tweaks to the default world generator mod
+
+####################
+# First Aid
+####################
 config.endermodpacktweaks.first_aid=First Aid
 config.endermodpacktweaks.first_aid.tooltip=Tweaks to the first aid mod
+
+####################
+# Item Physics
+####################
 config.endermodpacktweaks.item_physics=ItemPhysics
 config.endermodpacktweaks.item_physics.tooltip=Tweaks to the item physics mod
-config.endermodpacktweaks.perfect_spawn=Perfect Spawn
-config.endermodpacktweaks.perfect_spawn.tooltip=Tweaks to the perfect spawn mod
-config.endermodpacktweaks.pyrotech=Pyrotech
-config.endermodpacktweaks.pyrotech.tooltip=Tweaks to the pyrotech mod
-config.endermodpacktweaks.quark=Quark
-config.endermodpacktweaks.quark.tooltip=Tweaks to the quark mod
-config.endermodpacktweaks.rustic=Rustic
-config.endermodpacktweaks.rustic.tooltip=Tweaks to the rustic mod
-config.endermodpacktweaks.simple_difficulty=Simple Difficulty
-config.endermodpacktweaks.simple_difficulty.tooltip=Tweaks to the simple difficulty mod
-config.endermodpacktweaks.tool_progression=Tool Progression
-config.endermodpacktweaks.tool_progression.tooltip=Tweaks to the tool progression mod
 
 endermodpacktweaks.itemphysic.render_tooltip=%dx %s
 
+####################
+# Perfect Spawn
+####################
+config.endermodpacktweaks.perfect_spawn=Perfect Spawn
+config.endermodpacktweaks.perfect_spawn.tooltip=Tweaks to the perfect spawn mod
+
+####################
+# Pyrotech
+####################
+config.endermodpacktweaks.pyrotech=Pyrotech
+config.endermodpacktweaks.pyrotech.tooltip=Tweaks to the pyrotech mod
+
+####################
+# Quark
+####################
+config.endermodpacktweaks.quark=Quark
+config.endermodpacktweaks.quark.tooltip=Tweaks to the quark mod
+
 tile.quark:endstone_speleothem.name=Endstone Speleothem
 tile.quark:obsidian_speleothem.name=Obsidian Speleothem
+
+####################
+# Rustic
+####################
+config.endermodpacktweaks.rustic=Rustic
+config.endermodpacktweaks.rustic.tooltip=Tweaks to the rustic mod
+
+####################
+# Simple Difficulty
+####################
+config.endermodpacktweaks.simple_difficulty=Simple Difficulty
+config.endermodpacktweaks.simple_difficulty.tooltip=Tweaks to the simple difficulty mod
+
+####################
+# Tool Progression
+####################
+config.endermodpacktweaks.tool_progression=Tool Progression
+config.endermodpacktweaks.tool_progression.tooltip=Tweaks to the tool progression mod

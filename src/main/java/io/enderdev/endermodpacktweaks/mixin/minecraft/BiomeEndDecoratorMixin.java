@@ -8,6 +8,7 @@ import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import io.enderdev.endermodpacktweaks.EMTConfig;
 import net.minecraft.world.gen.feature.WorldGenSpikes;
+import net.minecraftforge.fml.common.Loader;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 
@@ -47,7 +48,8 @@ public class BiomeEndDecoratorMixin {
                 int j = (int) (enderModpackTweaks$pillarRadius * Math.cos(2.0D * (-Math.PI + (Math.PI / (double) enderModpackTweaks$pillarCount) * (double) i)));
                 int k = (int) (enderModpackTweaks$pillarRadius * Math.sin(2.0D * (-Math.PI + (Math.PI / (double) enderModpackTweaks$pillarCount) * (double) i)));
                 int l = (Integer) list.get(i);
-                int i1 = enderModpackTweaks$baseRadius + random.nextInt(l / 3 + 1);
+                // ceck if betterendforge is loaded an limit the radius to 5 so it still replaces the spikes
+                int i1 = enderModpackTweaks$baseRadius + random.nextInt(Loader.isModLoaded("betterendforge") ? 5 : l / 3 + 1);
                 int j1 = enderModpackTweaks$baseHeight + random.nextInt(l * 3 + 1);
 
                 boolean flag;

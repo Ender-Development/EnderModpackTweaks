@@ -59,6 +59,7 @@ public abstract class DragonFightManagerMixin {
         }
         enderModpackTweaks$firstTime = false;
         EnderModpackTweaks.LOGGER.info("Killing the dragon for the first time.");
+        EnderModpackTweaks.LOGGER.debug("Generating portal for the first time.");
         this.generatePortal(EMTConfig.MINECRAFT.DRAGON.createPortal);
         if (EMTConfig.MINECRAFT.DRAGON.dropEgg) {
             String eggBlock = EMTConfig.MINECRAFT.DRAGON.eggBlock;
@@ -77,13 +78,6 @@ public abstract class DragonFightManagerMixin {
     private void processDragonDeath(EntityDragon dragon, CallbackInfo ci) {
         if (EMTConfig.MINECRAFT.DRAGON.multipleEgg && this.previouslyKilled) {
             this.world.setBlockState(this.world.getHeight(WorldGenEndPodium.END_PODIUM_LOCATION), Blocks.DRAGON_EGG.getDefaultState());
-        }
-    }
-
-    @Inject(method = "spawnNewGateway", at = @At("HEAD"), cancellable = true)
-    private void spawnNewGateway(CallbackInfo ci) {
-        if (EMTConfig.MINECRAFT.DRAGON.disableGateway) {
-            ci.cancel();
         }
     }
 

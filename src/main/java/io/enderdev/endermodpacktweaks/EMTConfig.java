@@ -154,6 +154,29 @@ public class EMTConfig {
             public int gatewayHeight = 75;
         }
 
+        @Config.Name("End Island Tweaks")
+        @Config.LangKey("config.endermodpacktweaks.minecraft.end_island")
+        public final EndIsland END_ISLAND = new EndIsland();
+
+        public static class EndIsland {
+            @Config.RequiresMcRestart
+            @Config.Name("[01] Enable End Island Tweaks")
+            @Config.Comment({
+                    "This tweak allows you to customize the End Island.",
+                    "You can change the blocks that make up the End Island."
+            })
+            public boolean enable = false;
+
+            @Config.Name("[02] Island Size")
+            @Config.Comment("Increase the size of the End Island.")
+            @Config.RangeInt(min = 0, max = 8)
+            public int islandSize = 0;
+
+            @Config.Name("[03] Replace End Stone")
+            @Config.Comment("Replace the end stone block in the End Island.")
+            public String endStone = "minecraft:end_stone";
+        }
+
         @Config.Name("End Portal Tweaks")
         @Config.LangKey("config.endermodpacktweaks.minecraft.end_portal")
         public final EndPodium END_PODIUM = new EndPodium();
@@ -294,15 +317,15 @@ public class EMTConfig {
         public final World WORLD = new World();
 
         public static class World {
-            @Config.Name("Enable World Tweaks")
+            @Config.Name("[01] Enable World Tweaks")
             @Config.Comment("Enable world tweaks")
             public boolean enable = true;
 
-            @Config.Name("Difficulty")
+            @Config.Name("[02] Difficulty")
             @Config.LangKey("config.endermodpacktweaks.minecraft.world.difficulty")
             public final DifficultyCategory DIFFICULTY = new DifficultyCategory();
 
-            @Config.Name("Gamemode")
+            @Config.Name("[03] Gamemode")
             @Config.LangKey("config.endermodpacktweaks.minecraft.world.gamemode")
             public final GamemodeCategory GAMEMODE = new GamemodeCategory();
 
@@ -377,7 +400,7 @@ public class EMTConfig {
     public static final DefaultWorldGenerator DEFAULT_WORLD_GENERATOR = new DefaultWorldGenerator();
 
     public static class DefaultWorldGenerator {
-        @Config.Name("Enable Default World Generator Port Tweaks")
+        @Config.Name("[01] Enable Default World Generator Port Tweaks")
         @Config.Comment({
                 "This fixes the glitched button texture in the default world generator screen,",
                 "which appears when using a wide screen by giving it a fixed width."
@@ -435,7 +458,7 @@ public class EMTConfig {
 
     public static class PerfectSpawn {
         @Config.RequiresMcRestart
-        @Config.Name("Enable Perfect Spawn Tweaks")
+        @Config.Name("[01] Enable Perfect Spawn Tweaks")
         @Config.Comment({
                 "This tweaks moves the PerfectSpawn config file to the config directory.",
                 "It also creates a new config file if it doesn't exist."
