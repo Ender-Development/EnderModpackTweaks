@@ -54,7 +54,12 @@ public class EMTConfig {
         public final Client CLIENT = new Client();
 
         public static class Client {
-            @Config.Name("[01] Disable Inventory Crafting")
+            @Config.RequiresMcRestart
+            @Config.Name("[01] Enable Client Tweaks")
+            @Config.Comment("Enable tweaks for the client.")
+            public boolean enable = false;
+
+            @Config.Name("[02] Disable Inventory Crafting")
             @Config.Comment({
                     "This tweak disables the crafting grid in the player inventory.",
                     "Useful for modpacks that want to make the player use a crafting table",
@@ -590,6 +595,22 @@ public class EMTConfig {
         @Config.Name("[07] Enable Rustic WorldGen in Flat Worlds")
         @Config.Comment("Set to true to enable Rustic WorldGen in flat worlds")
         public boolean enableWorldGenInFlat = false;
+
+        @Config.Name("[08] Toughness Overlay X-Offset")
+        @Config.Comment("Set the X-Offset of the Armor Toughness Overlay.")
+        public int armorToughnessXOffset = 0;
+
+        @Config.Name("[09] Toughness Overlay Y-Offset")
+        @Config.Comment("Set the Y-Offset of the Armor Toughness Overlay.")
+        public int armorToughnessYOffset = 0;
+
+        @Config.Name("[10] Armor Overlay X-Offset")
+        @Config.Comment("Set the X-Offset of the Armor Overlay.")
+        public int armorXOffset = 0;
+
+        @Config.Name("[10] Armor Overlay Y-Offset")
+        @Config.Comment("Set the Y-Offset of the Armor Overlay.")
+        public int armorYOffset = 0;
     }
 
     @Config.Name("Simple Difficulty")

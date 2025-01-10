@@ -13,12 +13,14 @@ import net.minecraft.inventory.SlotCrafting;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.GuiContainerEvent;
 import net.minecraftforge.client.event.GuiScreenEvent;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+@SideOnly(Side.CLIENT)
 public class ClientEvents {
-    @SideOnly(Side.CLIENT)
+
     @SubscribeEvent
     public void onGuiInit(GuiScreenEvent.InitGuiEvent.Post event) {
         if (event.getGui() instanceof GuiInventory) {
@@ -42,7 +44,6 @@ public class ClientEvents {
         }
     }
 
-    @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public void renderBackground(GuiContainerEvent.DrawForeground event) {
         GuiContainer gui = event.getGuiContainer();
