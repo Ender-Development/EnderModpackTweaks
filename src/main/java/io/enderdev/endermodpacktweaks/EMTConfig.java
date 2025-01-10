@@ -200,7 +200,7 @@ public class EMTConfig {
 
         public static class ObsidianSpike {
             @Config.RequiresMcRestart
-            @Config.Name("[1] Enable Obsidian Spike Tweaks")
+            @Config.Name("[01] Enable Obsidian Spike Tweaks")
             @Config.Comment({
                     "This tweak allows you to customize the Obsidian Spike.",
                     "Obsidian Spikes are the large Pillars of Obsidian that generate in the End.",
@@ -208,37 +208,37 @@ public class EMTConfig {
             })
             public boolean enable = false;
 
-            @Config.Name("[2] Replace Obsidian")
+            @Config.Name("[02] Replace Obsidian")
             @Config.Comment("Replace the obsidian block in the Obsidian Spike.")
             public String obsidian = "minecraft:obsidian";
 
-            @Config.Name("[3] Replace Air")
+            @Config.Name("[03] Replace Air")
             @Config.Comment("Replace the air block in the Obsidian Spike.")
             public String air = "minecraft:air";
 
-            @Config.Name("[4] Replace Iron Bars")
+            @Config.Name("[04] Replace Iron Bars")
             @Config.Comment("Replace the iron bars block in the Obsidian Spike.")
             public String ironBars = "minecraft:iron_bars";
 
-            @Config.Name("[5] Replace Obsidian Spike")
+            @Config.Name("[05] Replace Obsidian Spike")
             @Config.Comment("Replace the obsidian spike with a new structure.")
             public boolean replaceSpike = false;
 
-            @Config.Name("[6] Obsidian Spike Structure")
+            @Config.Name("[06] Obsidian Spike Structure")
             @Config.Comment("The structure that replaces the obsidian spike.")
             public String spikeStructure = "endermodpacktweaks:obsidian_spike";
 
-            @Config.Name("[7] Obsidian Spike Distance from End Portal")
+            @Config.Name("[07] Obsidian Spike Distance from End Portal")
             @Config.Comment("The distance the obsidian spike is placed from the end portal.")
             @Config.RangeDouble(min = 42.0, max = 128.0)
             public double spikeDistance = 42.0;
 
-            @Config.Name("[8] Obsidian Spike Base Height")
+            @Config.Name("[08] Obsidian Spike Base Height")
             @Config.Comment("The base height of the obsidian spike.")
             @Config.RangeInt(min = 10, max = 255)
             public int spikeHeight = 76;
 
-            @Config.Name("[9] Obsidian Spike Base Radius")
+            @Config.Name("[09] Obsidian Spike Base Radius")
             @Config.Comment("The base radius of the obsidian spike.")
             @Config.RangeInt(min = 2, max = 10)
             public int spikeRadius = 2;
