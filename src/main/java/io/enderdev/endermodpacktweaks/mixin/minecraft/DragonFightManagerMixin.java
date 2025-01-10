@@ -24,6 +24,9 @@ public abstract class DragonFightManagerMixin {
     @Shadow
     public abstract void generatePortal(boolean active);
 
+    @Shadow
+    protected abstract void spawnNewGateway();
+
     @Final
     @Shadow
     private WorldServer world;
@@ -33,9 +36,6 @@ public abstract class DragonFightManagerMixin {
 
     @Shadow
     private boolean previouslyKilled;
-
-    @Shadow
-    protected abstract void spawnNewGateway();
 
     @WrapMethod(method = "hasDragonBeenKilled")
     private boolean hasDragonBeenKilled(Operation<Boolean> original) {
@@ -53,7 +53,7 @@ public abstract class DragonFightManagerMixin {
         }
         if (EMTConfig.MINECRAFT.DRAGON.createGateway) {
             EnderModpackTweaks.LOGGER.debug("Creating gateway for the first time.");
-            spawnNewGateway();
+            this.spawnNewGateway();
         }
         return true;
     }

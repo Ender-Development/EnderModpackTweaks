@@ -23,7 +23,7 @@ public abstract class WorldGen {
 
     public abstract boolean generate(@NotNull World worldIn, @NotNull Random rand, @NotNull BlockPos position);
 
-    public boolean generateStructure(@NotNull World worldIn, @NotNull BlockPos position, @NotNull ResourceLocation structure, boolean centerY, int offsetY) {
+    boolean generateStructure(@NotNull World worldIn, @NotNull BlockPos position, @NotNull ResourceLocation structure, boolean centerY, int offsetY) {
         Template template = getTemplate(worldIn, structure);
         if (template == null) {
             EnderModpackTweaks.LOGGER.error("Structure {} not found!", structure);
@@ -36,7 +36,7 @@ public abstract class WorldGen {
         }
     }
 
-    public boolean generateStructure(@NotNull World worldIn, @NotNull BlockPos position, @NotNull ResourceLocation structure) {
+    boolean generateStructure(@NotNull World worldIn, @NotNull BlockPos position, @NotNull ResourceLocation structure) {
         return generateStructure(worldIn, position, structure, true, 0);
     }
 

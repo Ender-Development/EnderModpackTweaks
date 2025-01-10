@@ -29,6 +29,21 @@ public abstract class WorldGenEndPodiumMixin extends WorldGenerator {
     @Shadow
     private boolean activePortal;
 
+    @WrapMethod(method = "generate")
+    private boolean generate(World worldIn, Random rand, BlockPos position, Operation<Boolean> original) {
+        if (EMTConfig.MINECRAFT.DRAGON.disablePortal) {
+            return false;
+        }
+        if (EMTConfig.MINECRAFT.END_PODIUM.replacePortal) {
+            BetterEndPodium betterEndPodium = new BetterEndPodium(activePortal);
+            if (betterEndPodium.generate(worldIn, rand, position)) {
+                return true;
+            }
+            EnderModpackTweaks.LOGGER.warn("Failed to generate the end portal, generating the default one.");
+        }
+        return original.call(worldIn, rand, position);
+    }
+
     @ModifyArg(method = "generate", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/gen/feature/WorldGenEndPodium;setBlockAndNotifyAdequately(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/state/IBlockState;)V"), index = 2)
     private IBlockState generateEndPodium(IBlockState iBlockState) {
         Block newBedrock = Block.getBlockFromName(EMTConfig.MINECRAFT.END_PODIUM.bedrock);
@@ -51,20 +66,5 @@ public abstract class WorldGenEndPodiumMixin extends WorldGenerator {
         }
 
         return iBlockState;
-    }
-
-    @WrapMethod(method = "generate")
-    private boolean generate(World worldIn, Random rand, BlockPos position, Operation<Boolean> original) {
-        if (EMTConfig.MINECRAFT.DRAGON.disablePortal) {
-            return false;
-        }
-        if (EMTConfig.MINECRAFT.END_PODIUM.replacePortal) {
-            BetterEndPodium betterEndPodium = new BetterEndPodium(activePortal);
-            if (betterEndPodium.generate(worldIn, rand, position)) {
-                return true;
-            }
-            EnderModpackTweaks.LOGGER.warn("Failed to generate the end portal, generating the default one.");
-        }
-        return original.call(worldIn, rand, position);
     }
 }
