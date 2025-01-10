@@ -6,9 +6,29 @@ If you have any suggestions, feel free to let me know.
 <a href="https://www.akliz.net/enderman"><img src="https://github.com/Ender-Development/PatchouliBooks/raw/master/banner.png" align="center"/></a>
 
 ## Current Features
+### Minecraft
+- ✅ option to disable the 2x2 crafting field in the inventory
+  - the implementation isn't optimal as I would like to remove it completely, but it is a start
+- ✅ End Gateway
+  - config to change the bedrock to something else
+  - config to replace the entire gateway with a structure file
+- ✅ End Portal
+  - config to change the bedrock / torches / endstone that is generated
+  - config to replace the entire portal with a structure file
+- ✅ Nether Portal Tweaks
+  - allow portal creation in the end
+  - disallow the traverse of entities
+  - disallow the creation of portals in the first place
+- ✅ Difficulty Tweaks
+  - force a specific difficulty
+  - lock the difficulty so it can't be changed afterwards
+- ✅ Gamemode Tweaks
+  - force a specific Gamemode
+  - force Hardcore Gamemode
+  - allow commands
 
+### Mods
 - ✅ tweaking [PerfectSpawn](https://github.com/lumien231/Perfect-Spawn)
-  - the mod is ancient and not maintained anymore
   - generate a default config file if it doesn't exist
   - moved the config file to the config folder
 - ✅ tweaking [Pyrotech](https://github.com/codetaylor/pyrotech-1.12)
@@ -31,25 +51,18 @@ If you have any suggestions, feel free to let me know.
   - restructures the config folder
   - prevents spamming the server chat everytime someone want's to write a command
   - load the magic mushroom item only when tconstruct is loaded
-  - currently unusable as the mod blocks mixins when outside of a dev environment
+  - **currently unusable as the mod blocks mixins when outside of a dev environment**
 - ✅ tweaking [First Aid](https://www.curseforge.com/minecraft/mc-mods/first-aid)
   - added a config option to center the HUD, so it's easier to place next to the hotbar, independent of the screen width
   - added a config option to disable the Tutorial Message
-- ✅ option to disable the 2x2 crafting field in the inventory
-  - the implementation isn't optimal as I would like to remove it completely, but it is a start
-- ✅ End Gateway tweak to change the bedrock to something else
-- ✅ End Portal tweak to change the bedrock / torches / endstone that is generated
-- ✅ Nether Portal Tweaks
-  - allow portal creation in the end
-  - disallow the traverse of entities
-  - disallow the creation of portals in the first place
-- ✅ Difficulty Tweaks
-  - force a specific difficulty
-  - lock the difficulty so it can't be changed afterwards
-- ✅ Gamemode Tweaks
-  - force a specific Gamemode
-  - force Hardcore Gamemode
-  - allow commands
+- ✅ tweaking [Quark](https://www.curseforge.com/minecraft/mc-mods/quark)
+  - added a config option to always show the usage ticker
+  - added config options to add more Speleothems to the world
+- ✅ tweaking [Dark Utilities](https://www.curseforge.com/minecraft/mc-mods/dark-utilities)
+  - added a config option to increase the CollisionBox of the Vector Plate, to make items visible when using something like ItemPhysics
+  - added a config option to allow Vector Plates to insert items into inventories (either in front or behind the plate)
+  - added a config option to only allow Items to be moved by the Vector Plate
+
 
 ## Possible Bugfixes
 

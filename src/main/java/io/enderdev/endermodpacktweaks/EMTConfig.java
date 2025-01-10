@@ -129,6 +129,24 @@ public class EMTConfig {
             @Config.Name("[3] Replace Bedrock")
             @Config.Comment("Replace the bedrock block in the End Gateway.")
             public String bedrock = "minecraft:bedrock";
+
+            @Config.Name("[4] Replace End Gateway")
+            @Config.Comment("Replace the end gateway with a new structure.")
+            public boolean replaceGateway = false;
+
+            @Config.Name("[5] End Gateway Structure")
+            @Config.Comment("The structure that replaces the end gateway.")
+            public String gatewayStructure = "endermodpacktweaks:end_gateway";
+
+            @Config.Name("[6] End Gateway Distance from End Portal")
+            @Config.Comment("The distance the end gateway is placed from the end portal.")
+            @Config.RangeDouble(min = 96.0, max = 256.0)
+            public double gatewayDistance = 96.0;
+
+            @Config.Name("[7] End Gateway Height")
+            @Config.Comment("The height the end gateway is placed at.")
+            @Config.RangeInt(min = 0, max = 256)
+            public int gatewayHeight = 75;
         }
 
         @Config.Name("End Portal Tweaks")
@@ -162,6 +180,18 @@ public class EMTConfig {
             @Config.Name("[5] Replace Air")
             @Config.Comment("Replace the air block in the End Portal.")
             public String air = "minecraft:air";
+
+            @Config.Name("[6] Replace End Portal")
+            @Config.Comment("Replace the end portal with a new structure.")
+            public boolean replacePortal = false;
+
+            @Config.Name("[7] End Portal Structure (Inactive)")
+            @Config.Comment("The structure that replaces the inactive end portal.")
+            public String portalStructure = "endermodpacktweaks:end_portal";
+
+            @Config.Name("[8] End Portal Structure (Active)")
+            @Config.Comment("The structure that replaces the active end portal.")
+            public String activePortalStructure = "endermodpacktweaks:end_portal_active";
         }
 
         @Config.Name("Nether Portal Tweaks")
