@@ -145,7 +145,7 @@ public class EMTConfig {
 
             @Config.Name("[7] End Gateway Height")
             @Config.Comment("The height the end gateway is placed at.")
-            @Config.RangeInt(min = 0, max = 256)
+            @Config.RangeInt(min = 0, max = 255)
             public int gatewayHeight = 75;
         }
 
@@ -192,6 +192,73 @@ public class EMTConfig {
             @Config.Name("[8] End Portal Structure (Active)")
             @Config.Comment("The structure that replaces the active end portal.")
             public String activePortalStructure = "endermodpacktweaks:end_portal_active";
+        }
+
+        @Config.Name("Obsidian Spike Tweaks")
+        @Config.LangKey("config.endermodpacktweaks.minecraft.obsidian_spike")
+        public final ObsidianSpike OBSIDIAN_SPIKE = new ObsidianSpike();
+
+        public static class ObsidianSpike {
+            @Config.RequiresMcRestart
+            @Config.Name("[1] Enable Obsidian Spike Tweaks")
+            @Config.Comment({
+                    "This tweak allows you to customize the Obsidian Spike.",
+                    "Obsidian Spikes are the large Pillars of Obsidian that generate in the End.",
+                    "You can change the blocks that make up the Obsidian Spike."
+            })
+            public boolean enable = false;
+
+            @Config.Name("[2] Replace Obsidian")
+            @Config.Comment("Replace the obsidian block in the Obsidian Spike.")
+            public String obsidian = "minecraft:obsidian";
+
+            @Config.Name("[3] Replace Air")
+            @Config.Comment("Replace the air block in the Obsidian Spike.")
+            public String air = "minecraft:air";
+
+            @Config.Name("[4] Replace Iron Bars")
+            @Config.Comment("Replace the iron bars block in the Obsidian Spike.")
+            public String ironBars = "minecraft:iron_bars";
+
+            @Config.Name("[5] Replace Obsidian Spike")
+            @Config.Comment("Replace the obsidian spike with a new structure.")
+            public boolean replaceSpike = false;
+
+            @Config.Name("[6] Obsidian Spike Structure")
+            @Config.Comment("The structure that replaces the obsidian spike.")
+            public String spikeStructure = "endermodpacktweaks:obsidian_spike";
+
+            @Config.Name("[7] Obsidian Spike Distance from End Portal")
+            @Config.Comment("The distance the obsidian spike is placed from the end portal.")
+            @Config.RangeDouble(min = 42.0, max = 128.0)
+            public double spikeDistance = 42.0;
+
+            @Config.Name("[8] Obsidian Spike Base Height")
+            @Config.Comment("The base height of the obsidian spike.")
+            @Config.RangeInt(min = 10, max = 255)
+            public int spikeHeight = 76;
+
+            @Config.Name("[9] Obsidian Spike Base Radius")
+            @Config.Comment("The base radius of the obsidian spike.")
+            @Config.RangeInt(min = 2, max = 10)
+            public int spikeRadius = 2;
+
+            @Config.Name("[10] Obsidian Spike Count")
+            @Config.Comment("The number of obsidian spikes around the end portal.")
+            @Config.RangeInt(min = 1, max = 32)
+            public int spikeCount = 10;
+
+            @Config.Name("[11] Obsidian Spike Guard")
+            @Config.Comment("Should the obsidian spikes be always guarded?")
+            public boolean alwaysGuarded = false;
+
+            @Config.Name("[12] Obsidian Spike Guard Chance")
+            @Config.Comment({
+                    "The 1 in x chance that the obsidian spikes are guarded.",
+                    "Set to 0 to disable the guard chance."
+            })
+            @Config.RangeInt(min = 0, max = 100)
+            public int guardChance = 5;
         }
 
         @Config.Name("Nether Portal Tweaks")
@@ -285,8 +352,8 @@ public class EMTConfig {
 
         @Config.Name("[3] Override Vector Plate Collision Box")
         @Config.Comment({
-          "This tweak increases the height of the collision box of the vector plate.",
-          "This tweak was added so Item Physics can render the item on top of the vector plate."
+                "This tweak increases the height of the collision box of the vector plate.",
+                "This tweak was added so Item Physics can render the item on top of the vector plate."
         })
         public boolean overrideVectorPlateCollisionBox = true;
 

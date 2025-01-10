@@ -10,11 +10,17 @@ If you have any suggestions, feel free to let me know.
 - ✅ option to disable the 2x2 crafting field in the inventory
   - the implementation isn't optimal as I would like to remove it completely, but it is a start
 - ✅ End Gateway
-  - config to change the bedrock to something else
-  - config to replace the entire gateway with a structure file
+  - change the bedrock to something else
+  - replace the entire gateway with a structure file
+  - change the radius and the height the gateway can generate
 - ✅ End Portal
-  - config to change the bedrock / torches / endstone that is generated
-  - config to replace the entire portal with a structure file
+  - change the bedrock / torches / endstone that is generated
+  - replace the entire portal with a structure file
+- ✅ Obsidian Spikes
+  - change the obsidian that is generated
+  - change the radius and the height the spikes can generate
+  - change the number of spikes that generate
+  - force every spike to be guarded
 - ✅ Nether Portal Tweaks
   - allow portal creation in the end
   - disallow the traverse of entities
@@ -32,11 +38,11 @@ If you have any suggestions, feel free to let me know.
   - generate a default config file if it doesn't exist
   - moved the config file to the config folder
 - ✅ tweaking [Pyrotech](https://github.com/codetaylor/pyrotech-1.12)
-  - added options to tweak the rock type that generates in the world
+  - tweak the rock type that generates in the world
   - you can now specify the weight of each rock type
 - ✅ tweaking [Rustic](https://www.curseforge.com/minecraft/mc-mods/rustic)
-  - added options to tweak the generation of Wildberry Bushes
-  - added options to allow placing the Wildberry Bushes on more blocks
+  - tweak the generation of Wildberry Bushes
+  - allow placing the Wildberry Bushes on more blocks
 - ✅ adapting [Dragon Murder](https://www.curseforge.com/minecraft/mc-mods/dragon-murder)
   - autokill the first "free" ender dragon
   - a bunch of config options to tweak the initial end to your likings 
@@ -53,15 +59,15 @@ If you have any suggestions, feel free to let me know.
   - load the magic mushroom item only when tconstruct is loaded
   - **currently unusable as the mod blocks mixins when outside of a dev environment**
 - ✅ tweaking [First Aid](https://www.curseforge.com/minecraft/mc-mods/first-aid)
-  - added a config option to center the HUD, so it's easier to place next to the hotbar, independent of the screen width
-  - added a config option to disable the Tutorial Message
+  - center the HUD, so it's easier to place next to the hotbar, independent of the screen width
+  - disable the Tutorial Message
 - ✅ tweaking [Quark](https://www.curseforge.com/minecraft/mc-mods/quark)
-  - added a config option to always show the usage ticker
+  - always show the usage ticker
   - added config options to add more Speleothems to the world
 - ✅ tweaking [Dark Utilities](https://www.curseforge.com/minecraft/mc-mods/dark-utilities)
-  - added a config option to increase the CollisionBox of the Vector Plate, to make items visible when using something like ItemPhysics
-  - added a config option to allow Vector Plates to insert items into inventories (either in front or behind the plate)
-  - added a config option to only allow Items to be moved by the Vector Plate
+  - increase the CollisionBox of the Vector Plate, to make items visible when using something like ItemPhysics
+  - allow Vector Plates to insert items into inventories (either in front or behind the plate)
+  - only allow Items to be moved by the Vector Plate
 
 
 ## Possible Bugfixes
