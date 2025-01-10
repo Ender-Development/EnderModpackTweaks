@@ -43,6 +43,7 @@ If you have any suggestions, feel free to let me know.
 - ✅ tweaking [Rustic](https://www.curseforge.com/minecraft/mc-mods/rustic)
   - tweak the generation of Wildberry Bushes
   - allow placing the Wildberry Bushes on more blocks
+  - allow adding an offset to the Armor and Toughness Renderer
 - ✅ adapting [Dragon Murder](https://www.curseforge.com/minecraft/mc-mods/dragon-murder)
   - autokill the first "free" ender dragon
   - a bunch of config options to tweak the initial end to your likings 
@@ -55,9 +56,9 @@ If you have any suggestions, feel free to let me know.
   - color the tooltip respectively to the item rarity
 - ❌ [WIP] tweaking [Tool Progression](https://www.curseforge.com/minecraft/mc-mods/tool-progression)
   - restructures the config folder
-  - prevents spamming the server chat everytime someone want's to write a command
+  - prevents spamming the server chat everytime someone wants to write a command
   - load the magic mushroom item only when tconstruct is loaded
-  - **currently unusable as the mod blocks mixins when outside of a dev environment**
+  - **currently unusable as the mod blocks mixins when outside a dev environment**
 - ✅ tweaking [First Aid](https://www.curseforge.com/minecraft/mc-mods/first-aid)
   - center the HUD, so it's easier to place next to the hotbar, independent of the screen width
   - disable the Tutorial Message
