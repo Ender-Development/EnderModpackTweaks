@@ -54,7 +54,7 @@ public class EMTConfig {
         public final Client CLIENT = new Client();
 
         public static class Client {
-            @Config.Name("[1] Disable Inventory Crafting")
+            @Config.Name("[01] Disable Inventory Crafting")
             @Config.Comment({
                     "This tweak disables the crafting grid in the player inventory.",
                     "Useful for modpacks that want to make the player use a crafting table",
@@ -115,35 +115,35 @@ public class EMTConfig {
 
         public static class EndGateway {
             @Config.RequiresMcRestart
-            @Config.Name("[1] Enable End Gateway Tweaks")
+            @Config.Name("[01] Enable End Gateway Tweaks")
             @Config.Comment({
                     "This tweak allows you to customize the End Gateway.",
                     "You can change the blocks that make up the End Gateway."
             })
             public boolean enable = false;
 
-            @Config.Name("[2] Replace Air")
+            @Config.Name("[02] Replace Air")
             @Config.Comment("Replace the air block in the End Gateway.")
             public String air = "minecraft:air";
 
-            @Config.Name("[3] Replace Bedrock")
+            @Config.Name("[03] Replace Bedrock")
             @Config.Comment("Replace the bedrock block in the End Gateway.")
             public String bedrock = "minecraft:bedrock";
 
-            @Config.Name("[4] Replace End Gateway")
+            @Config.Name("[04] Replace End Gateway")
             @Config.Comment("Replace the end gateway with a new structure.")
             public boolean replaceGateway = false;
 
-            @Config.Name("[5] End Gateway Structure")
+            @Config.Name("[05] End Gateway Structure")
             @Config.Comment("The structure that replaces the end gateway.")
             public String gatewayStructure = "endermodpacktweaks:end_gateway";
 
-            @Config.Name("[6] End Gateway Distance from End Portal")
+            @Config.Name("[06] End Gateway Distance from End Portal")
             @Config.Comment("The distance the end gateway is placed from the end portal.")
             @Config.RangeDouble(min = 96.0, max = 256.0)
             public double gatewayDistance = 96.0;
 
-            @Config.Name("[7] End Gateway Height")
+            @Config.Name("[07] End Gateway Height")
             @Config.Comment("The height the end gateway is placed at.")
             @Config.RangeInt(min = 0, max = 255)
             public int gatewayHeight = 75;
@@ -155,41 +155,41 @@ public class EMTConfig {
 
         public static class EndPodium {
             @Config.RequiresMcRestart
-            @Config.Name("[1] Enable End Podium Tweaks")
+            @Config.Name("[01] Enable End Podium Tweaks")
             @Config.Comment({
                     "This tweak allows you to customize the End Portal.",
                     "You can change the blocks that make up the End Portal."
             })
             public boolean enable = false;
 
-            @Config.Name("[2] Replace Bedrock")
+            @Config.Name("[02] Replace Bedrock")
             @Config.Comment({
                     "Replace the bedrock block in the End Portal.",
                     "Replacing the bedrock makes it impossible to respawn the Ender Dragon."
             })
             public String bedrock = "minecraft:bedrock";
 
-            @Config.Name("[3] Replace End Stone")
+            @Config.Name("[03] Replace End Stone")
             @Config.Comment("Replace the end stone block in the End Portal.")
             public String endStone = "minecraft:end_stone";
 
-            @Config.Name("[4] Replace Torch")
+            @Config.Name("[04] Replace Torch")
             @Config.Comment("Replace the torch block in the End Portal.")
             public String torch = "minecraft:torch";
 
-            @Config.Name("[5] Replace Air")
+            @Config.Name("[05] Replace Air")
             @Config.Comment("Replace the air block in the End Portal.")
             public String air = "minecraft:air";
 
-            @Config.Name("[6] Replace End Portal")
+            @Config.Name("[06] Replace End Portal")
             @Config.Comment("Replace the end portal with a new structure.")
             public boolean replacePortal = false;
 
-            @Config.Name("[7] End Portal Structure (Inactive)")
+            @Config.Name("[07] End Portal Structure (Inactive)")
             @Config.Comment("The structure that replaces the inactive end portal.")
             public String portalStructure = "endermodpacktweaks:end_portal";
 
-            @Config.Name("[8] End Portal Structure (Active)")
+            @Config.Name("[08] End Portal Structure (Active)")
             @Config.Comment("The structure that replaces the active end portal.")
             public String activePortalStructure = "endermodpacktweaks:end_portal_active";
         }
@@ -267,19 +267,19 @@ public class EMTConfig {
 
         public static class NetherPortal {
             @Config.RequiresMcRestart
-            @Config.Name("[1] Nether Portal Tweaks")
+            @Config.Name("[01] Nether Portal Tweaks")
             @Config.Comment("Enable Nether Portal Tweaks")
             public boolean enable = false;
 
-            @Config.Name("[2] Nether Portal Creation")
+            @Config.Name("[02] Nether Portal Creation")
             @Config.Comment("Allow Nether Portal Creation")
             public boolean canBeCreated = true;
 
-            @Config.Name("[3] End Nether Portal")
+            @Config.Name("[03] End Nether Portal")
             @Config.Comment("Allow Nether Portal Creation in the End")
             public boolean canBeCreatedInEnd = false;
 
-            @Config.Name("[4] No Entity Traverse")
+            @Config.Name("[04] No Entity Traverse")
             @Config.Comment("Disallow Entities to enter Nether Portals")
             public boolean disallowTraverse = false;
         }
@@ -302,33 +302,33 @@ public class EMTConfig {
             public final GamemodeCategory GAMEMODE = new GamemodeCategory();
 
             public static class DifficultyCategory {
-                @Config.Name("[1] Force Difficulty")
+                @Config.Name("[01] Force Difficulty")
                 @Config.Comment("Force the difficulty to a specific value")
                 public boolean force = false;
 
-                @Config.Name("[2] Forced Difficulty")
+                @Config.Name("[02] Forced Difficulty")
                 @Config.Comment("The difficulty the world should be forced to")
                 public Difficulty difficulty = Difficulty.NORMAL;
 
-                @Config.Name("[3] Lock Difficulty")
+                @Config.Name("[03] Lock Difficulty")
                 @Config.Comment("Prevent players from changing the difficulty")
                 public boolean lock = false;
             }
 
             public static class GamemodeCategory {
-                @Config.Name("[1] Force Gamemode")
+                @Config.Name("[01] Force Gamemode")
                 @Config.Comment("Force the gamemode to a specific value")
                 public boolean force = false;
 
-                @Config.Name("[2] Forced Gamemode")
+                @Config.Name("[02] Forced Gamemode")
                 @Config.Comment("The gamemode the world should be forced to")
                 public Gamemode gamemode = Gamemode.SURVIVAL;
 
-                @Config.Name("[3] Allow Cheats")
+                @Config.Name("[03] Allow Cheats")
                 @Config.Comment("Allow cheats in the world")
                 public boolean cheats = true;
 
-                @Config.Name("[4] Hardcore Mode")
+                @Config.Name("[04] Hardcore Mode")
                 @Config.Comment("Enable hardcore mode")
                 public boolean hardcore = false;
             }
@@ -342,26 +342,26 @@ public class EMTConfig {
 
     public static class DarkUtils {
         @Config.RequiresMcRestart
-        @Config.Name("[1] Enable Dark Utils Tweaks")
+        @Config.Name("[01] Enable Dark Utils Tweaks")
         @Config.Comment("Enable tweaks for the Dark Utils mod.")
         public boolean enable = true;
 
-        @Config.Name("[2] Vector Plate Item Only")
+        @Config.Name("[02] Vector Plate Item Only")
         @Config.Comment("Vector Plates can only move items.")
         public boolean vectorPlateItemOnly = true;
 
-        @Config.Name("[3] Override Vector Plate Collision Box")
+        @Config.Name("[03] Override Vector Plate Collision Box")
         @Config.Comment({
                 "This tweak increases the height of the collision box of the vector plate.",
                 "This tweak was added so Item Physics can render the item on top of the vector plate."
         })
         public boolean overrideVectorPlateCollisionBox = true;
 
-        @Config.Name("[4] Vector Plates Insert - front")
+        @Config.Name("[04] Vector Plates Insert - front")
         @Config.Comment("Vector Plates can insert items into the inventory in front of them.")
         public boolean vectorPlatesInsertFront = true;
 
-        @Config.Name("[5] Vector Plates Insert - below")
+        @Config.Name("[05] Vector Plates Insert - below")
         @Config.Comment("Vector Plates can insert items into the inventory below them.")
         public boolean vectorPlatesInsertBelow = true;
     }
@@ -387,15 +387,15 @@ public class EMTConfig {
 
     public static class FirstAid {
         @Config.RequiresMcRestart
-        @Config.Name("[1] Enable First Aid Tweaks")
+        @Config.Name("[01] Enable First Aid Tweaks")
         @Config.Comment("Enable tweaks for the First Aid mod.")
         public boolean enable = true;
 
-        @Config.Name("[2] Disable Tutorial Message")
+        @Config.Name("[02] Disable Tutorial Message")
         @Config.Comment("Disable the tutorial message that appears when joining a world.")
         public boolean disableTutorial = false;
 
-        @Config.Name("[3] Overhaul HUD placement")
+        @Config.Name("[03] Overhaul HUD placement")
         @Config.Comment("This centers the HUD on the x-axis.")
         public boolean centerHUD = false;
     }
@@ -407,18 +407,18 @@ public class EMTConfig {
 
     public static class ItemPhysics {
         @Config.RequiresMcRestart
-        @Config.Name("[1] Enable Item Physics Tweaks")
+        @Config.Name("[01] Enable Item Physics Tweaks")
         @Config.Comment("Enable tweaks for the Item Physics mod.")
         public boolean enable = true;
 
-        @Config.Name("[2] Improved Item Tooltip")
+        @Config.Name("[02] Improved Item Tooltip")
         @Config.Comment({
                 "This tweak overhauls the item tooltip that is displayed when using the alternative pickup mode.",
                 "It adds the stack size to the tooltip as well as coloring it based on the rarity of the item."
         })
         public boolean improveTooltip = true;
 
-        @Config.Name("[3] Reach Distance")
+        @Config.Name("[03] Reach Distance")
         @Config.Comment("Set the pickup range to the reach distance of the player.")
         public boolean reachDistance = true;
     }
@@ -515,19 +515,27 @@ public class EMTConfig {
 
     public static class Quark {
         @Config.RequiresMcRestart
-        @Config.Name("[1] Enable Quark Tweaks")
+        @Config.Name("[01] Enable Quark Tweaks")
         @Config.Comment("Enable tweaks for the Quark mod.")
         public boolean enable = true;
 
-        @Config.Name("[2] Always show the Usage Ticker")
+        @Config.Name("[02] Always show the Usage Ticker")
         @Config.Comment("Stops the Usage Ticker from disappearing.")
         public boolean alwaysShowUsageTicker = true;
 
-        @Config.Name("[3] Enable End Stone Speleothems")
+        @Config.Name("[03] Armor Y-Offset")
+        @Config.Comment("Set the Y-Offset of the Armor Part of the Usage Ticker.")
+        public int armorYOffset = 0;
+
+        @Config.Name("[04] Tool Y-Offset")
+        @Config.Comment("Set the Y-Offset of the Tool Part of the Usage Ticker.")
+        public int itemYOffset = 0;
+
+        @Config.Name("[05] Enable End Stone Speleothems")
         @Config.Comment("Add and generate End Stone Speleothems.")
         public boolean enableEndSpeleothems = true;
 
-        @Config.Name("[4] Enable Obsidian Speleothems")
+        @Config.Name("[06] Enable Obsidian Speleothems")
         @Config.Comment("Add and generate Obsidian Speleothems.")
         public boolean enableObsidianSpeleothems = true;
     }
@@ -591,15 +599,15 @@ public class EMTConfig {
 
     public static class SimpleDifficulty {
         @Config.RequiresMcRestart
-        @Config.Name("[1] Enable Simple Difficulty Tweaks")
+        @Config.Name("[01] Enable Simple Difficulty Tweaks")
         @Config.Comment("Set to false to disable Simple Difficulty tweaks.")
         public boolean enable = true;
 
-        @Config.Name("[2] Thirstbar X-Offset")
+        @Config.Name("[02] Thirstbar X-Offset")
         @Config.Comment("Set the X-Offset of the Thirstbar.")
         public int thirstbarXOffset = 82;
 
-        @Config.Name("[3] Thirstbar Y-Offset")
+        @Config.Name("[03] Thirstbar Y-Offset")
         @Config.Comment("Set the Y-Offset of the Thirstbar.")
         public int thirstbarYOffset = -53;
     }
@@ -611,7 +619,7 @@ public class EMTConfig {
 
     public static class ToolProgression {
         @Config.RequiresMcRestart
-        @Config.Name("[1] Enable Tool Progression Tweaks")
+        @Config.Name("[01] Enable Tool Progression Tweaks")
         @Config.Comment({
                 "This tweak allows changes how the configuration file of the mod are generated.",
                 "It creates a few subdirectories and moves the configuration files into them."

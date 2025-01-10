@@ -1,5 +1,6 @@
 package io.enderdev.endermodpacktweaks.features;
 
+import io.enderdev.endermodpacktweaks.EnderModpackTweaks;
 import net.minecraft.block.Block;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.Mirror;
@@ -25,6 +26,7 @@ public abstract class WorldGen {
     public boolean generateStructure(@NotNull World worldIn, @NotNull BlockPos position, @NotNull ResourceLocation structure, boolean centerY, int offsetY) {
         Template template = getTemplate(worldIn, structure);
         if (template == null) {
+            EnderModpackTweaks.LOGGER.error("Structure {} not found!", structure);
             return false;
         } else {
             BlockPos templateCenter = getCenter(template);
