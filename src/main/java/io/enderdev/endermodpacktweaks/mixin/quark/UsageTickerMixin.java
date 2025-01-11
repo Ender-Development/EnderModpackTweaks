@@ -30,7 +30,7 @@ public class UsageTickerMixin {
         this.liveTicks = 50;
     }
 
-    @WrapOperation(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/GlStateManager;translate(FFF)V", ordinal = 0))
+    @WrapOperation(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/GlStateManager;translate(FFF)V", ordinal = 0, remap = true))
     private void render(float x, float y, float z, Operation<Void> original) {
         if (EMTConfig.QUARK.alwaysShowUsageTicker) {
             if (this.slot.getSlotType() == EntityEquipmentSlot.Type.ARMOR) {
