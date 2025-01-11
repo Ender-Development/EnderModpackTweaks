@@ -249,11 +249,17 @@ public class EMTConfig {
             public String ironBars = "minecraft:iron_bars";
 
             @Config.Name("[05] Replace Obsidian Spike")
-            @Config.Comment("Replace the obsidian spike with a new structure.")
+            @Config.Comment({
+                    "Replace the obsidian spike with a new structure.",
+                    "!!! NOT YET IMPLEMENTED !!!"
+            })
             public boolean replaceSpike = false;
 
             @Config.Name("[06] Obsidian Spike Structure")
-            @Config.Comment("The structure that replaces the obsidian spike.")
+            @Config.Comment({
+                    "The structure that replaces the obsidian spike.",
+                    "!!! NOT YET IMPLEMENTED !!!"
+            })
             public String spikeStructure = "endermodpacktweaks:obsidian_spike";
 
             @Config.Name("[07] Obsidian Spike Distance from End Portal")
@@ -283,7 +289,7 @@ public class EMTConfig {
             @Config.Name("[12] Obsidian Spike Guard Chance")
             @Config.Comment({
                     "The 1 in x chance that the obsidian spikes are guarded.",
-                    "Set to 0 to disable the guard chance."
+                    "Set to 0 to disable guarded spikes altogether."
             })
             @Config.RangeInt(min = 0, max = 100)
             public int guardChance = 5;
@@ -388,22 +394,22 @@ public class EMTConfig {
 
         @Config.Name("[02] Vector Plate Item Only")
         @Config.Comment("Vector Plates can only move items.")
-        public boolean vectorPlateItemOnly = true;
+        public boolean vectorPlateItemOnly = false;
 
         @Config.Name("[03] Override Vector Plate Collision Box")
         @Config.Comment({
                 "This tweak increases the height of the collision box of the vector plate.",
                 "This tweak was added so Item Physics can render the item on top of the vector plate."
         })
-        public boolean overrideVectorPlateCollisionBox = true;
+        public boolean overrideVectorPlateCollisionBox = false;
 
         @Config.Name("[04] Vector Plates Insert - front")
         @Config.Comment("Vector Plates can insert items into the inventory in front of them.")
-        public boolean vectorPlatesInsertFront = true;
+        public boolean vectorPlatesInsertFront = false;
 
         @Config.Name("[05] Vector Plates Insert - below")
         @Config.Comment("Vector Plates can insert items into the inventory below them.")
-        public boolean vectorPlatesInsertBelow = true;
+        public boolean vectorPlatesInsertBelow = false;
     }
 
     @Config.Name("Default World Generator")
@@ -463,6 +469,18 @@ public class EMTConfig {
         public boolean reachDistance = true;
     }
 
+    @Config.Name("Lightweight Blood Mechanics")
+    @Config.LangKey("config.endermodpacktweaks.lightweight_blood_mechanics")
+    @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/lightweight-blood-mechanics")
+    public static final Lbm LBM = new Lbm();
+
+    public static class Lbm {
+        @Config.RequiresMcRestart
+        @Config.Name("[01] Enable Lightweight Blood Mechanics Tweaks")
+        @Config.Comment("Enable tweaks for the Lightweight Blood Mechanics mod.")
+        public boolean enable = true;
+    }
+
     @Config.Name("Perfect Spawn")
     @Config.LangKey("config.endermodpacktweaks.perfect_spawn")
     @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/perfect-spawn")
@@ -500,50 +518,62 @@ public class EMTConfig {
         public static class RockWeight {
             @Config.Name("[01] Weight: rock_stone")
             @Config.Comment("The weight of Stone Rocks.")
+            @Config.RangeInt(min = 0, max = 1000)
             public int stone = 100;
 
             @Config.Name("[02] Weight: rock_granite")
             @Config.Comment("The weight of Granite Rocks.")
+            @Config.RangeInt(min = 0, max = 1000)
             public int granite = 0;
 
             @Config.Name("[03] Weight: rock_diorite")
             @Config.Comment("The weight of Diorite Rocks.")
+            @Config.RangeInt(min = 0, max = 1000)
             public int diorite = 0;
 
             @Config.Name("[04] Weight: rock_andesite")
             @Config.Comment("The weight of Andesite Rocks.")
+            @Config.RangeInt(min = 0, max = 1000)
             public int andesite = 0;
 
             @Config.Name("[05] Weight: rock_dirt")
             @Config.Comment("The weight of Dirt Rocks.")
+            @Config.RangeInt(min = 0, max = 1000)
             public int dirt = 0;
 
             @Config.Name("[06] Weight: rock_sand")
             @Config.Comment("The weight of Sand Rocks.")
+            @Config.RangeInt(min = 0, max = 1000)
             public int sand = 0;
 
             @Config.Name("[07] Weight: rock_sandstone")
             @Config.Comment("The weight of Sandstone Rocks.")
+            @Config.RangeInt(min = 0, max = 1000)
             public int sandstone = 0;
 
             @Config.Name("[08] Weight: rock_wood_chips")
             @Config.Comment("The weight of Wood Chips Rocks.")
+            @Config.RangeInt(min = 0, max = 1000)
             public int wood_chips = 0;
 
             @Config.Name("[09] Weight: rock_limestone")
             @Config.Comment("The weight of Limestone Rocks.")
+            @Config.RangeInt(min = 0, max = 1000)
             public int limestone = 0;
 
             @Config.Name("[10] Weight: rock_sand_red")
             @Config.Comment("The weight of Red Sand Rocks.")
+            @Config.RangeInt(min = 0, max = 1000)
             public int sand_red = 0;
 
             @Config.Name("[11] Weight: rock_sandstone_red")
             @Config.Comment("The weight of Red Sandstone Rocks.")
+            @Config.RangeInt(min = 0, max = 1000)
             public int sandstone_red = 0;
 
             @Config.Name("[12] Weight: rock_mud")
             @Config.Comment("The weight of Mud Rocks.")
+            @Config.RangeInt(min = 0, max = 1000)
             public int mud = 0;
         }
     }
@@ -561,7 +591,7 @@ public class EMTConfig {
 
         @Config.Name("[02] Always show the Usage Ticker")
         @Config.Comment("Stops the Usage Ticker from disappearing.")
-        public boolean alwaysShowUsageTicker = true;
+        public boolean alwaysShowUsageTicker = false;
 
         @Config.Name("[03] Armor Y-Offset")
         @Config.Comment("Set the Y-Offset of the Armor Part of the Usage Ticker.")
@@ -573,11 +603,11 @@ public class EMTConfig {
 
         @Config.Name("[05] Enable End Stone Speleothems")
         @Config.Comment("Add and generate End Stone Speleothems.")
-        public boolean enableEndSpeleothems = true;
+        public boolean enableEndSpeleothems = false;
 
         @Config.Name("[06] Enable Obsidian Speleothems")
         @Config.Comment("Add and generate Obsidian Speleothems.")
-        public boolean enableObsidianSpeleothems = true;
+        public boolean enableObsidianSpeleothems = false;
     }
 
     @Config.Name("Rustic")
@@ -593,6 +623,7 @@ public class EMTConfig {
 
         @Config.Name("[02] Berry Bush generation spread")
         @Config.Comment("Tweaking the max radius Rustic's berry bushes try to generate in per patch")
+        @Config.RangeInt(min = 1, max = 16)
         public int maxWildberrySpread = 7;
 
         @Config.Name("[03] Override Berry Bush placement")
@@ -678,7 +709,9 @@ public class EMTConfig {
         @Config.Name("[01] Enable Tool Progression Tweaks")
         @Config.Comment({
                 "This tweak allows changes how the configuration file of the mod are generated.",
-                "It creates a few subdirectories and moves the configuration files into them."
+                "It creates a few subdirectories and moves the configuration files into them.",
+                "Sadly these don't work outside a development environment (for now)",
+                "but I already reached out to the mod author to fix this."
         })
         public boolean enable = true;
     }
