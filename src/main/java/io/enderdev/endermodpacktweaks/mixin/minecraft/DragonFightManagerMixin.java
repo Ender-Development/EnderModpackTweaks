@@ -7,6 +7,7 @@ import io.enderdev.endermodpacktweaks.EnderModpackTweaks;
 import net.minecraft.block.Block;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.end.DragonFightManager;
 import net.minecraft.world.gen.feature.WorldGenEndPodium;
@@ -18,6 +19,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import java.util.List;
+
 @Mixin(DragonFightManager.class)
 public abstract class DragonFightManagerMixin {
 
@@ -26,6 +29,9 @@ public abstract class DragonFightManagerMixin {
 
     @Shadow
     protected abstract void spawnNewGateway();
+
+    @Shadow
+    public abstract void generateGateway(BlockPos pos);
 
     @Final
     @Shadow
@@ -36,6 +42,10 @@ public abstract class DragonFightManagerMixin {
 
     @Shadow
     private boolean previouslyKilled;
+
+    @Final
+    @Shadow
+    private List<Integer> gateways;
 
     @WrapMethod(method = "hasDragonBeenKilled")
     private boolean hasDragonBeenKilled(Operation<Boolean> original) {
@@ -56,6 +66,20 @@ public abstract class DragonFightManagerMixin {
             this.spawnNewGateway();
         }
         return true;
+    }
+
+    @WrapMethod(method = "spawnNewGateway")
+    private void spawnNewGateway(Operation<Void> original) {
+        if (!this.gateways.isEmpty() && EMTConfig.MINECRAFT.END_GATEWAY.enable) {
+            double radius = EMTConfig.MINECRAFT.END_GATEWAY.gatewayDistance;
+            int height = EMTConfig.MINECRAFT.END_GATEWAY.gatewayHeight;
+            int i = this.gateways.remove(this.gateways.size() - 1);
+            int j = (int) (radius * Math.cos(2.0D * (-Math.PI + 0.15707963267948966D * (double) i)));
+            int k = (int) (radius * Math.sin(2.0D * (-Math.PI + 0.15707963267948966D * (double) i)));
+            this.generateGateway(new BlockPos(j, height, k));
+        } else {
+            original.call();
+        }
     }
 
     @Inject(method = "processDragonDeath", at = @At("RETURN"))
