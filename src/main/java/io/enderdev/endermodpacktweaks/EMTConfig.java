@@ -479,6 +479,44 @@ public class EMTConfig {
         @Config.Name("[01] Enable Lightweight Blood Mechanics Tweaks")
         @Config.Comment("Enable tweaks for the Lightweight Blood Mechanics mod.")
         public boolean enable = true;
+
+        @Config.Name("[02] Blood Overlay X-Offset")
+        @Config.Comment("Set the X-Offset of the Blood Overlay.")
+        public int bloodXOffset = 0;
+
+        @Config.Name("[03] Blood Overlay Y-Offset")
+        @Config.Comment("Set the Y-Offset of the Blood Overlay.")
+        public int bloodYOffset = 0;
+
+        @Config.Name("[04] Always Show Blood Overlay")
+        @Config.Comment("Always show the Blood Overlay.")
+        public boolean alwaysShowBloodOverlay = false;
+
+        @Config.Name("[05] Blood Overlay Background Color")
+        @Config.Comment("Set the background color of the Blood Overlay.")
+        public int bloodBackgroundColor = 2005401600;
+
+        @Config.Name("[06] Blood Overlay Foreground Color")
+        @Config.Comment("Set the foreground color of the Blood Overlay.")
+        public int bloodForegroundColor = 2013200384;
+
+        @Config.Name("[07] Blood Overlay Height")
+        @Config.Comment("Set the height of the Blood Overlay.")
+        @Config.RangeInt(min = 0)
+        public int bloodHeight = 30;
+
+        @Config.Name("[08] Blood Overlay Width")
+        @Config.Comment("Set the width of the Blood Overlay.")
+        @Config.RangeInt(min = 0)
+        public int bloodWidth = 5;
+
+        @Config.Name("[09] Blood Icon X-Offset")
+        @Config.Comment("Set the X-Offset of the Blood Icon.")
+        public int bloodIconXOffset = 0;
+
+        @Config.Name("[10] Blood Icon Y-Offset")
+        @Config.Comment("Set the Y-Offset of the Blood Icon.")
+        public int bloodIconYOffset = 0;
     }
 
     @Config.Name("Perfect Spawn")

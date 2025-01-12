@@ -62,13 +62,19 @@ If you have any suggestions, feel free to let me know.
 - ✅ tweaking [First Aid](https://www.curseforge.com/minecraft/mc-mods/first-aid)
   - center the HUD, so it's easier to place next to the hotbar, independent of the screen width
   - disable the Tutorial Message
-- ✅ tweaking [Quark](https://www.curseforge.com/minecraft/mc-mods/quark)
+- ✅ tweaking [Quark](https://www.curseforge.com/minecraft/mc-mods/quark-rotn-edition)
   - always show the usage ticker
   - added config options to add more Speleothems to the world
 - ✅ tweaking [Dark Utilities](https://www.curseforge.com/minecraft/mc-mods/dark-utilities)
   - increase the CollisionBox of the Vector Plate, to make items visible when using something like ItemPhysics
   - allow Vector Plates to insert items into inventories (either in front or behind the plate)
   - only allow Items to be moved by the Vector Plate
+- ✅ tweaking [Lightweight Blood Mechanics](https://www.curseforge.com/minecraft/mc-mods/lightweight-blood-mechanics
+  - add an offset to the bleeding overlay renderer
+  - increase the size of the bleeding overlay
+- ✅ tweaking [BetterEndForge Backport](https://www.curseforge.com/minecraft/mc-mods/betterendforge-backport)
+  - override a few hardcoded values to make it compatible with my other end tweaks
+  - **These may be removed in the future when the mod author makes them actually configurable**
 
 
 ## Possible Bugfixes

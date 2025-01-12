@@ -67,6 +67,12 @@ config.endermodpacktweaks.item_physics.tooltip=Tweaks to the item physics mod
 endermodpacktweaks.itemphysic.render_tooltip=%dx %s
 
 ####################
+# LBM
+####################
+config.endermodpacktweaks.lightweight_blood_mechanics=Lightweight Blood Mechanics
+config.endermodpacktweaks.lightweight_blood_mechanics.tooltip=Tweaks to the lightweight blood mechanics mod
+
+####################
 # Perfect Spawn
 ####################
 config.endermodpacktweaks.perfect_spawn=Perfect Spawn

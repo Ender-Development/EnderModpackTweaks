@@ -172,4 +172,11 @@ dependencies {
     if (project.debug_betterend.toBoolean()) {
         runtimeOnly "curse.maven:betterendforge-backport-1165149:6055565"
     }
+
+    compileOnly rfg.deobf("curse.maven:mdxlib-248278:4440242")
+    compileOnly rfg.deobf("curse.maven:lightweight-blood-mechanics-333685:4498295")
+    if (project.debug_lbm.toBoolean()) {
+        runtimeOnly "curse.maven:mdxlib-248278:4440242"
+        runtimeOnly "curse.maven:lightweight-blood-mechanics-333685:4498295"
+    }
 }

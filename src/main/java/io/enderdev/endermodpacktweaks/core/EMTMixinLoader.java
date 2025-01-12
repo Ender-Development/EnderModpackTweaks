@@ -25,6 +25,7 @@ public class EMTMixinLoader implements ILateMixinLoader {
             put("mixins.emt.darkutils.json", () -> Loader.isModLoaded("darkutils") && EMTConfig.DARK_UTILS.enable);
             put("mixins.emt.quark.json", () -> Loader.isModLoaded("quark") && EMTConfig.QUARK.enable);
             put("mixins.emt.betterend.json", () -> Loader.isModLoaded("betterendforge") && EMTConfig.BETTER_END.enable);
+            put("mixins.emt.lbm.json", () -> Loader.isModLoaded("lbm") && EMTConfig.LBM.enable);
         }
     });
 
