@@ -16,6 +16,7 @@ import net.minecraft.world.gen.feature.WorldGenEndPodium;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Mutable;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
@@ -25,15 +26,14 @@ import java.util.Random;
 @Mixin(WorldGenEndPodium.class)
 public abstract class WorldGenEndPodiumMixin extends WorldGenerator {
 
+    @Mutable
     @Final
     @Shadow
     private boolean activePortal;
 
     @WrapMethod(method = "generate")
     private boolean generate(World worldIn, Random rand, BlockPos position, Operation<Boolean> original) {
-        if (EMTConfig.MINECRAFT.DRAGON.disablePortal) {
-            return false;
-        }
+        activePortal = !EMTConfig.MINECRAFT.DRAGON.disablePortal && this.activePortal;
         if (EMTConfig.MINECRAFT.END_PODIUM.replacePortal) {
             BetterEndPodium betterEndPodium = new BetterEndPodium(activePortal);
             if (betterEndPodium.generate(worldIn, rand, position)) {
