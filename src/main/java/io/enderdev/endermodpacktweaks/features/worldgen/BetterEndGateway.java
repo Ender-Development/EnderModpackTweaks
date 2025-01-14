@@ -1,4 +1,4 @@
-package io.enderdev.endermodpacktweaks.features;
+package io.enderdev.endermodpacktweaks.features.worldgen;
 
 import io.enderdev.endermodpacktweaks.EMTConfig;
 import net.minecraft.util.ResourceLocation;

@@ -3,7 +3,7 @@ package io.enderdev.endermodpacktweaks.mixin.minecraft;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import io.enderdev.endermodpacktweaks.EMTConfig;
-import io.enderdev.endermodpacktweaks.features.BetterEndGateway;
+import io.enderdev.endermodpacktweaks.features.worldgen.BetterEndGateway;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.ChunkGeneratorEnd;

@@ -1,4 +1,4 @@
-package io.enderdev.endermodpacktweaks.features;
+package io.enderdev.endermodpacktweaks.features.worldgen;
 
 import io.enderdev.endermodpacktweaks.EnderModpackTweaks;
 import net.minecraft.block.Block;
