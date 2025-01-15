@@ -177,4 +177,9 @@ dependencies {
         runtimeOnly "curse.maven:mdxlib-248278:4440242"
         runtimeOnly "curse.maven:lightweight-blood-mechanics-333685:4498295"
     }
+
+    compileOnly rfg.deobf("curse.maven:backpack-opener-1147522:5955712")
+    if (project.debug_backpackopener.toBoolean()) {
+        runtimeOnly "curse.maven:backpack-opener-1147522:5955712"
+    }
 }

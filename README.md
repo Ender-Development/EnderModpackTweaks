@@ -67,7 +67,7 @@ If you have any suggestions, feel free to let me know.
   - added config options to add more Speleothems to the world
 - ✅ tweaking [Dark Utilities](https://www.curseforge.com/minecraft/mc-mods/dark-utilities)
   - increase the CollisionBox of the Vector Plate, to make items visible when using something like ItemPhysics
-  - allow Vector Plates to insert items into inventories (either in front or behind the plate)
+  - allow Vector Plates to insert items into inventories (either in front or below the plate)
   - only allow Items to be moved by the Vector Plate
 - ✅ tweaking [Lightweight Blood Mechanics](https://www.curseforge.com/minecraft/mc-mods/lightweight-blood-mechanics
   - add an offset to the bleeding overlay renderer
@@ -75,6 +75,11 @@ If you have any suggestions, feel free to let me know.
 - ✅ tweaking [BetterEndForge Backport](https://www.curseforge.com/minecraft/mc-mods/betterendforge-backport)
   - override a few hardcoded values to make it compatible with my other end tweaks
   - **These may be removed in the future when the mod author makes them actually configurable**
+- ✅ adapted [Pack Crash Info](https://www.curseforge.com/minecraft/mc-mods/pack-crash-info)
+  - the mods license (ARR) doesn't allow forking so I rewrote the functionality from scratch
+- ✅ tweaking [Backpack Opener](https://www.curseforge.com/minecraft/mc-mods/backpack-opener)
+  - remove CraftTweaker dependency
+  - allow adding entries via the config file
 
 
 ## Possible Bugfixes
