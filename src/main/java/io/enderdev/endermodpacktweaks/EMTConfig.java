@@ -44,6 +44,48 @@ public class EMTConfig {
         }
     }
 
+    @Config.Name("Modpack Tweaks")
+    @Config.LangKey("config.endermodpacktweaks")
+    public static final Modpack MODPACK = new Modpack();
+
+    public static class Modpack {
+
+        @Config.Name("Crash Info")
+        @Config.LangKey("config.endermodpacktweaks.crash_info")
+        public final CrashInfo CRASH_INFO = new CrashInfo();
+
+        public static class CrashInfo {
+            @Config.RequiresMcRestart
+            @Config.Name("[01] Enable Crash Info")
+            @Config.Comment({
+                    "Enable the Crash Info feature. This adds additional information to the crash report.",
+                    "It tries to read the information from the manifest file of the modpack.",
+                    "Alternatively, you can provide the information in the config file."
+            })
+            public boolean enable = true;
+
+            @Config.RequiresMcRestart
+            @Config.Name("[02] Read from Manifest")
+            @Config.Comment("Read the information from the manifest file of the modpack.")
+            public boolean readFromManifest = true;
+
+            @Config.RequiresMcRestart
+            @Config.Name("[03] Modpack Name")
+            @Config.Comment("The name of the modpack. Only used if 'Read from Manifest' is disabled.")
+            public String modpackName = "";
+
+            @Config.RequiresMcRestart
+            @Config.Name("[04] Modpack Version")
+            @Config.Comment("The version of the modpack. Only used if 'Read from Manifest' is disabled.")
+            public String modpackVersion = "";
+
+            @Config.RequiresMcRestart
+            @Config.Name("[05] Modpack Author")
+            @Config.Comment("The author of the modpack. Only used if 'Read from Manifest' is disabled.")
+            public String modpackAuthor = "";
+        }
+    }
+
     @Config.Name("Minecraft")
     @Config.LangKey("config.endermodpacktweaks.minecraft")
     public static final Minecraft MINECRAFT = new Minecraft();

@@ -1,8 +1,11 @@
 package io.enderdev.endermodpacktweaks;
 
+import io.enderdev.endermodpacktweaks.features.crashinfo.InfoBuilder;
 import io.enderdev.endermodpacktweaks.proxy.CommonProxy;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
+import net.minecraftforge.fml.common.event.FMLConstructionEvent;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -15,6 +18,8 @@ public class EnderModpackTweaks {
 
     public static final String COMMON_PROXY = "io.enderdev.endermodpacktweaks.proxy.CommonProxy";
     public static final String CLIENT_PROXY = "io.enderdev.endermodpacktweaks.proxy.ClientProxy";
+
+    private static final InfoBuilder INFO_BUILDER = new InfoBuilder("Modpack Informations");
 
     @Mod.Instance(value = Tags.MOD_ID)
     public static EnderModpackTweaks instance;
@@ -35,5 +40,13 @@ public class EnderModpackTweaks {
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
         proxy.postInit(event);
+    }
+
+    @Mod.EventHandler
+    public void construct(FMLConstructionEvent event) throws Exception {
+        if (!EMTConfig.MODPACK.CRASH_INFO.enable) {
+            return;
+        }
+        FMLCommonHandler.instance().registerCrashCallable(INFO_BUILDER);
     }
 }
