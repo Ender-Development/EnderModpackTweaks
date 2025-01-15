@@ -411,6 +411,26 @@ public class EMTConfig {
         }
     }
 
+    @Config.Name("Backpack Opener")
+    @Config.LangKey("config.endermodpacktweaks.bp_opener")
+    @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/backpack-opener")
+    public static final BpOpener BP_OPENER = new BpOpener();
+
+    public static class BpOpener {
+        @Config.RequiresMcRestart
+        @Config.Name("[01] Enable Backpack Opener Tweaks")
+        @Config.Comment("Enable tweaks for the Backpack Opener mod.")
+        public boolean enable = true;
+
+        @Config.Name("[02] Valid Items")
+        @Config.Comment({
+                "A list of valid items that can be used with the Backpack Opener.",
+                "Format: modid:itemid;boolean",
+                "Boolean: true = does the item require sneaking, false = no sneaking required"
+        })
+        public String[] validItems = new String[]{};
+    }
+
     @Config.Name("Better End")
     @Config.LangKey("config.endermodpacktweaks.better_end")
     @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/betterendforge-backport")

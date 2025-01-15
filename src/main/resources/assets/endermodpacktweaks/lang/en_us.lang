@@ -1,4 +1,12 @@
 ####################
+# General
+####################
+config.endermodpacktweaks=Modpack Tweaks
+config.endermodpacktweaks.tooltip=Various options for the Ender Modpack Tweaks mod
+config.endermodpacktweaks.crash_info=Crash Info
+config.endermodpacktweaks.crash_info.tooltip=Shows Modpack Information in Crash Reports
+
+####################
 # Minecraft
 ####################
 config.endermodpacktweaks.minecraft=Minecraft
@@ -34,6 +42,14 @@ config.endermodpacktweaks.minecraft.world.gamemode.tooltip=Tweaks to the world g
 
 ####################
 # Mods
+####################
+
+####################
+# Backpack Opener
+####################
+config.endermodpacktweaks.bp_opener=Backpack Opener
+config.endermodpacktweaks.bp_opener.tooltip=Tweaks to the backpack opener mod
+
 ####################
 # BetterEnd
 ####################
