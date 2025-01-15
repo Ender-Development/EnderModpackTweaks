@@ -64,7 +64,8 @@ If you have any suggestions, feel free to let me know.
   - disable the Tutorial Message
 - ✅ tweaking [Quark](https://www.curseforge.com/minecraft/mc-mods/quark-rotn-edition)
   - always show the usage ticker
-  - added config options to add more Speleothems to the world
+  - allow setting a vertical offset to the usage ticker
+  - add more Speleothems to the world (obsidian, endstone)
 - ✅ tweaking [Dark Utilities](https://www.curseforge.com/minecraft/mc-mods/dark-utilities)
   - increase the CollisionBox of the Vector Plate, to make items visible when using something like ItemPhysics
   - allow Vector Plates to insert items into inventories (either in front or below the plate)
