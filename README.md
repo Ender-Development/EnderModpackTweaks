@@ -1,6 +1,6 @@
 # Ender's Modpack Tweaks
 
-This is a collection of tweaks and changes for the modpacks I'm working on. I will be adding more as I go along. Now that I'm somewhat comfortable with writing mods, I don't have to rely on other mods to make the changes I want. Each feature can be enabled or disabled in the config file. So you can pick and choose what features you need for your own modpack.
+This is a collection of tweaks and changes for the modpacks I'm working on. I will be adding more as I go along. Now that I'm somewhat comfortable writing mods, I don't have to rely on other mods to make the changes I want. Each feature can be enabled or disabled in the config file. So you can pick and choose what features you need for your own modpack.
 If you have any suggestions, feel free to let me know.
 
 <a href="https://www.akliz.net/enderman"><img src="https://github.com/Ender-Development/PatchouliBooks/raw/master/banner.png" align="center"/></a>
@@ -70,7 +70,7 @@ If you have any suggestions, feel free to let me know.
   - increase the CollisionBox of the Vector Plate, to make items visible when using something like ItemPhysics
   - allow Vector Plates to insert items into inventories (either in front or below the plate)
   - only allow Items to be moved by the Vector Plate
-- ✅ tweaking [Lightweight Blood Mechanics](https://www.curseforge.com/minecraft/mc-mods/lightweight-blood-mechanics
+- ✅ tweaking [Lightweight Blood Mechanics](https://www.curseforge.com/minecraft/mc-mods/lightweight-blood-mechanics)
   - add an offset to the bleeding overlay renderer
   - increase the size of the bleeding overlay
 - ✅ tweaking [BetterEndForge Backport](https://www.curseforge.com/minecraft/mc-mods/betterendforge-backport)
