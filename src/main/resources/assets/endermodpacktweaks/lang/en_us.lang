@@ -12,6 +12,9 @@ config.endermodpacktweaks.crash_info.tooltip=Shows Modpack Information in Crash 
 config.endermodpacktweaks.minecraft=Minecraft
 config.endermodpacktweaks.minecraft.tooltip=Tweaks to the base game
 
+config.endermodpacktweaks.minecraft.boss_bar=Boss Bars
+config.endermodpacktweaks.minecraft.boss_bar.tooltip=Tweaks to the boss bars
+
 config.endermodpacktweaks.minecraft.client=Client
 config.endermodpacktweaks.minecraft.client.tooltip=Tweaks to the client
 

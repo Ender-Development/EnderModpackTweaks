@@ -91,6 +91,18 @@ public class EMTConfig {
     public static final Minecraft MINECRAFT = new Minecraft();
 
     public static class Minecraft {
+
+        @Config.Name("Boss Bar Tweaks")
+        @Config.LangKey("config.endermodpacktweaks.minecraft.boss_bar")
+        public final BossBar BOSS_BAR = new BossBar();
+
+        public static class BossBar {
+            @Config.RequiresMcRestart
+            @Config.Name("[01] Enable Boss Bar Tweaks")
+            @Config.Comment("Enable tweaks for the Boss Bar.")
+            public boolean enable = true;
+        }
+
         @Config.Name("Client Tweaks")
         @Config.LangKey("config.endermodpacktweaks.minecraft.client")
         public final Client CLIENT = new Client();
