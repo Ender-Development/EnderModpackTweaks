@@ -82,6 +82,10 @@ If you have any suggestions, feel free to let me know.
   - remove CraftTweaker dependency
   - allow adding entries via the config file
 
+### Resource Packs
+- ✅ added support for the 1.20.1 version of [Enhanced Boss Bars](https://www.curseforge.com/minecraft/texture-packs/enhanced-boss-bars)
+  - wrote a compatibility layer to make it work with 1.12.2 
+  - this supports all bosses that exist in 1.12.2
 
 ## Possible Bugfixes
 
