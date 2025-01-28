@@ -14,8 +14,9 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.ModifyArg;
+import org.spongepowered.asm.mixin.injection.ModifyArgs;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 
 @Mixin(GuiBossOverlay.class)
 public class GuiBossOverlayMixin {
@@ -37,9 +38,12 @@ public class GuiBossOverlayMixin {
         return enderModpackTweaks$improvedBossBarRenderer.isResourcePackEnabled() ? 0 : original.call(instance, text, x, y, color);
     }
 
-    @ModifyArg(method = "renderBossHealth", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/client/ForgeHooksClient;bossBarRenderPre(Lnet/minecraft/client/gui/ScaledResolution;Lnet/minecraft/client/gui/BossInfoClient;III)Lnet/minecraftforge/client/event/RenderGameOverlayEvent$BossInfo;"), index = 4)
-    private int renderBossHealthModifyArg(int j) {
-        return enderModpackTweaks$improvedBossBarRenderer.isResourcePackEnabled() ? enderModpackTweaks$improvedBossBarRenderer.getOverlayHeight() : j;
+    @ModifyArgs(method = "renderBossHealth", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/client/ForgeHooksClient;bossBarRenderPre(Lnet/minecraft/client/gui/ScaledResolution;Lnet/minecraft/client/gui/BossInfoClient;III)Lnet/minecraftforge/client/event/RenderGameOverlayEvent$BossInfo;"))
+    private void renderBossHealthModifyArgs(Args args) {
+        if (enderModpackTweaks$improvedBossBarRenderer.isResourcePackEnabled()) {
+            int overlayHeight = enderModpackTweaks$improvedBossBarRenderer.getOverlayHeight(args.get(1));
+            args.set(4, overlayHeight == 0 ? args.get(4) : overlayHeight);
+        }
     }
 
     @WrapMethod(method = "render")

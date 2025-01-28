@@ -79,6 +79,8 @@ dependencies {
     runtimeOnly "curse.maven:alfheim-lighting-engine-910715:5637644"
     runtimeOnly "curse.maven:valkyrie-874067:5891664"
 
+    runtimeOnly "curse.maven:geckolib-388172:4020277"
+
     implementation "com.cleanroommc:configanytime:3.0"
     implementation rfg.deobf("maven.modrinth:nether-api:1m3gvzYh")
     implementation("com.cleanroommc:groovyscript:1.2.0-hotfix1") { transitive = false } // so it doesn't installs JEI
@@ -181,5 +183,9 @@ dependencies {
     compileOnly rfg.deobf("curse.maven:backpack-opener-1147522:5955712")
     if (project.debug_backpackopener.toBoolean()) {
         runtimeOnly "curse.maven:backpack-opener-1147522:5955712"
+    }
+
+    if (project.debug_mowziesmobs.toBoolean()) {
+        runtimeOnly "curse.maven:mowzies-mobs-250498:5218945"
     }
 }
