@@ -28,7 +28,8 @@ public class EMTMixinLoader implements ILateMixinLoader {
             put("mixins.emt.lbm.json", () -> Loader.isModLoaded("lbm") && EMTConfig.LBM.enable);
             put("mixins.emt.bpopener.json", () -> Loader.isModLoaded("bpopener") && EMTConfig.BP_OPENER.enable);
             put("mixins.emt.crissaegrim.json", () -> Loader.isModLoaded("crissaegrim") && EMTConfig.CRISSAEGRIM.enable);
-            put("mixins.emt.mysticallib.json", () -> Loader.isModLoaded("mysticallib"));
+            put("mixins.emt.mysticallib.json", () -> Loader.isModLoaded("mysticallib") && EMTConfig.CRISSAEGRIM.enable);
+            put("mixins.emt.astralsorcery.json", () -> Loader.isModLoaded("astralsorcery") && EMTConfig.ASTRAL_SORCERY.enable);
         }
     });
 

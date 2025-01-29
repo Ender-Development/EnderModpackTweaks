@@ -48,6 +48,12 @@ config.endermodpacktweaks.minecraft.world.gamemode.tooltip=Tweaks to the world g
 ####################
 
 ####################
+# Astral Sorcery
+####################
+config.endermodpacktweaks.astral_sorcery=Astral Sorcery
+config.endermodpacktweaks.astral_sorcery.tooltip=Tweaks to the astral sorcery mod
+
+####################
 # Backpack Opener
 ####################
 config.endermodpacktweaks.bp_opener=Backpack Opener
@@ -58,6 +64,12 @@ config.endermodpacktweaks.bp_opener.tooltip=Tweaks to the backpack opener mod
 ####################
 config.endermodpacktweaks.better_end=Better End
 config.endermodpacktweaks.better_end.tooltip=Tweaks to the better end mod
+
+####################
+# Crissaegrim
+####################
+config.endermodpacktweaks.crissaegrim=Crissaegrim
+config.endermodpacktweaks.crissaegrim.tooltip=Tweaks to the crissaegrim mod
 
 ####################
 # Dark Utilities

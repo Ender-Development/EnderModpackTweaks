@@ -428,6 +428,22 @@ public class EMTConfig {
         }
     }
 
+    @Config.Name("Astral Sorcery")
+    @Config.LangKey("config.endermodpacktweaks.astral_sorcery")
+    @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/astral-sorcery")
+    public static final AstralSorcery ASTRAL_SORCERY = new AstralSorcery();
+
+    public static class AstralSorcery {
+        @Config.RequiresMcRestart
+        @Config.Name("[01] Enable Astral Sorcery Tweaks")
+        @Config.Comment("Enable tweaks for the Astral Sorcery mod.")
+        public boolean enable = true;
+
+        @Config.Name("[02] Allow Fake Players")
+        @Config.Comment("Allow Fake Players to interact with the Astral Sorcery mod.")
+        public boolean allowFakePlayer = false;
+    }
+
     @Config.Name("Backpack Opener")
     @Config.LangKey("config.endermodpacktweaks.bp_opener")
     @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/backpack-opener")

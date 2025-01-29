@@ -195,4 +195,9 @@ dependencies {
         runtimeOnly "curse.maven:mysticallib-277064:3483816"
         runtimeOnly "curse.maven:crissaegrim-278058:2647376"
     }
+
+    compileOnly rfg.deobf("curse.maven:astral-sorcery-241721:3044416")
+    if (project.debug_astralsorcery.toBoolean()) {
+        runtimeOnly "curse.maven:astral-sorcery-241721:3044416"
+    }
 }

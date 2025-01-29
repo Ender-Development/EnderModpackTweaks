@@ -89,6 +89,8 @@ If you have any suggestions, feel free to let me know.
   - allow setting the mob it drops from
   - allow setting the drop chance
   - disable the drop
+- ✅ tweaking [Astral Sorcery](https://www.curseforge.com/minecraft/mc-mods/astral-sorcery)
+  - allow Fake Players to interact with various blocks
 
 ### Resource Packs
 - ✅ added support for the 1.20.1 version of [Enhanced Boss Bars](https://www.curseforge.com/minecraft/texture-packs/enhanced-boss-bars)
