@@ -27,6 +27,8 @@ public class EMTMixinLoader implements ILateMixinLoader {
             put("mixins.emt.betterend.json", () -> Loader.isModLoaded("betterendforge") && EMTConfig.BETTER_END.enable);
             put("mixins.emt.lbm.json", () -> Loader.isModLoaded("lbm") && EMTConfig.LBM.enable);
             put("mixins.emt.bpopener.json", () -> Loader.isModLoaded("bpopener") && EMTConfig.BP_OPENER.enable);
+            put("mixins.emt.crissaegrim.json", () -> Loader.isModLoaded("crissaegrim") && EMTConfig.CRISSAEGRIM.enable);
+            put("mixins.emt.mysticallib.json", () -> Loader.isModLoaded("mysticallib"));
         }
     });
 

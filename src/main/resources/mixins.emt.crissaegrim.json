@@ -1,0 +1,14 @@
+{
+    "package": "io.enderdev.endermodpacktweaks.mixin.crissaegrim",
+    "refmap": "mixins.endermodpacktweaks.refmap.json",
+    "target": "@env(DEFAULT)",
+    "minVersion": "0.8.5",
+    "compatibilityLevel": "JAVA_8",
+    "mixins": [
+        "EntitySlashMixin",
+        "EventManagerMixin",
+        "RegistryManagerMixin"
+    ],
+    "server": [],
+    "client": []
+}

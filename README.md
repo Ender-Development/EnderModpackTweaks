@@ -84,6 +84,11 @@ If you have any suggestions, feel free to let me know.
 - ✅ tweaking [Backpack Opener](https://www.curseforge.com/minecraft/mc-mods/backpack-opener)
   - remove CraftTweaker dependency
   - allow adding entries via the config file
+- ✅ tweaking [Crissaegrim](https://www.curseforge.com/minecraft/mc-mods/crissaegrim)
+  - works again with the newest version of MysticalLib
+  - allow setting the mob it drops from
+  - allow setting the drop chance
+  - disable the drop
 
 ### Resource Packs
 - ✅ added support for the 1.20.1 version of [Enhanced Boss Bars](https://www.curseforge.com/minecraft/texture-packs/enhanced-boss-bars)

@@ -188,4 +188,11 @@ dependencies {
     if (project.debug_mowziesmobs.toBoolean()) {
         runtimeOnly "curse.maven:mowzies-mobs-250498:5218945"
     }
+
+    compileOnly rfg.deobf("curse.maven:mysticallib-277064:3483816")
+    compileOnly rfg.deobf("curse.maven:crissaegrim-278058:2647376")
+    if (project.debug_crissaegrim.toBoolean()) {
+        runtimeOnly "curse.maven:mysticallib-277064:3483816"
+        runtimeOnly "curse.maven:crissaegrim-278058:2647376"
+    }
 }

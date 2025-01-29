@@ -35,6 +35,7 @@ public class EMTLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader {
             put("mixins.emt.minecraft.netherportal.json", () -> EMTConfig.MINECRAFT.NETHER_PORTAL.enable);
             put("mixins.emt.minecraft.obsidianspike.json", () -> EMTConfig.MINECRAFT.OBSIDIAN_SPIKE.enable);
             put("mixins.emt.minecraft.endisland.json", () -> EMTConfig.MINECRAFT.END_ISLAND.enable);
+            put("mixins.emt.minecraftforge.json", () -> true);
         }
     });
 

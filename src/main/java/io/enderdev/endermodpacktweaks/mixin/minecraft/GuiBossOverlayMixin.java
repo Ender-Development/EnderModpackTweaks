@@ -38,7 +38,7 @@ public class GuiBossOverlayMixin {
         return enderModpackTweaks$improvedBossBarRenderer.isResourcePackEnabled() ? 0 : original.call(instance, text, x, y, color);
     }
 
-    @ModifyArgs(method = "renderBossHealth", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/client/ForgeHooksClient;bossBarRenderPre(Lnet/minecraft/client/gui/ScaledResolution;Lnet/minecraft/client/gui/BossInfoClient;III)Lnet/minecraftforge/client/event/RenderGameOverlayEvent$BossInfo;"))
+    @ModifyArgs(method = "renderBossHealth", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/client/ForgeHooksClient;bossBarRenderPre(Lnet/minecraft/client/gui/ScaledResolution;Lnet/minecraft/client/gui/BossInfoClient;III)Lnet/minecraftforge/client/event/RenderGameOverlayEvent$BossInfo;", remap = false))
     private void renderBossHealthModifyArgs(Args args) {
         if (enderModpackTweaks$improvedBossBarRenderer.isResourcePackEnabled()) {
             int overlayHeight = enderModpackTweaks$improvedBossBarRenderer.getOverlayHeight(args.get(1));

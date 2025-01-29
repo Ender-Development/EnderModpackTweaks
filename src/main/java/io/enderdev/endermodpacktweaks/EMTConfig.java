@@ -460,6 +460,31 @@ public class EMTConfig {
         public boolean enable = true;
     }
 
+    @Config.Name("Crissaegrim")
+    @Config.LangKey("config.endermodpacktweaks.crissaegrim")
+    @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/crissaegrim")
+    public static final Crissaegrim CRISSAEGRIM = new Crissaegrim();
+
+    public static class Crissaegrim {
+        @Config.RequiresMcRestart
+        @Config.Name("[01] Enable Crissaegrim Tweaks")
+        @Config.Comment("Enable tweaks for the Crissaegrim mod.")
+        public boolean enable = true;
+
+        @Config.Name("[02] Disable Random Drop")
+        @Config.Comment("Disable the random drop of the Crissaegrim.")
+        public boolean disableRandomDrop = false;
+
+        @Config.Name("[03] Override Special Mob")
+        @Config.Comment("Override the mob that can drop the Crissaegrim.")
+        public String specialMob = "quark:wraith";
+
+        @Config.Name("[04] Override Special Mob Chance")
+        @Config.Comment("The chance that the special mob drops the Crissaegrim.")
+        @Config.RangeDouble(min = 0.0, max = 1.0)
+        public double specialMobChance = 0.01;
+    }
+
     @Config.Name("Dark Utilities")
     @Config.LangKey("config.endermodpacktweaks.dark_utils")
     @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/dark-utilities")
