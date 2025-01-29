@@ -4,6 +4,8 @@ import com.google.common.collect.ImmutableMap;
 import io.enderdev.endermodpacktweaks.EMTConfig;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.ResourcePackListEntry;
+import net.minecraft.launchwrapper.Launch;
+import net.minecraft.launchwrapper.LaunchClassLoader;
 import net.minecraftforge.common.ForgeVersion;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.relauncher.FMLLaunchHandler;
@@ -11,10 +13,8 @@ import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
 import zone.rong.mixinbooter.IEarlyMixinLoader;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.lang.reflect.Field;
+import java.util.*;
 import java.util.function.BooleanSupplier;
 
 @IFMLLoadingPlugin.Name("EnderModpackTweaksCore")
@@ -63,7 +63,15 @@ public class EMTLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader {
 
     @Override
     public void injectData(Map<String, Object> data) {
-
+        try {
+            Field f_transformerExceptions = LaunchClassLoader.class.getDeclaredField("transformerExceptions");
+            f_transformerExceptions.setAccessible(true);
+            Set<String> transformerExceptions = (Set<String>) f_transformerExceptions.get(Launch.classLoader);
+            transformerExceptions.remove("tyra314.toolprogression");
+        }
+        catch (NoSuchFieldException | IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
