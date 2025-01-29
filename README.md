@@ -85,7 +85,7 @@ If you have any suggestions, feel free to let me know.
   - remove CraftTweaker dependency
   - allow adding entries via the config file
 - ✅ tweaking [Crissaegrim](https://www.curseforge.com/minecraft/mc-mods/crissaegrim)
-  - works again with the newest version of MysticalLib
+  - [works again with the newest version of MysticalLib](https://github.com/MysticMods/MysticalLib/issues/40)
   - allow setting the mob it drops from
   - allow setting the drop chance
   - disable the drop
