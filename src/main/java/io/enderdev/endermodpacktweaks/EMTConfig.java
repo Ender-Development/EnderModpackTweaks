@@ -120,6 +120,11 @@ public class EMTConfig {
                     "or want to realize crafting in a different way."
             })
             public boolean disableInventoryCrafting = false;
+
+            @Config.RequiresWorldRestart
+            @Config.Name("[03] Disable Item Names")
+            @Config.Comment("This tweak disables the rendering of item names above the hotbar.")
+            public boolean disableItemNames = false;
         }
 
         @Config.Name("Dragon Tweaks")

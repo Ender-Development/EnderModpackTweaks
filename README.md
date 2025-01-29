@@ -7,7 +7,8 @@ If you have any suggestions, feel free to let me know.
 
 ## Current Features
 ### Minecraft
-- ✅ option to disable the 2x2 crafting field in the inventory
+- ✅ Inventory Crafting
+  - option to disable the 2x2 crafting field in the inventory
   - the implementation isn't optimal as I would like to remove it completely, but it is a start
 - ✅ End Gateway
   - change the bedrock to something else
@@ -32,6 +33,8 @@ If you have any suggestions, feel free to let me know.
   - force a specific Gamemode
   - force Hardcore Gamemode
   - allow commands
+- ✅ Visuals
+  - disable the display of the held item name above the hotbar
 
 ### Mods
 - ✅ tweaking [PerfectSpawn](https://github.com/lumien231/Perfect-Spawn)

@@ -2,13 +2,14 @@ package io.enderdev.endermodpacktweaks;
 
 import io.enderdev.endermodpacktweaks.features.crashinfo.InfoBuilder;
 import io.enderdev.endermodpacktweaks.proxy.CommonProxy;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.settings.GameSettings;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.FMLConstructionEvent;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.*;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -48,5 +49,14 @@ public class EnderModpackTweaks {
             return;
         }
         FMLCommonHandler.instance().registerCrashCallable(INFO_BUILDER);
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Mod.EventHandler
+    public void serverStarting(FMLServerStartingEvent event) {
+        if (EMTConfig.MINECRAFT.CLIENT.enable && EMTConfig.MINECRAFT.CLIENT.disableItemNames) {
+            GameSettings gameSettings = Minecraft.getMinecraft().gameSettings;
+            gameSettings.heldItemTooltips = false;
+        }
     }
 }
