@@ -2,9 +2,11 @@
 # General
 ####################
 config.endermodpacktweaks=Modpack Tweaks
-config.endermodpacktweaks.tooltip=Various options for the Ender Modpack Tweaks mod
+config.endermodpacktweaks.tooltip=Various options for Modpack developers
 config.endermodpacktweaks.crash_info=Crash Info
 config.endermodpacktweaks.crash_info.tooltip=Shows Modpack Information in Crash Reports
+config.endermodpacktweaks.material_tweaker=Material Tweaker
+config.endermodpacktweaks.material_tweaker.tooltip=Tweak various item stats
 
 ####################
 # Minecraft

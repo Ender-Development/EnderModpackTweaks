@@ -2,6 +2,7 @@ package io.enderdev.endermodpacktweaks.proxy;
 
 import io.enderdev.endermodpacktweaks.events.BlockEvents;
 import io.enderdev.endermodpacktweaks.events.WorldEvents;
+import io.enderdev.endermodpacktweaks.features.materialtweaker.MaterialTweaker;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -17,5 +18,6 @@ public class CommonProxy {
     }
 
     public void postInit(FMLPostInitializationEvent event) {
+        MaterialTweaker.INSTANCE.load();
     }
 }

@@ -91,6 +91,8 @@ If you have any suggestions, feel free to let me know.
   - disable the drop
 - ✅ tweaking [Astral Sorcery](https://www.curseforge.com/minecraft/mc-mods/astral-sorcery)
   - allow Fake Players to interact with various blocks
+- ✅ adapted [Material Changer](https://www.curseforge.com/minecraft/mc-mods/material-changer)
+  - instead of one long list entries are now separated by categories
 
 ### Resource Packs
 - ✅ added support for the 1.20.1 version of [Enhanced Boss Bars](https://www.curseforge.com/minecraft/texture-packs/enhanced-boss-bars)

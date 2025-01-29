@@ -84,6 +84,80 @@ public class EMTConfig {
             @Config.Comment("The author of the modpack. Only used if 'Read from Manifest' is disabled.")
             public String modpackAuthor = "";
         }
+
+        @Config.Name("Material Tweaker")
+        @Config.LangKey("config.endermodpacktweaks.material_tweaker")
+        public final MaterialTweaker MATERIAL_TWEAKER = new MaterialTweaker();
+
+        public static class MaterialTweaker {
+            @Config.RequiresMcRestart
+            @Config.Name("[01] Enable Material Tweaker")
+            @Config.Comment("Enable the Material Tweaker feature. This allows you to tweak the materials of the game.")
+            public boolean enable = true;
+
+            @Config.Name("[02] Tweak Stacksize")
+            @Config.Comment({
+                    "Tweak the stacksize of items.",
+                    "Format: modid:itemid;stacksize"
+            })
+            public String[] stacksize = new String[]{};
+
+            @Config.Name("[03] Tweak Durability")
+            @Config.Comment({
+                    "Tweak the durability of items.",
+                    "Format: modid:itemid;durability"
+            })
+            public String[] durability = new String[]{};
+
+            @Config.Name("[04] Tweak Harvest Level")
+            @Config.Comment({
+                    "Tweak the harvest level of items.",
+                    "Format: modid:itemid;harvestlevel"
+            })
+            public String[] harvestLevel = new String[]{};
+
+            @Config.Name("[05] Tweak Enchantability")
+            @Config.Comment({
+                    "Tweak the enchantability of items.",
+                    "Format: modid:itemid;enchantability"
+            })
+            public String[] enchantability = new String[]{};
+
+            @Config.Name("[06] Tweak Efficiency")
+            @Config.Comment({
+                    "Tweak the efficiency of items.",
+                    "Format: modid:itemid;efficiency"
+            })
+            public String[] efficiency = new String[]{};
+
+            @Config.Name("[07] Tweak Attack Damage")
+            @Config.Comment({
+                    "Tweak the attack damage of items.",
+                    "Format: modid:itemid;attackdamage"
+            })
+            public String[] attackDamage = new String[]{};
+
+            @Config.Name("[08] Tweak Attack Speed")
+            @Config.Comment({
+                    "Tweak the attack speed of items.",
+                    "Format: modid:itemid;attackspeed"
+            })
+            public String[] attackSpeed = new String[]{};
+
+            @Config.Name("[09] Tweak Armor Protection")
+            @Config.Comment({
+                    "Tweak the protection of armor.",
+                    "Format: modid:itemid;protection"
+            })
+            public String[] armorProtection = new String[]{};
+
+            @Config.Name("[10] Tweak Armor Toughness")
+            @Config.Comment({
+                    "Tweak the toughness of armor.",
+                    "Format: modid:itemid;toughness"
+            })
+            public String[] armorToughness = new String[]{};
+        }
     }
 
     @Config.Name("Minecraft")
@@ -228,7 +302,7 @@ public class EMTConfig {
 
             @Config.Name("[02] Island Size")
             @Config.Comment("Increase the size of the End Island.")
-            @Config.RangeInt(min = 0, max = 8)
+            @Config.RangeInt(min = 0, max = 32)
             public int islandSize = 4;
 
             @Config.Name("[03] Replace End Stone")
