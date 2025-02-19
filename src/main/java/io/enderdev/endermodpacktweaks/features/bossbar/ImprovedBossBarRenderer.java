@@ -2,6 +2,7 @@ package io.enderdev.endermodpacktweaks.features.bossbar;
 
 import com.google.gson.Gson;
 import io.enderdev.endermodpacktweaks.EnderModpackTweaks;
+import io.enderdev.endermodpacktweaks.Tags;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
@@ -19,7 +20,6 @@ import java.util.List;
 
 public class ImprovedBossBarRenderer extends Gui {
     private final Minecraft mc;
-    private final boolean isResourcePackEnabled;
     private final List<String> unknownBossMobs = new ArrayList<String>(){{
         add("INVALID");
         // https://www.curseforge.com/minecraft/mc-mods/unofficial-bosses-of-mass-destruction-dungeon
@@ -28,21 +28,16 @@ public class ImprovedBossBarRenderer extends Gui {
         add("da:great_wyrk");
     }};
 
-    private static final ResourceLocation textureBarBackground = new ResourceLocation("minecraft", "textures/gui/sprites/boss_bar/white_background.png");
+    private static final ResourceLocation textureBarBackground = new ResourceLocation(Tags.MOD_ID, "textures/gui/bars/background.png");
 
-    public ImprovedBossBarRenderer(Minecraft mc, boolean isResourcePackEnabled) {
+    public ImprovedBossBarRenderer(Minecraft mc) {
         this.mc = mc;
-        this.isResourcePackEnabled = isResourcePackEnabled;
     }
 
     public int getOverlayHeight(BossInfo info) {
         String mob = getEntityFromBossInfo(info);
         BossType boss = BossType.getBossType(mob);
         return boss == null ? 0 : boss.overlayHeight;
-    }
-
-    public boolean isResourcePackEnabled() {
-        return isResourcePackEnabled;
     }
 
     public boolean render(int x, int y, BossInfo info) {
@@ -66,13 +61,13 @@ public class ImprovedBossBarRenderer extends Gui {
 
     private void renderBar(int x, int y, int barWidth, BossInfo info, ResourceLocation textureBarForeground) {
         mc.getTextureManager().bindTexture(textureBarBackground);
-        drawScaledCustomSizeModalRect(x, y, 16, 0, 332, 10, barWidth, 5, 364, 10);
+        drawScaledCustomSizeModalRect(x, y, 0, 0, 352, 10, barWidth, 5, 352, 10);
 
         int i = (int) Math.floor(info.getPercent() * barWidth);
 
         if (i > 0) {
             mc.getTextureManager().bindTexture(textureBarForeground);
-            drawScaledCustomSizeModalRect(x, y, 16, 0, 332, 10, i, 5, 364, 10);
+            drawScaledCustomSizeModalRect(x, y, 0, 0, 352, 10, i, 5, 352, 10);
         }
     }
 
@@ -111,29 +106,29 @@ public class ImprovedBossBarRenderer extends Gui {
 
     private enum BossType {
         WITHER("minecraft:wither",
-                new ResourceLocation("minecraft", "textures/font/wither.png"),
-                new ResourceLocation("minecraft", "textures/gui/sprites/boss_bar/purple_progress.png"),
-                15, 9, 172, 189, 55),
+                new ResourceLocation(Tags.MOD_ID, "textures/gui/boss_bars/wither.png"),
+                new ResourceLocation(Tags.MOD_ID, "textures/gui/bars/purple_progress.png"),
+                15, 10, 169, 189, 48),
         ENDER_DRAGON("minecraft:ender_dragon",
-                new ResourceLocation("minecraft", "textures/font/enderdragon.png"),
-                new ResourceLocation("minecraft", "textures/gui/sprites/boss_bar/pink_progress.png"),
-                16, 15, 158, 186, 42),
+                new ResourceLocation(Tags.MOD_ID, "textures/gui/boss_bars/ender_dragon.png"),
+                new ResourceLocation(Tags.MOD_ID, "textures/gui/bars/pink_progress.png"),
+                15, 12, 162, 186, 41),
         FERROUS_WROUGHTNAUT("mowziesmobs:ferrous_wroughtnaut",
-                new ResourceLocation("minecraft", "textures/font/ferrous.png"),
-                new ResourceLocation("minecraft", "textures/gui/sprites/boss_bar/red_progress.png"),
-                16, 11, 165, 190, 54),
+                new ResourceLocation(Tags.MOD_ID, "textures/gui/boss_bars/ferrous_wroughtnaut.png"),
+                new ResourceLocation(Tags.MOD_ID, "textures/gui/bars/red_progress.png"),
+                17, 11, 163, 190, 54),
         FROSTMAW("mowziesmobs:frostmaw",
-                new ResourceLocation("minecraft", "textures/font/frostmaw.png"),
-                new ResourceLocation("minecraft", "textures/gui/sprites/boss_bar/white_progress.png"),
-                19, 22, 148, 190, 56),
+                new ResourceLocation(Tags.MOD_ID, "textures/gui/boss_bars/frostmaw.png"),
+                new ResourceLocation(Tags.MOD_ID, "textures/gui/bars/white_progress.png"),
+                13, 20, 150, 190, 49),
         VOID_BLOSSOM("da:void_blossom",
-                new ResourceLocation("minecraft", "textures/font/voidblossom.png"),
-                new ResourceLocation("minecraft", "textures/gui/sprites/boss_bar/green_progress.png"),
-                20, 11, 176, 193, 52),
+                new ResourceLocation(Tags.MOD_ID, "textures/gui/boss_bars/void_blossom.png"),
+                new ResourceLocation(Tags.MOD_ID, "textures/gui/bars/green_progress.png"),
+                16, 8, 169, 185, 47),
         NIGHT_LICH("da:night_lich",
-                new ResourceLocation("minecraft", "textures/font/nightlich.png"),
-                new ResourceLocation("minecraft", "textures/gui/sprites/boss_bar/blue_progress.png"),
-                20, 22, 175, 219, 51);
+                new ResourceLocation(Tags.MOD_ID, "textures/gui/boss_bars/night_lich.png"),
+                new ResourceLocation(Tags.MOD_ID, "textures/gui/bars/blue_progress.png"),
+                18, 22, 175, 219, 49);
 
         private final String entity;
         private final ResourceLocation overlay;

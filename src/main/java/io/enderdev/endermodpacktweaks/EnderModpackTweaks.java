@@ -1,5 +1,6 @@
 package io.enderdev.endermodpacktweaks;
 
+import io.enderdev.endermodpacktweaks.core.EMTAssetMover;
 import io.enderdev.endermodpacktweaks.features.crashinfo.InfoBuilder;
 import io.enderdev.endermodpacktweaks.proxy.CommonProxy;
 import net.minecraft.client.Minecraft;
@@ -45,6 +46,9 @@ public class EnderModpackTweaks {
 
     @Mod.EventHandler
     public void construct(FMLConstructionEvent event) throws Exception {
+        if (event.getSide() == Side.CLIENT) {
+            EMTAssetMover.getAssets();
+        }
         if (!EMTConfig.MODPACK.CRASH_INFO.enable) {
             return;
         }

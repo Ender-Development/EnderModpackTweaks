@@ -1,0 +1,69 @@
+[
+    {
+        "project": "Enhanced Boss Bar",
+        "projectID": 1063296,
+        "fileID": 5529872,
+        "textures": [
+            {
+                "original": "assets/enhanced_boss_bars/textures/gui/boss_bars/ender_dragon.png",
+                "new": "assets/endermodpacktweaks/textures/gui/boss_bars/ender_dragon.png"
+            },
+            {
+                "original": "assets/enhanced_boss_bars/textures/gui/boss_bars/wither.png",
+                "new": "assets/endermodpacktweaks/textures/gui/boss_bars/wither.png"
+            },
+            {
+                "original": "assets/enhanced_boss_bars/textures/gui/boss_bars/frostmaw.png",
+                "new": "assets/endermodpacktweaks/textures/gui/boss_bars/frostmaw.png"
+            },
+            {
+                "original": "assets/enhanced_boss_bars/textures/gui/boss_bars/ferrous_wroughtnaut.png",
+                "new": "assets/endermodpacktweaks/textures/gui/boss_bars/ferrous_wroughtnaut.png"
+            },
+            {
+                "original": "assets/enhanced_boss_bars/textures/gui/boss_bars/void_blossom.png",
+                "new": "assets/endermodpacktweaks/textures/gui/boss_bars/void_blossom.png"
+            },
+            {
+                "original": "assets/enhanced_boss_bars/textures/gui/boss_bars/night_lich.png",
+                "new": "assets/endermodpacktweaks/textures/gui/boss_bars/night_lich.png"
+            },
+            {
+                "original": "assets/enhanced_boss_bars/textures/gui/bars/background.png",
+                "new": "assets/endermodpacktweaks/textures/gui/bars/background.png"
+            },
+            {
+                "original": "assets/enhanced_boss_bars/textures/gui/bars/blue_progress.png",
+                "new": "assets/endermodpacktweaks/textures/gui/bars/blue_progress.png"
+            },
+            {
+                "original": "assets/enhanced_boss_bars/textures/gui/bars/green_progress.png",
+                "new": "assets/endermodpacktweaks/textures/gui/bars/green_progress.png"
+            },
+            {
+                "original": "assets/enhanced_boss_bars/textures/gui/bars/ice_progress.png",
+                "new": "assets/endermodpacktweaks/textures/gui/bars/ice_progress.png"
+            },
+            {
+                "original": "assets/enhanced_boss_bars/textures/gui/bars/orange_progress.png",
+                "new": "assets/endermodpacktweaks/textures/gui/bars/orange_progress.png"
+            },
+            {
+                "original": "assets/enhanced_boss_bars/textures/gui/bars/pink_progress.png",
+                "new": "assets/endermodpacktweaks/textures/gui/bars/pink_progress.png"
+            },
+            {
+                "original": "assets/enhanced_boss_bars/textures/gui/bars/purple_progress.png",
+                "new": "assets/endermodpacktweaks/textures/gui/bars/purple_progress.png"
+            },
+            {
+                "original": "assets/enhanced_boss_bars/textures/gui/bars/red_progress.png",
+                "new": "assets/endermodpacktweaks/textures/gui/bars/red_progress.png"
+            },
+            {
+                "original": "assets/enhanced_boss_bars/textures/gui/bars/yellow_progress.png",
+                "new": "assets/endermodpacktweaks/textures/gui/bars/yellow_progress.png"
+            }
+        ]
+    }
+]

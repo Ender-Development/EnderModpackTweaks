@@ -57,11 +57,10 @@ If you have any suggestions, feel free to let me know.
 - ✅ tweaking [ItemPhysic Full](https://www.curseforge.com/minecraft/mc-mods/itemphysic)
   - improve the tooltip in alternative pickup mode to show the size of the itemstack that is being looked at
   - color the tooltip respectively to the item rarity
-- ❌ [WIP] tweaking [Tool Progression](https://www.curseforge.com/minecraft/mc-mods/tool-progression)
+- ✅ tweaking [Tool Progression](https://www.curseforge.com/minecraft/mc-mods/tool-progression)
   - restructures the config folder
   - prevents spamming the server chat everytime someone wants to write a command
   - load the magic mushroom item only when tconstruct is loaded
-  - **currently unusable as the mod blocks mixins when outside a dev environment**
 - ✅ tweaking [First Aid](https://www.curseforge.com/minecraft/mc-mods/first-aid)
   - center the HUD, so it's easier to place next to the hotbar, independent of the screen width
   - disable the Tutorial Message
@@ -93,11 +92,8 @@ If you have any suggestions, feel free to let me know.
   - allow Fake Players to interact with various blocks
 - ✅ adapted [Material Changer](https://www.curseforge.com/minecraft/mc-mods/material-changer)
   - instead of one long list entries are now separated by categories
-
-### Resource Packs
-- ✅ added support for the 1.20.1 version of [Enhanced Boss Bars](https://www.curseforge.com/minecraft/texture-packs/enhanced-boss-bars)
-  - wrote a compatibility layer to make it work with 1.12.2 
-  - this supports all bosses that exist in 1.12.2
+- ✅ adapting [Enhanced Boss Bars](https://www.curseforge.com/minecraft/mc-mods/enhanced-boss-bars) for 1.12.2
+  - utilizes [AssetMover](https://www.curseforge.com/minecraft/mc-mods/assetmover) to obtain the textures without breaking the license
 
 ## Possible Bugfixes
 
