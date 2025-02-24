@@ -200,4 +200,9 @@ dependencies {
     if (project.debug_astralsorcery.toBoolean()) {
         runtimeOnly "curse.maven:astral-sorcery-241721:3044416"
     }
+
+    compileOnly rfg.deobf("curse.maven:flux-networks-248020:3178199")
+    if (project.debug_astralsorcery.toBoolean()) {
+        runtimeOnly "curse.maven:flux-networks-248020:3178199"
+    }
 }

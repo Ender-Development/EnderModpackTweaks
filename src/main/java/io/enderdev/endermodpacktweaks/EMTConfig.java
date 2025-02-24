@@ -640,6 +640,30 @@ public class EMTConfig {
         public boolean centerHUD = false;
     }
 
+    @Config.Name("Flux Networks")
+    @Config.LangKey("config.endermodpacktweaks.flux_networks")
+    @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/flux-networks")
+    public static final FluxNetworks FLUX_NETWORKS = new FluxNetworks();
+
+    public static class FluxNetworks {
+        @Config.RequiresMcRestart
+        @Config.Name("[01] Enable Flux Networks Tweaks")
+        @Config.Comment("Enable tweaks for the Flux Networks mod.")
+        public boolean enable = true;
+
+        @Config.Name("[02] Fix IC2 Energy Limit")
+        @Config.Comment("Sets the maximum energy limit for IC2 Energy to Max Integer.")
+        public boolean fixIC2EnergyLimit = false;
+
+        @Config.Name("[03] Override IC2 Sink Tier")
+        @Config.Comment("Override the IC2 Sink Tier.")
+        public int ic2SinkTier = 4;
+
+        @Config.Name("[04] Override IC2 Source Tier")
+        @Config.Comment("Override the IC2 Source Tier.")
+        public int ic2SourceTier = 4;
+    }
+
     @Config.Name("Item Physics")
     @Config.LangKey("config.endermodpacktweaks.item_physics")
     @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/itemphysic")
