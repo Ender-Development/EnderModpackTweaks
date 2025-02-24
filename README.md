@@ -94,11 +94,17 @@ If you have any suggestions, feel free to let me know.
   - instead of one long list entries are now separated by categories
 - ✅ adapting [Enhanced Boss Bars](https://www.curseforge.com/minecraft/mc-mods/enhanced-boss-bars) for 1.12.2
   - utilizes [AssetMover](https://www.curseforge.com/minecraft/mc-mods/assetmover) to obtain the textures without breaking the license
+- ✅ tweaking [Flux Networks](https://www.curseforge.com/minecraft/mc-mods/flux-networks)
+  - allow overriding the max tier of IC2 Energy
+  - allow manually setting the max tier of IC2 Energy
+- ✅ tweaking [Multi Builder Tool](https://www.curseforge.com/minecraft/mc-mods/multi-builder-tool)
+  - fix crash with [Flux Networks](https://github.com/igentuman/multi-builder-tool/issues/11)
 
 ## Possible Bugfixes
 
 - 🔳 [Hearth Well Cores](https://github.com/wolforcept/hearthwell/issues/60)
 - 🔳 [Campfire Client Code on server](https://github.com/jbredwards/Campfire-Mod/issues/9)
+- 🔳 [Ender Storage continuation](https://www.curseforge.com/minecraft/mc-mods/ender-storage-1-12-continuation) [crash spam](https://github.com/igentuman/EnderStorage-continuation/issues/19)
 
 ## [Ender-Development](https://github.com/Ender-Development)
 
