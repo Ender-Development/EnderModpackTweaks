@@ -202,7 +202,18 @@ dependencies {
     }
 
     compileOnly rfg.deobf("curse.maven:flux-networks-248020:3178199")
-    if (project.debug_astralsorcery.toBoolean()) {
+    if (project.debug_fluxnetworks.toBoolean()) {
+        runtimeOnly "curse.maven:sonar-core-239418:2645156"
         runtimeOnly "curse.maven:flux-networks-248020:3178199"
+        runtimeOnly "curse.maven:exponential-power-254249:2576624"
+        runtimeOnly "curse.maven:ic2-classic-242942:5800761"
+    }
+
+    compileOnly rfg.deobf("curse.maven:multi-builder-tool-827020:5787657")
+    compileOnly rfg.deobf("curse.maven:ic2-classic-242942:5800761")
+    compileOnly rfg.deobf("curse.maven:mekanism-ce-unofficial-840735:6220176")
+    compileOnly rfg.deobf("curse.maven:immersive-engineering-231951:2974106")
+    if (project.debug_multibuildertool.toBoolean()) {
+        runtimeOnly "curse.maven:multi-builder-tool-827020:5787657"
     }
 }

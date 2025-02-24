@@ -651,16 +651,21 @@ public class EMTConfig {
         @Config.Comment("Enable tweaks for the Flux Networks mod.")
         public boolean enable = true;
 
+        @Config.RequiresMcRestart
         @Config.Name("[02] Fix IC2 Energy Limit")
         @Config.Comment("Sets the maximum energy limit for IC2 Energy to Max Integer.")
         public boolean fixIC2EnergyLimit = false;
 
+        @Config.RequiresMcRestart
         @Config.Name("[03] Override IC2 Sink Tier")
         @Config.Comment("Override the IC2 Sink Tier.")
+        @Config.RangeInt(min = 1)
         public int ic2SinkTier = 4;
 
+        @Config.RequiresMcRestart
         @Config.Name("[04] Override IC2 Source Tier")
         @Config.Comment("Override the IC2 Source Tier.")
+        @Config.RangeInt(min = 1)
         public int ic2SourceTier = 4;
     }
 
@@ -735,6 +740,21 @@ public class EMTConfig {
         @Config.Name("[10] Blood Icon Y-Offset")
         @Config.Comment("Set the Y-Offset of the Blood Icon.")
         public int bloodIconYOffset = 0;
+    }
+
+    @Config.Name("Multi Builder Tool")
+    @Config.LangKey("config.endermodpacktweaks.multi_builder_tool")
+    @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/multi-builder-tool")
+    public static final MultiBuilderTool MULTI_BUILDER_TOOL = new MultiBuilderTool();
+
+    public static class MultiBuilderTool {
+        @Config.RequiresMcRestart
+        @Config.Name("[01] Enable Multi Builder Tool Tweaks")
+        @Config.Comment({
+                "This tweak fixes issues with the Multi Builder Tool mod.",
+                "Crash with Flux Networks: https://github.com/igentuman/multi-builder-tool/issues/11"
+        })
+        public boolean enable = true;
     }
 
     @Config.Name("Perfect Spawn")
