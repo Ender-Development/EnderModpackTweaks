@@ -1,6 +1,7 @@
 package io.enderdev.endermodpacktweaks.proxy;
 
 import io.enderdev.endermodpacktweaks.events.BlockEvents;
+import io.enderdev.endermodpacktweaks.events.PlayerEvents;
 import io.enderdev.endermodpacktweaks.events.WorldEvents;
 import io.enderdev.endermodpacktweaks.features.materialtweaker.MaterialTweaker;
 import net.minecraftforge.common.MinecraftForge;
@@ -11,6 +12,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 public class CommonProxy {
     public void preInit(FMLPreInitializationEvent event) {
         MinecraftForge.EVENT_BUS.register(new BlockEvents());
+        MinecraftForge.EVENT_BUS.register(new PlayerEvents());
         MinecraftForge.EVENT_BUS.register(new WorldEvents());
     }
 

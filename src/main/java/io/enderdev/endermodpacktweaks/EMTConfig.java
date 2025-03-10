@@ -158,6 +158,21 @@ public class EMTConfig {
             })
             public String[] armorToughness = new String[]{};
         }
+
+        @Config.Name("Sync Time")
+        @Config.LangKey("config.endermodpacktweaks.sync_time")
+        public final SyncTime SYNC_TIME = new SyncTime();
+
+        public static class SyncTime {
+            @Config.RequiresWorldRestart
+            @Config.Name("[01] Enable Sync Time")
+            @Config.Comment("Enable the Sync Time feature. This synchronizes the world time with the system time of the server.")
+            public boolean enable = false;
+
+            @Config.Name("[02] Sleeping")
+            @Config.Comment("Should sleeping be disabled?")
+            public boolean sleeping = true;
+        }
     }
 
     @Config.Name("Minecraft")
