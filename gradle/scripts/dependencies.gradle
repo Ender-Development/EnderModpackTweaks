@@ -223,4 +223,9 @@ dependencies {
         runtimeOnly "curse.maven:codechicken-lib-1-8-242818:2779848"
         runtimeOnly "curse.maven:ender-storage-1-12-continuation-634242:5591161"
     }
+
+    compileOnly rfg.deobf("curse.maven:reskillable-fork-976391:5117948")
+    if (project.debug_reskillable.toBoolean()) {
+        runtimeOnly "curse.maven:reskillable-fork-976391:5117948"
+    }
 }

@@ -139,6 +139,12 @@ tile.quark:endstone_speleothem.name=Endstone Speleothem
 tile.quark:obsidian_speleothem.name=Obsidian Speleothem
 
 ####################
+# Reskillable
+####################
+config.endermodpacktweaks.reskillable=Reskillable
+config.endermodpacktweaks.reskillable.tooltip=Tweaks to the reskillable mod
+
+####################
 # Rustic
 ####################
 config.endermodpacktweaks.rustic=Rustic

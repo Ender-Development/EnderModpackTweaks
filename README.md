@@ -99,12 +99,15 @@ If you have any suggestions, feel free to let me know.
   - allow manually setting the max tier of IC2 Energy
 - ✅ tweaking [Multi Builder Tool](https://www.curseforge.com/minecraft/mc-mods/multi-builder-tool)
   - fix crash with [Flux Networks](https://github.com/igentuman/multi-builder-tool/issues/11)
+- ✅ tweaking [Reskillable](https://www.curseforge.com/minecraft/mc-mods/reskillable-fork)
+  - order all skills alphabetically
 
 ## Possible Bugfixes
 
 - 🔳 [Hearth Well Cores](https://github.com/wolforcept/hearthwell/issues/60)
 - 🔳 [Campfire Client Code on server](https://github.com/jbredwards/Campfire-Mod/issues/9)
 - 🔳 [Ender Storage continuation](https://www.curseforge.com/minecraft/mc-mods/ender-storage-1-12-continuation) [crash spam](https://github.com/igentuman/EnderStorage-continuation/issues/19)
+  - right now my fix breaks Ender Tanks, but I'm working on a solution
 
 ## [Ender-Development](https://github.com/Ender-Development)
 

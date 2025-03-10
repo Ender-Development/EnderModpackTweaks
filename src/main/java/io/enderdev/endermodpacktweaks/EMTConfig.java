@@ -902,6 +902,18 @@ public class EMTConfig {
         public boolean enableObsidianSpeleothems = false;
     }
 
+    @Config.Name("Reskillable")
+    @Config.LangKey("config.endermodpacktweaks.reskillable")
+    @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/reskillable-fork")
+    public static final Reskillable RESKILLABLE = new Reskillable();
+
+    public static class Reskillable {
+        @Config.RequiresMcRestart
+        @Config.Name("[01] Enable Reskillable Tweaks")
+        @Config.Comment("Enable tweaks for the Reskillable mod.")
+        public boolean enable = true;
+    }
+
     @Config.Name("Rustic")
     @Config.LangKey("config.endermodpacktweaks.rustic")
     @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/rustic")
