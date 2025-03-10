@@ -10,6 +10,7 @@ If you have any suggestions, feel free to let me know.
 - 🆕 TimeSync
   - sync the ingame time with the system time of the server
   - this makes minecraft days actually 24 hours long
+  - added an additional option that disables sleeping
 
 ### Minecraft
 - ✅ Inventory Crafting
