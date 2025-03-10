@@ -1,5 +1,6 @@
 package io.enderdev.endermodpacktweaks.core;
 
+import codechicken.enderstorage.EnderStorage;
 import com.google.common.collect.ImmutableMap;
 import io.enderdev.endermodpacktweaks.EMTConfig;
 import net.minecraftforge.fml.common.Loader;
@@ -32,6 +33,7 @@ public class EMTMixinLoader implements ILateMixinLoader {
             put("mixins.emt.astralsorcery.json", () -> Loader.isModLoaded("astralsorcery") && EMTConfig.ASTRAL_SORCERY.enable);
             put("mixins.emt.fluxnetworks.json", () -> Loader.isModLoaded("fluxnetworks") && EMTConfig.FLUX_NETWORKS.enable);
             put("mixins.emt.mbtool.json", () -> Loader.isModLoaded("mbtool") && EMTConfig.MULTI_BUILDER_TOOL.enable);
+            put("mixins.emt.enderstorage.json", () -> Loader.isModLoaded("enderstorage") && EMTConfig.ENDER_STORAGE.enable && EnderStorage.VERSION.equals("2.6.3"));
         }
     });
 

@@ -620,6 +620,22 @@ public class EMTConfig {
         public boolean enable = true;
     }
 
+    @Config.Name("Ender Storage")
+    @Config.LangKey("config.endermodpacktweaks.ender_storage")
+    @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/ender-storage-1-12-continuation")
+    public static final EnderStorage ENDER_STORAGE = new EnderStorage();
+
+    public static class EnderStorage {
+        @Config.RequiresMcRestart
+        @Config.Name("[01] Enable Ender Storage Tweaks")
+        @Config.Comment({
+                "Enable tweaks for the Ender Storage mod.",
+                "This tweak fixes the crash report spam caused by the Ender Storage mod.",
+                "https://github.com/igentuman/EnderStorage-continuation/issues/19"
+        })
+        public boolean enable = true;
+    }
+
     @Config.Name("First Aid")
     @Config.LangKey("config.endermodpacktweaks.first_aid")
     @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/first-aid")

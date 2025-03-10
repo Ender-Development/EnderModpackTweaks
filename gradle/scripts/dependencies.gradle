@@ -216,4 +216,11 @@ dependencies {
     if (project.debug_multibuildertool.toBoolean()) {
         runtimeOnly "curse.maven:multi-builder-tool-827020:5787657"
     }
+
+    compileOnly rfg.deobf("curse.maven:ender-storage-1-12-continuation-634242:5591161")
+    compileOnly rfg.deobf("curse.maven:codechicken-lib-1-8-242818:2779848")
+    if (project.debug_enderstorage.toBoolean()) {
+        runtimeOnly "curse.maven:codechicken-lib-1-8-242818:2779848"
+        runtimeOnly "curse.maven:ender-storage-1-12-continuation-634242:5591161"
+    }
 }
