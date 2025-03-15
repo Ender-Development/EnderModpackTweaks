@@ -61,7 +61,7 @@ If you have any suggestions, feel free to let me know.
 - ✅ tweaking [Simple Difficulty](https://www.curseforge.com/minecraft/mc-mods/simpledifficulty)
   - allow moving the thirst bar if it does overlap with something else
 - ✅ tweaking [ItemPhysic Full](https://www.curseforge.com/minecraft/mc-mods/itemphysic)
-  - improve the tooltip in alternative pickup mode to show the size of the items tack that is being looked at
+  - improve the tooltip in alternative pickup mode to show the size of the item stack that is being looked at
   - color the tooltip respectively to the item rarity
 - ✅ tweaking [Tool Progression](https://www.curseforge.com/minecraft/mc-mods/tool-progression)
   - restructures the config folder
