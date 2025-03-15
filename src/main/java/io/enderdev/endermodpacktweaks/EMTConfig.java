@@ -646,9 +646,10 @@ public class EMTConfig {
         @Config.Comment({
                 "Enable tweaks for the Ender Storage mod.",
                 "This tweak fixes the crash report spam caused by the Ender Storage mod.",
-                "https://github.com/igentuman/EnderStorage-continuation/issues/19"
+                "https://github.com/igentuman/EnderStorage-continuation/issues/19",
+                "This fix is still heavy WIP and currently breaks Ender Tanks! Use with caution!"
         })
-        public boolean enable = true;
+        public boolean enable = false;
     }
 
     @Config.Name("First Aid")

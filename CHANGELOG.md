@@ -1,5 +1,4 @@
 # Changelog
 
-## [0.1.0] - 2025-xx-xx
-### Changes
-- added various tweaks to the ender dragon fight
+## [0.1.0] - 2025-03-15
+- Initial release

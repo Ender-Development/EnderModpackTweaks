@@ -8,9 +8,9 @@ If you have any suggestions, feel free to let me know.
 ## Current Features
 ### New Features
 - 🆕 TimeSync
-  - sync the ingame time with the system time of the server
+  - sync the in game time with the system time of the server
   - this makes minecraft days actually 24 hours long
-  - added an additional option that disables sleeping
+  - added an option that disables sleeping
 
 ### Minecraft
 - ✅ Inventory Crafting
@@ -61,7 +61,7 @@ If you have any suggestions, feel free to let me know.
 - ✅ tweaking [Simple Difficulty](https://www.curseforge.com/minecraft/mc-mods/simpledifficulty)
   - allow moving the thirst bar if it does overlap with something else
 - ✅ tweaking [ItemPhysic Full](https://www.curseforge.com/minecraft/mc-mods/itemphysic)
-  - improve the tooltip in alternative pickup mode to show the size of the itemstack that is being looked at
+  - improve the tooltip in alternative pickup mode to show the size of the items tack that is being looked at
   - color the tooltip respectively to the item rarity
 - ✅ tweaking [Tool Progression](https://www.curseforge.com/minecraft/mc-mods/tool-progression)
   - restructures the config folder
