@@ -1,6 +1,6 @@
 # Ender's Modpack Tweaks
 
-This is a collection of tweaks and changes for the modpacks I'm working on. I will be adding more as I go along. Now that I'm somewhat comfortable writing mods, I don't have to rely on other mods to make the changes I want. Each feature can be enabled or disabled in the config file. So you can pick and choose what features you need for your own modpack.
+This is a collection of tweaks and changes for the modpacks I'm working on. I will be adding more as I go along. Now that I'm somewhat comfortable writing mods, I don't have to rely on other mods to make the changes I want. Each feature can be enabled or disabled in the config file, so you can pick and choose what features you need for your own modpack.
 If you have any suggestions, feel free to let me know.
 
 <a href="https://www.akliz.net/enderman"><img src="https://github.com/Ender-Development/PatchouliBooks/raw/master/banner.png" align="center"/></a>
@@ -8,7 +8,7 @@ If you have any suggestions, feel free to let me know.
 ## Current Features
 ### New Features
 - 🆕 TimeSync
-  - sync the in game time with the system time of the server
+  - sync the in-game time with the system time of the server
   - this makes minecraft days actually 24 hours long
   - added an option that disables sleeping
 
@@ -36,8 +36,8 @@ If you have any suggestions, feel free to let me know.
   - force a specific difficulty
   - lock the difficulty so it can't be changed afterwards
 - ✅ Gamemode Tweaks
-  - force a specific Gamemode
-  - force Hardcore Gamemode
+  - force a specific gamemode
+  - force hardcore
   - allow commands
 - ✅ Visuals
   - disable the display of the held item name above the hotbar
@@ -51,20 +51,20 @@ If you have any suggestions, feel free to let me know.
   - you can now specify the weight of each rock type
 - ✅ tweaking [Rustic](https://www.curseforge.com/minecraft/mc-mods/rustic)
   - tweak the generation of Wildberry Bushes
-  - allow placing the Wildberry Bushes on more blocks
+  - allow placing Wildberry Bushes on more blocks
   - allow adding an offset to the Armor and Toughness Renderer
 - ✅ adapting [Dragon Murder](https://www.curseforge.com/minecraft/mc-mods/dragon-murder)
   - autokill the first "free" ender dragon
   - a bunch of config options to tweak the initial end to your likings 
 - ✅ tweaking [Default World Generator without Server Side Prompts](https://www.curseforge.com/minecraft/mc-mods/default-world-generator-ssp)
-  - fixing a bug where the texture of the world selection screen would break if your window is too large
+  - fixed a bug where the texture of the world selection screen would break if your window is too large
 - ✅ tweaking [Simple Difficulty](https://www.curseforge.com/minecraft/mc-mods/simpledifficulty)
-  - allow moving the thirst bar if it does overlap with something else
+  - allow moving the thirst bar if it overlaps with something else
 - ✅ tweaking [ItemPhysic Full](https://www.curseforge.com/minecraft/mc-mods/itemphysic)
   - improve the tooltip in alternative pickup mode to show the size of the item stack that is being looked at
   - color the tooltip respectively to the item rarity
 - ✅ tweaking [Tool Progression](https://www.curseforge.com/minecraft/mc-mods/tool-progression)
-  - restructures the config folder
+  - restructured the config folder
   - prevents spamming the server chat everytime someone wants to write a command
   - load the magic mushroom item only when tconstruct is loaded
 - ✅ tweaking [First Aid](https://www.curseforge.com/minecraft/mc-mods/first-aid)
@@ -83,9 +83,9 @@ If you have any suggestions, feel free to let me know.
   - increase the size of the bleeding overlay
 - ✅ tweaking [BetterEndForge Backport](https://www.curseforge.com/minecraft/mc-mods/betterendforge-backport)
   - override a few hardcoded values to make it compatible with my other end tweaks
-  - **These may be removed in the future when the mod author makes them actually configurable**
-- ✅ adapted [Pack Crash Info](https://www.curseforge.com/minecraft/mc-mods/pack-crash-info)
-  - the mods license (ARR) doesn't allow forking so I rewrote the functionality from scratch
+  - **these may be removed in the future when the mod author actually makes them configurable**
+- ✅ adapting [Pack Crash Info](https://www.curseforge.com/minecraft/mc-mods/pack-crash-info)
+  - the mod's license (ARR) doesn't allow forking so I rewrote the functionality from scratch
 - ✅ tweaking [Backpack Opener](https://www.curseforge.com/minecraft/mc-mods/backpack-opener)
   - remove CraftTweaker dependency
   - allow adding entries via the config file
@@ -96,8 +96,8 @@ If you have any suggestions, feel free to let me know.
   - disable the drop
 - ✅ tweaking [Astral Sorcery](https://www.curseforge.com/minecraft/mc-mods/astral-sorcery)
   - allow Fake Players to interact with various blocks
-- ✅ adapted [Material Changer](https://www.curseforge.com/minecraft/mc-mods/material-changer)
-  - instead of one long list entries are now separated by categories
+- ✅ adapting [Material Changer](https://www.curseforge.com/minecraft/mc-mods/material-changer)
+  - instead of one long list, entries are now separated by categories
 - ✅ adapting [Enhanced Boss Bars](https://www.curseforge.com/minecraft/mc-mods/enhanced-boss-bars) for 1.12.2
   - utilizes [AssetMover](https://www.curseforge.com/minecraft/mc-mods/assetmover) to obtain the textures without breaking the license
 - ✅ tweaking [Flux Networks](https://www.curseforge.com/minecraft/mc-mods/flux-networks)
