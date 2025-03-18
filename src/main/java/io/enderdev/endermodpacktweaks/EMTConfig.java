@@ -1082,8 +1082,22 @@ public class EMTConfig {
         public int thirstbarYOffset = -53;
 
         @Config.Name("[04] Temperature Potion Effects")
-        @Config.Comment("Add additional potion effects for temperature.")
+        @Config.Comment({
+                "Add additional potion effects to the player depending on the temperature.",
+                "The temperature bounds must be between 0 and 25.",
+                "FORMAT: lower_bound;upper_bound;effect;amplifier",
+                "Example: 0;5;minecraft:slowness;2"
+        })
         public String[] temperaturePotions = new String[]{};
+
+        @Config.Name("[04] Thirst Potion Effects")
+        @Config.Comment({
+                "Add additional potion effects to the player depending on the thirst level.",
+                "The thirst bounds must be between 0 and 20.",
+                "FORMAT: lower_bound;upper_bound;effect;amplifier",
+                "Example: 0;5;minecraft:slowness;2"
+        })
+        public String[] thirstPotions = new String[]{};
     }
 
     @Config.Name("Tool Progression")
