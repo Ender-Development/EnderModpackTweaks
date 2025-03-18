@@ -228,4 +228,9 @@ dependencies {
     if (project.debug_reskillable.toBoolean()) {
         runtimeOnly "curse.maven:reskillable-fork-976391:5117948"
     }
+
+    compileOnly rfg.deobf("curse.maven:elenai-dodge-2-442962:3343308")
+    if (project.debug_elenai.toBoolean()) {
+        runtimeOnly "curse.maven:elenai-dodge-2-442962:3343308"
+    }
 }

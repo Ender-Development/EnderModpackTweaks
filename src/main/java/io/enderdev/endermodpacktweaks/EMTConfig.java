@@ -171,7 +171,7 @@ public class EMTConfig {
 
             @Config.Name("[02] Sleeping")
             @Config.Comment("Should sleeping be disabled?")
-            public boolean sleeping = true;
+            public boolean sleeping = false;
         }
     }
 
@@ -214,6 +214,28 @@ public class EMTConfig {
             @Config.Name("[03] Disable Item Names")
             @Config.Comment("This tweak disables the rendering of item names above the hotbar.")
             public boolean disableItemNames = false;
+
+            @Config.RequiresMcRestart
+            @Config.Name("[04] Max Render Distance")
+            @Config.Comment({
+                    "Set the maximum render distance of the client.",
+                    "I'm not responsible for any performance issues this may cause.",
+                    "nor if your pc goes up in flames. (The Minecraft default is 16)"
+            })
+            @Config.RangeInt(min = 2, max = 4096)
+            public int maxRenderDistance = 32;
+
+            @Config.Name("[05] Hide Name Tags")
+            @Config.Comment("Hide the name tags of entities.")
+            public boolean hideNameTags = false;
+
+            @Config.Name("[06] Disable Auto Jump")
+            @Config.Comment("Disable the auto jump feature. It never should have been added in the first place.")
+            public boolean disableAutoJump = false;
+
+            @Config.Name("[07] Additional Master Volume")
+            @Config.Comment("Adds an additional master volume slider to the main options menu.")
+            public boolean additionalMasterVolume = false;
         }
 
         @Config.Name("Dragon Tweaks")

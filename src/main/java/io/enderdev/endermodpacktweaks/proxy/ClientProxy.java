@@ -1,7 +1,9 @@
 package io.enderdev.endermodpacktweaks.proxy;
 
+import io.enderdev.endermodpacktweaks.EMTConfig;
 import io.enderdev.endermodpacktweaks.events.ClientEvents;
 import io.enderdev.endermodpacktweaks.patches.mysticallib.EffectManager;
+import net.minecraft.client.settings.GameSettings;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -27,5 +29,6 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void postInit(FMLPostInitializationEvent event) {
         super.postInit(event);
+        GameSettings.Options.RENDER_DISTANCE.setValueMax(EMTConfig.MINECRAFT.CLIENT.maxRenderDistance);
     }
 }

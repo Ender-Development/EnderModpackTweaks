@@ -8,7 +8,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 public class PlayerEvents {
     @SubscribeEvent
     public void cancelSleep(SleepingTimeCheckEvent event) {
-        if (EMTConfig.MODPACK.SYNC_TIME.sleeping) {
+        if (EMTConfig.MODPACK.SYNC_TIME.enable && EMTConfig.MODPACK.SYNC_TIME.sleeping) {
             event.setResult(Event.Result.DENY);
         }
     }

@@ -1,5 +1,6 @@
 package io.enderdev.endermodpacktweaks.proxy;
 
+import io.enderdev.endermodpacktweaks.EMTConfig;
 import io.enderdev.endermodpacktweaks.events.BlockEvents;
 import io.enderdev.endermodpacktweaks.events.PlayerEvents;
 import io.enderdev.endermodpacktweaks.events.WorldEvents;
@@ -20,6 +21,8 @@ public class CommonProxy {
     }
 
     public void postInit(FMLPostInitializationEvent event) {
-        MaterialTweaker.INSTANCE.load();
+        if (EMTConfig.MODPACK.MATERIAL_TWEAKER.enable) {
+            MaterialTweaker.INSTANCE.load();
+        }
     }
 }
