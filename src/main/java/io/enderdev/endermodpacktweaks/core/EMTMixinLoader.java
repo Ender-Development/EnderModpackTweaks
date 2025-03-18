@@ -35,6 +35,7 @@ public class EMTMixinLoader implements ILateMixinLoader {
             put("mixins.emt.mbtool.json", () -> Loader.isModLoaded("mbtool") && EMTConfig.MULTI_BUILDER_TOOL.enable);
             put("mixins.emt.enderstorage.json", () -> Loader.isModLoaded("enderstorage") && EMTConfig.ENDER_STORAGE.enable && EnderStorage.VERSION.equals("2.6.3"));
             put("mixins.emt.reskillable.json", () -> Loader.isModLoaded("reskillable") && EMTConfig.RESKILLABLE.enable);
+            put("mixins.emt.elenaidodge.json", () -> Loader.isModLoaded("elenaidodge2") && EMTConfig.ELENAI_DODGE.enable);
         }
     });
 

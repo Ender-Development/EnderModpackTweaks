@@ -88,6 +88,12 @@ config.endermodpacktweaks.default_world_generator=Default World Generator
 config.endermodpacktweaks.default_world_generator.tooltip=Tweaks to the default world generator mod
 
 ####################
+# Elenai Dodge 2
+####################
+config.endermodpacktweaks.elenai_dodge=Elanai Dodge 2
+config.endermodpacktweaks.elenai_dodge.tooltip=Tweaks to the elenai dodge 2 mod
+
+####################
 # First Aid
 ####################
 config.endermodpacktweaks.first_aid=First Aid
