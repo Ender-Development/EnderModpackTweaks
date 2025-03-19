@@ -1110,9 +1110,7 @@ public class EMTConfig {
         @Config.Name("[01] Enable Tool Progression Tweaks")
         @Config.Comment({
                 "This tweak allows changes how the configuration file of the mod are generated.",
-                "It creates a few subdirectories and moves the configuration files into them.",
-                "Sadly these don't work outside a development environment (for now)",
-                "but I already reached out to the mod author to fix this."
+                "It creates a few subdirectories and moves the configuration files into them."
         })
         public boolean enable = true;
     }
