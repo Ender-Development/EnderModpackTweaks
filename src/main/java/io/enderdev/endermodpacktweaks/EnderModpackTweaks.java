@@ -6,6 +6,7 @@ import io.enderdev.endermodpacktweaks.proxy.CommonProxy;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.*;
@@ -16,7 +17,7 @@ import org.apache.logging.log4j.Logger;
 
 @Mod(modid = Tags.MOD_ID, name = Tags.MOD_NAME, version = Tags.VERSION, dependencies = EnderModpackTweaks.DEPENDENCIES)
 public class EnderModpackTweaks {
-    public static final String DEPENDENCIES = "after:mixinbooter;after:fermiumbooter;required-after:assetmover;required-after:configanytime";
+    public static final String DEPENDENCIES = "after:mixinbooter;after:fermiumbooter;after:assetmover;required-after:configanytime";
 
     public static final Logger LOGGER = LogManager.getLogger(Tags.MOD_NAME);
 
@@ -48,7 +49,7 @@ public class EnderModpackTweaks {
 
     @Mod.EventHandler
     public void construct(FMLConstructionEvent event) throws Exception {
-        if (event.getSide() == Side.CLIENT) {
+        if (event.getSide() == Side.CLIENT && Loader.isModLoaded("assetmover")) {
             EMTAssetMover.getAssets();
         }
         if (!EMTConfig.MODPACK.CRASH_INFO.enable) {
