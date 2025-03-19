@@ -43,7 +43,11 @@ public class EMTAssetMover {
                 textureMap.put(texture.getOriginal(), texture.getNewPath());
             });
             EnderModpackTweaks.LOGGER.info("Moving assets for {}", asset.getProject());
-            AssetMoverAPI.fromCurseForgeMod(asset.getProjectID(), asset.getFileID(), textureMap);
+            try {
+                AssetMoverAPI.fromCurseForgeMod(asset.getProjectID(), asset.getFileID(), textureMap);
+            } catch (Exception e) {
+                EnderModpackTweaks.LOGGER.fatal("Failed to move assets for {} with {}", asset.getProject(), e);
+            }
             EnderModpackTweaks.LOGGER.info("Finished moving assets for {}", asset.getProject());
         });
     }
