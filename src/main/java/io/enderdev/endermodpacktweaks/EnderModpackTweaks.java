@@ -16,7 +16,7 @@ import org.apache.logging.log4j.Logger;
 
 @Mod(modid = Tags.MOD_ID, name = Tags.MOD_NAME, version = Tags.VERSION, dependencies = EnderModpackTweaks.DEPENDENCIES)
 public class EnderModpackTweaks {
-    public static final String DEPENDENCIES = "required-after:mixinbooter;required-after:assetmover;";
+    public static final String DEPENDENCIES = "after:mixinbooter;after:fermiumbooter;required-after:assetmover;required-after:configanytime";
 
     public static final Logger LOGGER = LogManager.getLogger(Tags.MOD_NAME);
 
