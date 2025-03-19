@@ -41,7 +41,7 @@ public class EMTLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader {
 
     private static final Map<String, BooleanSupplier> clientsideMixinConfigs = ImmutableMap.copyOf(new HashMap<String, BooleanSupplier>() {
         {
-            put("mixins.emt.minecraft.bossbar.json", () -> EMTConfig.MINECRAFT.BOSS_BAR.enable && Loader.isModLoaded("assetmover"));
+            put("mixins.emt.minecraft.bossbar.json", () -> EMTConfig.MINECRAFT.BOSS_BAR.enable);
         }
     });
 
