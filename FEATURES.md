@@ -79,6 +79,10 @@
 
 - fixed a bug where the texture of the world selection screen would break if your window is too large
 
+### [Dynamics Surroundings: HUDs](https://www.curseforge.com/minecraft/mc-mods/dynamic-surroundings-huds)
+
+- added the options to blacklist potion effects from showing on the potion HUD
+
 ### [First Aid](https://www.curseforge.com/minecraft/mc-mods/first-aid)
 
 - center the HUD, so it's easier to place next to the hotbar, independent of the screen width
