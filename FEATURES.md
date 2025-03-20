@@ -193,7 +193,6 @@
 
 - licensed under MIT
 - instead of one long list, entries are now separated by categories
-- a bunch of config options to tweak the initial end to your likings
 
 ### [Pack Crash Info](https://www.curseforge.com/minecraft/mc-mods/pack-crash-info)
 

@@ -3,7 +3,7 @@
 ## [0.2.1] - 2025-03-20
 
 - 🆕 added more client tweaks
-- 🆕 added more tweaks to Simply Difficulty
+- 🆕 added more tweaks to Simple Difficulty
 - 🆕 added tweaks for Dynamics Surroundings HUDs
 - 🆕 added a warning screen (similar to Universal Tweaks) when using a mod that this mod replaces
 - 🧰 fixed Quark Usage Ticker
