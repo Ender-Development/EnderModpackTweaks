@@ -738,22 +738,22 @@ public class EMTConfig {
         @Config.RangeDouble(min = 0.0, max = 40.0)
         public double thirst = 6.0;
 
-        @Config.Name("[05] Simple Difficulty: Thirst Threshold")
+        @Config.Name("[04] Simple Difficulty: Thirst Threshold")
         @Config.Comment("The threshold at which the dodge should be canceled.")
         @Config.RangeInt(min = 0, max = 20)
         public int thirstThreshold = 6;
 
-        @Config.Name("[06] Simple Difficulty: Stamina Regeneration")
+        @Config.Name("[05] Simple Difficulty: Stamina Regeneration")
         @Config.Comment("The minimum thirst level required to regenerate stamina.")
         @Config.RangeInt(min = 0, max = 20)
         public int dodgeRegeneration = 8;
 
-        @Config.Name("[07] Simple Difficulty: Stamina Regeneration Rate")
+        @Config.Name("[06] Simple Difficulty: Stamina Regeneration Rate")
         @Config.Comment("How much longer (in ticks) it takes to regenerate stamina for each missing thirst level.")
         @Config.RangeInt(min = 0, max = 100)
         public int dodgeRegenerationRate = 10;
 
-        @Config.Name("[08] Simple Difficulty: Thirst Exhaustion on Stamina Regeneration")
+        @Config.Name("[07] Simple Difficulty: Thirst Exhaustion on Stamina Regeneration")
         @Config.Comment("How much thirst should be added when the player regenerates stamina.")
         @Config.RangeDouble(min = 0.0, max = 40.0)
         public double thirstRegeneration = 0.2;
