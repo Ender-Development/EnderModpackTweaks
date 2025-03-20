@@ -1,6 +1,7 @@
 package io.enderdev.endermodpacktweaks;
 
 import io.enderdev.endermodpacktweaks.core.EMTAssetMover;
+import io.enderdev.endermodpacktweaks.features.compatscreen.CompatModsHandler;
 import io.enderdev.endermodpacktweaks.features.crashinfo.InfoBuilder;
 import io.enderdev.endermodpacktweaks.proxy.CommonProxy;
 import net.minecraft.client.Minecraft;
@@ -14,6 +15,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.util.Objects;
 
 @Mod(modid = Tags.MOD_ID, name = Tags.MOD_NAME, version = Tags.VERSION, dependencies = EnderModpackTweaks.DEPENDENCIES)
 public class EnderModpackTweaks {
@@ -56,6 +59,13 @@ public class EnderModpackTweaks {
             return;
         }
         FMLCommonHandler.instance().registerCrashCallable(INFO_BUILDER);
+    }
+
+    @Mod.EventHandler
+    public void onLoadComplete(FMLLoadCompleteEvent event) {
+        if (CompatModsHandler.hasObsoleteModsMessage()) {
+            CompatModsHandler.obsoleteModsMessage().stream().filter(s -> !Objects.equals(s, "")).forEach(LOGGER::warn);
+        }
     }
 
     @SideOnly(Side.CLIENT)
