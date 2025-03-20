@@ -193,7 +193,7 @@ public class EMTConfig {
         public static class BossBar {
             @Config.RequiresMcRestart
             @Config.Name("[01] Enable Boss Bar Tweaks")
-            @Config.Comment("Enable tweaks for the Boss Bar.")
+            @Config.Comment("Enable tweaks for the Boss Bar. This requires AssetMover.")
             public boolean enable = true;
         }
 

@@ -55,10 +55,9 @@ public class EnderModpackTweaks {
         if (event.getSide() == Side.CLIENT && Loader.isModLoaded("assetmover")) {
             EMTAssetMover.getAssets();
         }
-        if (!EMTConfig.MODPACK.CRASH_INFO.enable) {
-            return;
+        if (EMTConfig.MODPACK.CRASH_INFO.enable) {
+            FMLCommonHandler.instance().registerCrashCallable(INFO_BUILDER);
         }
-        FMLCommonHandler.instance().registerCrashCallable(INFO_BUILDER);
     }
 
     @Mod.EventHandler
