@@ -269,6 +269,10 @@ public class EMTConfig {
             @Config.Name("[14] Hide Air Bar")
             @Config.Comment("Hide the air bar.")
             public boolean hideAirBar = false;
+
+            @Config.Name("[15] Disable FOV Change")
+            @Config.Comment("Disable the FOV change.")
+            public boolean disableFovChange = false;
         }
 
         @Config.Name("Dragon Tweaks")

@@ -25,6 +25,7 @@ public class CompatModsHandler {
             put("chunkomg", () -> EMTConfig.MINECRAFT.CLIENT.enable);
             put("hidenametags", () -> EMTConfig.MINECRAFT.CLIENT.enable);
             put("hideitemnames", () -> EMTConfig.MINECRAFT.CLIENT.enable);
+            put("antifovchange", () -> EMTConfig.MINECRAFT.CLIENT.enable);
         }
     });
 

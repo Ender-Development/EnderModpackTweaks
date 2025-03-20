@@ -15,10 +15,7 @@ import net.minecraft.inventory.SlotCrafting;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
-import net.minecraftforge.client.event.GuiContainerEvent;
-import net.minecraftforge.client.event.GuiScreenEvent;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.client.event.RenderLivingEvent;
+import net.minecraftforge.client.event.*;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
@@ -114,6 +111,13 @@ public class ClientEvents implements GuiPageButtonList.GuiResponder, GuiSlider.F
 
         } if (EMTConfig.MINECRAFT.CLIENT.hideAirBar && event.getType() == RenderGameOverlayEvent.ElementType.AIR) {
             event.setCanceled(true);
+        }
+    }
+
+    @SubscribeEvent
+    public void onFovUpdate(FOVUpdateEvent event) {
+        if (EMTConfig.MINECRAFT.CLIENT.disableFovChange) {
+            event.setNewfov(1.0f);
         }
     }
 
