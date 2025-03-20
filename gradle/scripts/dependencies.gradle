@@ -233,4 +233,11 @@ dependencies {
     if (project.debug_elenai.toBoolean()) {
         runtimeOnly "curse.maven:elenai-dodge-2-442962:3343308"
     }
+
+    compileOnly rfg.deobf("curse.maven:orelib-307806:2820815")
+    compileOnly rfg.deobf("curse.maven:dynamic-surroundings-huds-309318:2820653")
+    if (project.debug_dynamicsurroundings.toBoolean()) {
+        runtimeOnly "curse.maven:orelib-307806:2820815"
+        runtimeOnly "curse.maven:dynamic-surroundings-huds-309318:2820653"
+    }
 }

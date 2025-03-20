@@ -44,6 +44,11 @@ public class EMTConfig {
         }
     }
 
+    public enum ListType {
+        BLACKLIST,
+        WHITELIST
+    }
+
     @Config.Name("Modpack Tweaks")
     @Config.LangKey("config.endermodpacktweaks")
     public static final Modpack MODPACK = new Modpack();
@@ -236,6 +241,34 @@ public class EMTConfig {
             @Config.Name("[07] Additional Master Volume")
             @Config.Comment("Adds an additional master volume slider to the main options menu.")
             public boolean additionalMasterVolume = false;
+
+            @Config.Name("[08] Hide Potion Icons")
+            @Config.Comment("Hide the potion icons in the top right corner.")
+            public boolean hidePotionIcons = false;
+
+            @Config.Name("[09] Hide Crosshair")
+            @Config.Comment("Hide the crosshair.")
+            public boolean hideCrosshair = false;
+
+            @Config.Name("[10] Hide Armor Bar")
+            @Config.Comment("Hide the armor bar.")
+            public boolean hideArmorBar = false;
+
+            @Config.Name("[11] Hide Health Bar")
+            @Config.Comment("Hide the health bar.")
+            public boolean hideHealthBar = false;
+
+            @Config.Name("[12] Hide Hunger Bar")
+            @Config.Comment("Hide the hunger bar.")
+            public boolean hideHungerBar = false;
+
+            @Config.Name("[13] Hide Experience Bar")
+            @Config.Comment("Hide the experience bar.")
+            public boolean hideExperienceBar = false;
+
+            @Config.Name("[14] Hide Air Bar")
+            @Config.Comment("Hide the air bar.")
+            public boolean hideAirBar = false;
         }
 
         @Config.Name("Dragon Tweaks")
@@ -655,6 +688,30 @@ public class EMTConfig {
                 "which appears when using a wide screen by giving it a fixed width."
         })
         public boolean enable = true;
+    }
+
+    @Config.Name("Dynamic Surroundings: HUDs")
+    @Config.LangKey("config.endermodpacktweaks.ds_huds")
+    @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/dynamic-surroundings-huds")
+    public static final DSHUDs DSHUDS = new DSHUDs();
+
+    public static class DSHUDs {
+        @Config.RequiresMcRestart
+        @Config.Name("[01] Enable Dynamic Surroundings HUD Tweaks")
+        @Config.Comment("Enable tweaks for the Dynamic Surroundings HUDs.")
+        public boolean enable = false;
+
+        @Config.Name("[02] Potion HUD Hide List Type")
+        @Config.Comment("Should the potion HUD be a blacklist or a whitelist?")
+        public ListType potionHUDHideListType = ListType.BLACKLIST;
+
+        @Config.Name("[03] Potion HUD Hide List")
+        @Config.Comment({
+                "A list of potion effects that depending on the list type are hidden or shown.",
+                "FORMAT: modid:potionid",
+                "EXAMPLE: minecraft:night_vision"
+        })
+        public String[] potionHUDHideList = new String[]{};
     }
 
     @Config.Name("Elenai Dodge 2")

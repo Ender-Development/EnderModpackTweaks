@@ -88,10 +88,22 @@ config.endermodpacktweaks.default_world_generator=Default World Generator
 config.endermodpacktweaks.default_world_generator.tooltip=Tweaks to the default world generator mod
 
 ####################
+# Dynamic Surroundings: HUDs
+####################
+config.endermodpacktweaks.ds_huds=Dynamic Surroundings: HUDs
+config.endermodpacktweaks.ds_huds.tooltip=Tweaks to the dynamic surroundings HUDs mod
+
+####################
 # Elenai Dodge 2
 ####################
 config.endermodpacktweaks.elenai_dodge=Elanai Dodge 2
 config.endermodpacktweaks.elenai_dodge.tooltip=Tweaks to the elenai dodge 2 mod
+
+####################
+# Ender Storage
+####################
+config.endermodpacktweaks.ender_storage=Ender Storage
+config.endermodpacktweaks.ender_storage.tooltip=Tweaks to the ender storage mod
 
 ####################
 # First Aid

@@ -12,12 +12,14 @@ import net.minecraft.inventory.ContainerPlayer;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.inventory.SlotCrafting;
+import net.minecraft.potion.Potion;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraftforge.client.event.GuiContainerEvent;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderLivingEvent;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -87,6 +89,31 @@ public class ClientEvents implements GuiPageButtonList.GuiResponder, GuiSlider.F
     public void onClientTick(TickEvent.ClientTickEvent event) {
         if (EMTConfig.MINECRAFT.CLIENT.disableAutoJump && event.phase == TickEvent.Phase.END) {
             Minecraft.getMinecraft().gameSettings.autoJump = false;
+        }
+    }
+
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public void onRenderGameOverlay(RenderGameOverlayEvent.Pre event) {
+        if (EMTConfig.MINECRAFT.CLIENT.hidePotionIcons && event.getType() == RenderGameOverlayEvent.ElementType.POTION_ICONS) {
+            event.setCanceled(true);
+        }
+        if (EMTConfig.MINECRAFT.CLIENT.hideCrosshair && event.getType() == RenderGameOverlayEvent.ElementType.CROSSHAIRS) {
+            event.setCanceled(true);
+        }
+        if (EMTConfig.MINECRAFT.CLIENT.hideArmorBar && event.getType() == RenderGameOverlayEvent.ElementType.ARMOR) {
+            event.setCanceled(true);
+        }
+        if (EMTConfig.MINECRAFT.CLIENT.hideHealthBar && event.getType() == RenderGameOverlayEvent.ElementType.HEALTH) {
+            event.setCanceled(true);
+
+        } if (EMTConfig.MINECRAFT.CLIENT.hideHungerBar && event.getType() == RenderGameOverlayEvent.ElementType.FOOD) {
+            event.setCanceled(true);
+
+        } if (EMTConfig.MINECRAFT.CLIENT.hideExperienceBar && event.getType() == RenderGameOverlayEvent.ElementType.EXPERIENCE) {
+            event.setCanceled(true);
+
+        } if (EMTConfig.MINECRAFT.CLIENT.hideAirBar && event.getType() == RenderGameOverlayEvent.ElementType.AIR) {
+            event.setCanceled(true);
         }
     }
 
