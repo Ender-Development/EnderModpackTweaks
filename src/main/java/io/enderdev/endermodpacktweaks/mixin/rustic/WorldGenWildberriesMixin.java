@@ -1,5 +1,8 @@
 package io.enderdev.endermodpacktweaks.mixin.rustic;
 
+import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import io.enderdev.endermodpacktweaks.EMTConfig;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -7,11 +10,10 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.BiomeDictionary;
 import org.spongepowered.asm.mixin.*;
-import rustic.common.Config;
+import org.spongepowered.asm.mixin.injection.At;
 import rustic.common.world.WorldGenWildberries;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Mixin(value = WorldGenWildberries.class, remap = false)
 public abstract class WorldGenWildberriesMixin extends WorldGenerator {
@@ -19,40 +21,23 @@ public abstract class WorldGenWildberriesMixin extends WorldGenerator {
     @Shadow
     public static List<BiomeDictionary.Type> biomeBlacklist;
 
-    @Shadow
-    protected abstract boolean generateBush(World world, Random rand, BlockPos pos);
-
-    /**
-     * @author _MasterEnderman_
-     * @reason Override Rustic's biomes blacklist
-     */
-    @Overwrite(remap = true)
-    public boolean generate(World world, Random rand, BlockPos pos) {
-        Biome biome = world.getBiome(pos);
-        List<BiomeDictionary.Type> listBiomesBlacklist = Arrays.stream(EMTConfig.RUSTIC.listBiomesBlacklist)
-                .map(BiomeDictionary.Type::getType).collect(Collectors.toList());
-
+    @WrapMethod(method = "generate", remap = true)
+    public boolean generateWrap(World world, Random rand, BlockPos pos, Operation<Boolean> original) {
         if (EMTConfig.RUSTIC.overrideBerryBushBiomeBlacklist) {
-            if (listBiomesBlacklist.stream().anyMatch(type -> BiomeDictionary.hasType(biome, type))) {
-                return false;
-            }
-        } else {
-            if (biomeBlacklist.stream().anyMatch(type -> BiomeDictionary.hasType(biome, type))) {
+            biomeBlacklist.clear();
+            Biome biome = world.getBiome(pos);
+            if (Arrays.stream(EMTConfig.RUSTIC.listBiomesBlacklist)
+                    .map(BiomeDictionary.Type::getType)
+                    .filter(Objects::nonNull)
+                    .anyMatch(type -> BiomeDictionary.hasType(biome, type))) {
                 return false;
             }
         }
+        return original.call(world, rand, pos);
+    }
 
-        boolean ret = false;
-        for (int i = 0; i < Config.MAX_WILDBERRY_ATTEMPTS; i++) {
-            int x = pos.getX() + rand.nextInt(EMTConfig.RUSTIC.maxWildberrySpread) - rand.nextInt(EMTConfig.RUSTIC.maxWildberrySpread);
-            int z = pos.getZ() + rand.nextInt(EMTConfig.RUSTIC.maxWildberrySpread) - rand.nextInt(EMTConfig.RUSTIC.maxWildberrySpread);
-            BlockPos genPos = world.getTopSolidOrLiquidBlock(new BlockPos(x, 0, z));
-
-            if (generateBush(world, rand, genPos)) {
-                ret = true;
-            }
-        }
-
-        return ret;
+    @WrapOperation(method = "generate", at = @At(value = "INVOKE", target = "Ljava/util/Random;nextInt(I)I", remap = false), remap = true)
+    public int generateWrap(Random rand, int i, Operation<Boolean> original) {
+        return rand.nextInt(EMTConfig.RUSTIC.maxWildberrySpread);
     }
 }

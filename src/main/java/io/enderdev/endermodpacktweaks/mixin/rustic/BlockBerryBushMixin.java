@@ -1,6 +1,7 @@
 package io.enderdev.endermodpacktweaks.mixin.rustic;
 
 import com.google.common.collect.ImmutableList;
+import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import io.enderdev.endermodpacktweaks.EMTConfig;
@@ -28,11 +29,12 @@ public abstract class BlockBerryBushMixin {
             .filter(Objects::nonNull)
             .collect(ImmutableList.toImmutableList());
 
-    @Inject(method = "canSustainBush", at = @At("HEAD"), cancellable = true)
-    private void canSustainBushMixin(IBlockState state, CallbackInfoReturnable<Boolean> cir) {
+    @WrapMethod(method = "canSustainBush")
+    private boolean canSustainBushMixin(IBlockState state, Operation<Boolean> original) {
         if (EMTConfig.RUSTIC.overrideBerryBushPlacement) {
-            cir.setReturnValue(enderModpackTweaks$validBlocks.contains(state.getBlock()));
+            return enderModpackTweaks$validBlocks.contains(state.getBlock());
         }
+        return original.call(state);
     }
 
     @WrapOperation(method = "canPlaceBlockAt", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/Block;canSustainPlant(Lnet/minecraft/block/state/IBlockState;Lnet/minecraft/world/IBlockAccess;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/EnumFacing;Lnet/minecraftforge/common/IPlantable;)Z", remap = false), remap = true)

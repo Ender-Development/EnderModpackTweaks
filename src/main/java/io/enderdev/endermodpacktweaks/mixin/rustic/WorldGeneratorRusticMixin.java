@@ -1,5 +1,6 @@
 package io.enderdev.endermodpacktweaks.mixin.rustic;
 
+import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.sugar.Local;
 import io.enderdev.endermodpacktweaks.EMTConfig;
 import net.minecraft.world.World;
@@ -11,11 +12,11 @@ import rustic.common.world.WorldGeneratorRustic;
 
 @Mixin(value = WorldGeneratorRustic.class, remap = false)
 public class WorldGeneratorRusticMixin {
-    @Redirect(method = "generate", at = @At(value = "FIELD", target = "Lnet/minecraft/world/WorldType;FLAT:Lnet/minecraft/world/WorldType;"), remap = true)
-    private WorldType fixFlatWorldType(@Local(argsOnly = true) World world) {
-        if (EMTConfig.RUSTIC.enableWorldGenInFlat && world.getWorldType() == WorldType.FLAT) {
+    @ModifyExpressionValue(method = "generate", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;getWorldType()Lnet/minecraft/world/WorldType;"), remap = true)
+    private WorldType modifyWorldType(WorldType original) {
+        if (EMTConfig.RUSTIC.enableWorldGenInFlat && original == WorldType.FLAT) {
             return WorldType.DEFAULT;
         }
-        return world.getWorldType();
+        return original;
     }
 }
