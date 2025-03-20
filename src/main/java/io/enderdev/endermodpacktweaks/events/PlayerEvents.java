@@ -1,6 +1,7 @@
 package io.enderdev.endermodpacktweaks.events;
 
 import com.charles445.simpledifficulty.api.SDCapabilities;
+import com.charles445.simpledifficulty.api.thirst.IThirstCapability;
 import io.enderdev.endermodpacktweaks.EMTConfig;
 import io.enderdev.endermodpacktweaks.EnderModpackTweaks;
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,6 +11,7 @@ import net.minecraftforge.event.entity.player.SleepingTimeCheckEvent;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 import java.util.ArrayList;
@@ -25,6 +27,16 @@ public class PlayerEvents {
         if (EMTConfig.MODPACK.SYNC_TIME.enable && EMTConfig.MODPACK.SYNC_TIME.sleeping) {
             event.setResult(Event.Result.DENY);
         }
+    }
+
+    @SubscribeEvent
+    public void setThirstOnRespawn(PlayerEvent.PlayerRespawnEvent event) {
+        if (!EMTConfig.SIMPLE_DIFFICULTY.enable || !Loader.isModLoaded("simpledifficulty")) {
+            return;
+        }
+        IThirstCapability thirstCapability = SDCapabilities.getThirstData(event.player);
+        thirstCapability.setThirstLevel(EMTConfig.SIMPLE_DIFFICULTY.respawnThirst);
+        thirstCapability.setThirstSaturation(EMTConfig.SIMPLE_DIFFICULTY.respawnThirstSaturation);
     }
 
     @SubscribeEvent
@@ -51,6 +63,7 @@ public class PlayerEvents {
                         temperaturePotions.add(new SDPotion(data[2], Integer.parseInt(data[0]), Integer.parseInt(data[1]), Integer.parseInt(data[3])));
                     } catch (NumberFormatException e) {
                         EnderModpackTweaks.LOGGER.error(e);
+                        EnderModpackTweaks.LOGGER.error("Error parsing temperature potion data: {}", Arrays.toString(data));
                     }
                 }
             });
@@ -77,6 +90,7 @@ public class PlayerEvents {
                         thirstPotions.add(new SDPotion(data[2], Integer.parseInt(data[0]), Integer.parseInt(data[1]), Integer.parseInt(data[3])));
                     } catch (NumberFormatException e) {
                         EnderModpackTweaks.LOGGER.error(e);
+                        EnderModpackTweaks.LOGGER.error("Error parsing thirst potion data: {}", Arrays.toString(data));
                     }
                 }
             });

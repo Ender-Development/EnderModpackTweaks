@@ -1155,6 +1155,16 @@ public class EMTConfig {
                 "Example: 0;5;minecraft:slowness;2"
         })
         public String[] thirstPotions = new String[]{};
+
+        @Config.Name("[05] Thirst on Respawn")
+        @Config.Comment("Set the thirst level of the player on respawn.")
+        @Config.RangeInt(min = 0, max = 20)
+        public int respawnThirst = 20;
+
+        @Config.Name("[06] Thirst Saturation on Respawn")
+        @Config.Comment("Set the thirst saturation of the player on respawn.")
+        @Config.RangeInt(min = 0, max = 20)
+        public int respawnThirstSaturation = 6;
     }
 
     @Config.Name("Tool Progression")
