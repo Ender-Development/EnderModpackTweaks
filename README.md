@@ -16,8 +16,8 @@ to [▶ Features](ttps://github.com/Ender-Development/EnderModpackTweaks/FEATURE
 
 - 🔳 [Hearth Well Cores](https://github.com/wolforcept/hearthwell/issues/60)
 - 🔳 [Campfire Client Code on server](https://github.com/jbredwards/Campfire-Mod/issues/9)
--
-🔳 [Ender Storage continuation](https://www.curseforge.com/minecraft/mc-mods/ender-storage-1-12-continuation) [crash spam](https://github.com/igentuman/EnderStorage-continuation/issues/19)
+- 🔳 [Ender Storage continuation](https://www.curseforge.com/minecraft/mc-mods/ender-storage-1-12-continuation)
+    - [crash spam](https://github.com/igentuman/EnderStorage-continuation/issues/19)
     - right now my fix breaks Ender Tanks, but I'm working on a solution
 
 ## [Ender-Development](https://github.com/Ender-Development)
