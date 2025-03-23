@@ -30,7 +30,7 @@ public class EntitySlashMixin {
     @Shadow
     public static DataParameter<Integer> lifetime;
 
-    @WrapMethod(method = "onUpdate")
+    @WrapMethod(method = "onUpdate", remap = true)
     public void onUpdate(Operation<Void> original) {
         Entity slashEntity = (Entity) (Object) this;
         if (slashEntity.getDataManager().get(lifetime) % 2 == 0 && !slashEntity.world.isRemote) {
