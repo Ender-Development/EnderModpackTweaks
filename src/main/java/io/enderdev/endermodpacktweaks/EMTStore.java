@@ -7,4 +7,5 @@ public class EMTStore {
         public static Block endstone_speleothem;
         public static Block obsidian_speleothem;
     }
+
 }

@@ -148,6 +148,12 @@ config.endermodpacktweaks.perfect_spawn=Perfect Spawn
 config.endermodpacktweaks.perfect_spawn.tooltip=Tweaks to the perfect spawn mod
 
 ####################
+# Potion Core
+####################
+config.endermodpacktweaks.potion_core=Potion Core
+config.endermodpacktweaks.potion_core.tooltip=Tweaks to the potion core mod
+
+####################
 # Pyrotech
 ####################
 config.endermodpacktweaks.pyrotech=Pyrotech

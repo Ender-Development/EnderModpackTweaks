@@ -928,6 +928,22 @@ public class EMTConfig {
         public boolean enable = true;
     }
 
+    @Config.Name("Potion Core")
+    @Config.LangKey("config.endermodpacktweaks.potion_core")
+    @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/potion-core")
+    public static final PotionCore POTION_CORE = new PotionCore();
+
+    public static class PotionCore {
+        @Config.RequiresMcRestart
+        @Config.Name("[01] Enable Potion Core Tweaks")
+        @Config.Comment("Enable tweaks for the Potion Core mod.")
+        public boolean enable = true;
+
+        @Config.Name("[02] Render Offset")
+        @Config.Comment("Set the render offset of the HUD renderer.")
+        public int renderOffset = -3;
+    }
+
     @Config.Name("Pyrotech")
     @Config.LangKey("config.endermodpacktweaks.pyrotech")
     @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/pyrotech")

@@ -112,6 +112,10 @@
 - generate a default config file if it doesn't exist
 - moved the config file to the config folder
 
+### [Potion Core](https://www.curseforge.com/minecraft/mc-mods/potion-core)
+
+- add an offset to the potion HUD
+
 ### [Pyrotech](https://github.com/codetaylor/pyrotech-1.12)
 
 - tweak the rock type that generates in the world

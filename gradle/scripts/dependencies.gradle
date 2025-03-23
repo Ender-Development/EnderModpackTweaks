@@ -240,4 +240,9 @@ dependencies {
         runtimeOnly "curse.maven:orelib-307806:2820815"
         runtimeOnly "curse.maven:dynamic-surroundings-huds-309318:2820653"
     }
+
+    compileOnly rfg.deobf("curse.maven:potion-core-242872:2905184")
+    if (project.debug_potioncore.toBoolean()) {
+        runtimeOnly "curse.maven:potion-core-242872:2905184"
+    }
 }

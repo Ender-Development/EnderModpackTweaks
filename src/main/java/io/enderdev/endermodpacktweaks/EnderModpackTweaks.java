@@ -20,7 +20,7 @@ import java.util.Objects;
 
 @Mod(modid = Tags.MOD_ID, name = Tags.MOD_NAME, version = Tags.VERSION, dependencies = EnderModpackTweaks.DEPENDENCIES)
 public class EnderModpackTweaks {
-    public static final String DEPENDENCIES = "after:mixinbooter;after:fermiumbooter;after:assetmover;required-after:configanytime";
+    public static final String DEPENDENCIES = "required-after:mixinbooter;after:fermiumbooter;after:assetmover;required-after:configanytime";
 
     public static final Logger LOGGER = LogManager.getLogger(Tags.MOD_NAME);
 

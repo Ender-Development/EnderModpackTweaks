@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.3.0]
+
+- 🆕 added render offset tweak to potion core
+
 ## [0.2.1] - 2025-03-20
 
 - 🆕 added more client tweaks
@@ -13,10 +17,8 @@
 
 ## [0.2.0] - 2025-03-18
 
-- 🆕 moved all features to a separate file to make it easier to
-  maintain [FEATURES](https://github.com/Ender-Development/EnderModpackTweaks/FEATURES.md)
-- ⚙ added [AssetMover](https://www.curseforge.com/minecraft/mc-mods/assetmover) as dependency, this way minecraft yells
-  if it is missing
+- 🆕 moved all features to a separate file to make it easier to maintain [FEATURES](https://github.com/Ender-Development/EnderModpackTweaks/FEATURES.md)
+- ⚙ added [AssetMover](https://www.curseforge.com/minecraft/mc-mods/assetmover) as dependency, this way minecraft yells if it is missing
 
 ## [0.1.0] - 2025-03-15
 
