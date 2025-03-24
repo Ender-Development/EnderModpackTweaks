@@ -191,3 +191,9 @@ config.endermodpacktweaks.simple_difficulty.tooltip=Tweaks to the simple difficu
 ####################
 config.endermodpacktweaks.tool_progression=Tool Progression
 config.endermodpacktweaks.tool_progression.tooltip=Tweaks to the tool progression mod
+
+####################
+# WAILA
+####################
+config.endermodpacktweaks.waila=WAILA / HWYLA
+config.endermodpacktweaks.waila.tooltip=Tweaks to the WAILA / HWYLA mod

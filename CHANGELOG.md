@@ -3,6 +3,8 @@
 ## [0.3.0]
 
 - 🆕 added render offset tweak to potion core
+- 🆕 added a config to let HWYLA _lie_ to you
+- 🧰 fixed Crissaegrim mixins
 
 ## [0.2.1] - 2025-03-20
 

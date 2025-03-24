@@ -150,6 +150,10 @@
 - prevents spamming the server chat everytime someone wants to write a command
 - load the magic mushroom item only when tconstruct is loaded
 
+### [WAILA / HWYLA](https://www.curseforge.com/minecraft/mc-mods/hwyla)
+
+- allow lying about the block the player is looking at
+
 ## 💱 Replacements
 
 ### [Anti FOV Change](https://www.curseforge.com/minecraft/mc-mods/anti-fov-change)

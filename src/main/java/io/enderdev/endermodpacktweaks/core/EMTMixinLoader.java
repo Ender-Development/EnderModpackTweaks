@@ -38,6 +38,7 @@ public class EMTMixinLoader implements ILateMixinLoader {
             put("mixins.emt.elenaidodge.json", () -> Loader.isModLoaded("elenaidodge2") && EMTConfig.ELENAI_DODGE.enable);
             put("mixins.emt.dshuds.json", () -> Loader.isModLoaded("dshuds") && EMTConfig.DSHUDS.enable);
             put("mixins.emt.potioncore.json", () -> Loader.isModLoaded("potioncore") && EMTConfig.POTION_CORE.enable);
+            put("mixins.emt.waila.json", () -> Loader.isModLoaded("waila") && EMTConfig.WAILA.enable);
         }
     });
 

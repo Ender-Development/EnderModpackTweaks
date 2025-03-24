@@ -68,8 +68,10 @@ dependencies {
     // }
 
     // Runtime dependencies
-    runtimeOnly "curse.maven:the-one-probe-community-edition-885670:5824252"
-    runtimeOnly "curse.maven:topalldependents-1120632:5808089" // updated version of the one probe addons
+    implementation rfg.deobf("curse.maven:the-one-probe-community-edition-885670:5824252")
+    implementation rfg.deobf("curse.maven:topalldependents-1120632:5808089") // updated version of the one probe addons
+
+    implementation rfg.deobf("curse.maven:hwyla-253449:2568751")
 
     runtimeOnly rfg.deobf("curse.maven:lolasm-460609:5257348") // otherwise it will crash
     runtimeOnly rfg.deobf("curse.maven:vintagefix-871198:5010926") // otherwise it will crash

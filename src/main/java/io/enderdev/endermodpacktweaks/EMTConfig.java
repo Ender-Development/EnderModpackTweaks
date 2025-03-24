@@ -658,7 +658,7 @@ public class EMTConfig {
         @Config.RequiresMcRestart
         @Config.Name("[01] Enable Dark Utils Tweaks")
         @Config.Comment("Enable tweaks for the Dark Utils mod.")
-        public boolean enable = true;
+        public boolean enable = false;
 
         @Config.Name("[02] Vector Plate Item Only")
         @Config.Comment("Vector Plates can only move items.")
@@ -785,7 +785,7 @@ public class EMTConfig {
         @Config.RequiresMcRestart
         @Config.Name("[01] Enable First Aid Tweaks")
         @Config.Comment("Enable tweaks for the First Aid mod.")
-        public boolean enable = true;
+        public boolean enable = false;
 
         @Config.Name("[02] Disable Tutorial Message")
         @Config.Comment("Disable the tutorial message that appears when joining a world.")
@@ -834,7 +834,7 @@ public class EMTConfig {
         @Config.RequiresMcRestart
         @Config.Name("[01] Enable Item Physics Tweaks")
         @Config.Comment("Enable tweaks for the Item Physics mod.")
-        public boolean enable = true;
+        public boolean enable = false;
 
         @Config.Name("[02] Improved Item Tooltip")
         @Config.Comment({
@@ -857,7 +857,7 @@ public class EMTConfig {
         @Config.RequiresMcRestart
         @Config.Name("[01] Enable Lightweight Blood Mechanics Tweaks")
         @Config.Comment("Enable tweaks for the Lightweight Blood Mechanics mod.")
-        public boolean enable = true;
+        public boolean enable = false;
 
         @Config.Name("[02] Blood Overlay X-Offset")
         @Config.Comment("Set the X-Offset of the Blood Overlay.")
@@ -937,7 +937,7 @@ public class EMTConfig {
         @Config.RequiresMcRestart
         @Config.Name("[01] Enable Potion Core Tweaks")
         @Config.Comment("Enable tweaks for the Potion Core mod.")
-        public boolean enable = true;
+        public boolean enable = false;
 
         @Config.Name("[02] Render Offset")
         @Config.Comment("Set the render offset of the HUD renderer.")
@@ -953,7 +953,7 @@ public class EMTConfig {
         @Config.RequiresMcRestart
         @Config.Name("[01] Enable Pyrotech Tweaks")
         @Config.Comment("Enable tweaks for the Pyrotech mod.")
-        public boolean enable = true;
+        public boolean enable = false;
 
         @Config.Name("[02] Random Rocks")
         @Config.Comment("Enable random rocks in the world.")
@@ -1035,7 +1035,7 @@ public class EMTConfig {
         @Config.RequiresMcRestart
         @Config.Name("[01] Enable Quark Tweaks")
         @Config.Comment("Enable tweaks for the Quark mod.")
-        public boolean enable = true;
+        public boolean enable = false;
 
         @Config.Name("[02] Always show the Usage Ticker")
         @Config.Comment("Stops the Usage Ticker from disappearing.")
@@ -1079,7 +1079,7 @@ public class EMTConfig {
         @Config.RequiresMcRestart
         @Config.Name("[01] Enable Rustic Tweaks")
         @Config.Comment("Set to false to disable Rustic tweaks")
-        public boolean enable = true;
+        public boolean enable = false;
 
         @Config.Name("[02] Berry Bush generation spread")
         @Config.Comment("Tweaking the max radius Rustic's berry bushes try to generate in per patch")
@@ -1148,7 +1148,7 @@ public class EMTConfig {
         @Config.RequiresMcRestart
         @Config.Name("[01] Enable Simple Difficulty Tweaks")
         @Config.Comment("Set to false to disable Simple Difficulty tweaks.")
-        public boolean enable = true;
+        public boolean enable = false;
 
         @Config.Name("[02] Thirstbar X-Offset")
         @Config.Comment("Set the X-Offset of the Thirstbar.")
@@ -1200,6 +1200,30 @@ public class EMTConfig {
                 "It creates a few subdirectories and moves the configuration files into them."
         })
         public boolean enable = true;
+    }
+
+    @Config.Name("WAILA / HWYLA")
+    @Config.LangKey("config.endermodpacktweaks.waila")
+    @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/hwyla")
+    public static final Waila WAILA = new Waila();
+
+    public static class Waila {
+        @Config.RequiresMcRestart
+        @Config.Name("[01] Enable WAILA Tweaks")
+        @Config.Comment("Enable tweaks for the WAILA mod.")
+        public boolean enable = false;
+
+        @Config.RequiresMcRestart
+        @Config.Name("[02] Override Block Name")
+        @Config.Comment({
+                "Override a block name with the name of another block.",
+                "This feature mimics the Monster Egg Block behavior.",
+                "FORMAT: [what block to replace];[what block to replace with]",
+                "FORMAT: modid:blockid:metadata;modid:blockid:metadata",
+                "EXAMPLE: minecraft:trapped_chest:0;minecraft:chest:0",
+                "NOTE: Yes, you have to use metadata! Even if it's 0!"
+        })
+        public String[] overrideBlockName = new String[]{};
     }
 
     @Mod.EventBusSubscriber(modid = Tags.MOD_ID)
