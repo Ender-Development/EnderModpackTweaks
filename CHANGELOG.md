@@ -1,6 +1,6 @@
 # Changelog
 
-## [0.3.0]
+## [0.3.0] - 2025-03-24
 
 - 🆕 added render offset tweak to potion core
 - 🆕 added a config to let HWYLA _lie_ to you

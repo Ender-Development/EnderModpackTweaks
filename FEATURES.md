@@ -5,8 +5,7 @@
 ### 🐲 [Enhanced Boss Bars](https://www.curseforge.com/minecraft/mc-mods/enhanced-boss-bars) for 1.12.2
 
 - my own version of the mod, since the original one is ARR licensed and only available for modern versions
-- utilizes [AssetMover](https://www.curseforge.com/minecraft/mc-mods/assetmover) to obtain the textures without breaking
-  the license
+- utilizes [AssetMover](https://www.curseforge.com/minecraft/mc-mods/assetmover) to obtain the textures without breaking the license
 
 ### ⏰ TimeSync
 
