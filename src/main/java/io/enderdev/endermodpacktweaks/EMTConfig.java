@@ -1220,8 +1220,8 @@ public class EMTConfig {
                 "This feature mimics the Monster Egg Block behavior.",
                 "FORMAT: [what block to replace];[what block to replace with]",
                 "FORMAT: modid:blockid:metadata;modid:blockid:metadata",
-                "EXAMPLE: minecraft:trapped_chest:0;minecraft:chest:0",
-                "NOTE: Yes, you have to use metadata! Even if it's 0!"
+                "EXAMPLE: minecraft:trapped_chest;minecraft:chest",
+                "NOTE: this doesn't change the block preview that's displayed, only the name.",
         })
         public String[] overrideBlockName = new String[]{};
     }
