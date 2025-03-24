@@ -26,6 +26,7 @@ public class CompatModsHandler {
             put("hidenametags", () -> EMTConfig.MINECRAFT.CLIENT.enable);
             put("hideitemnames", () -> EMTConfig.MINECRAFT.CLIENT.enable);
             put("antifovchange", () -> EMTConfig.MINECRAFT.CLIENT.enable);
+            put("icfluxnetworkenergylimitfix", () -> EMTConfig.FLUX_NETWORKS.enable);
         }
     });
 
