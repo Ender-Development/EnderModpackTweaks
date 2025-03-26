@@ -136,6 +136,12 @@ config.endermodpacktweaks.lightweight_blood_mechanics=Lightweight Blood Mechanic
 config.endermodpacktweaks.lightweight_blood_mechanics.tooltip=Tweaks to the lightweight blood mechanics mod
 
 ####################
+# Matter Overdrive
+####################
+config.endermodpacktweaks.matter_overdrive=Matter Overdrive
+config.endermodpacktweaks.matter_overdrive.tooltip=Tweaks to the matter overdrive mod
+
+####################
 # Multi Builder Tool
 ####################
 config.endermodpacktweaks.multi_builder_tool=Multi Builder Tool
@@ -146,6 +152,12 @@ config.endermodpacktweaks.multi_builder_tool.tooltip=Tweak to the multi builder 
 ####################
 config.endermodpacktweaks.perfect_spawn=Perfect Spawn
 config.endermodpacktweaks.perfect_spawn.tooltip=Tweaks to the perfect spawn mod
+
+####################
+# Pickle Tweaks
+####################
+config.endermodpacktweaks.pickle_tweaks=Pickle Tweaks
+config.endermodpacktweaks.pickle_tweaks.tooltip=Tweaks to the pickle tweaks mod
 
 ####################
 # Potion Core

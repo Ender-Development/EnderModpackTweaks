@@ -24,9 +24,11 @@
     - change the bedrock to something else
     - replace the entire gateway with a structure file
     - change the radius and the height the gateway can generate
+    - replace this file `endermodpacktweaks:structures/end_gateway.nbt`
 - End Portal
     - change the bedrock / torches / endstone that is generated
     - replace the entire portal with a structure file
+    - replace these files `endermodpacktweaks:structures/end_portal.nbt` and `endermodpacktweaks:structures/end_portal_active.nbt`
 - Obsidian Spikes
     - change the obsidian that is generated
     - change the radius and the height the spikes can generate
@@ -102,6 +104,10 @@
 - add an offset to the bleeding overlay renderer
 - increase the size of the bleeding overlay
 
+### [Matter Overdrive](https://www.curseforge.com/minecraft/mc-mods/matter-overdrive-community-edition)
+
+- always render the matter tooltip of the items
+
 ### [Multi Builder Tool](https://www.curseforge.com/minecraft/mc-mods/multi-builder-tool)
 
 - fix crash with [Flux Networks](https://github.com/igentuman/multi-builder-tool/issues/11)
@@ -110,6 +116,10 @@
 
 - generate a default config file if it doesn't exist
 - moved the config file to the config folder
+
+### [Pickle Tweaks](https://www.curseforge.com/minecraft/mc-mods/pickle-tweaks)
+
+- always render the tooltip of Bows, Hoes, Weapons, and Tools
 
 ### [Potion Core](https://www.curseforge.com/minecraft/mc-mods/potion-core)
 

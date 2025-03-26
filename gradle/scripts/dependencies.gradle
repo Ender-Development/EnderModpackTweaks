@@ -247,4 +247,17 @@ dependencies {
     if (project.debug_potioncore.toBoolean()) {
         runtimeOnly "curse.maven:potion-core-242872:2905184"
     }
+
+    compileOnly rfg.deobf("curse.maven:cucumber-272335:2645867")
+    compileOnly rfg.deobf("curse.maven:pickle-tweaks-238761:2700554")
+    if (project.debug_pickletweaks.toBoolean()) {
+        runtimeOnly "curse.maven:cucumber-272335:2645867"
+        runtimeOnly "curse.maven:pickle-tweaks-238761:2700554"
+    }
+
+    compileOnly rfg.deobf("curse.maven:matter-overdrive-community-edition-557428:6342597")
+    if (project.debug_matteroverdrive.toBoolean()) {
+        runtimeOnly "curse.maven:matter-overdrive-community-edition-557428:6342597"
+    }
+
 }

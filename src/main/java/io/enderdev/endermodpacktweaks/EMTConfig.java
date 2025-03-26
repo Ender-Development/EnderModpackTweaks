@@ -898,6 +898,22 @@ public class EMTConfig {
         public int bloodIconYOffset = 0;
     }
 
+    @Config.Name("Matter Overdrive")
+    @Config.LangKey("config.endermodpacktweaks.matter_overdrive")
+    @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/matter-overdrive-community-edition")
+    public static final MatterOverdrive MATTER_OVERDRIVE = new MatterOverdrive();
+
+    public static class MatterOverdrive {
+        @Config.RequiresMcRestart
+        @Config.Name("[01] Enable Matter Overdrive Tweaks")
+        @Config.Comment("Enable tweaks for the Matter Overdrive mod.")
+        public boolean enable = false;
+
+        @Config.Name("[02] Always Show Matter Info")
+        @Config.Comment("Always show the matter info without sneaking.")
+        public boolean alwaysShowMatterInfo = false;
+    }
+
     @Config.Name("Multi Builder Tool")
     @Config.LangKey("config.endermodpacktweaks.multi_builder_tool")
     @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/multi-builder-tool")
@@ -926,6 +942,34 @@ public class EMTConfig {
                 "It also creates a new config file if it doesn't exist."
         })
         public boolean enable = true;
+    }
+
+    @Config.Name("Pickle Tweaks")
+    @Config.LangKey("config.endermodpacktweaks.pickle_tweaks")
+    @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/pickle-tweaks")
+    public static final PickleTweaks PICKLE_TWEAKS = new PickleTweaks();
+
+    public static class PickleTweaks {
+        @Config.RequiresMcRestart
+        @Config.Name("[01] Enable Pickle Tweaks")
+        @Config.Comment("Enable tweaks for the Pickle Tweaks mod.")
+        public boolean enable = false;
+
+        @Config.Name("[02] Always Show Tool Info")
+        @Config.Comment("Always show the tool info without sneaking.")
+        public boolean alwaysShowToolInfo = false;
+
+        @Config.Name("[03] Always Show Sword Info")
+        @Config.Comment("Always show the sword info without sneaking.")
+        public boolean alwaysShowSwordInfo = false;
+
+        @Config.Name("[04] Always Show Hoe Info")
+        @Config.Comment("Always show the hoe info without sneaking.")
+        public boolean alwaysShowHoeInfo = false;
+
+        @Config.Name("[05] Always Show Bow Info")
+        @Config.Comment("Always show the bow info without sneaking.")
+        public boolean alwaysShowBowInfo = false;
     }
 
     @Config.Name("Potion Core")

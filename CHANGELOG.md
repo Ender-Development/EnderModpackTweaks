@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.3.1] - 2025-03-XX
+
+- 🆕 added tweaks for Pickle Tweaks to always render certain tooltips
+- 🆕 added tweaks for Matter Overdrive to always render certain tooltips
+
 ## [0.3.0] - 2025-03-24
 
 - 🆕 added render offset tweak to potion core
