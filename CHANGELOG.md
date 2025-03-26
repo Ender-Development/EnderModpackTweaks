@@ -4,7 +4,7 @@
 
 - 🆕 added tweaks for Pickle Tweaks to always render certain tooltips
 - 🆕 added tweaks for Matter Overdrive to always render certain tooltips
-- 🆕 added another tweak to Reskillable to allow settin a max level for the player
+- 🆕 added another tweak to Reskillable to allow setting a max level for the player
 
 ## [0.3.0] - 2025-03-24
 
