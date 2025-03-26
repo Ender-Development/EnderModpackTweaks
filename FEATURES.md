@@ -140,6 +140,8 @@
 
 - order all skills alphabetically
 - set a max level for the player, which can be spread across all skills
+  - comes with appropriate tooltips
+  - tooltips are translatable
 
 ### [Rustic](https://www.curseforge.com/minecraft/mc-mods/rustic)
 
