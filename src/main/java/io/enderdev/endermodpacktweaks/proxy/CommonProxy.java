@@ -1,10 +1,7 @@
 package io.enderdev.endermodpacktweaks.proxy;
 
 import io.enderdev.endermodpacktweaks.EMTConfig;
-import io.enderdev.endermodpacktweaks.events.BlockEvents;
-import io.enderdev.endermodpacktweaks.events.ElenaiDodgeEvents;
-import io.enderdev.endermodpacktweaks.events.PlayerEvents;
-import io.enderdev.endermodpacktweaks.events.WorldEvents;
+import io.enderdev.endermodpacktweaks.events.*;
 import io.enderdev.endermodpacktweaks.features.materialtweaker.MaterialTweaker;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Loader;
@@ -20,6 +17,10 @@ public class CommonProxy {
 
         if (EMTConfig.ELENAI_DODGE.enable && Loader.isModLoaded("elenaidodge2")) {
             MinecraftForge.EVENT_BUS.register(new ElenaiDodgeEvents());
+        }
+
+        if (EMTConfig.RESKILLABLE.enable && Loader.isModLoaded("reskillable")) {
+            MinecraftForge.EVENT_BUS.register(new ReskillableEvents());
         }
     }
 

@@ -1112,6 +1112,11 @@ public class EMTConfig {
         @Config.Name("[01] Enable Reskillable Tweaks")
         @Config.Comment("Enable tweaks for the Reskillable mod.")
         public boolean enable = true;
+
+        @Config.Name("[02] Max Level")
+        @Config.Comment("Set the max level of the sum of all skills a player can have. Set to 0 to disable.")
+        @Config.RangeInt(min = 0)
+        public int maxLevel = 0;
     }
 
     @Config.Name("Rustic")
