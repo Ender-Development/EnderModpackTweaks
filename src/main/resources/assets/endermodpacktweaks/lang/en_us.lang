@@ -186,6 +186,9 @@ tile.quark:obsidian_speleothem.name=Obsidian Speleothem
 config.endermodpacktweaks.reskillable=Reskillable
 config.endermodpacktweaks.reskillable.tooltip=Tweaks to the reskillable mod
 
+endermodpacktweaks.reskillable.level_max=§4Can't level up, already at max level of %d§r
+endermodpacktweaks.reskillable.level_left=§2%d levels left until reaching max level§r
+
 ####################
 # Rustic
 ####################

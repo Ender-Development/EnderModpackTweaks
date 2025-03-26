@@ -139,6 +139,7 @@
 ### [Reskillable](https://www.curseforge.com/minecraft/mc-mods/reskillable-fork)
 
 - order all skills alphabetically
+- set a max level for the player, which can be spread across all skills
 
 ### [Rustic](https://www.curseforge.com/minecraft/mc-mods/rustic)
 
