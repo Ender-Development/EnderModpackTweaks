@@ -71,6 +71,8 @@ dependencies {
     implementation rfg.deobf("curse.maven:the-one-probe-community-edition-885670:5824252")
     implementation rfg.deobf("curse.maven:topalldependents-1120632:5808089") // updated version of the one probe addons
 
+    implementation rfg.deobf("curse.maven:patchouli-rofl-edition-905159:5981115")
+
     implementation rfg.deobf("curse.maven:hwyla-253449:2568751")
 
     runtimeOnly rfg.deobf("curse.maven:lolasm-460609:5257348") // otherwise it will crash
@@ -98,15 +100,14 @@ dependencies {
         runtimeOnly "curse.maven:perfect-spawn-221418:2543507"
     }
 
-    compileOnly "curse.maven:athenaeum-284350:4633750"
-    compileOnly "curse.maven:patchouli-rofl-edition-905159:5981115"
-    compileOnly "curse.maven:dropt-284973:5405050"
-    compileOnly rfg.deobf("curse.maven:pyrotech-306676:5822040")
+    compileOnly rfg.deobf("curse.maven:athenaeum-284350:4633750")
+    compileOnly rfg.deobf("curse.maven:dropt-284973:5405050")
+    compileOnly rfg.deobf("curse.maven:pyrotech-306676:6253355")
     if (project.debug_pyrotech.toBoolean()) {
         runtimeOnly "curse.maven:athenaeum-284350:4633750"
-        runtimeOnly "curse.maven:patchouli-rofl-edition-905159:5981115"
         runtimeOnly "curse.maven:dropt-284973:5405050"
-        runtimeOnly "curse.maven:pyrotech-306676:5822040"
+        runtimeOnly "curse.maven:pyrotech-306676:6253355"
+        runtimeOnly "curse.maven:realistic-torches-roa-edition-1110941:5764041"
     }
 
     compileOnly rfg.deobf("com.github.jbredwards:fluidlogged-api:47f153989e")
@@ -123,10 +124,8 @@ dependencies {
         runtimeOnly "curse.maven:rustic-256141:6031613"
     }
 
-    compileOnly "curse.maven:patchouli-rofl-edition-905159:5981115"
     compileOnly rfg.deobf("curse.maven:hearth-well-313368:2800056")
     if (project.debug_hearthwell.toBoolean()) {
-        runtimeOnly "curse.maven:patchouli-rofl-edition-905159:5981115"
         runtimeOnly "curse.maven:hearth-well-313368:2800056"
     }
 
