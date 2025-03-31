@@ -26,6 +26,10 @@ public class CommonProxy {
         if (EMTConfig.PYROTECH.enable && Loader.isModLoaded("pyrotech")) {
             MinecraftForge.EVENT_BUS.register(new PyrotechEvents());
         }
+
+        if (EMTConfig.SIMPLE_DIFFICULTY.enable && Loader.isModLoaded("simpledifficulty")) {
+            MinecraftForge.EVENT_BUS.register(new SimpleDifficultyEvents());
+        }
     }
 
     public void init(FMLInitializationEvent event) {
