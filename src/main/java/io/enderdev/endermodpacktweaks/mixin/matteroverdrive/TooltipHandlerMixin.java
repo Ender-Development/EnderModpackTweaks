@@ -11,6 +11,6 @@ import org.spongepowered.asm.mixin.injection.At;
 public class TooltipHandlerMixin {
     @WrapOperation(method = "onItemTooltip", at = @At(value = "INVOKE", target = "Lorg/lwjgl/input/Keyboard;isKeyDown(I)Z"))
     private boolean onItemTooltip(int key, Operation<Boolean> original) {
-        return EMTConfig.PICKLE_TWEAKS.alwaysShowToolInfo || original.call(key);
+        return EMTConfig.MATTER_OVERDRIVE.alwaysShowMatterInfo || original.call(key);
     }
 }
