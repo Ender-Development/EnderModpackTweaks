@@ -48,6 +48,9 @@
 - Visuals
     - disable the display of the held item name above the hotbar
     - disable various overlays
+- Player Effects
+    - apply potion effects to the player based on hunger and health
+    - similar to the effects of Simple Difficulty
 
 ### [Astral Sorcery](https://www.curseforge.com/minecraft/mc-mods/astral-sorcery)
 
@@ -129,6 +132,7 @@
 
 - tweak the rock type that generates in the world
 - you can now specify the weight of each rock type
+- now also allows ignitions from items that extend the base FlintAndSteelItem class
 
 ### [Quark](https://www.curseforge.com/minecraft/mc-mods/quark-rotn-edition)
 

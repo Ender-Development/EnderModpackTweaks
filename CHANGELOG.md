@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.4.0] - 2025-03-30
+
+- 🆕 added a few mixins to Pyrotech to allow ignition items that extend the base FlintAndSteelItem
+- 🆕 added a tweak to apply potion effects to the player based on hunger and health
+- 🧰 fixed MatterOverdrive mixin
+
 ## [0.3.1] - 2025-03-27
 
 - 🆕 added tweaks for Pickle Tweaks to always render certain tooltips
