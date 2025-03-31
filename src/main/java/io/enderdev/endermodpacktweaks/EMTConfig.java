@@ -535,7 +535,7 @@ public class EMTConfig {
             @Config.Comment("Enable tweaks for the player effects.")
             public boolean enable = false;
 
-            @Config.Name("[04] Health Potion Effects")
+            @Config.Name("[02] Health Potion Effects")
             @Config.Comment({
                     "Add additional potion effects to the player depending on the health.",
                     "The health bounds must be between 0% and 100% of max health.",
@@ -544,7 +544,7 @@ public class EMTConfig {
             })
             public String[] healthPotions = new String[]{};
 
-            @Config.Name("[04] Hunger Potion Effects")
+            @Config.Name("[03] Hunger Potion Effects")
             @Config.Comment({
                     "Add additional potion effects to the player depending on the hunger level.",
                     "The hunger bounds must be between 0 and 20.",
@@ -1245,7 +1245,7 @@ public class EMTConfig {
         })
         public String[] temperaturePotions = new String[]{};
 
-        @Config.Name("[04] Thirst Potion Effects")
+        @Config.Name("[05] Thirst Potion Effects")
         @Config.Comment({
                 "Add additional potion effects to the player depending on the thirst level.",
                 "The thirst bounds must be between 0 and 20.",
@@ -1254,12 +1254,12 @@ public class EMTConfig {
         })
         public String[] thirstPotions = new String[]{};
 
-        @Config.Name("[05] Thirst on Respawn")
+        @Config.Name("[06] Thirst on Respawn")
         @Config.Comment("Set the thirst level of the player on respawn.")
         @Config.RangeInt(min = 0, max = 20)
         public int respawnThirst = 20;
 
-        @Config.Name("[06] Thirst Saturation on Respawn")
+        @Config.Name("[07] Thirst Saturation on Respawn")
         @Config.Comment("Set the thirst saturation of the player on respawn.")
         @Config.RangeInt(min = 0, max = 20)
         public int respawnThirstSaturation = 6;
