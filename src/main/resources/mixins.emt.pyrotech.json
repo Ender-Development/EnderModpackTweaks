@@ -5,6 +5,12 @@
     "minVersion": "0.8.5",
     "compatibilityLevel": "JAVA_8",
     "mixins": [
+        "BlockKilnPitMixin",
+        "InteractionUseItemToActivateWorkerMixin",
+        "RightClickBlockEventHandlerMixin",
+        "TileBloomeryMixin",
+        "TileLampOilMixin",
+        "TileTorchBaseMixin",
         "WorldGenRocksMixin"
     ],
     "server": [],

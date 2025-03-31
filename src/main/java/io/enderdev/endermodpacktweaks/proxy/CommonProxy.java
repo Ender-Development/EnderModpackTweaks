@@ -22,6 +22,10 @@ public class CommonProxy {
         if (EMTConfig.RESKILLABLE.enable && Loader.isModLoaded("reskillable")) {
             MinecraftForge.EVENT_BUS.register(new ReskillableEvents());
         }
+
+        if (EMTConfig.PYROTECH.enable && Loader.isModLoaded("pyrotech")) {
+            MinecraftForge.EVENT_BUS.register(new PyrotechEvents());
+        }
     }
 
     public void init(FMLInitializationEvent event) {
