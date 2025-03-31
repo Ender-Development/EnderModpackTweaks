@@ -21,6 +21,8 @@ import java.util.List;
 public class PlayerEvents {
     private final List<SDPotion> temperaturePotions = new ArrayList<>();
     private final List<SDPotion> thirstPotions = new ArrayList<>();
+    private final List<SDPotion> healthPotions = new ArrayList<>();
+    private final List<SDPotion> hungerPotions = new ArrayList<>();
 
     @SubscribeEvent
     public void cancelSleep(SleepingTimeCheckEvent event) {
@@ -98,6 +100,71 @@ public class PlayerEvents {
         if (!thirstPotions.isEmpty()) {
             thirstPotions.forEach(potion -> {
                 if (thirst >= potion.lowerBound && thirst <= potion.upperBound && !player.isPotionActive(potion.potion)) {
+                    player.addPotionEffect(new PotionEffect(potion.potion, 20, potion.amplifier, true, false));
+                }
+            });
+        }
+    }
+
+    @SubscribeEvent
+    public void potionPlayerTick(TickEvent.PlayerTickEvent event) {
+        if (!EMTConfig.MINECRAFT.PLAYER_EFFECTS.enable) {
+            return;
+        }
+
+        EntityPlayer player = event.player;
+        int health = (int) (player.getHealth() / player.getMaxHealth()) * 100;
+        int hunger = player.getFoodStats().getFoodLevel();
+
+        // Health
+        if (healthPotions.isEmpty() && EMTConfig.MINECRAFT.PLAYER_EFFECTS.healthPotions.length != 0) {
+            Arrays.stream(EMTConfig.MINECRAFT.PLAYER_EFFECTS.healthPotions).map(line -> line.split(";")).forEach(data -> {
+                if (data.length == 4
+                        && Integer.parseInt(data[0]) <= Integer.parseInt(data[1])
+                        && Integer.parseInt(data[0]) <= 25
+                        && Integer.parseInt(data[0]) >= 0
+                        && Integer.parseInt(data[1]) <= 25
+                        && Integer.parseInt(data[1]) >= 0
+                ) {
+                    try {
+                        healthPotions.add(new SDPotion(data[2], Integer.parseInt(data[0]), Integer.parseInt(data[1]), Integer.parseInt(data[3])));
+                    } catch (NumberFormatException e) {
+                        EnderModpackTweaks.LOGGER.error(e);
+                        EnderModpackTweaks.LOGGER.error("Error parsing health potion data: {}", Arrays.toString(data));
+                    }
+                }
+            });
+        }
+        if (!healthPotions.isEmpty()) {
+            healthPotions.forEach(potion -> {
+                if (health >= potion.lowerBound && health <= potion.upperBound && !player.isPotionActive(potion.potion)) {
+                    player.addPotionEffect(new PotionEffect(potion.potion, 20, potion.amplifier, true, false));
+                }
+            });
+        }
+
+        // Hunger
+        if (hungerPotions.isEmpty() && EMTConfig.MINECRAFT.PLAYER_EFFECTS.hungerPotions.length != 0) {
+            Arrays.stream(EMTConfig.MINECRAFT.PLAYER_EFFECTS.hungerPotions).map(line -> line.split(";")).forEach(data -> {
+                if (data.length == 4
+                        && Integer.parseInt(data[0]) <= Integer.parseInt(data[1])
+                        && Integer.parseInt(data[0]) <= 20
+                        && Integer.parseInt(data[0]) >= 0
+                        && Integer.parseInt(data[1]) <= 20
+                        && Integer.parseInt(data[1]) >= 0
+                ) {
+                    try {
+                        hungerPotions.add(new SDPotion(data[2], Integer.parseInt(data[0]), Integer.parseInt(data[1]), Integer.parseInt(data[3])));
+                    } catch (NumberFormatException e) {
+                        EnderModpackTweaks.LOGGER.error(e);
+                        EnderModpackTweaks.LOGGER.error("Error parsing hunger potion data: {}", Arrays.toString(data));
+                    }
+                }
+            });
+        }
+        if (!hungerPotions.isEmpty()) {
+            hungerPotions.forEach(potion -> {
+                if (hunger >= potion.lowerBound && hunger <= potion.upperBound && !player.isPotionActive(potion.potion)) {
                     player.addPotionEffect(new PotionEffect(potion.potion, 20, potion.amplifier, true, false));
                 }
             });

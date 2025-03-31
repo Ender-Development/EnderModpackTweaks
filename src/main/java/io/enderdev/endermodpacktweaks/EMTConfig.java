@@ -98,7 +98,7 @@ public class EMTConfig {
             @Config.RequiresMcRestart
             @Config.Name("[01] Enable Material Tweaker")
             @Config.Comment("Enable the Material Tweaker feature. This allows you to tweak the materials of the game.")
-            public boolean enable = true;
+            public boolean enable = false;
 
             @Config.Name("[02] Tweak Stacksize")
             @Config.Comment({
@@ -194,7 +194,7 @@ public class EMTConfig {
             @Config.RequiresMcRestart
             @Config.Name("[01] Enable Boss Bar Tweaks")
             @Config.Comment("Enable tweaks for the Boss Bar. This requires AssetMover.")
-            public boolean enable = true;
+            public boolean enable = false;
         }
 
         @Config.Name("Client Tweaks")
@@ -525,6 +525,35 @@ public class EMTConfig {
             public boolean disallowTraverse = false;
         }
 
+        @Config.Name("Player Effects")
+        @Config.LangKey("config.endermodpacktweaks.minecraft.player_effects")
+        public final PlayerEffects PLAYER_EFFECTS = new PlayerEffects();
+
+        public static class PlayerEffects {
+            @Config.RequiresMcRestart
+            @Config.Name("[01] Enable Player Effects Tweaks")
+            @Config.Comment("Enable tweaks for the player effects.")
+            public boolean enable = false;
+
+            @Config.Name("[04] Health Potion Effects")
+            @Config.Comment({
+                    "Add additional potion effects to the player depending on the health.",
+                    "The health bounds must be between 0% and 100% of max health.",
+                    "FORMAT: lower_bound;upper_bound;effect;amplifier",
+                    "Example: 0;5;minecraft:slowness;2"
+            })
+            public String[] healthPotions = new String[]{};
+
+            @Config.Name("[04] Hunger Potion Effects")
+            @Config.Comment({
+                    "Add additional potion effects to the player depending on the hunger level.",
+                    "The hunger bounds must be between 0 and 20.",
+                    "FORMAT: lower_bound;upper_bound;effect;amplifier",
+                    "Example: 0;5;minecraft:slowness;2"
+            })
+            public String[] hungerPotions = new String[]{};
+        }
+
         @Config.Name("World Tweaks")
         @Config.LangKey("config.endermodpacktweaks.minecraft.world")
         public final World WORLD = new World();
@@ -532,7 +561,7 @@ public class EMTConfig {
         public static class World {
             @Config.Name("[01] Enable World Tweaks")
             @Config.Comment("Enable world tweaks")
-            public boolean enable = true;
+            public boolean enable = false;
 
             @Config.Name("[02] Difficulty")
             @Config.LangKey("config.endermodpacktweaks.minecraft.world.difficulty")
@@ -585,7 +614,7 @@ public class EMTConfig {
         @Config.RequiresMcRestart
         @Config.Name("[01] Enable Astral Sorcery Tweaks")
         @Config.Comment("Enable tweaks for the Astral Sorcery mod.")
-        public boolean enable = true;
+        public boolean enable = false;
 
         @Config.Name("[02] Allow Fake Players")
         @Config.Comment("Allow Fake Players to interact with the Astral Sorcery mod.")
@@ -601,7 +630,7 @@ public class EMTConfig {
         @Config.RequiresMcRestart
         @Config.Name("[01] Enable Backpack Opener Tweaks")
         @Config.Comment("Enable tweaks for the Backpack Opener mod.")
-        public boolean enable = true;
+        public boolean enable = false;
 
         @Config.Name("[02] Valid Items")
         @Config.Comment({
@@ -805,7 +834,7 @@ public class EMTConfig {
         @Config.RequiresMcRestart
         @Config.Name("[01] Enable Flux Networks Tweaks")
         @Config.Comment("Enable tweaks for the Flux Networks mod.")
-        public boolean enable = true;
+        public boolean enable = false;
 
         @Config.RequiresMcRestart
         @Config.Name("[02] Fix IC2 Energy Limit")

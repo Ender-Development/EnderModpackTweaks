@@ -44,6 +44,9 @@ config.endermodpacktweaks.minecraft.nether_portal.tooltip=Tweaks to the Nether P
 config.endermodpacktweaks.minecraft.obsidian_spike=Obsidian Pillars
 config.endermodpacktweaks.minecraft.obsidian_spike.tooltip=Tweaks to the Obsidian Pillars
 
+config.endermodpacktweaks.minecraft.player_effects=Player Effects
+config.endermodpacktweaks.minecraft.player_effects.tooltip=Tweaks to the player effects
+
 config.endermodpacktweaks.minecraft.world=World
 config.endermodpacktweaks.minecraft.world.tooltip=Tweaks to the world
 config.endermodpacktweaks.minecraft.world.difficulty=Dificulty
