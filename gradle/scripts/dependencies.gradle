@@ -29,6 +29,10 @@ repositories {
         name 'JitPack'
         url 'https://jitpack.io'
     }
+    maven {
+        name 'BlameJared'
+        url 'https://maven.blamejared.com/'
+    }
     mavenLocal() // Must be last for caching to work
 }
 
@@ -89,7 +93,15 @@ dependencies {
     implementation rfg.deobf("maven.modrinth:nether-api:1m3gvzYh")
     implementation("com.cleanroommc:groovyscript:1.2.0-hotfix1") { transitive = false } // so it doesn't installs JEI
 
+    // Cursed CraftTweaker
+    runtimeOnly "CraftTweaker2:CraftTweaker2-API:4.1.20.698"
+    runtimeOnly "CraftTweaker2:ZenScript:4.1.20.698"
+    runtimeOnly "CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.1.20.698"
+
     // Mod Compatibility
+
+    compileOnly "curse.maven:bookshelf-228525:2836960"
+
     compileOnly "mezz:jei:4.26.1" // HEI
     if (project.debug_hei.toBoolean()) {
         runtimeOnly "mezz:jei:4.26.1"
@@ -167,6 +179,14 @@ dependencies {
     if (project.debug_darkutilities.toBoolean()) {
         runtimeOnly "curse.maven:bookshelf-228525:2836960"
         runtimeOnly "curse.maven:dark-utilities-242195:2813586"
+    }
+
+    compileOnly rfg.deobf("curse.maven:game-stages-268655:2951840")
+    compileOnly rfg.deobf("curse.maven:item-stages-280316:2810185")
+    if (project.debug_gamestages.toBoolean()) {
+        runtimeOnly "curse.maven:bookshelf-228525:2836960"
+        runtimeOnly "curse.maven:game-stages-268655:2951840"
+        runtimeOnly "curse.maven:item-stages-280316:2810185"
     }
 
     compileOnly rfg.deobf("curse.maven:betterendforge-backport-1165149:6055565")

@@ -97,6 +97,10 @@
 - allow overriding the max tier of IC2 Energy
 - allow manually setting the max tier of IC2 Energy
 
+### [Game Stages](https://www.curseforge.com/minecraft/mc-mods/game-stages)
+
+- disable the [Item Stages](https://www.curseforge.com/minecraft/mc-mods/item-stages) tooltip
+
 ### [ItemPhysic Full](https://www.curseforge.com/minecraft/mc-mods/itemphysic)
 
 - improve the tooltip in alternative pickup mode to show the size of the item stack that is being looked at

@@ -1,6 +1,11 @@
 # Changelog
 
-## [0.4.0] - 2025-03-30
+## [0.4.1] - 2025-04-XX
+
+- 🆕 added a tweak to item stages to remove the tooltip
+- 🧰 fixed localization of a few config options
+
+## [0.4.0] - 2025-03-31
 
 - 🆕 added a few mixins to Pyrotech to allow ignition items that extend the base FlintAndSteelItem
 - 🆕 added a tweak to apply potion effects to the player based on hunger and health

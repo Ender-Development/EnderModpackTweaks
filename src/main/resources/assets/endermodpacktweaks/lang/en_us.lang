@@ -70,6 +70,8 @@ config.endermodpacktweaks.astral_sorcery.tooltip=Tweaks to the astral sorcery mo
 config.endermodpacktweaks.bp_opener=Backpack Opener
 config.endermodpacktweaks.bp_opener.tooltip=Tweaks to the backpack opener mod
 
+endermodpacktweaks.endermodpacktweaks.backpack opener.validitems=Valid Items
+
 ####################
 # BetterEnd
 ####################
@@ -100,6 +102,8 @@ config.endermodpacktweaks.default_world_generator.tooltip=Tweaks to the default 
 config.endermodpacktweaks.ds_huds=Dynamic Surroundings: HUDs
 config.endermodpacktweaks.ds_huds.tooltip=Tweaks to the dynamic surroundings HUDs mod
 
+endermodpacktweaks.endermodpacktweaks.dynamic surroundings:huds.potionhudhidelist=Potion HUD Hide List
+
 ####################
 # Elenai Dodge 2
 ####################
@@ -123,6 +127,12 @@ config.endermodpacktweaks.first_aid.tooltip=Tweaks to the first aid mod
 ####################
 config.endermodpacktweaks.flux_networks=Flux Networks
 config.endermodpacktweaks.flux_networks.tooltip=Tweaks to the flux networks mod
+
+#####################
+# Game Stages
+####################
+config.endermodpacktweaks.game_stages=Game Stages
+config.endermodpacktweaks.game_stages.tooltip=Tweaks to the game stages mod
 
 ####################
 # Item Physics
@@ -198,11 +208,17 @@ endermodpacktweaks.reskillable.level_left=§2%d levels left until reaching max l
 config.endermodpacktweaks.rustic=Rustic
 config.endermodpacktweaks.rustic.tooltip=Tweaks to the rustic mod
 
+endermodpacktweaks.endermodpacktweaks.rustic.listberrybushblocks=List of Berry Bush Blocks
+endermodpacktweaks.endermodpacktweaks.rustic.listbiomesblacklist=Blacklist of Biomes
+
 ####################
 # Simple Difficulty
 ####################
 config.endermodpacktweaks.simple_difficulty=Simple Difficulty
 config.endermodpacktweaks.simple_difficulty.tooltip=Tweaks to the simple difficulty mod
+
+endermodpacktweaks.endermodpacktweaks.simple difficulty.temperaturepotions=Temperature Potions
+endermodpacktweaks.endermodpacktweaks.simple difficulty.thirstpotions=Thirst Potions
 
 ####################
 # Tool Progression
@@ -215,3 +231,5 @@ config.endermodpacktweaks.tool_progression.tooltip=Tweaks to the tool progressio
 ####################
 config.endermodpacktweaks.waila=WAILA / HWYLA
 config.endermodpacktweaks.waila.tooltip=Tweaks to the WAILA / HWYLA mod
+
+endermodpacktweaks.endermodpacktweaks.waila / hwyla.overrideblockname=Override Block Name

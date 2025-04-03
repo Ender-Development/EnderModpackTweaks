@@ -854,6 +854,22 @@ public class EMTConfig {
         public int ic2SourceTier = 4;
     }
 
+    @Config.Name("Game Stages")
+    @Config.LangKey("config.endermodpacktweaks.game_stages")
+    @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/game-stages")
+    public static final GameStages GAME_STAGES = new GameStages();
+
+    public static class GameStages {
+        @Config.RequiresMcRestart
+        @Config.Name("[01] Enable Game Stages Tweaks")
+        @Config.Comment("Enable tweaks for the Game Stages mod.")
+        public boolean enable = false;
+
+        @Config.Name("[02] Disable Item Stages Tooltip")
+        @Config.Comment("Disable the Tooltip that is displayed when hovering over a staged item.")
+        public boolean disableTooltip = false;
+    }
+
     @Config.Name("Item Physics")
     @Config.LangKey("config.endermodpacktweaks.item_physics")
     @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/itemphysic")
