@@ -3,16 +3,18 @@ package io.enderdev.endermodpacktweaks.utils;
 import net.minecraft.potion.Potion;
 
 public class EmtPotionData {
-    Potion potion;
-    int lowerBound;
-    int upperBound;
-    int amplifier;
+    private final Potion potion;
+    private final int lowerBound;
+    private final int upperBound;
+    private final int amplifier;
+    private boolean state;
 
     public EmtPotionData(String potion, int lowerBound, int upperBound, int amplifier) {
         this.potion = Potion.getPotionFromResourceLocation(potion);
         this.lowerBound = lowerBound;
         this.upperBound = upperBound;
         this.amplifier = amplifier;
+        this.state = false;
     }
 
     public Potion getPotion() {
@@ -29,5 +31,13 @@ public class EmtPotionData {
 
     public int getAmplifier() {
         return amplifier;
+    }
+
+    public boolean isActive() {
+        return state;
+    }
+
+    public void setActive(boolean active) {
+        state = active;
     }
 }

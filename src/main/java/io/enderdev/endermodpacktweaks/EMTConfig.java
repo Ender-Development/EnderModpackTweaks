@@ -535,6 +535,7 @@ public class EMTConfig {
             @Config.Comment("Enable tweaks for the player effects.")
             public boolean enable = false;
 
+            @Config.RequiresMcRestart
             @Config.Name("[02] Health Potion Effects")
             @Config.Comment({
                     "Add additional potion effects to the player depending on the health.",
@@ -544,6 +545,7 @@ public class EMTConfig {
             })
             public String[] healthPotions = new String[]{};
 
+            @Config.RequiresMcRestart
             @Config.Name("[03] Hunger Potion Effects")
             @Config.Comment({
                     "Add additional potion effects to the player depending on the hunger level.",
@@ -1260,6 +1262,7 @@ public class EMTConfig {
         @Config.Comment("Set the Y-Offset of the Thirstbar.")
         public int thirstbarYOffset = -53;
 
+        @Config.RequiresMcRestart
         @Config.Name("[04] Temperature Potion Effects")
         @Config.Comment({
                 "Add additional potion effects to the player depending on the temperature.",
@@ -1269,6 +1272,7 @@ public class EMTConfig {
         })
         public String[] temperaturePotions = new String[]{};
 
+        @Config.RequiresMcRestart
         @Config.Name("[05] Thirst Potion Effects")
         @Config.Comment({
                 "Add additional potion effects to the player depending on the thirst level.",
@@ -1287,6 +1291,16 @@ public class EMTConfig {
         @Config.Comment("Set the thirst saturation of the player on respawn.")
         @Config.RangeInt(min = 0, max = 20)
         public int respawnThirstSaturation = 6;
+
+        @Config.Name("[08] Cold Resistance Upper Limit")
+        @Config.Comment("Set the upper limit of the cold resistance effect to block temperature effects.")
+        @Config.RangeInt(min = 0, max = 25)
+        public int coldResistanceUpperLimit = 12;
+
+        @Config.Name("[09] Heat Resistance Lower Limit")
+        @Config.Comment("Set the lower limit of the heat resistance effect to block temperature effects.")
+        @Config.RangeInt(min = 0, max = 25)
+        public int heatResistanceLowerLimit = 13;
     }
 
     @Config.Name("Tool Progression")
