@@ -1,6 +1,6 @@
 # Changelog
 
-## [0.4.1] - 2025-04-XX
+## [0.4.1] - 2025-04-06
 
 - 🆕 added a tweak to item stages to remove the tooltip
 - 🆕 added a tweak to game stages related mods to localize stage names
