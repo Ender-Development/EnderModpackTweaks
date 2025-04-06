@@ -100,6 +100,7 @@
 ### [Game Stages](https://www.curseforge.com/minecraft/mc-mods/game-stages)
 
 - disable the [Item Stages](https://www.curseforge.com/minecraft/mc-mods/item-stages) tooltip
+- localize the stage names displayed by [Recipe Stages](https://www.curseforge.com/minecraft/mc-mods/recipe-stages)
 
 ### [ItemPhysic Full](https://www.curseforge.com/minecraft/mc-mods/itemphysic)
 

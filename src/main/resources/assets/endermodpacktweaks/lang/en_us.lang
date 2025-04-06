@@ -134,6 +134,8 @@ config.endermodpacktweaks.flux_networks.tooltip=Tweaks to the flux networks mod
 config.endermodpacktweaks.game_stages=Game Stages
 config.endermodpacktweaks.game_stages.tooltip=Tweaks to the game stages mod
 
+endermodspacktweaks.gamestages.unknown_item=Unfamiliar Item
+
 ####################
 # Item Physics
 ####################

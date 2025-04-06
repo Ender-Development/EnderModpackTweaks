@@ -3,7 +3,10 @@
 ## [0.4.1] - 2025-04-XX
 
 - 🆕 added a tweak to item stages to remove the tooltip
+- 🆕 added a tweak to game stages related mods to localize stage names
 - 🧰 fixed localization of a few config options
+- 🧰 fixed potion effects of various conditions
+- 🧰 fixed temperature potion effects not respecting the heat/cold resistance potion
 
 ## [0.4.0] - 2025-03-31
 
