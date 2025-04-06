@@ -42,6 +42,7 @@ public class EMTMixinLoader implements ILateMixinLoader {
             put("mixins.emt.pickletweaks.json", () -> Loader.isModLoaded("pickletweaks") && EMTConfig.PICKLE_TWEAKS.enable);
             put("mixins.emt.matteroverdrive.json", () -> Loader.isModLoaded("matteroverdrive") && EMTConfig.MATTER_OVERDRIVE.enable);
             put("mixins.emt.itemstages.json", () -> Loader.isModLoaded("itemstages") && EMTConfig.GAME_STAGES.enable);
+            put("mixins.emt.recipestages.json", () -> Loader.isModLoaded("recipestages") && EMTConfig.GAME_STAGES.enable);
         }
     });
 

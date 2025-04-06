@@ -1,0 +1,13 @@
+{
+    "package": "io.enderdev.endermodpacktweaks.mixin.recipestages",
+    "refmap": "mixins.endermodpacktweaks.refmap.json",
+    "target": "@env(DEFAULT)",
+    "minVersion": "0.8.5",
+    "compatibilityLevel": "JAVA_8",
+    "mixins": [
+        "StagedRecipeWrapperShapedMixin",
+        "StagedRecipeWrapperShapelessMixin"
+    ],
+    "server": [],
+    "client": []
+}

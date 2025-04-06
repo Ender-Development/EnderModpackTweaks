@@ -100,7 +100,8 @@ dependencies {
 
     // Mod Compatibility
 
-    compileOnly "curse.maven:bookshelf-228525:2836960"
+    implementation rfg.deobf("curse.maven:bookshelf-228525:2836960")
+    implementation rfg.deobf("curse.maven:mantle-74924:2713386")
 
     compileOnly "mezz:jei:4.26.1" // HEI
     if (project.debug_hei.toBoolean()) {
@@ -177,16 +178,16 @@ dependencies {
 
     compileOnly rfg.deobf("curse.maven:dark-utilities-242195:2813586")
     if (project.debug_darkutilities.toBoolean()) {
-        runtimeOnly "curse.maven:bookshelf-228525:2836960"
         runtimeOnly "curse.maven:dark-utilities-242195:2813586"
     }
 
     compileOnly rfg.deobf("curse.maven:game-stages-268655:2951840")
     compileOnly rfg.deobf("curse.maven:item-stages-280316:2810185")
+    compileOnly rfg.deobf("curse.maven:recipe-stages-280554:3405071")
     if (project.debug_gamestages.toBoolean()) {
-        runtimeOnly "curse.maven:bookshelf-228525:2836960"
         runtimeOnly "curse.maven:game-stages-268655:2951840"
         runtimeOnly "curse.maven:item-stages-280316:2810185"
+        runtimeOnly "curse.maven:recipe-stages-280554:3405071"
     }
 
     compileOnly rfg.deobf("curse.maven:betterendforge-backport-1165149:6055565")
@@ -277,6 +278,11 @@ dependencies {
     compileOnly rfg.deobf("curse.maven:matter-overdrive-community-edition-557428:6342597")
     if (project.debug_matteroverdrive.toBoolean()) {
         runtimeOnly "curse.maven:matter-overdrive-community-edition-557428:6342597"
+    }
+
+    compileOnly rfg.deobf("curse.maven:tinkers-construct-74072:2902483")
+    if (project.debug_tinkers.toBoolean()) {
+        runtimeOnly "curse.maven:tinkers-construct-74072:2902483"
     }
 
 }
