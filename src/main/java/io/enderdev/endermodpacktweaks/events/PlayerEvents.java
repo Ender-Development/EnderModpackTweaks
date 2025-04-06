@@ -41,9 +41,9 @@ public class PlayerEvents {
             Arrays.stream(EMTConfig.MINECRAFT.PLAYER_EFFECTS.healthPotions).map(line -> line.split(";")).forEach(data -> {
                 if (data.length == 4
                         && Integer.parseInt(data[0]) <= Integer.parseInt(data[1])
-                        && Integer.parseInt(data[0]) <= 25
+                        && Integer.parseInt(data[0]) <= 100
                         && Integer.parseInt(data[0]) >= 0
-                        && Integer.parseInt(data[1]) <= 25
+                        && Integer.parseInt(data[1]) <= 100
                         && Integer.parseInt(data[1]) >= 0
                 ) {
                     try {
