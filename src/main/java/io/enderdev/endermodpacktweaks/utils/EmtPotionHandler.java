@@ -45,4 +45,13 @@ public class EmtPotionHandler {
             }
         });
     }
+
+    public void clear(EntityPlayer player) {
+        listPotions.forEach(potion -> {
+            if (potion.isActive()) {
+                player.removePotionEffect(potion.getPotion());
+                potion.setActive(false);
+            }
+        });
+    }
 }

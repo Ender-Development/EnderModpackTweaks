@@ -21,9 +21,9 @@ public class StagedRecipeWrapperShapedMixin {
     @WrapOperation(method = "drawInfo", at = @At(value = "INVOKE", target="Lnet/minecraft/client/gui/FontRenderer;drawString(Ljava/lang/String;III)I", remap = true), remap = false)
     public int drawString(FontRenderer instance, String text, int x, int y, int color, Operation<Integer> original) {
         if (!EMTConfig.GAME_STAGES.localizeRecipeStages) {
-            return original.call(instance, text, x, y, color);
+            return original.call(instance, text, x + EMTConfig.GAME_STAGES.recipeStagesTooltipXOffset, y + EMTConfig.GAME_STAGES.recipeStagesTooltipYOffset, color);
         }
         String localizedText = I18n.format("emt.game_stages." + recipe.getTier().toLowerCase(Locale.ROOT).trim());
-        return instance.drawString(I18n.format("gui.rs.tip.stage", localizedText), x, y, color);
+        return instance.drawString(I18n.format("gui.rs.tip.stage", localizedText), x + EMTConfig.GAME_STAGES.recipeStagesTooltipXOffset, y + EMTConfig.GAME_STAGES.recipeStagesTooltipYOffset, color);
     }
 }
