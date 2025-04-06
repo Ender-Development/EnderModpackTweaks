@@ -871,13 +871,20 @@ public class EMTConfig {
         @Config.Comment("Disable the Tooltip that is displayed when hovering over a staged item.")
         public boolean disableTooltip = false;
 
-        @Config.Name("[03] Localize Recipe Stages")
+        @Config.Name("[03] Localize Stage Names")
         @Config.Comment({
-                "Allow localization of recipe stages. This works by adding a localization key",
+                "Allow localization of stages. This works by adding a localization key",
                 "to each game stage in the format of 'emt.game_stages.<stage_name>'"
         })
         public boolean localizeRecipeStages = false;
 
+        @Config.Name("[04] Recipe Stages Tooltip X-Offset")
+        @Config.Comment("Set the X-Offset of the recipe stages tooltip.")
+        public int recipeStagesTooltipXOffset = 0;
+
+        @Config.Name("[05] Recipe Stages Tooltip Y-Offset")
+        @Config.Comment("Set the Y-Offset of the recipe stages tooltip.")
+        public int recipeStagesTooltipYOffset = 0;
     }
 
     @Config.Name("Item Physics")

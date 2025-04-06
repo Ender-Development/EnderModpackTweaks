@@ -37,4 +37,11 @@ public class SimpleDifficultyEvents {
         int thirst = SDCapabilities.getThirstData(player).getThirstLevel();
         thirstPotionHandler.apply(player, thirst);
     }
+
+    @SubscribeEvent
+    public void playerLogout(PlayerEvent.PlayerLoggedOutEvent event) {
+        EntityPlayer player = event.player;
+        temperaturePotionHandler.clear(player);
+        thirstPotionHandler.clear(player);
+    }
 }

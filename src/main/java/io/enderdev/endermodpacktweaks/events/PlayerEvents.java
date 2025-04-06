@@ -6,6 +6,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.event.entity.player.SleepingTimeCheckEvent;
 import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 public class PlayerEvents {
@@ -34,5 +35,12 @@ public class PlayerEvents {
         // Hunger
         int hunger = player.getFoodStats().getFoodLevel();
         hungerPotionHandler.apply(player, hunger);
+    }
+
+    @SubscribeEvent
+    public void playerLogout(PlayerEvent.PlayerLoggedOutEvent event) {
+        EntityPlayer player = event.player;
+        healthPotionHandler.clear(player);
+        hungerPotionHandler.clear(player);
     }
 }
