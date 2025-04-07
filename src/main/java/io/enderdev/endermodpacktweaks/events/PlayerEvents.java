@@ -10,8 +10,8 @@ import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 public class PlayerEvents {
-    private final EmtPotionHandler healthPotionHandler = new EmtPotionHandler(EMTConfig.MINECRAFT.PLAYER_EFFECTS.healthPotions, 0, 100);
-    private final EmtPotionHandler hungerPotionHandler = new EmtPotionHandler(EMTConfig.MINECRAFT.PLAYER_EFFECTS.hungerPotions, 0, 20);
+    public final EmtPotionHandler healthPotionHandler = new EmtPotionHandler(EMTConfig.MINECRAFT.PLAYER_EFFECTS.healthPotions, 0, 100);
+    public final EmtPotionHandler hungerPotionHandler = new EmtPotionHandler(EMTConfig.MINECRAFT.PLAYER_EFFECTS.hungerPotions, 0, 20);
 
     @SubscribeEvent
     public void cancelSleep(SleepingTimeCheckEvent event) {

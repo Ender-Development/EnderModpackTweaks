@@ -11,7 +11,17 @@ import java.util.List;
 public class EmtPotionHandler {
     private final List<EmtPotionData> listPotions = new ArrayList<>();
 
+    private final String[] potionData;
+    private final int lowerBound;
+    private final int upperBound;
+
     public EmtPotionHandler(String[] potionData, int lowerBound, int upperBound) {
+        this.potionData = potionData;
+        this.lowerBound = lowerBound;
+        this.upperBound = upperBound;
+    }
+
+    public void init() {
         Arrays.stream(potionData).map(line -> line.split(";")).forEach(data -> {
             if (data.length == 4
                     && Integer.parseInt(data[0]) <= Integer.parseInt(data[1])
@@ -35,6 +45,9 @@ public class EmtPotionHandler {
             return;
         }
         listPotions.forEach(potion -> {
+            if (potion == null) {
+                return;
+            }
             if (value >= potion.getLowerBound() && value <= potion.getUpperBound() && !player.isPotionActive(potion.getPotion())) {
                 player.addPotionEffect(new PotionEffect(potion.getPotion(), Integer.MAX_VALUE, potion.getAmplifier(), true, false));
                 potion.setActive(true);

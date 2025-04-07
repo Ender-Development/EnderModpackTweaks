@@ -11,8 +11,8 @@ import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 public class SimpleDifficultyEvents {
-    private final EmtPotionHandler temperaturePotionHandler = new EmtPotionHandler(EMTConfig.SIMPLE_DIFFICULTY.temperaturePotions, 0, 25);
-    private final EmtPotionHandler thirstPotionHandler = new EmtPotionHandler(EMTConfig.SIMPLE_DIFFICULTY.thirstPotions, 0, 20);
+    public final EmtPotionHandler temperaturePotionHandler = new EmtPotionHandler(EMTConfig.SIMPLE_DIFFICULTY.temperaturePotions, 0, 25);
+    public final EmtPotionHandler thirstPotionHandler = new EmtPotionHandler(EMTConfig.SIMPLE_DIFFICULTY.thirstPotions, 0, 20);
 
     @SubscribeEvent
     public void setThirstOnRespawn(PlayerEvent.PlayerRespawnEvent event) {
