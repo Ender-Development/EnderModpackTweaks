@@ -55,6 +55,21 @@ public class EMTConfig {
 
     public static class Modpack {
 
+        @Config.RequiresMcRestart
+        @Config.Name("[01] Modpack Name")
+        @Config.Comment("The name of the modpack.")
+        public String modpackName = "";
+
+        @Config.RequiresMcRestart
+        @Config.Name("[02] Modpack Version")
+        @Config.Comment("The version of the modpack.")
+        public String modpackVersion = "";
+
+        @Config.RequiresMcRestart
+        @Config.Name("[03] Modpack Author")
+        @Config.Comment("The author of the modpack.")
+        public String modpackAuthor = "";
+
         @Config.Name("Crash Info")
         @Config.LangKey("config.endermodpacktweaks.crash_info")
         public final CrashInfo CRASH_INFO = new CrashInfo();
@@ -71,23 +86,11 @@ public class EMTConfig {
 
             @Config.RequiresMcRestart
             @Config.Name("[02] Read from Manifest")
-            @Config.Comment("Read the information from the manifest file of the modpack.")
+            @Config.Comment({
+                    "Read the information from the manifest file of the modpack.",
+                    "This will override the config values."
+            })
             public boolean readFromManifest = true;
-
-            @Config.RequiresMcRestart
-            @Config.Name("[03] Modpack Name")
-            @Config.Comment("The name of the modpack. Only used if 'Read from Manifest' is disabled.")
-            public String modpackName = "";
-
-            @Config.RequiresMcRestart
-            @Config.Name("[04] Modpack Version")
-            @Config.Comment("The version of the modpack. Only used if 'Read from Manifest' is disabled.")
-            public String modpackVersion = "";
-
-            @Config.RequiresMcRestart
-            @Config.Name("[05] Modpack Author")
-            @Config.Comment("The author of the modpack. Only used if 'Read from Manifest' is disabled.")
-            public String modpackAuthor = "";
         }
 
         @Config.Name("Material Tweaker")
@@ -162,6 +165,21 @@ public class EMTConfig {
                     "Format: modid:itemid;toughness"
             })
             public String[] armorToughness = new String[]{};
+        }
+
+        @Config.Name("Server Message")
+        @Config.LangKey("config.endermodpacktweaks.server_message")
+        public final ServerMessage SERVER_MESSAGE = new ServerMessage();
+
+        public static class ServerMessage {
+            @Config.RequiresMcRestart
+            @Config.Name("[01] Enable Server Message")
+            @Config.Comment("Enable the Server Message feature. This adds a message to the server console when the server starts.")
+            public boolean enable = true;
+
+            @Config.Name("[02] Server Name")
+            @Config.Comment("The name of the server. Only used if 'Enable Server Message' is enabled.")
+            public String serverName = "Minecraft";
         }
 
         @Config.Name("Sync Time")
