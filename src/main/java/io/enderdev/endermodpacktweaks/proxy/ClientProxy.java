@@ -2,6 +2,7 @@ package io.enderdev.endermodpacktweaks.proxy;
 
 import io.enderdev.endermodpacktweaks.EMTConfig;
 import io.enderdev.endermodpacktweaks.events.ClientEvents;
+import io.enderdev.endermodpacktweaks.features.modpackinfo.ModpackInfoEventHandler;
 import io.enderdev.endermodpacktweaks.patches.mysticallib.EffectManager;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraftforge.common.MinecraftForge;
@@ -18,6 +19,10 @@ public class ClientProxy extends CommonProxy {
 
         if (Loader.isModLoaded("crissaegrim")) {
             MinecraftForge.EVENT_BUS.register(new EffectManager());
+        }
+
+        if (EMTConfig.MODPACK.OPTIONS_MENU_BUTTONS.enable) {
+            MinecraftForge.EVENT_BUS.register(new ModpackInfoEventHandler());
         }
     }
 

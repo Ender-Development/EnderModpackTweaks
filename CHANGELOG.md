@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.4.2] - 2025-04-07
+
+- 🆕 added a server greeting message
+- 🆕 added main menu / options buttons for related pack links (e.g. Discord, GitHub, etc.)
+- 🧰 fixed potion effects crashing when a potion is registered after my mod
+- 🧰 fixed boss bars without a custom texture not rendering the boss name
+- 🧰 fixed the bossbar of the Frostmaw using the wrong texture
+- 👾 refactored how I obtain the modpack info for future features (this may cause some formatting issues in existing configs)
+
 ## [0.4.1] - 2025-04-06
 
 - 🆕 added a tweak to item stages to remove the tooltip

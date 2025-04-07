@@ -51,6 +51,7 @@ public class EMTConfig {
 
     @Config.Name("Modpack Tweaks")
     @Config.LangKey("config.endermodpacktweaks")
+    @Config.Comment("Made with <3 by Ender-Development")
     public static final Modpack MODPACK = new Modpack();
 
     public static class Modpack {
@@ -72,6 +73,7 @@ public class EMTConfig {
 
         @Config.Name("Crash Info")
         @Config.LangKey("config.endermodpacktweaks.crash_info")
+        @Config.Comment("Add additional modpack information to the crash report.")
         public final CrashInfo CRASH_INFO = new CrashInfo();
 
         public static class CrashInfo {
@@ -95,6 +97,7 @@ public class EMTConfig {
 
         @Config.Name("Material Tweaker")
         @Config.LangKey("config.endermodpacktweaks.material_tweaker")
+        @Config.Comment("A tool is not to your linkings? Tweak it to your likings!")
         public final MaterialTweaker MATERIAL_TWEAKER = new MaterialTweaker();
 
         public static class MaterialTweaker {
@@ -167,8 +170,62 @@ public class EMTConfig {
             public String[] armorToughness = new String[]{};
         }
 
+        @Config.Name("Options Menu Buttons")
+        @Config.LangKey("config.endermodpacktweaks.options_menu_buttons")
+        @Config.Comment("Link everything related to the modpack in the options and main menu.")
+        public final OptionsMenuButtons OPTIONS_MENU_BUTTONS = new OptionsMenuButtons();
+
+        public static class OptionsMenuButtons {
+            @Config.RequiresMcRestart
+            @Config.Name("[01] Enable Options Menu Buttons")
+            @Config.Comment("Enable the Options Menu Buttons feature. This adds additional buttons to the options menu.")
+            public boolean enable = false;
+
+            @Config.Name("Changelog Button")
+            @Config.LangKey("config.endermodpacktweaks.options_menu_buttons.changelog")
+            public final OptionsMenuButton CHANGELOG_BUTTON = new OptionsMenuButton("Changelog", "");
+
+            @Config.Name("Donation Button")
+            @Config.LangKey("config.endermodpacktweaks.options_menu_buttons.donation")
+            public final OptionsMenuButton DONATION_BUTTON = new OptionsMenuButton("Donation", "");
+
+            @Config.Name("GitHub Button")
+            @Config.LangKey("config.endermodpacktweaks.options_menu_buttons.github")
+            public final OptionsMenuButton GITHUB_BUTTON = new OptionsMenuButton("GitHub", "");
+
+            @Config.Name("Discord Button")
+            @Config.LangKey("config.endermodpacktweaks.options_menu_buttons.discord")
+            public final OptionsMenuButton DISCORD_BUTTON = new OptionsMenuButton("Discord", "");
+
+            @Config.Name("Twitch Button")
+            @Config.LangKey("config.endermodpacktweaks.options_menu_buttons.twitch")
+            public final OptionsMenuButton TWITCH_BUTTON = new OptionsMenuButton("Twitch", "");
+
+            @Config.Name("Youtube Button")
+            @Config.LangKey("config.endermodpacktweaks.options_menu_buttons.youtube")
+            public final OptionsMenuButton YOUTUBE_BUTTON = new OptionsMenuButton("Youtube", "");
+
+            public static class OptionsMenuButton {
+                @Config.Name("[01] Enable Button")
+                public boolean enable;
+
+                @Config.Name("[02] Button Text")
+                public String buttonText;
+
+                @Config.Name("[03] Button URL")
+                public String url;
+
+                OptionsMenuButton(String name, String url) {
+                    this.enable = false;
+                    this.buttonText = name;
+                    this.url = url;
+                }
+            }
+        }
+
         @Config.Name("Server Message")
         @Config.LangKey("config.endermodpacktweaks.server_message")
+        @Config.Comment("Similar to something that Nomifactory came up with.")
         public final ServerMessage SERVER_MESSAGE = new ServerMessage();
 
         public static class ServerMessage {
@@ -184,6 +241,7 @@ public class EMTConfig {
 
         @Config.Name("Sync Time")
         @Config.LangKey("config.endermodpacktweaks.sync_time")
+        @Config.Comment("Never see the light of day again. (If you only play at night.)")
         public final SyncTime SYNC_TIME = new SyncTime();
 
         public static class SyncTime {
@@ -200,12 +258,14 @@ public class EMTConfig {
 
     @Config.Name("Minecraft")
     @Config.LangKey("config.endermodpacktweaks.minecraft")
+    @Config.Comment("The block game everyone loves.")
     public static final Minecraft MINECRAFT = new Minecraft();
 
     public static class Minecraft {
 
         @Config.Name("Boss Bar Tweaks")
         @Config.LangKey("config.endermodpacktweaks.minecraft.boss_bar")
+        @Config.Comment("Replace the boring old boss bars with something more fancy.")
         public final BossBar BOSS_BAR = new BossBar();
 
         public static class BossBar {
@@ -217,6 +277,7 @@ public class EMTConfig {
 
         @Config.Name("Client Tweaks")
         @Config.LangKey("config.endermodpacktweaks.minecraft.client")
+        @Config.Comment("Disable various Client elements.")
         public final Client CLIENT = new Client();
 
         public static class Client {
@@ -295,6 +356,7 @@ public class EMTConfig {
 
         @Config.Name("Dragon Tweaks")
         @Config.LangKey("config.endermodpacktweaks.minecraft.dragon")
+        @Config.Comment("Tweaks for the initial Dragon Fight.")
         public final Dragon DRAGON = new Dragon();
 
         public static class Dragon {
@@ -341,6 +403,7 @@ public class EMTConfig {
 
         @Config.Name("End Gateway Tweaks")
         @Config.LangKey("config.endermodpacktweaks.minecraft.end_gateway")
+        @Config.Comment("Tweak the End Gateway to your liking.")
         public final EndGateway END_GATEWAY = new EndGateway();
 
         public static class EndGateway {
@@ -381,6 +444,7 @@ public class EMTConfig {
 
         @Config.Name("End Island Tweaks")
         @Config.LangKey("config.endermodpacktweaks.minecraft.end_island")
+        @Config.Comment("Tweak the End Island to your liking.")
         public final EndIsland END_ISLAND = new EndIsland();
 
         public static class EndIsland {
@@ -404,6 +468,7 @@ public class EMTConfig {
 
         @Config.Name("End Portal Tweaks")
         @Config.LangKey("config.endermodpacktweaks.minecraft.end_portal")
+        @Config.Comment("Tweak the End Portal to your liking.")
         public final EndPodium END_PODIUM = new EndPodium();
 
         public static class EndPodium {
@@ -449,6 +514,7 @@ public class EMTConfig {
 
         @Config.Name("Obsidian Spike Tweaks")
         @Config.LangKey("config.endermodpacktweaks.minecraft.obsidian_spike")
+        @Config.Comment("Tweak the Obsidian Spikes in the End.")
         public final ObsidianSpike OBSIDIAN_SPIKE = new ObsidianSpike();
 
         public static class ObsidianSpike {
@@ -522,6 +588,7 @@ public class EMTConfig {
 
         @Config.Name("Nether Portal Tweaks")
         @Config.LangKey("config.endermodpacktweaks.minecraft.nether_portal")
+        @Config.Comment("Tweak the Nether Portal to your liking.")
         public final NetherPortal NETHER_PORTAL = new NetherPortal();
 
         public static class NetherPortal {
@@ -545,6 +612,7 @@ public class EMTConfig {
 
         @Config.Name("Player Effects")
         @Config.LangKey("config.endermodpacktweaks.minecraft.player_effects")
+        @Config.Comment("Apply potion effects depending on different hunger and health conditions.")
         public final PlayerEffects PLAYER_EFFECTS = new PlayerEffects();
 
         public static class PlayerEffects {
@@ -576,6 +644,7 @@ public class EMTConfig {
 
         @Config.Name("World Tweaks")
         @Config.LangKey("config.endermodpacktweaks.minecraft.world")
+        @Config.Comment("Tweaks for world generation and world settings.")
         public final World WORLD = new World();
 
         public static class World {

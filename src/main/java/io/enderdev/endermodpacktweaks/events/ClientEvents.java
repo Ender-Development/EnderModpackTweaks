@@ -1,6 +1,8 @@
 package io.enderdev.endermodpacktweaks.events;
 
 import io.enderdev.endermodpacktweaks.EMTConfig;
+import io.enderdev.endermodpacktweaks.features.modpackinfo.OptionsButtonHandler;
+import io.enderdev.endermodpacktweaks.features.modpackinfo.SlideButton;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.inventory.GuiContainer;
