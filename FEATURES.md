@@ -7,6 +7,11 @@
 - my own version of the mod, since the original one is ARR licensed and only available for modern versions
 - utilizes [AssetMover](https://www.curseforge.com/minecraft/mc-mods/assetmover) to obtain the textures without breaking the license
 
+### 🔘 Menu Buttons
+
+- add the most important links to the options and main menu
+- links to the modpack's GitHub, Discord, etc.
+
 ### ⏰ TimeSync
 
 - sync the in-game time with the system time of the server
