@@ -14,6 +14,7 @@ public class CommonProxy {
     private final BlockEvents blockEvents = new BlockEvents();
     private final PlayerEvents playerEvents = new PlayerEvents();
     private final WorldEvents worldEvents = new WorldEvents();
+    private final ServerEvents serverEvents = new ServerEvents();
     // Mod Compatibility
     private ElenaiDodgeEvents elenaiDodgeEvents;
     private ReskillableEvents reskillableEvents;
@@ -24,6 +25,7 @@ public class CommonProxy {
         MinecraftForge.EVENT_BUS.register(blockEvents);
         MinecraftForge.EVENT_BUS.register(playerEvents);
         MinecraftForge.EVENT_BUS.register(worldEvents);
+        MinecraftForge.EVENT_BUS.register(serverEvents);
 
         if (EMTConfig.ELENAI_DODGE.enable && Loader.isModLoaded("elenaidodge2")) {
             elenaiDodgeEvents = new ElenaiDodgeEvents();
