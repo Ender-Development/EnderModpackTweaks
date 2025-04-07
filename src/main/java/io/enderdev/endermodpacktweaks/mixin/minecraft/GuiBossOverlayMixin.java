@@ -35,7 +35,13 @@ public class GuiBossOverlayMixin {
 
     @WrapOperation(method = "renderBossHealth", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/FontRenderer;drawStringWithShadow(Ljava/lang/String;FFI)I"))
     private int renderBossHealthWrap(FontRenderer instance, String text, float x, float y, int color, Operation<Integer> original) {
-        return EMTConfig.MINECRAFT.BOSS_BAR.enable ? 0 : original.call(instance, text, x, y, color);
+        if (!EMTConfig.MINECRAFT.BOSS_BAR.enable) {
+            return original.call(instance, text, x, y, color);
+        }
+        if (!enderModpackTweaks$improvedBossBarRenderer.hasOverlay(text)) {
+            return original.call(instance, text, x, y, color);
+        }
+        return 0;
     }
 
     @ModifyArgs(method = "renderBossHealth", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/client/ForgeHooksClient;bossBarRenderPre(Lnet/minecraft/client/gui/ScaledResolution;Lnet/minecraft/client/gui/BossInfoClient;III)Lnet/minecraftforge/client/event/RenderGameOverlayEvent$BossInfo;", remap = false))

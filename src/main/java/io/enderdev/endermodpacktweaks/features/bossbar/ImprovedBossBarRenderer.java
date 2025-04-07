@@ -14,18 +14,12 @@ import net.minecraft.util.text.event.HoverEvent;
 import net.minecraft.world.BossInfo;
 import org.lwjgl.opengl.GL11;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class ImprovedBossBarRenderer extends Gui {
     private final Minecraft mc;
-    private final List<String> unknownBossMobs = new ArrayList<String>(){{
-        add("INVALID");
-        // https://www.curseforge.com/minecraft/mc-mods/unofficial-bosses-of-mass-destruction-dungeon
-        add("da:ancient_fallen");
-        add("da:flame_knight");
-        add("da:great_wyrk");
+    private final Map<String,String> unknownBossMobs = new HashMap<String, String>(){{
+        put("INVALID", "INVALID");
     }};
 
     private static final ResourceLocation textureBarBackground = new ResourceLocation(Tags.MOD_ID, "textures/gui/bars/background.png");
@@ -40,13 +34,17 @@ public class ImprovedBossBarRenderer extends Gui {
         return boss == null ? 0 : boss.overlayHeight;
     }
 
+    public boolean hasOverlay(String text) {
+        return !unknownBossMobs.containsValue(text);
+    }
+
     public boolean render(int x, int y, BossInfo info) {
         String mob = getEntityFromBossInfo(info);
         BossType boss = BossType.getBossType(mob);
         if (boss == null) {
-            if (!unknownBossMobs.contains(mob)) {
-                unknownBossMobs.add(mob);
-                EnderModpackTweaks.LOGGER.warn("Unknown boss mob: {}", mob);
+            if (!unknownBossMobs.containsKey(mob)) {
+                unknownBossMobs.put(mob, info.getName().getFormattedText());
+                EnderModpackTweaks.LOGGER.warn("Unknown boss mob: {}, named {}", mob, info.getName().getFormattedText());
             }
             return false;
         }
