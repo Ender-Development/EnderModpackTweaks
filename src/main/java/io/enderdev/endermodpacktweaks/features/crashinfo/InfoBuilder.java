@@ -8,12 +8,18 @@ public class InfoBuilder implements ICrashCallable {
     private final String name;
     private final StringBuilder builder = new StringBuilder();
 
+    private boolean called = false;
+
     public InfoBuilder(String name) {
         this.name = name;
     }
 
     @Override
     public String call() throws Exception {
+        if (called) {
+            return "";
+        }
+
         EmtModpackInfo modpackInfo = new EmtModpackInfo(EMTConfig.MODPACK.CRASH_INFO.readFromManifest);
 
         builder.append("---\n");
@@ -26,6 +32,7 @@ public class InfoBuilder implements ICrashCallable {
             builder.append("!!! Failed to read manifest file, using config values instead. !!!\n");
         }
 
+        called = true;
         return builder.toString();
     }
 
