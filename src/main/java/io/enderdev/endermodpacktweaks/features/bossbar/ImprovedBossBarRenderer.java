@@ -117,7 +117,7 @@ public class ImprovedBossBarRenderer extends Gui {
                 17, 11, 163, 190, 54),
         FROSTMAW("mowziesmobs:frostmaw",
                 new ResourceLocation(Tags.MOD_ID, "textures/gui/boss_bars/frostmaw.png"),
-                new ResourceLocation(Tags.MOD_ID, "textures/gui/bars/white_progress.png"),
+                new ResourceLocation(Tags.MOD_ID, "textures/gui/bars/ice_progress.png"),
                 13, 20, 150, 190, 49),
         VOID_BLOSSOM("da:void_blossom",
                 new ResourceLocation(Tags.MOD_ID, "textures/gui/boss_bars/void_blossom.png"),
