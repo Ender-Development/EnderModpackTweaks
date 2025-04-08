@@ -8,5 +8,7 @@
         "EventHandlerMixin"
     ],
     "server": [],
-    "client": []
+    "client": [
+        "EventHandlerClientMixin"
+    ]
 }
