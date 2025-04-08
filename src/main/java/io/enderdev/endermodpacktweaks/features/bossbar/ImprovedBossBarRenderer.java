@@ -95,6 +95,7 @@ public class ImprovedBossBarRenderer extends Gui {
         return "INVALID";
     }
 
+    @SuppressWarnings("unused")
     private static class StringJson {
         private String id;
         private String type;
@@ -126,7 +127,11 @@ public class ImprovedBossBarRenderer extends Gui {
         NIGHT_LICH("da:night_lich",
                 new ResourceLocation(Tags.MOD_ID, "textures/gui/boss_bars/night_lich.png"),
                 new ResourceLocation(Tags.MOD_ID, "textures/gui/bars/blue_progress.png"),
-                18, 22, 175, 219, 49);
+                18, 22, 175, 219, 49),
+        GREAT_WYRK("da:great_wyrk",
+                new ResourceLocation(Tags.MOD_ID, "textures/gui/boss_bars/ancient_wyrk.png"),
+                new ResourceLocation(Tags.MOD_ID, "textures/gui/bars/ice_progress.png"),
+                15, 13, 172, 198, 50);
 
         private final String entity;
         private final ResourceLocation overlay;
