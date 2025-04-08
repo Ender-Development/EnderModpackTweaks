@@ -4,9 +4,9 @@
     "target": "@env(DEFAULT)",
     "minVersion": "0.8.5",
     "compatibilityLevel": "JAVA_8",
-    "mixins": [
-        "ItemStagesMixin"
-    ],
+    "mixins": [],
     "server": [],
-    "client": []
+    "client": [
+        "ItemStagesMixin"
+    ]
 }
