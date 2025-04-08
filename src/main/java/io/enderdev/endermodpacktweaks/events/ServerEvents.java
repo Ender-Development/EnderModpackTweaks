@@ -8,6 +8,8 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
+import java.util.Arrays;
+
 public class ServerEvents {
     boolean flag = false;
 
@@ -23,7 +25,7 @@ public class ServerEvents {
         motd.append("=========================================================\n");
         motd.append(EMTConfig.MODPACK.SERVER_MESSAGE.serverName).append(" Server Successfully Started!\n");
 
-        if (EMTConfig.MODPACK.modpackName.isEmpty()) {
+        if (!EMTConfig.MODPACK.modpackName.isEmpty()) {
             motd.append(" - Pack Name: ").append(EMTConfig.MODPACK.modpackName).append("\n");
         }
         if (!EMTConfig.MODPACK.modpackVersion.isEmpty()) {
@@ -37,6 +39,6 @@ public class ServerEvents {
         motd.append("Players Can Now Join!\n");
         motd.append("=========================================================\n");
 
-        EnderModpackTweaks.LOGGER.info(motd.toString());
+        Arrays.stream(motd.toString().split("\n")).forEach(EnderModpackTweaks.LOGGER::info);
     }
 }
