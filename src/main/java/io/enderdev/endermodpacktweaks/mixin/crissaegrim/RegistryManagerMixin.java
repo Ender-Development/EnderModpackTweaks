@@ -8,8 +8,11 @@ import io.enderdev.endermodpacktweaks.patches.mysticallib.EffectCut;
 import io.enderdev.endermodpacktweaks.patches.mysticallib.EffectManager;
 import io.enderdev.endermodpacktweaks.patches.mysticallib.FXRegistry;
 import net.minecraft.client.Minecraft;
+import net.minecraft.nbt.NBTTagCompound;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+
+import java.util.function.Function;
 
 @Mixin(value = RegistryManager.class, remap = false)
 public class RegistryManagerMixin {
@@ -18,11 +21,13 @@ public class RegistryManagerMixin {
 
     @WrapMethod(method = "registerFX")
     public void registerFX(RegisterFXEvent event, Operation<Void> original) {
-        FX_CUT = FXRegistry.registerEffect(t -> {
-            EffectCut slash = new EffectCut(Minecraft.getMinecraft().world.provider.getDimension());
-            slash.read(t);
-            EffectManager.addEffect(slash);
-            return null;
+        FX_CUT = FXRegistry.registerEffect(new Function<NBTTagCompound, Void>() {
+            public Void apply(NBTTagCompound t) {
+                EffectCut slash = new EffectCut(Minecraft.getMinecraft().world.provider.getDimension());
+                slash.read(t);
+                EffectManager.addEffect(slash);
+                return null;
+            }
         });
     }
 }
