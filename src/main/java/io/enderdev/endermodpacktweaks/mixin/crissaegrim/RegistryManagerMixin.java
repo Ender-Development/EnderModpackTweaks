@@ -21,6 +21,10 @@ public class RegistryManagerMixin {
 
     @WrapMethod(method = "registerFX")
     public void registerFX(RegisterFXEvent event, Operation<Void> original) {
+        /*
+         * NEVER TOUCH THIS METHOD. YES, INTELLIJ SAYS IT CAN BE TRANSFORMED
+         * INTO A LAMBDA, BUT THIS CAUSES ISSUES ON SERVER SIDE.
+         */
         FX_CUT = FXRegistry.registerEffect(new Function<NBTTagCompound, Void>() {
             public Void apply(NBTTagCompound t) {
                 EffectCut slash = new EffectCut(Minecraft.getMinecraft().world.provider.getDimension());
