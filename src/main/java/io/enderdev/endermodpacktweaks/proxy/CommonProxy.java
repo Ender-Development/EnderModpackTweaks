@@ -1,15 +1,20 @@
 package io.enderdev.endermodpacktweaks.proxy;
 
 import io.enderdev.endermodpacktweaks.EMTConfig;
+import io.enderdev.endermodpacktweaks.EnderModpackTweaks;
 import io.enderdev.endermodpacktweaks.events.*;
+import io.enderdev.endermodpacktweaks.features.compatscreen.CompatModsHandler;
+import io.enderdev.endermodpacktweaks.features.crashinfo.InfoBuilder;
 import io.enderdev.endermodpacktweaks.features.materialtweaker.MaterialTweaker;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Loader;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.*;
 
-public class CommonProxy {
+import java.util.Objects;
+
+public class CommonProxy implements IProxy {
+    private static final InfoBuilder INFO_BUILDER = new InfoBuilder("Modpack Informations");
     // Minecraft Internal
     private final BlockEvents blockEvents = new BlockEvents();
     private final PlayerEvents playerEvents = new PlayerEvents();
@@ -63,5 +68,24 @@ public class CommonProxy {
             playerEvents.healthPotionHandler.init();
             playerEvents.hungerPotionHandler.init();
         }
+    }
+
+    @Override
+    public void construct(FMLConstructionEvent event) throws Exception {
+        if (EMTConfig.MODPACK.CRASH_INFO.enable) {
+            FMLCommonHandler.instance().registerCrashCallable(INFO_BUILDER);
+        }
+    }
+
+    @Override
+    public void onLoadComplete(FMLLoadCompleteEvent event) {
+        if (CompatModsHandler.hasObsoleteModsMessage()) {
+            CompatModsHandler.obsoleteModsMessage().stream().filter(s -> !Objects.equals(s, "")).forEach(EnderModpackTweaks.LOGGER::warn);
+        }
+    }
+
+    @Override
+    public void serverStarting(FMLServerStartingEvent event) {
+
     }
 }
