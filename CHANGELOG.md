@@ -3,6 +3,7 @@
 ## [0.4.3] - 2025-04-09
 
 - 🆕 added an additional boss bar for the `Ancient Wyrk` (Thanks to 维生素)
+- 🆕 added a mob health bar renderer for all mods (similar to Neat)
 - 🔄 improved the server greeting message
 - 🧰 fixed server crash with rustic mixins
 - 🧰 fixed server crash with item physic mixins

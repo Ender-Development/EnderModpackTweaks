@@ -12,6 +12,8 @@ import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL20;
 
 public class BarHandler {
 
@@ -60,7 +62,7 @@ public class BarHandler {
         if (EMTConfig.MODPACK.MOB_HEALTH_BAR.showOnlyFocused) {
             Entity focused = BarRenderer.getEntityLookedAt(mc.player);
             if (focused instanceof EntityLivingBase && focused.isEntityAlive()) {
-                BarRenderer.renderHealthBar((EntityLivingBase) focused, partialTicks, cameraEntity);
+                renderHealthBar((EntityLivingBase) focused, partialTicks, cameraEntity);
             }
         } else {
             for (Entity entity : ((WorldClientAccessor) Minecraft.getMinecraft().world).getEntityList()) {
@@ -70,9 +72,29 @@ public class BarHandler {
                         && (entity.ignoreFrustumCheck || frustum.isBoundingBoxInFrustum(entity.getEntityBoundingBox()))
                         && entity.isEntityAlive()
                         && entity.getRecursivePassengers().isEmpty()) {
-                    BarRenderer.renderHealthBar((EntityLivingBase) entity, partialTicks, cameraEntity);
+                    renderHealthBar((EntityLivingBase) entity, partialTicks, cameraEntity);
                 }
             }
+        }
+    }
+
+    /**
+     * Renders the health bar for the given entity. This also contains a patch when having an optifine shader active.
+     *
+     * @param entity       The entity to render the health bar for.
+     * @param partialTicks The partial ticks for rendering.
+     * @param cameraEntity The camera entity.
+     */
+    private void renderHealthBar(EntityLivingBase entity, float partialTicks, Entity cameraEntity) {
+        int oldProgram = GL11.glGetInteger(GL20.GL_CURRENT_PROGRAM);
+        if (oldProgram != 0) {
+            GL20.glUseProgram(0);
+        }
+
+        BarRenderer.renderHealthBar(entity, partialTicks, cameraEntity);
+
+        if (oldProgram != 0) {
+            GL20.glUseProgram(oldProgram);
         }
     }
 }

@@ -220,13 +220,19 @@
 
 ### [Hide Name Tags](https://www.curseforge.com/minecraft/mc-mods/hide-name-tags)
 
-- licensed unter MIT
+- licensed under MIT
 - single class mod, merged
 
 ### [Material Changer](https://www.curseforge.com/minecraft/mc-mods/material-changer)
 
 - licensed under MIT
 - instead of one long list, entries are now separated by categories
+
+### [Neat]()
+
+- rewrote parts of it
+- achieved a small performance improvement
+- added a few more config options
 
 ### [Pack Crash Info](https://www.curseforge.com/minecraft/mc-mods/pack-crash-info)
 
