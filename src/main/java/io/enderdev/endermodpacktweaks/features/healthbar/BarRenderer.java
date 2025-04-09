@@ -1,6 +1,7 @@
 package io.enderdev.endermodpacktweaks.features.healthbar;
 
 import io.enderdev.endermodpacktweaks.EMTConfig;
+import io.enderdev.endermodpacktweaks.utils.EmtColor;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
@@ -173,21 +174,23 @@ public class BarRenderer {
 
                 // Background
                 if (EMTConfig.MODPACK.MOB_HEALTH_BAR.drawBackground) {
+                    Color bgColor = EmtColor.parseColor(EMTConfig.MODPACK.MOB_HEALTH_BAR.backgroundColor);
                     buffer.begin(7, DefaultVertexFormats.POSITION_COLOR);
-                    buffer.pos(-size - padding, -bgHeight, 0.0D).color(0, 0, 0, 64).endVertex();
-                    buffer.pos(-size - padding, barHeight + padding, 0.0D).color(0, 0, 0, 64).endVertex();
-                    buffer.pos(size + padding, barHeight + padding, 0.0D).color(0, 0, 0, 64).endVertex();
-                    buffer.pos(size + padding, -bgHeight, 0.0D).color(0, 0, 0, 64).endVertex();
+                    buffer.pos(-size - padding, -bgHeight, 0.0D).color(bgColor.getRed(), bgColor.getGreen(), bgColor.getBlue(), bgColor.getAlpha()).endVertex();
+                    buffer.pos(-size - padding, barHeight + padding, 0.0D).color(bgColor.getRed(), bgColor.getGreen(), bgColor.getBlue(), bgColor.getAlpha()).endVertex();
+                    buffer.pos(size + padding, barHeight + padding, 0.0D).color(bgColor.getRed(), bgColor.getGreen(), bgColor.getBlue(), bgColor.getAlpha()).endVertex();
+                    buffer.pos(size + padding, -bgHeight, 0.0D).color(bgColor.getRed(), bgColor.getGreen(), bgColor.getBlue(), bgColor.getAlpha()).endVertex();
                     tessellator.draw();
                 }
 
                 // Gray Space
                 if (EMTConfig.MODPACK.MOB_HEALTH_BAR.drawGraySpace) {
+                    Color grayColor = EmtColor.parseColor(EMTConfig.MODPACK.MOB_HEALTH_BAR.graySpaceColor);
                     buffer.begin(7, DefaultVertexFormats.POSITION_COLOR);
-                    buffer.pos(-size, 0, 0.0D).color(127, 127, 127, 127).endVertex();
-                    buffer.pos(-size, barHeight, 0.0D).color(127, 127, 127, 127).endVertex();
-                    buffer.pos(size, barHeight, 0.0D).color(127, 127, 127, 127).endVertex();
-                    buffer.pos(size, 0, 0.0D).color(127, 127, 127, 127).endVertex();
+                    buffer.pos(-size, 0, 0.0D).color(grayColor.getRed(), grayColor.getGreen(), grayColor.getBlue(), grayColor.getAlpha()).endVertex();
+                    buffer.pos(-size, barHeight, 0.0D).color(grayColor.getRed(), grayColor.getGreen(), grayColor.getBlue(), grayColor.getAlpha()).endVertex();
+                    buffer.pos(size, barHeight, 0.0D).color(grayColor.getRed(), grayColor.getGreen(), grayColor.getBlue(), grayColor.getAlpha()).endVertex();
+                    buffer.pos(size, 0, 0.0D).color(grayColor.getRed(), grayColor.getGreen(), grayColor.getBlue(), grayColor.getAlpha()).endVertex();
                     tessellator.draw();
                 }
 

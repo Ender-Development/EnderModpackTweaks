@@ -119,93 +119,101 @@ public class EMTConfig {
             public double heightAbove = 0.6;
 
             @Config.Name("[05] Draw Background")
-            @Config.Comment("Should the health bar have a background?")
+            @Config.Comment("Should the whole health bar have a background?")
             public boolean drawBackground = true;
 
-            @Config.Name("[06] Draw Gray Space")
-            @Config.Comment("Should the health bar have a gray space?")
+            @Config.Name("[06] Background Color")
+            @Config.Comment("The color of the background. Format: #RRGGBBAA")
+            public String backgroundColor = "#00000040";
+
+            @Config.Name("[07] Draw Gray Space")
+            @Config.Comment("Should the actual bar have a gray background?")
             public boolean drawGraySpace = true;
 
-            @Config.Name("[07] Draw Health Bar")
+            @Config.Name("[08] Gray Space Color")
+            @Config.Comment("The color of the gray space. Format: #RRGGBBAA")
+            public String graySpaceColor = "#7F7F7FF7";
+
+            @Config.Name("[09] Draw Health Bar")
             @Config.Comment("Should the health bar be drawn?")
             public boolean drawHealthBar = true;
 
-            @Config.Name("[08] Background Padding")
+            @Config.Name("[10] Background Padding")
             @Config.Comment("The padding of the background.")
             public int backgroundPadding = 2;
 
-            @Config.Name("[09] Background Height")
+            @Config.Name("[11] Background Height")
             @Config.Comment("The height of the background.")
             public int backgroundHeight = 6;
 
-            @Config.Name("[10] Health Bar Height")
+            @Config.Name("[12] Health Bar Height")
             @Config.Comment("The height of the health bar.")
             public int barHeight = 4;
 
-            @Config.Name("[11] Plate Size")
+            @Config.Name("[13] Plate Size")
             @Config.Comment("The size of the health bar plate.")
             public int plateSize = 25;
 
-            @Config.Name("[12] Plate Size (Boss)")
+            @Config.Name("[14] Plate Size (Boss)")
             @Config.Comment("The size of the health bar plate for bosses.")
             public int plateSizeBoss = 50;
 
-            @Config.Name("[13] Show Attributes")
+            @Config.Name("[15] Show Attributes")
             @Config.Comment("Should the health bar show the attributes of the mob?")
             public boolean showAttributes = true;
 
-            @Config.Name("[14] Show Armor")
+            @Config.Name("[16] Show Armor")
             @Config.Comment("Should the health bar show the armor of the mob?")
             public boolean showArmor = true;
 
-            @Config.Name("[15] Group Armor")
+            @Config.Name("[17] Group Armor")
             @Config.Comment({
                     "Should the health bar group the armor of the mob?",
                     "e.g. condense 5 iron icons into 1 diamond icon."
             })
             public boolean groupArmor = true;
 
-            @Config.Name("[16] Color by Type")
+            @Config.Name("[18] Color by Type")
             @Config.Comment("Should the health bar be colored by the type of mob instead of health percentage?")
             public boolean colorByType = false;
 
-            @Config.Name("[17] HP Text Height")
+            @Config.Name("[19] HP Text Height")
             @Config.Comment("The height of the health text.")
             public int hpTextHeight = 14;
 
-            @Config.Name("[18] Show Max HP")
+            @Config.Name("[20] Show Max HP")
             @Config.Comment("Should the health bar show the max HP of the mob?")
             public boolean showMaxHP = true;
 
-            @Config.Name("[19] Show Current HP")
+            @Config.Name("[21] Show Current HP")
             @Config.Comment("Should the health bar show the current HP of the mob?")
             public boolean showCurrentHP = true;
 
-            @Config.Name("[20] Show Percentage")
+            @Config.Name("[22] Show Percentage")
             @Config.Comment("Should the health bar show the percentage of the mob?")
             public boolean showPercentage = true;
 
-            @Config.Name("[21] Show Name")
+            @Config.Name("[23] Show Name")
             @Config.Comment("Should the health bar show the name of the mob?")
             public boolean showName = true;
 
-            @Config.Name("[22] Show Health Bar on Players")
+            @Config.Name("[24] Show Health Bar on Players")
             @Config.Comment("Should the health bar be shown on players?")
             public boolean showOnPlayers = true;
 
-            @Config.Name("[23] Show Health Bar on Bosses")
+            @Config.Name("[25] Show Health Bar on Bosses")
             @Config.Comment("Should the health bar be shown on bosses?")
             public boolean showOnBosses = true;
 
-            @Config.Name("[24] Show Health Bar on Focused")
+            @Config.Name("[26] Show Health Bar on Focused")
             @Config.Comment("Should the health bar only be shown for the entity looked at?")
             public boolean showOnlyFocused = false;
 
-            @Config.Name("[25] Show Debug Info")
+            @Config.Name("[27] Show Debug Info")
             @Config.Comment("Should additional debug information be shown with F3 active?")
             public boolean enableDebugInfo = true;
 
-            @Config.Name("[26] Mob Blacklist")
+            @Config.Name("[28] Mob Blacklist")
             @Config.Comment("Blacklist uses entity IDs. FORMAT: modid:entityid")
             public String[] mobBlacklist = new String[]{};
         }
