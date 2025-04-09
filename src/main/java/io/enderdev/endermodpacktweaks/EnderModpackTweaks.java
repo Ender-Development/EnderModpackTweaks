@@ -3,6 +3,7 @@ package io.enderdev.endermodpacktweaks;
 import io.enderdev.endermodpacktweaks.proxy.IProxy;
 import net.minecraftforge.fml.common.*;
 import net.minecraftforge.fml.common.event.*;
+import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -48,6 +49,8 @@ public class EnderModpackTweaks {
 
     @SidedProxy(modId = Tags.MOD_ID, clientSide = CLIENT_PROXY, serverSide = COMMON_PROXY)
     public static IProxy proxy;
+
+    public static SimpleNetworkWrapper network;
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {

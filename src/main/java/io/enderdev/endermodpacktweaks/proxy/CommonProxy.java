@@ -2,14 +2,17 @@ package io.enderdev.endermodpacktweaks.proxy;
 
 import io.enderdev.endermodpacktweaks.EMTConfig;
 import io.enderdev.endermodpacktweaks.EnderModpackTweaks;
+import io.enderdev.endermodpacktweaks.Tags;
 import io.enderdev.endermodpacktweaks.events.*;
 import io.enderdev.endermodpacktweaks.features.compatscreen.CompatModsHandler;
 import io.enderdev.endermodpacktweaks.features.crashinfo.InfoBuilder;
+import io.enderdev.endermodpacktweaks.features.healthbar.BarHandler;
 import io.enderdev.endermodpacktweaks.features.materialtweaker.MaterialTweaker;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.*;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 
 import java.util.Objects;
 
@@ -27,6 +30,8 @@ public class CommonProxy implements IProxy {
     private SimpleDifficultyEvents simpleDifficultyEvents;
 
     public void preInit(FMLPreInitializationEvent event) {
+        EnderModpackTweaks.network = NetworkRegistry.INSTANCE.newSimpleChannel(Tags.MOD_ID);
+
         MinecraftForge.EVENT_BUS.register(blockEvents);
         MinecraftForge.EVENT_BUS.register(playerEvents);
         MinecraftForge.EVENT_BUS.register(worldEvents);
@@ -50,6 +55,10 @@ public class CommonProxy implements IProxy {
         if (EMTConfig.SIMPLE_DIFFICULTY.enable && Loader.isModLoaded("simpledifficulty")) {
             simpleDifficultyEvents = new SimpleDifficultyEvents();
             MinecraftForge.EVENT_BUS.register(simpleDifficultyEvents);
+        }
+
+        if (EMTConfig.MODPACK.MOB_HEALTH_BAR.enable) {
+            MinecraftForge.EVENT_BUS.register(new BarHandler());
         }
     }
 

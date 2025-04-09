@@ -95,6 +95,121 @@ public class EMTConfig {
             public boolean readFromManifest = true;
         }
 
+        @Config.Name("Mob Health Bar")
+        @Config.LangKey("config.endermodpacktweaks.mob_health_bar")
+        @Config.Comment("Add a health bar to mobs. This is a 'neat' feature.")
+        public final MobHealthBar MOB_HEALTH_BAR = new MobHealthBar();
+
+        public static class MobHealthBar {
+            @Config.RequiresMcRestart
+            @Config.Name("[01] Enable Mob Health Bar")
+            @Config.Comment("Enable the Mob Health Bar feature. This adds a health bar to mobs.")
+            public boolean enable = false;
+
+            @Config.Name("[02] Max Distance")
+            @Config.Comment("The maximum distance the health bar is rendered at.")
+            public int maxDistance = 24;
+
+            @Config.Name("[03] Render In F1")
+            @Config.Comment("Should the health bar be rendered when the Interface is disabled?")
+            public boolean renderInF1 = false;
+
+            @Config.Name("[04] Height Above Mob")
+            @Config.Comment("The height above the mob the health bar is rendered at.")
+            public double heightAbove = 0.6;
+
+            @Config.Name("[05] Draw Background")
+            @Config.Comment("Should the health bar have a background?")
+            public boolean drawBackground = true;
+
+            @Config.Name("[06] Draw Gray Space")
+            @Config.Comment("Should the health bar have a gray space?")
+            public boolean drawGraySpace = true;
+
+            @Config.Name("[07] Draw Health Bar")
+            @Config.Comment("Should the health bar be drawn?")
+            public boolean drawHealthBar = true;
+
+            @Config.Name("[08] Background Padding")
+            @Config.Comment("The padding of the background.")
+            public int backgroundPadding = 2;
+
+            @Config.Name("[09] Background Height")
+            @Config.Comment("The height of the background.")
+            public int backgroundHeight = 6;
+
+            @Config.Name("[10] Health Bar Height")
+            @Config.Comment("The height of the health bar.")
+            public int barHeight = 4;
+
+            @Config.Name("[11] Plate Size")
+            @Config.Comment("The size of the health bar plate.")
+            public int plateSize = 25;
+
+            @Config.Name("[12] Plate Size (Boss)")
+            @Config.Comment("The size of the health bar plate for bosses.")
+            public int plateSizeBoss = 50;
+
+            @Config.Name("[13] Show Attributes")
+            @Config.Comment("Should the health bar show the attributes of the mob?")
+            public boolean showAttributes = true;
+
+            @Config.Name("[14] Show Armor")
+            @Config.Comment("Should the health bar show the armor of the mob?")
+            public boolean showArmor = true;
+
+            @Config.Name("[15] Group Armor")
+            @Config.Comment({
+                    "Should the health bar group the armor of the mob?",
+                    "e.g. condense 5 iron icons into 1 diamond icon."
+            })
+            public boolean groupArmor = true;
+
+            @Config.Name("[16] Color by Type")
+            @Config.Comment("Should the health bar be colored by the type of mob instead of health percentage?")
+            public boolean colorByType = false;
+
+            @Config.Name("[17] HP Text Height")
+            @Config.Comment("The height of the health text.")
+            public int hpTextHeight = 14;
+
+            @Config.Name("[18] Show Max HP")
+            @Config.Comment("Should the health bar show the max HP of the mob?")
+            public boolean showMaxHP = true;
+
+            @Config.Name("[19] Show Current HP")
+            @Config.Comment("Should the health bar show the current HP of the mob?")
+            public boolean showCurrentHP = true;
+
+            @Config.Name("[20] Show Percentage")
+            @Config.Comment("Should the health bar show the percentage of the mob?")
+            public boolean showPercentage = true;
+
+            @Config.Name("[21] Show Name")
+            @Config.Comment("Should the health bar show the name of the mob?")
+            public boolean showName = true;
+
+            @Config.Name("[22] Show Health Bar on Players")
+            @Config.Comment("Should the health bar be shown on players?")
+            public boolean showOnPlayers = true;
+
+            @Config.Name("[23] Show Health Bar on Bosses")
+            @Config.Comment("Should the health bar be shown on bosses?")
+            public boolean showOnBosses = true;
+
+            @Config.Name("[24] Show Health Bar on Focused")
+            @Config.Comment("Should the health bar only be shown for the entity looked at?")
+            public boolean showOnlyFocused = false;
+
+            @Config.Name("[25] Show Debug Info")
+            @Config.Comment("Should additional debug information be shown with F3 active?")
+            public boolean enableDebugInfo = true;
+
+            @Config.Name("[26] Mob Blacklist")
+            @Config.Comment("Blacklist uses entity IDs. FORMAT: modid:entityid")
+            public String[] mobBlacklist = new String[]{};
+        }
+
         @Config.Name("Material Tweaker")
         @Config.LangKey("config.endermodpacktweaks.material_tweaker")
         @Config.Comment("A tool is not to your linkings? Tweak it to your likings!")

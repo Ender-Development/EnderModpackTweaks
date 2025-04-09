@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.4.3] - 2025-04-09
+
+- 🆕 added an additional boss bar for the `Ancient Wyrk` (Thanks to 维生素)
+- 🔄 improved the server greeting message
+- 🧰 fixed server crash with rustic mixins
+- 🧰 fixed server crash with item physic mixins
+- 🧰 fixed server crash with crissaegrim mixins
+- 🧰 fixed server crash with item stages mixins
+- 👾 refactored internal proxy, further splitting the client and server code
+
 ## [0.4.2] - 2025-04-07
 
 - 🆕 added a server greeting message

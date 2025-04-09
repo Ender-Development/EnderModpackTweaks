@@ -5,6 +5,8 @@ config.endermodpacktweaks=Modpack Tweaks
 config.endermodpacktweaks.tooltip=Various options for Modpack developers
 config.endermodpacktweaks.crash_info=Crash Info
 config.endermodpacktweaks.crash_info.tooltip=Shows Modpack Information in Crash Reports
+config.endermodpacktweaks.mob_health_bar=Mob Health Bar
+config.endermodpacktweaks.mob_health_bar.tooltip=Shows the health bar of mobs above their heads. Very Neat!
 config.endermodpacktweaks.material_tweaker=Material Tweaker
 config.endermodpacktweaks.material_tweaker.tooltip=Tweak various item stats
 config.endermodpacktweaks.options_menu_buttons=Options Menu Buttons
@@ -29,6 +31,8 @@ config.endermodpacktweaks.sync_time.tooltip=Syncs the world time with real time
 msg.endermodpacktweaks.obsoletemods.warning1=Ender's Modpack Tweaks has replaced and improved upon functionalities from other mods.
 msg.endermodpacktweaks.obsoletemods.warning2=Therefore, the following mods are now incompatible with Ender's Modpack Tweaks:
 msg.endermodpacktweaks.obsoletemods.warning3=Consider removing them from your game or disabling the respective features.
+
+emt.keybind.toggle=Toggle Mob Health Display
 
 ####################
 # Minecraft
