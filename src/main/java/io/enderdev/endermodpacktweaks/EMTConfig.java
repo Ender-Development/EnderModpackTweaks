@@ -49,6 +49,11 @@ public class EMTConfig {
         WHITELIST
     }
 
+    public enum ShapeType {
+        CORNER,
+        ROUND
+    }
+
     @Config.Name("Modpack Tweaks")
     @Config.LangKey("config.endermodpacktweaks")
     @Config.Comment("Made with <3 by Ender-Development")
@@ -216,6 +221,10 @@ public class EMTConfig {
             @Config.Name("[28] Mob Blacklist")
             @Config.Comment("Blacklist uses entity IDs. FORMAT: modid:entityid")
             public String[] mobBlacklist = new String[]{};
+
+            @Config.Name("[29] Health Bar Shape")
+            @Config.Comment("[WIP] The shape of the health bar.")
+            public ShapeType shapeType = ShapeType.CORNER;
         }
 
         @Config.Name("Material Tweaker")

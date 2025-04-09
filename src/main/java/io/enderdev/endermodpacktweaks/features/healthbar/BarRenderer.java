@@ -77,9 +77,9 @@ public class BarRenderer {
                     break processing;
                 }
 
-                double x = passedEntity.lastTickPosX + (passedEntity.posX - passedEntity.lastTickPosX) * partialTicks;
-                double y = passedEntity.lastTickPosY + (passedEntity.posY - passedEntity.lastTickPosY) * partialTicks;
-                double z = passedEntity.lastTickPosZ + (passedEntity.posZ - passedEntity.lastTickPosZ) * partialTicks;
+                double entityX = passedEntity.lastTickPosX + (passedEntity.posX - passedEntity.lastTickPosX) * partialTicks;
+                double entityY = passedEntity.lastTickPosY + (passedEntity.posY - passedEntity.lastTickPosY) * partialTicks;
+                double entityZ = passedEntity.lastTickPosZ + (passedEntity.posZ - passedEntity.lastTickPosZ) * partialTicks;
 
                 float scale = 0.026666672F;
                 float maxHealth = entity.getMaxHealth();
@@ -93,7 +93,7 @@ public class BarRenderer {
                 RenderManager renderManager = Minecraft.getMinecraft().getRenderManager();
 
                 GlStateManager.pushMatrix();
-                GlStateManager.translate((float) (x - renderManager.viewerPosX), (float) (y - renderManager.viewerPosY + passedEntity.height + EMTConfig.MODPACK.MOB_HEALTH_BAR.heightAbove), (float) (z - renderManager.viewerPosZ));
+                GlStateManager.translate((float) (entityX - renderManager.viewerPosX), (float) (entityY - renderManager.viewerPosY + passedEntity.height + EMTConfig.MODPACK.MOB_HEALTH_BAR.heightAbove), (float) (entityZ - renderManager.viewerPosZ));
                 GL11.glNormal3f(0.0F, 1.0F, 0.0F);
                 GlStateManager.rotate(-renderManager.playerViewY, 0.0F, 1.0F, 0.0F);
                 GlStateManager.rotate(renderManager.playerViewX, 1.0F, 0.0F, 0.0F);
@@ -175,12 +175,17 @@ public class BarRenderer {
                 // Background
                 if (EMTConfig.MODPACK.MOB_HEALTH_BAR.drawBackground) {
                     Color bgColor = EmtColor.parseColor(EMTConfig.MODPACK.MOB_HEALTH_BAR.backgroundColor);
-                    buffer.begin(7, DefaultVertexFormats.POSITION_COLOR);
-                    buffer.pos(-size - padding, -bgHeight, 0.0D).color(bgColor.getRed(), bgColor.getGreen(), bgColor.getBlue(), bgColor.getAlpha()).endVertex();
-                    buffer.pos(-size - padding, barHeight + padding, 0.0D).color(bgColor.getRed(), bgColor.getGreen(), bgColor.getBlue(), bgColor.getAlpha()).endVertex();
-                    buffer.pos(size + padding, barHeight + padding, 0.0D).color(bgColor.getRed(), bgColor.getGreen(), bgColor.getBlue(), bgColor.getAlpha()).endVertex();
-                    buffer.pos(size + padding, -bgHeight, 0.0D).color(bgColor.getRed(), bgColor.getGreen(), bgColor.getBlue(), bgColor.getAlpha()).endVertex();
-                    tessellator.draw();
+                    if (EMTConfig.MODPACK.MOB_HEALTH_BAR.shapeType == EMTConfig.ShapeType.CORNER) {
+                        buffer.begin(7, DefaultVertexFormats.POSITION_COLOR);
+                        buffer.pos(-size - padding, -bgHeight, 0.0D).color(bgColor.getRed(), bgColor.getGreen(), bgColor.getBlue(), bgColor.getAlpha()).endVertex();
+                        buffer.pos(-size - padding, barHeight + padding, 0.0D).color(bgColor.getRed(), bgColor.getGreen(), bgColor.getBlue(), bgColor.getAlpha()).endVertex();
+                        buffer.pos(size + padding, barHeight + padding, 0.0D).color(bgColor.getRed(), bgColor.getGreen(), bgColor.getBlue(), bgColor.getAlpha()).endVertex();
+                        buffer.pos(size + padding, -bgHeight, 0.0D).color(bgColor.getRed(), bgColor.getGreen(), bgColor.getBlue(), bgColor.getAlpha()).endVertex();
+                        tessellator.draw();
+                    }
+                    if (EMTConfig.MODPACK.MOB_HEALTH_BAR.shapeType == EMTConfig.ShapeType.ROUND) {
+                        // Not implemented yet
+                    }
                 }
 
                 // Gray Space
