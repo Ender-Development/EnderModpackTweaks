@@ -5,6 +5,7 @@ import io.enderdev.endermodpacktweaks.core.EMTAssetMover;
 import io.enderdev.endermodpacktweaks.events.ClientEvents;
 import io.enderdev.endermodpacktweaks.features.modpackinfo.ModpackInfoEventHandler;
 import io.enderdev.endermodpacktweaks.patches.mysticallib.EffectManager;
+import io.enderdev.endermodpacktweaks.utils.EmtOptifine;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraftforge.common.MinecraftForge;
@@ -34,7 +35,9 @@ public class ClientProxy extends CommonProxy implements IProxy {
     @Override
     public void postInit(FMLPostInitializationEvent event) {
         super.postInit(event);
-        GameSettings.Options.RENDER_DISTANCE.setValueMax(EMTConfig.MINECRAFT.CLIENT.maxRenderDistance);
+        if (!EmtOptifine.isOptiFineInstalled()) {
+            GameSettings.Options.RENDER_DISTANCE.setValueMax(EMTConfig.MINECRAFT.CLIENT.maxRenderDistance);
+        }
     }
 
     @Override
