@@ -30,10 +30,12 @@
     - replace the entire gateway with a structure file
     - change the radius and the height the gateway can generate
     - replace this file `endermodpacktweaks:structures/end_gateway.nbt`
+    - alternatively change the location in the config file
 - End Portal
     - change the bedrock / torches / endstone that is generated
     - replace the entire portal with a structure file
     - replace these files `endermodpacktweaks:structures/end_portal.nbt` and `endermodpacktweaks:structures/end_portal_active.nbt`
+    - alternatively change the location in the config file
 - Obsidian Spikes
     - change the obsidian that is generated
     - change the radius and the height the spikes can generate
@@ -192,6 +194,12 @@
 - licensed under the Unlicense
 - single mixin mod, merged
 
+### [Bonemeal Mod](https://www.curseforge.com/minecraft/mc-mods/bonemeal-mod)
+
+- licensed under Public Domain
+- single class mod, merged
+- fixed a small issue where the mod wouldn't work properly
+
 ### [Client Tweaks](https://www.curseforge.com/minecraft/mc-mods/client-tweaks)
 
 - licensed under MIT
@@ -232,7 +240,9 @@
 
 - rewrote parts of it
 - achieved a small performance improvement
-- added a few more config options
+- added a bunch more config options
+- only allow rendering when a specific item is equipped
+- allow specific items to increase the render distance of the health bar
 
 ### [Pack Crash Info](https://www.curseforge.com/minecraft/mc-mods/pack-crash-info)
 
