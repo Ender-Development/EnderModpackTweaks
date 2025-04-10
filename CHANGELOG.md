@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.4.4]
+
+- 🔄 improved bar renderer with rounded options for all drawables
+- 🔄 improved the description of some config options
+
 ## [0.4.3]
 
 - 🆕 added an additional boss bar for the `Ancient Wyrk` (Thanks to 维生素)

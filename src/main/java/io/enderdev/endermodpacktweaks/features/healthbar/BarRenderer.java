@@ -4,6 +4,7 @@ import io.enderdev.endermodpacktweaks.EMTConfig;
 import io.enderdev.endermodpacktweaks.utils.EmtColor;
 import io.enderdev.endermodpacktweaks.utils.EmtConfigHandler;
 import io.enderdev.endermodpacktweaks.utils.EmtConfigParser;
+import io.enderdev.endermodpacktweaks.utils.EmtRender;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
@@ -79,7 +80,7 @@ public class BarRenderer {
                     maxDistance *= modifier != null ? modifier.value() : 1F;
                 }
                 float distance = passedEntity.getDistance(viewPoint);
-                if (distance > maxDistance|| !passedEntity.canEntityBeSeen(viewPoint) || entity.isInvisible()) {
+                if (distance > maxDistance || !passedEntity.canEntityBeSeen(viewPoint) || entity.isInvisible()) {
                     break processing;
                 }
                 if (!EMTConfig.MODPACK.MOB_HEALTH_BAR.showOnBosses && !boss) {
@@ -187,33 +188,49 @@ public class BarRenderer {
                 // Background
                 if (EMTConfig.MODPACK.MOB_HEALTH_BAR.drawBackground) {
                     Color bgColor = EmtColor.parseColorFromHexString(EMTConfig.MODPACK.MOB_HEALTH_BAR.backgroundColor);
-                    buffer.begin(7, DefaultVertexFormats.POSITION_COLOR);
-                    buffer.pos(-size - padding, -bgHeight, 0.0D).color(bgColor.getRed(), bgColor.getGreen(), bgColor.getBlue(), bgColor.getAlpha()).endVertex();
-                    buffer.pos(-size - padding, barHeight + padding, 0.0D).color(bgColor.getRed(), bgColor.getGreen(), bgColor.getBlue(), bgColor.getAlpha()).endVertex();
-                    buffer.pos(size + padding, barHeight + padding, 0.0D).color(bgColor.getRed(), bgColor.getGreen(), bgColor.getBlue(), bgColor.getAlpha()).endVertex();
-                    buffer.pos(size + padding, -bgHeight, 0.0D).color(bgColor.getRed(), bgColor.getGreen(), bgColor.getBlue(), bgColor.getAlpha()).endVertex();
-                    tessellator.draw();
+                    if (EMTConfig.MODPACK.MOB_HEALTH_BAR.shapeBackground == EMTConfig.ShapeType.STRAIGHT) {
+                        buffer.begin(7, DefaultVertexFormats.POSITION_COLOR);
+                        buffer.pos(-size - padding, -bgHeight, 0.0D).color(bgColor.getRed(), bgColor.getGreen(), bgColor.getBlue(), bgColor.getAlpha()).endVertex();
+                        buffer.pos(-size - padding, barHeight + padding, 0.0D).color(bgColor.getRed(), bgColor.getGreen(), bgColor.getBlue(), bgColor.getAlpha()).endVertex();
+                        buffer.pos(size + padding, barHeight + padding, 0.0D).color(bgColor.getRed(), bgColor.getGreen(), bgColor.getBlue(), bgColor.getAlpha()).endVertex();
+                        buffer.pos(size + padding, -bgHeight, 0.0D).color(bgColor.getRed(), bgColor.getGreen(), bgColor.getBlue(), bgColor.getAlpha()).endVertex();
+                        tessellator.draw();
+                    }
+                    if (EMTConfig.MODPACK.MOB_HEALTH_BAR.shapeBackground == EMTConfig.ShapeType.ROUND) {
+                        EmtRender.renderRoundedRect(-size - padding, -bgHeight, size * 2 + padding * 2, bgHeight * 2 + padding, EMTConfig.MODPACK.MOB_HEALTH_BAR.backgroundRadius, bgColor);
+                    }
                 }
 
                 // Gray Space
                 if (EMTConfig.MODPACK.MOB_HEALTH_BAR.drawGraySpace) {
                     Color grayColor = EmtColor.parseColorFromHexString(EMTConfig.MODPACK.MOB_HEALTH_BAR.graySpaceColor);
-                    buffer.begin(7, DefaultVertexFormats.POSITION_COLOR);
-                    buffer.pos(-size, 0, 0.0D).color(grayColor.getRed(), grayColor.getGreen(), grayColor.getBlue(), grayColor.getAlpha()).endVertex();
-                    buffer.pos(-size, barHeight, 0.0D).color(grayColor.getRed(), grayColor.getGreen(), grayColor.getBlue(), grayColor.getAlpha()).endVertex();
-                    buffer.pos(size, barHeight, 0.0D).color(grayColor.getRed(), grayColor.getGreen(), grayColor.getBlue(), grayColor.getAlpha()).endVertex();
-                    buffer.pos(size, 0, 0.0D).color(grayColor.getRed(), grayColor.getGreen(), grayColor.getBlue(), grayColor.getAlpha()).endVertex();
-                    tessellator.draw();
+                    if (EMTConfig.MODPACK.MOB_HEALTH_BAR.shapeBar == EMTConfig.ShapeType.STRAIGHT) {
+                        buffer.begin(7, DefaultVertexFormats.POSITION_COLOR);
+                        buffer.pos(-size, 0, 0.0D).color(grayColor.getRed(), grayColor.getGreen(), grayColor.getBlue(), grayColor.getAlpha()).endVertex();
+                        buffer.pos(-size, barHeight, 0.0D).color(grayColor.getRed(), grayColor.getGreen(), grayColor.getBlue(), grayColor.getAlpha()).endVertex();
+                        buffer.pos(size, barHeight, 0.0D).color(grayColor.getRed(), grayColor.getGreen(), grayColor.getBlue(), grayColor.getAlpha()).endVertex();
+                        buffer.pos(size, 0, 0.0D).color(grayColor.getRed(), grayColor.getGreen(), grayColor.getBlue(), grayColor.getAlpha()).endVertex();
+                        tessellator.draw();
+                    }
+                    if (EMTConfig.MODPACK.MOB_HEALTH_BAR.shapeBar == EMTConfig.ShapeType.ROUND) {
+                        EmtRender.renderRoundedRect(-size, 0, size * 2, barHeight, EMTConfig.MODPACK.MOB_HEALTH_BAR.barRadius, grayColor);
+                    }
                 }
 
                 // Health Bar
                 if (EMTConfig.MODPACK.MOB_HEALTH_BAR.drawHealthBar) {
-                    buffer.begin(7, DefaultVertexFormats.POSITION_COLOR);
-                    buffer.pos(-size, 0, 0.0D).color(r, g, b, 127).endVertex();
-                    buffer.pos(-size, barHeight, 0.0D).color(r, g, b, 127).endVertex();
-                    buffer.pos(healthSize * 2 - size, barHeight, 0.0D).color(r, g, b, 127).endVertex();
-                    buffer.pos(healthSize * 2 - size, 0, 0.0D).color(r, g, b, 127).endVertex();
-                    tessellator.draw();
+                    Color healthColor = new Color(r, g, b, 127);
+                    if (EMTConfig.MODPACK.MOB_HEALTH_BAR.shapeBar == EMTConfig.ShapeType.STRAIGHT) {
+                        buffer.begin(7, DefaultVertexFormats.POSITION_COLOR);
+                        buffer.pos(-size, 0, 0.0D).color(r, g, b, 127).endVertex();
+                        buffer.pos(-size, barHeight, 0.0D).color(r, g, b, 127).endVertex();
+                        buffer.pos(healthSize * 2 - size, barHeight, 0.0D).color(r, g, b, 127).endVertex();
+                        buffer.pos(healthSize * 2 - size, 0, 0.0D).color(r, g, b, 127).endVertex();
+                        tessellator.draw();
+                    }
+                    if (EMTConfig.MODPACK.MOB_HEALTH_BAR.shapeBar == EMTConfig.ShapeType.ROUND) {
+                        EmtRender.renderRoundedRect(-size, 0, healthSize * 2, barHeight, EMTConfig.MODPACK.MOB_HEALTH_BAR.barRadius, healthColor);
+                    }
                 }
 
                 GlStateManager.enableTexture2D();

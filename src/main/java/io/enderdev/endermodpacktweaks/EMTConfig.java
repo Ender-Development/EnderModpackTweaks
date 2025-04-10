@@ -49,6 +49,11 @@ public class EMTConfig {
         WHITELIST
     }
 
+    public enum ShapeType {
+        STRAIGHT,
+        ROUND
+    }
+
     @Config.Name("Modpack Tweaks")
     @Config.LangKey("config.endermodpacktweaks")
     @Config.Comment("Made with <3 by Ender-Development")
@@ -103,7 +108,10 @@ public class EMTConfig {
         public static class InstantBoneMeal {
             @Config.RequiresMcRestart
             @Config.Name("[01] Enable Instant Bone Meal")
-            @Config.Comment("Enable the Instant Bone Meal feature. This allows you to instantly grow crops, trees, and other plants with bone meal.")
+            @Config.Comment({
+                    "Enable the Instant Bone Meal feature. This allows you to instantly grow crops, trees, and other plants with bone meal.",
+                    "It works like 99% of the time and I have no idea why it sometimes doesn't. So if anyone can provide some insight on that, please do."
+            })
             public boolean enable = false;
         }
 
@@ -167,7 +175,7 @@ public class EMTConfig {
 
             @Config.Name("[10] Gray Space Color")
             @Config.Comment("The color of the gray space. Format: #RRGGBBAA")
-            public String graySpaceColor = "#7F7F7FF7";
+            public String graySpaceColor = "#7F7F7F7F";
 
             @Config.Name("[11] Draw Health Bar")
             @Config.Comment("Should the health bar be drawn?")
@@ -256,6 +264,24 @@ public class EMTConfig {
             @Config.Name("[30] Mob Blacklist")
             @Config.Comment("Blacklist uses entity IDs. FORMAT: modid:entityid")
             public String[] mobBlacklist = new String[]{};
+
+            @Config.Name("[31] Background Shape")
+            @Config.Comment("The shape of the health bar background.")
+            public ShapeType shapeBackground = ShapeType.STRAIGHT;
+
+            @Config.Name("[32] Background Radius")
+            @Config.Comment("The radius of the health bar background. Only used if the shape is ROUND.")
+            @Config.RangeInt(min = 0)
+            public int backgroundRadius = 4;
+
+            @Config.Name("[33] Bar Shape")
+            @Config.Comment("The shape of the health bar.")
+            public ShapeType shapeBar = ShapeType.STRAIGHT;
+
+            @Config.Name("[34] Bar Radius")
+            @Config.Comment("The radius of the health bar. Only used if the shape is ROUND.")
+            @Config.RangeInt(min = 0)
+            public int barRadius = 2;
         }
 
         @Config.Name("Material Tweaker")
