@@ -28,6 +28,7 @@ public class CompatModsHandler {
             put("antifovchange", () -> EMTConfig.MINECRAFT.CLIENT.enable);
             put("icfluxnetworkenergylimitfix", () -> EMTConfig.FLUX_NETWORKS.enable);
             put("neat", () -> EMTConfig.MODPACK.MOB_HEALTH_BAR.enable);
+            put("bonemealmod", () -> EMTConfig.MODPACK.INSTANT_BONE_MEAL.enable);
         }
     });
 

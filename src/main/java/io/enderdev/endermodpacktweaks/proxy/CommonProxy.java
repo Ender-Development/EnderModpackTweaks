@@ -7,6 +7,7 @@ import io.enderdev.endermodpacktweaks.events.*;
 import io.enderdev.endermodpacktweaks.features.compatscreen.CompatModsHandler;
 import io.enderdev.endermodpacktweaks.features.crashinfo.InfoBuilder;
 import io.enderdev.endermodpacktweaks.features.healthbar.BarHandler;
+import io.enderdev.endermodpacktweaks.features.healthbar.BarRenderer;
 import io.enderdev.endermodpacktweaks.features.materialtweaker.MaterialTweaker;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -20,9 +21,12 @@ public class CommonProxy implements IProxy {
     private static final InfoBuilder INFO_BUILDER = new InfoBuilder("Modpack Informations");
     // Minecraft Internal
     private final BlockEvents blockEvents = new BlockEvents();
+    private final BoneMealEvents boneMealEvents = new BoneMealEvents();
     private final PlayerEvents playerEvents = new PlayerEvents();
     private final WorldEvents worldEvents = new WorldEvents();
     private final ServerEvents serverEvents = new ServerEvents();
+    // EMT Internal
+    private BarHandler barHandler;
     // Mod Compatibility
     private ElenaiDodgeEvents elenaiDodgeEvents;
     private ReskillableEvents reskillableEvents;
@@ -36,6 +40,10 @@ public class CommonProxy implements IProxy {
         MinecraftForge.EVENT_BUS.register(playerEvents);
         MinecraftForge.EVENT_BUS.register(worldEvents);
         MinecraftForge.EVENT_BUS.register(serverEvents);
+
+        if (EMTConfig.MODPACK.INSTANT_BONE_MEAL.enable) {
+            MinecraftForge.EVENT_BUS.register(boneMealEvents);
+        }
 
         if (EMTConfig.ELENAI_DODGE.enable && Loader.isModLoaded("elenaidodge2")) {
             elenaiDodgeEvents = new ElenaiDodgeEvents();
@@ -58,7 +66,8 @@ public class CommonProxy implements IProxy {
         }
 
         if (EMTConfig.MODPACK.MOB_HEALTH_BAR.enable) {
-            MinecraftForge.EVENT_BUS.register(new BarHandler());
+            barHandler = new BarHandler();
+            MinecraftForge.EVENT_BUS.register(barHandler);
         }
     }
 
@@ -68,6 +77,10 @@ public class CommonProxy implements IProxy {
     public void postInit(FMLPostInitializationEvent event) {
         if (EMTConfig.MODPACK.MATERIAL_TWEAKER.enable) {
             MaterialTweaker.INSTANCE.load();
+        }
+        if (EMTConfig.MODPACK.MOB_HEALTH_BAR.enable) {
+            barHandler.whitelist.init();
+            BarRenderer.rangeModifiers.init();
         }
         if (EMTConfig.SIMPLE_DIFFICULTY.enable && Loader.isModLoaded("simpledifficulty")) {
             simpleDifficultyEvents.temperaturePotionHandler.init();
