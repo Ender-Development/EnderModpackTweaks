@@ -3,7 +3,12 @@ package io.enderdev.endermodpacktweaks.utils;
 import java.awt.*;
 
 public class EmtColor {
-     public static Color parseColor(String colorStr) {
+    /**
+     * Parses a {@link java.awt.Color Color} from a {@link java.lang.String String} in the format {@code #RRGGBBAA}
+     * @param colorStr the color string to parse
+     * @return {@link java.awt.Color Color} object representing the color
+     */
+     public static Color parseColorFromHexString(String colorStr) {
         if (colorStr == null || colorStr.length() != 9 || colorStr.charAt(0) != '#') {
             throw new IllegalArgumentException("Invalid color format");
         }

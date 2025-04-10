@@ -2,6 +2,8 @@ package io.enderdev.endermodpacktweaks.features.healthbar;
 
 import io.enderdev.endermodpacktweaks.EMTConfig;
 import io.enderdev.endermodpacktweaks.utils.EmtColor;
+import io.enderdev.endermodpacktweaks.utils.EmtConfigHandler;
+import io.enderdev.endermodpacktweaks.utils.EmtConfigParser;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
@@ -41,6 +43,11 @@ public class BarRenderer {
     // Boss
     private static final ItemStack BOSS_SKULL = new ItemStack(Items.SKULL);
 
+    public static final EmtConfigHandler<EmtConfigParser.ConfigItemWithFloat> rangeModifiers = new EmtConfigHandler<>(
+            EMTConfig.MODPACK.MOB_HEALTH_BAR.distanceMultipliers,
+            EmtConfigParser.ConfigItemWithFloat::new
+    );
+
     public static void renderHealthBar(EntityLivingBase passedEntity, float partialTicks, Entity viewPoint) {
         Stack<EntityLivingBase> ridingStack = new Stack<>();
 
@@ -66,8 +73,13 @@ public class BarRenderer {
 
             processing:
             {
+                float maxDistance = EMTConfig.MODPACK.MOB_HEALTH_BAR.maxDistance;
+                if (EMTConfig.MODPACK.MOB_HEALTH_BAR.distanceMultipliers.length != 0 && rangeModifiers.equipped(mc.player)) {
+                    EmtConfigParser.ConfigItemWithFloat modifier = (EmtConfigParser.ConfigItemWithFloat) rangeModifiers.getEquipped(mc.player);
+                    maxDistance *= modifier != null ? modifier.value() : 1F;
+                }
                 float distance = passedEntity.getDistance(viewPoint);
-                if (distance > EMTConfig.MODPACK.MOB_HEALTH_BAR.maxDistance || !passedEntity.canEntityBeSeen(viewPoint) || entity.isInvisible()) {
+                if (distance > maxDistance|| !passedEntity.canEntityBeSeen(viewPoint) || entity.isInvisible()) {
                     break processing;
                 }
                 if (!EMTConfig.MODPACK.MOB_HEALTH_BAR.showOnBosses && !boss) {
@@ -174,23 +186,18 @@ public class BarRenderer {
 
                 // Background
                 if (EMTConfig.MODPACK.MOB_HEALTH_BAR.drawBackground) {
-                    Color bgColor = EmtColor.parseColor(EMTConfig.MODPACK.MOB_HEALTH_BAR.backgroundColor);
-                    if (EMTConfig.MODPACK.MOB_HEALTH_BAR.shapeType == EMTConfig.ShapeType.CORNER) {
-                        buffer.begin(7, DefaultVertexFormats.POSITION_COLOR);
-                        buffer.pos(-size - padding, -bgHeight, 0.0D).color(bgColor.getRed(), bgColor.getGreen(), bgColor.getBlue(), bgColor.getAlpha()).endVertex();
-                        buffer.pos(-size - padding, barHeight + padding, 0.0D).color(bgColor.getRed(), bgColor.getGreen(), bgColor.getBlue(), bgColor.getAlpha()).endVertex();
-                        buffer.pos(size + padding, barHeight + padding, 0.0D).color(bgColor.getRed(), bgColor.getGreen(), bgColor.getBlue(), bgColor.getAlpha()).endVertex();
-                        buffer.pos(size + padding, -bgHeight, 0.0D).color(bgColor.getRed(), bgColor.getGreen(), bgColor.getBlue(), bgColor.getAlpha()).endVertex();
-                        tessellator.draw();
-                    }
-                    if (EMTConfig.MODPACK.MOB_HEALTH_BAR.shapeType == EMTConfig.ShapeType.ROUND) {
-                        // Not implemented yet
-                    }
+                    Color bgColor = EmtColor.parseColorFromHexString(EMTConfig.MODPACK.MOB_HEALTH_BAR.backgroundColor);
+                    buffer.begin(7, DefaultVertexFormats.POSITION_COLOR);
+                    buffer.pos(-size - padding, -bgHeight, 0.0D).color(bgColor.getRed(), bgColor.getGreen(), bgColor.getBlue(), bgColor.getAlpha()).endVertex();
+                    buffer.pos(-size - padding, barHeight + padding, 0.0D).color(bgColor.getRed(), bgColor.getGreen(), bgColor.getBlue(), bgColor.getAlpha()).endVertex();
+                    buffer.pos(size + padding, barHeight + padding, 0.0D).color(bgColor.getRed(), bgColor.getGreen(), bgColor.getBlue(), bgColor.getAlpha()).endVertex();
+                    buffer.pos(size + padding, -bgHeight, 0.0D).color(bgColor.getRed(), bgColor.getGreen(), bgColor.getBlue(), bgColor.getAlpha()).endVertex();
+                    tessellator.draw();
                 }
 
                 // Gray Space
                 if (EMTConfig.MODPACK.MOB_HEALTH_BAR.drawGraySpace) {
-                    Color grayColor = EmtColor.parseColor(EMTConfig.MODPACK.MOB_HEALTH_BAR.graySpaceColor);
+                    Color grayColor = EmtColor.parseColorFromHexString(EMTConfig.MODPACK.MOB_HEALTH_BAR.graySpaceColor);
                     buffer.begin(7, DefaultVertexFormats.POSITION_COLOR);
                     buffer.pos(-size, 0, 0.0D).color(grayColor.getRed(), grayColor.getGreen(), grayColor.getBlue(), grayColor.getAlpha()).endVertex();
                     buffer.pos(-size, barHeight, 0.0D).color(grayColor.getRed(), grayColor.getGreen(), grayColor.getBlue(), grayColor.getAlpha()).endVertex();
@@ -296,12 +303,18 @@ public class BarRenderer {
         }
     }
 
+    // Everything in this method randomly becomes null, pls ignore!
     private static void renderIcon(int vertexX, int vertexY, ItemStack stack, int intU, int intV) {
         if (stack == null || stack.isEmpty()) {
             return;
         }
         IBakedModel iBakedModel = Minecraft.getMinecraft().getRenderItem().getItemModelMesher().getItemModel(stack);
-        String iconName = iBakedModel.getParticleTexture().getIconName();
+        TextureAtlasSprite meow = iBakedModel.getParticleTexture();
+        if (meow == null) {
+            return;
+        }
+
+        String iconName = meow.getIconName();
         if (iconName == null) {
             return;
         }

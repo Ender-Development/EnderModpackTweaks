@@ -2,6 +2,8 @@ package io.enderdev.endermodpacktweaks.features.healthbar;
 
 import io.enderdev.endermodpacktweaks.EMTConfig;
 import io.enderdev.endermodpacktweaks.mixin.minecraft.WorldClientAccessor;
+import io.enderdev.endermodpacktweaks.utils.EmtConfigHandler;
+import io.enderdev.endermodpacktweaks.utils.EmtConfigParser;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.culling.Frustum;
 import net.minecraft.client.settings.KeyBinding;
@@ -16,6 +18,10 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
 
 public class BarHandler {
+    public final EmtConfigHandler<EmtConfigParser.ConfigItem> whitelist = new EmtConfigHandler<>(
+            EMTConfig.MODPACK.MOB_HEALTH_BAR.onlyRenderWithEquipment,
+            EmtConfigParser.ConfigItem::new
+    );
 
     private final KeyBinding key;
     private boolean down;
@@ -42,6 +48,10 @@ public class BarHandler {
         Minecraft mc = Minecraft.getMinecraft();
 
         if ((!EMTConfig.MODPACK.MOB_HEALTH_BAR.renderInF1 && !Minecraft.isGuiEnabled()) || !shouldRender) {
+            return;
+        }
+
+        if (EMTConfig.MODPACK.MOB_HEALTH_BAR.onlyRenderWithEquipment.length != 0 && !whitelist.equipped(mc.player)) {
             return;
         }
 
