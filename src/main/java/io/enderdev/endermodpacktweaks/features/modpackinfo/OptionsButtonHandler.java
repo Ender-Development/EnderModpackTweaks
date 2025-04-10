@@ -30,7 +30,7 @@ public class OptionsButtonHandler {
                 enabledButtons++;
             }
         }
-        yOffset = (event.getGui().height / (enabledButtons == 0 ? 1 : enabledButtons)) + 24;
+        yOffset = (event.getGui().height / 2) - (enabledButtons * 12) - 20;
     }
 
     public void clearButtons() {

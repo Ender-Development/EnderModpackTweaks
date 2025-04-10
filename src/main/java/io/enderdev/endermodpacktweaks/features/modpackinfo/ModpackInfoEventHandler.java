@@ -3,10 +3,7 @@ package io.enderdev.endermodpacktweaks.features.modpackinfo;
 import io.enderdev.endermodpacktweaks.EMTConfig;
 import io.enderdev.endermodpacktweaks.EnderModpackTweaks;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiConfirmOpenLink;
-import net.minecraft.client.gui.GuiIngameMenu;
-import net.minecraft.client.gui.GuiMainMenu;
-import net.minecraft.client.gui.GuiYesNoCallback;
+import net.minecraft.client.gui.*;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -18,7 +15,7 @@ import java.net.URI;
 public class ModpackInfoEventHandler implements GuiYesNoCallback {
     @SubscribeEvent
     public void onGuiInit(GuiScreenEvent.InitGuiEvent.Post event) {
-        if (!(event.getGui() instanceof GuiMainMenu) && !(event.getGui() instanceof GuiIngameMenu)) {
+        if (!(event.getGui() instanceof GuiMainMenu) && !(event.getGui() instanceof GuiIngameMenu) && !(event.getGui() instanceof GuiOptions)) {
             return;
         }
         OptionsButtonHandler optionsButtonHandler = new OptionsButtonHandler(event);
