@@ -9,6 +9,29 @@ import org.lwjgl.opengl.GL11;
 import java.awt.*;
 
 public class EmtRender {
+    private static final Tessellator TESSELLATOR = Tessellator.getInstance();
+    private static final BufferBuilder BUFFER_BUILDER = TESSELLATOR.getBuffer();
+
+    public static void renderRect(float x, float y, float width, float height, Color color) {
+        GlStateManager.pushMatrix();
+        GlStateManager.translate(0, 0, 0);
+
+        GlStateManager.disableTexture2D();
+        GlStateManager.enableBlend();
+        GlStateManager.disableAlpha();
+        GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
+        GlStateManager.color(color.getRed() / 255f, color.getGreen() / 255f, color.getBlue() / 255f, color.getAlpha() / 255f);
+
+        BUFFER_BUILDER.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION);
+        BUFFER_BUILDER.pos(x + width, y + height, 0).endVertex();
+        BUFFER_BUILDER.pos(x + width, y, 0).endVertex();
+        BUFFER_BUILDER.pos(x, y, 0).endVertex();
+        BUFFER_BUILDER.pos(x, y + height, 0).endVertex();
+        TESSELLATOR.draw();
+
+        GlStateManager.popMatrix();
+    }
+
     // <https://github.com/tttsaurus/Ingame-Info-Reborn/blob/4e79541b1f77ecf44f7d3718fd32555ca498d1cb/src/main/java/com/tttsaurus/ingameinfo/common/api/render/RenderUtils.java#L169>
     public static void renderRoundedRect(float x, float y, float width, float height, float radius, Color color) {
         int segments = Math.max(3, (int) (radius / 2f));
@@ -33,30 +56,35 @@ public class EmtRender {
         GlStateManager.pushMatrix();
         GlStateManager.translate(0, 0, 0);
 
-        Tessellator tessellator = Tessellator.getInstance();
-        BufferBuilder bufferbuilder = tessellator.getBuffer();
-        bufferbuilder.begin(GL11.GL_TRIANGLE_FAN, DefaultVertexFormats.POSITION);
+        BUFFER_BUILDER.begin(GL11.GL_TRIANGLE_FAN, DefaultVertexFormats.POSITION);
 
-        addArcVertices(bufferbuilder, x + width - radius, y + radius, radius, 0, 90, segments);
-        bufferbuilder.pos(x + width, y + radius, 0).endVertex();
-        bufferbuilder.pos(x + width, y + height - radius, 0).endVertex();
-        addArcVertices(bufferbuilder, x + width - radius, y + height - radius, radius, 90, 180, segments);
-        bufferbuilder.pos(x + width - radius, y + height, 0).endVertex();
-        bufferbuilder.pos(x + radius, y + height, 0).endVertex();
-        addArcVertices(bufferbuilder, x + radius, y + height - radius, radius, 180, 270, segments);
-        bufferbuilder.pos(x, y + height - radius, 0).endVertex();
-        bufferbuilder.pos(x, y + radius, 0).endVertex();
-        addArcVertices(bufferbuilder, x + radius, y + radius, radius, 270, 360, segments);
-        bufferbuilder.pos(x + radius, y, 0).endVertex();
-        bufferbuilder.pos(x + width - radius, y, 0).endVertex();
+        addArcVertices(x + width - radius, y + radius, radius, 0, 90, segments);
 
-        tessellator.draw();
+        BUFFER_BUILDER.pos(x + width, y + radius, 0).endVertex();
+        BUFFER_BUILDER.pos(x + width, y + height - radius, 0).endVertex();
+
+        addArcVertices(x + width - radius, y + height - radius, radius, 90, 180, segments);
+
+        BUFFER_BUILDER.pos(x + width - radius, y + height, 0).endVertex();
+        BUFFER_BUILDER.pos(x + radius, y + height, 0).endVertex();
+
+        addArcVertices(x + radius, y + height - radius, radius, 180, 270, segments);
+
+        BUFFER_BUILDER.pos(x, y + height - radius, 0).endVertex();
+        BUFFER_BUILDER.pos(x, y + radius, 0).endVertex();
+
+        addArcVertices(x + radius, y + radius, radius, 270, 360, segments);
+
+        BUFFER_BUILDER.pos(x + radius, y, 0).endVertex();
+        BUFFER_BUILDER.pos(x + width - radius, y, 0).endVertex();
+
+        TESSELLATOR.draw();
 
         GlStateManager.popMatrix();
         GL11.glDisable(GL11.GL_POLYGON_SMOOTH);
     }
 
-    private static void addArcVertices(BufferBuilder bufferbuilder, float cx, float cy, float radius, float startAngle, float endAngle, int segments) {
+    private static void addArcVertices(float cx, float cy, float radius, float startAngle, float endAngle, int segments) {
         startAngle -= 90;
         endAngle -= 90;
         float x = (float) (cx + Math.cos(Math.toRadians(startAngle)) * radius);
@@ -65,8 +93,8 @@ public class EmtRender {
             float angle = (float) Math.toRadians(startAngle + (endAngle - startAngle) * i / segments);
             float dx = (float) (cx + Math.cos(angle) * radius);
             float dy = (float) (cy + Math.sin(angle) * radius);
-            bufferbuilder.pos(x, y, 0).endVertex();
-            bufferbuilder.pos(dx, dy, 0).endVertex();
+            BUFFER_BUILDER.pos(x, y, 0).endVertex();
+            BUFFER_BUILDER.pos(dx, dy, 0).endVertex();
             x = dx;
             y = dy;
         }
