@@ -181,6 +181,11 @@ public class EMTConfig {
             @Config.Comment("Should the health bar be drawn?")
             public boolean drawHealthBar = true;
 
+            @Config.Name("[12] Health Bar Alpha")
+            @Config.Comment("The alpha of the health bar.")
+            @Config.RangeInt(min = 0, max = 255)
+            public int healthBarAlpha = 127;
+
             @Config.Name("[12] Background Padding")
             @Config.Comment("The padding of the background.")
             @Config.RangeInt(min = 0)
