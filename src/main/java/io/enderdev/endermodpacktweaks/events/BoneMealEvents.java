@@ -19,10 +19,10 @@ public class BoneMealEvents {
         Block block = blockState.getBlock();
         World world = event.getWorld();
         BlockPos pos = event.getPos();
-        if (block instanceof BlockCrops) {
+        if (block instanceof BlockCrops && !((BlockCrops) block).isMaxAge(blockState)) {
             world.setBlockState(pos, ((BlockCrops) block).withAge(((BlockCrops) block).getMaxAge()), 3);
             processed = true;
-        } else if (block instanceof BlockStem) {
+        } else if (block instanceof BlockStem && blockState.getValue(BlockStem.AGE) != 7) {
             world.setBlockState(pos, blockState.withProperty(BlockStem.AGE, 7), 3);
             processed = true;
         } else if (block instanceof BlockSapling) {
@@ -36,7 +36,7 @@ public class BoneMealEvents {
             } catch (Exception ignored) {
 
             } finally {
-                if (event.getBlock() instanceof IGrowable) {
+                if (blockState instanceof IGrowable && ((IGrowable) block).canGrow(world, pos, blockState, world.isRemote)) {
                     ((IGrowable) block).grow(world, world.rand, pos, blockState);
                     processed = true;
                 }
