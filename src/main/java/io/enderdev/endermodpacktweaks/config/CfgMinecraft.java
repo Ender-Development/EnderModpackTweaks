@@ -14,7 +14,7 @@ public class CfgMinecraft {
     @Config.Name("Boss Bar Tweaks")
     @Config.LangKey("config.endermodpacktweaks.minecraft.boss_bar")
     @Config.Comment("Replace the boring old boss bars with something more fancy.")
-    public final BossBar BOSS_BAR = new BossBar();
+    public static final BossBar BOSS_BAR = new BossBar();
 
     public static class BossBar {
         @Config.RequiresMcRestart
@@ -26,7 +26,7 @@ public class CfgMinecraft {
     @Config.Name("Client Tweaks")
     @Config.LangKey("config.endermodpacktweaks.minecraft.client")
     @Config.Comment("Disable various Client elements.")
-    public final Client CLIENT = new Client();
+    public static final Client CLIENT = new Client();
 
     public static class Client {
         @Config.RequiresMcRestart
@@ -105,7 +105,7 @@ public class CfgMinecraft {
     @Config.Name("Dragon Tweaks")
     @Config.LangKey("config.endermodpacktweaks.minecraft.dragon")
     @Config.Comment("Tweaks for the initial Dragon Fight.")
-    public final Dragon DRAGON = new Dragon();
+    public static final Dragon DRAGON = new Dragon();
 
     public static class Dragon {
         @Config.RequiresMcRestart
@@ -152,7 +152,7 @@ public class CfgMinecraft {
     @Config.Name("End Gateway Tweaks")
     @Config.LangKey("config.endermodpacktweaks.minecraft.end_gateway")
     @Config.Comment("Tweak the End Gateway to your liking.")
-    public final EndGateway END_GATEWAY = new EndGateway();
+    public static final EndGateway END_GATEWAY = new EndGateway();
 
     public static class EndGateway {
         @Config.RequiresMcRestart
@@ -193,7 +193,7 @@ public class CfgMinecraft {
     @Config.Name("End Island Tweaks")
     @Config.LangKey("config.endermodpacktweaks.minecraft.end_island")
     @Config.Comment("Tweak the End Island to your liking.")
-    public final EndIsland END_ISLAND = new EndIsland();
+    public static final EndIsland END_ISLAND = new EndIsland();
 
     public static class EndIsland {
         @Config.RequiresMcRestart
@@ -217,7 +217,7 @@ public class CfgMinecraft {
     @Config.Name("End Portal Tweaks")
     @Config.LangKey("config.endermodpacktweaks.minecraft.end_portal")
     @Config.Comment("Tweak the End Portal to your liking.")
-    public final EndPodium END_PODIUM = new EndPodium();
+    public static final EndPodium END_PODIUM = new EndPodium();
 
     public static class EndPodium {
         @Config.RequiresMcRestart
@@ -263,7 +263,7 @@ public class CfgMinecraft {
     @Config.Name("obsidian_spike")
     @Config.LangKey("config.endermodpacktweaks.minecraft.obsidian_spike")
     @Config.Comment("Tweak the Obsidian Spikes in the End.")
-    public final ObsidianSpike OBSIDIAN_SPIKE = new ObsidianSpike();
+    public static final ObsidianSpike OBSIDIAN_SPIKE = new ObsidianSpike();
 
     public static class ObsidianSpike {
         @Config.RequiresMcRestart
@@ -337,7 +337,7 @@ public class CfgMinecraft {
     @Config.Name("nether_portal")
     @Config.LangKey("config.endermodpacktweaks.minecraft.nether_portal")
     @Config.Comment("Tweak the Nether Portal to your liking.")
-    public final NetherPortal NETHER_PORTAL = new NetherPortal();
+    public static final NetherPortal NETHER_PORTAL = new NetherPortal();
 
     public static class NetherPortal {
         @Config.RequiresMcRestart
@@ -361,7 +361,7 @@ public class CfgMinecraft {
     @Config.Name("player_effects")
     @Config.LangKey("config.endermodpacktweaks.minecraft.player_effects")
     @Config.Comment("Apply potion effects depending on different hunger and health conditions.")
-    public final PlayerEffects PLAYER_EFFECTS = new PlayerEffects();
+    public static final PlayerEffects PLAYER_EFFECTS = new PlayerEffects();
 
     public static class PlayerEffects {
         @Config.RequiresMcRestart
@@ -393,7 +393,7 @@ public class CfgMinecraft {
     @Config.Name("world")
     @Config.LangKey("config.endermodpacktweaks.minecraft.world")
     @Config.Comment("Tweaks for world generation and world settings.")
-    public final World WORLD = new World();
+    public static final World WORLD = new World();
 
     public static class World {
         @Config.Name("[01] Enable World Tweaks")

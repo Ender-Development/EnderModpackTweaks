@@ -14,7 +14,7 @@ public class CfgFeatures {
     @Config.Name("instant_bone_meal")
     @Config.LangKey("config.endermodpacktweaks.instant_bone_meal")
     @Config.Comment("Instantly grow crops, trees, and other plants with bone meal.")
-    public final InstantBoneMeal INSTANT_BONE_MEAL = new InstantBoneMeal();
+    public static final InstantBoneMeal INSTANT_BONE_MEAL = new InstantBoneMeal();
 
     public static class InstantBoneMeal {
         @Config.RequiresMcRestart
@@ -29,7 +29,7 @@ public class CfgFeatures {
     @Config.Name("material_tweaker")
     @Config.LangKey("config.endermodpacktweaks.material_tweaker")
     @Config.Comment("A tool is not to your linkings? Tweak it to your likings!")
-    public final MaterialTweaker MATERIAL_TWEAKER = new MaterialTweaker();
+    public static final MaterialTweaker MATERIAL_TWEAKER = new MaterialTweaker();
 
     public static class MaterialTweaker {
         @Config.RequiresMcRestart
@@ -104,7 +104,7 @@ public class CfgFeatures {
     @Config.Name("mob_health_bar")
     @Config.LangKey("config.endermodpacktweaks.mob_health_bar")
     @Config.Comment("Add a health bar to mobs. This is a 'neat' feature.")
-    public final MobHealthBar MOB_HEALTH_BAR = new MobHealthBar();
+    public static final MobHealthBar MOB_HEALTH_BAR = new MobHealthBar();
 
     public static class MobHealthBar {
         @Config.RequiresMcRestart
@@ -151,134 +151,136 @@ public class CfgFeatures {
         @Config.Comment("Should the whole health bar have a background?")
         public boolean drawBackground = true;
 
-        @Config.Name("[32] Background Shape")
+        @Config.Name("[08] Background Shape")
         @Config.Comment("The shape of the health bar background.")
         public EnumShapeType shapeBackground = EnumShapeType.STRAIGHT;
 
-        @Config.Name("[33] Background Radius")
+        @Config.Name("[09] Background Radius")
         @Config.Comment("The radius of the health bar background. Only used if the shape is ROUND.")
         @Config.RangeInt(min = 0)
         public int backgroundRadius = 4;
 
-        @Config.Name("[08] Background Color")
+        @Config.Name("[10] Background Color")
         @Config.Comment("The color of the background. Format: #RRGGBBAA")
         public String backgroundColor = "#00000040";
 
-        @Config.Name("[09] Draw Gray Space")
+        @Config.Name("[11] Draw Gray Space")
         @Config.Comment("Should the actual bar have a gray background?")
         public boolean drawGraySpace = true;
 
-        @Config.Name("[10] Gray Space Color")
+        @Config.Name("[12] Gray Space Color")
         @Config.Comment("The color of the gray space. Format: #RRGGBBAA")
         public String graySpaceColor = "#7F7F7F7F";
 
-        @Config.Name("[11] Draw Health Bar")
+        @Config.Name("[13] Draw Health Bar")
         @Config.Comment("Should the health bar be drawn?")
         public boolean drawHealthBar = true;
 
-        @Config.Name("[34] Bar Shape")
+        @Config.Name("[14] Bar Shape")
         @Config.Comment("The shape of the health bar.")
         public EnumShapeType shapeBar = EnumShapeType.STRAIGHT;
 
-        @Config.Name("[35] Bar Radius")
+        @Config.Name("[15] Bar Radius")
         @Config.Comment("The radius of the health bar. Only used if the shape is ROUND.")
         @Config.RangeInt(min = 0)
         public int barRadius = 2;
 
-        @Config.Name("[12] Health Bar Alpha")
+        @Config.Name("[16] Health Bar Alpha")
         @Config.Comment("The alpha of the health bar.")
         @Config.RangeInt(min = 0, max = 255)
         public int healthBarAlpha = 127;
 
-        @Config.Name("[13] Background Padding")
+        @Config.Name("[17] Background Padding")
         @Config.Comment("The padding of the background.")
         @Config.RangeInt(min = 0)
         public int backgroundPadding = 2;
 
-        @Config.Name("[14] Background Height")
+        @Config.Name("[18] Background Height")
         @Config.Comment("The height of the background.")
         @Config.RangeInt(min = 0)
         public int backgroundHeight = 6;
 
-        @Config.Name("[15] Health Bar Height")
+        @Config.Name("[19] Health Bar Height")
         @Config.Comment("The height of the health bar.")
         @Config.RangeInt(min = 0)
         public int barHeight = 4;
 
-        @Config.Name("[16] Plate Size")
+        @Config.Name("[20] Plate Size")
         @Config.Comment("The size of the health bar plate.")
         @Config.RangeInt(min = 0)
         public int plateSize = 25;
 
-        @Config.Name("[17] Plate Size (Boss)")
+        @Config.Name("[21] Plate Size (Boss)")
         @Config.Comment("The size of the health bar plate for bosses.")
         @Config.RangeInt(min = 0)
         public int plateSizeBoss = 50;
 
-        @Config.Name("[18] Show Attributes")
+        @Config.Name("[22] Show Attributes")
         @Config.Comment("Should the health bar show the attributes of the mob?")
         public boolean showAttributes = true;
 
-        @Config.Name("[19] Show Armor")
+        @Config.Name("[23] Show Armor")
         @Config.Comment("Should the health bar show the armor of the mob?")
         public boolean showArmor = true;
 
-        @Config.Name("[20] Group Armor")
+        @Config.Name("[24] Group Armor")
         @Config.Comment({
                 "Should the health bar group the armor of the mob?",
                 "e.g. condense 5 iron icons into 1 diamond icon."
         })
         public boolean groupArmor = true;
 
-        @Config.Name("[21] Color by Type")
+        @Config.Name("[25] Color by Type")
         @Config.Comment("Should the health bar be colored by the type of mob instead of health percentage?")
         public boolean colorByType = false;
 
-        @Config.Name("[22] HP Text Height")
+        @Config.Name("[26] HP Text Height")
         @Config.Comment("The height of the health text.")
         public int hpTextHeight = 14;
 
-        @Config.Name("[23] Show Max HP")
+        @Config.Name("[27] Show Max HP")
         @Config.Comment("Should the health bar show the max HP of the mob?")
         public boolean showMaxHP = true;
 
-        @Config.Name("[24] Show Current HP")
+        @Config.Name("[28] Show Current HP")
         @Config.Comment("Should the health bar show the current HP of the mob?")
         public boolean showCurrentHP = true;
 
-        @Config.Name("[25] Show Percentage")
+        @Config.Name("[29] Show Percentage")
         @Config.Comment("Should the health bar show the percentage of the mob?")
         public boolean showPercentage = true;
 
-        @Config.Name("[26] Show Name")
+        @Config.Name("[30] Show Name")
         @Config.Comment("Should the health bar show the name of the mob?")
         public boolean showName = true;
 
-        @Config.Name("[27] Show Health Bar on Players")
+        @Config.Name("[31] Show Health Bar on Players")
         @Config.Comment("Should the health bar be shown on players?")
         public boolean showOnPlayers = true;
 
-        @Config.Name("[28] Show Health Bar on Bosses")
+        @Config.Name("[32] Show Health Bar on Bosses")
         @Config.Comment("Should the health bar be shown on bosses?")
         public boolean showOnBosses = true;
 
-        @Config.Name("[29] Show Health Bar on Focused")
+        @Config.Name("[33] Show Health Bar on Focused")
         @Config.Comment("Should the health bar only be shown for the entity looked at?")
         public boolean showOnlyFocused = false;
 
-        @Config.Name("[30] Show Debug Info")
+        @Config.Name("[34] Show Debug Info")
         @Config.Comment("Should additional debug information be shown with F3 active?")
         public boolean enableDebugInfo = true;
 
-        @Config.Name("[31] Mob Blacklist")
+        @Config.Name("[35] Mob Blacklist")
         @Config.Comment("Blacklist uses entity IDs. FORMAT: modid:entityid")
-        public String[] mobBlacklist = new String[]{};
+        public String[] mobBlacklist = new String[]{
+                "minecraft:armorstand"
+        };
     }
 
     @Config.Name("sync_time")
     @Config.LangKey("config.endermodpacktweaks.sync_time")
     @Config.Comment("Never see the light of day again. (If you only play at night.)")
-    public final SyncTime SYNC_TIME = new SyncTime();
+    public static final SyncTime SYNC_TIME = new SyncTime();
 
     public static class SyncTime {
         @Config.RequiresWorldRestart

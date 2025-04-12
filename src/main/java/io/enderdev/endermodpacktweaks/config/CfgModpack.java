@@ -37,7 +37,7 @@ public class CfgModpack {
     @Config.Name("crash_info")
     @Config.LangKey("config.endermodpacktweaks.crash_info")
     @Config.Comment("Add additional modpack information to the crash report.")
-    public final CrashInfo CRASH_INFO = new CrashInfo();
+    public static final CrashInfo CRASH_INFO = new CrashInfo();
 
     public static class CrashInfo {
         @Config.RequiresMcRestart
@@ -61,7 +61,7 @@ public class CfgModpack {
     @Config.Name("options_menu_buttons")
     @Config.LangKey("config.endermodpacktweaks.options_menu_buttons")
     @Config.Comment("Link everything related to the modpack in the options and main menu.")
-    public final OptionsMenuButtons OPTIONS_MENU_BUTTONS = new OptionsMenuButtons();
+    public static final OptionsMenuButtons OPTIONS_MENU_BUTTONS = new OptionsMenuButtons();
 
     public static class OptionsMenuButtons {
         @Config.RequiresMcRestart
@@ -114,7 +114,7 @@ public class CfgModpack {
     @Config.Name("Server Message")
     @Config.LangKey("config.endermodpacktweaks.server_message")
     @Config.Comment("Similar to something that Nomifactory came up with.")
-    public final ServerMessage SERVER_MESSAGE = new ServerMessage();
+    public static final ServerMessage SERVER_MESSAGE = new ServerMessage();
 
     public static class ServerMessage {
         @Config.RequiresMcRestart
