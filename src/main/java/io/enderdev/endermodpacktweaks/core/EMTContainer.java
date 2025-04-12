@@ -17,6 +17,7 @@ public class EMTContainer extends DummyModContainer {
         meta.description = "Core mod for Ender's Modpack Tweaks";
     }
 
+    @SuppressWarnings("all")
     @Override
     public boolean registerBus(EventBus bus, LoadController controller) {
         bus.register(this);

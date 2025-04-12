@@ -1,13 +1,10 @@
 package io.enderdev.endermodpacktweaks.core;
 
 import com.google.common.collect.ImmutableMap;
-import io.enderdev.endermodpacktweaks.EMTConfig;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.resources.ResourcePackListEntry;
+import io.enderdev.endermodpacktweaks.config.CfgMinecraft;
 import net.minecraft.launchwrapper.Launch;
 import net.minecraft.launchwrapper.LaunchClassLoader;
 import net.minecraftforge.common.ForgeVersion;
-import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.relauncher.FMLLaunchHandler;
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
 import zone.rong.mixinbooter.IEarlyMixinLoader;
@@ -29,19 +26,19 @@ public class EMTLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader {
 
     private static final Map<String, BooleanSupplier> commonMixinConfigs = ImmutableMap.copyOf(new HashMap<String, BooleanSupplier>() {
         {
-            put("mixins.emt.minecraft.dragonfightmanager.json", () -> EMTConfig.MINECRAFT.DRAGON.enable);
-            put("mixins.emt.minecraft.endgateway.json", () -> EMTConfig.MINECRAFT.END_GATEWAY.enable);
-            put("mixins.emt.minecraft.endpodium.json", () -> EMTConfig.MINECRAFT.END_PODIUM.enable);
-            put("mixins.emt.minecraft.netherportal.json", () -> EMTConfig.MINECRAFT.NETHER_PORTAL.enable);
-            put("mixins.emt.minecraft.obsidianspike.json", () -> EMTConfig.MINECRAFT.OBSIDIAN_SPIKE.enable);
-            put("mixins.emt.minecraft.endisland.json", () -> EMTConfig.MINECRAFT.END_ISLAND.enable);
+            put("mixins.emt.minecraft.dragonfightmanager.json", () -> CfgMinecraft.DRAGON.enable);
+            put("mixins.emt.minecraft.endgateway.json", () -> CfgMinecraft.END_GATEWAY.enable);
+            put("mixins.emt.minecraft.endpodium.json", () -> CfgMinecraft.END_PODIUM.enable);
+            put("mixins.emt.minecraft.netherportal.json", () -> CfgMinecraft.NETHER_PORTAL.enable);
+            put("mixins.emt.minecraft.obsidianspike.json", () -> CfgMinecraft.OBSIDIAN_SPIKE.enable);
+            put("mixins.emt.minecraft.endisland.json", () -> CfgMinecraft.END_ISLAND.enable);
             put("mixins.emt.minecraftforge.json", () -> true);
         }
     });
 
     private static final Map<String, BooleanSupplier> clientsideMixinConfigs = ImmutableMap.copyOf(new HashMap<String, BooleanSupplier>() {
         {
-            put("mixins.emt.minecraft.bossbar.json", () -> EMTConfig.MINECRAFT.BOSS_BAR.enable);
+            put("mixins.emt.minecraft.bossbar.json", () -> CfgMinecraft.BOSS_BAR.enable);
             put("mixins.emt.minecraft.client.json", () -> true);
         }
     });
@@ -62,6 +59,7 @@ public class EMTLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader {
         return null;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public void injectData(Map<String, Object> data) {
         try {

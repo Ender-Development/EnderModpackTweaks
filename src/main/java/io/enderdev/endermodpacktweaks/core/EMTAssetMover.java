@@ -7,12 +7,9 @@ import com.google.gson.annotations.SerializedName;
 import io.enderdev.endermodpacktweaks.EnderModpackTweaks;
 import io.enderdev.endermodpacktweaks.Tags;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.Loader;
 
-import java.io.FileReader;
 import java.io.InputStreamReader;
-import java.io.Reader;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -23,6 +20,7 @@ public class EMTAssetMover {
         throw new IllegalStateException("Utility class");
     }
 
+    @SuppressWarnings("all")
     public static void getAssets() {
         List<AssetLocation> assets = null;
         try {
