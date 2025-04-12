@@ -1,7 +1,7 @@
 package io.enderdev.endermodpacktweaks.features.modpackinfo;
 
-import io.enderdev.endermodpacktweaks.EMTConfig;
 import io.enderdev.endermodpacktweaks.EnderModpackTweaks;
+import io.enderdev.endermodpacktweaks.config.CfgModpack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.*;
 import net.minecraftforge.client.event.GuiScreenEvent;
@@ -59,17 +59,17 @@ public class ModpackInfoEventHandler implements GuiYesNoCallback {
     private String getUrl(int id) {
         switch (id) {
             case 50:
-                return EMTConfig.MODPACK.OPTIONS_MENU_BUTTONS.CHANGELOG_BUTTON.url;
+                return CfgModpack.OPTIONS_MENU_BUTTONS.CHANGELOG_BUTTON.url;
             case 51:
-                return EMTConfig.MODPACK.OPTIONS_MENU_BUTTONS.DONATION_BUTTON.url;
+                return CfgModpack.OPTIONS_MENU_BUTTONS.DONATION_BUTTON.url;
             case 52:
-                return EMTConfig.MODPACK.OPTIONS_MENU_BUTTONS.GITHUB_BUTTON.url;
+                return CfgModpack.OPTIONS_MENU_BUTTONS.GITHUB_BUTTON.url;
             case 53:
-                return EMTConfig.MODPACK.OPTIONS_MENU_BUTTONS.DISCORD_BUTTON.url;
+                return CfgModpack.OPTIONS_MENU_BUTTONS.DISCORD_BUTTON.url;
             case 54:
-                return EMTConfig.MODPACK.OPTIONS_MENU_BUTTONS.TWITCH_BUTTON.url;
+                return CfgModpack.OPTIONS_MENU_BUTTONS.TWITCH_BUTTON.url;
             case 55:
-                return EMTConfig.MODPACK.OPTIONS_MENU_BUTTONS.YOUTUBE_BUTTON.url;
+                return CfgModpack.OPTIONS_MENU_BUTTONS.YOUTUBE_BUTTON.url;
             default:
                 return "";
         }

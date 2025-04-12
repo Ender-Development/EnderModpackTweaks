@@ -1,6 +1,6 @@
 package io.enderdev.endermodpacktweaks.features.crashinfo;
 
-import io.enderdev.endermodpacktweaks.EMTConfig;
+import io.enderdev.endermodpacktweaks.config.CfgModpack;
 import io.enderdev.endermodpacktweaks.utils.EmtModpackInfo;
 import net.minecraftforge.fml.common.ICrashCallable;
 
@@ -20,7 +20,7 @@ public class InfoBuilder implements ICrashCallable {
             return "";
         }
 
-        EmtModpackInfo modpackInfo = new EmtModpackInfo(EMTConfig.MODPACK.CRASH_INFO.readFromManifest);
+        EmtModpackInfo modpackInfo = new EmtModpackInfo(CfgModpack.CRASH_INFO.readFromManifest);
 
         builder.append("---\n");
         builder.append("Modpack Name: '").append(modpackInfo.getName()).append("'\n");

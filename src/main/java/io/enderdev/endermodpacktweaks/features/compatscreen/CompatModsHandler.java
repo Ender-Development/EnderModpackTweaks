@@ -1,7 +1,10 @@
 package io.enderdev.endermodpacktweaks.features.compatscreen;
 
 import com.google.common.collect.ImmutableMap;
-import io.enderdev.endermodpacktweaks.EMTConfig;
+import io.enderdev.endermodpacktweaks.config.CfgFeatures;
+import io.enderdev.endermodpacktweaks.config.CfgMinecraft;
+import io.enderdev.endermodpacktweaks.config.CfgModpack;
+import io.enderdev.endermodpacktweaks.config.CfgTweaks;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.ModContainer;
@@ -18,17 +21,17 @@ import java.util.function.BooleanSupplier;
 public class CompatModsHandler {
     private static final Map<String, BooleanSupplier> obsoleteModMap = ImmutableMap.copyOf(new HashMap<String, BooleanSupplier>() {
         {
-            put("dragonmurder", () -> EMTConfig.MINECRAFT.DRAGON.enable);
-            put("packcrashinfo", () -> EMTConfig.MODPACK.CRASH_INFO.enable);
-            put("materialchanger", () -> EMTConfig.MODPACK.MATERIAL_TWEAKER.enable);
-            put("asaafp", () -> EMTConfig.ASTRAL_SORCERY.enable);
-            put("chunkomg", () -> EMTConfig.MINECRAFT.CLIENT.enable);
-            put("hidenametags", () -> EMTConfig.MINECRAFT.CLIENT.enable);
-            put("hideitemnames", () -> EMTConfig.MINECRAFT.CLIENT.enable);
-            put("antifovchange", () -> EMTConfig.MINECRAFT.CLIENT.enable);
-            put("icfluxnetworkenergylimitfix", () -> EMTConfig.FLUX_NETWORKS.enable);
-            put("neat", () -> EMTConfig.MODPACK.MOB_HEALTH_BAR.enable);
-            put("bonemealmod", () -> EMTConfig.MODPACK.INSTANT_BONE_MEAL.enable);
+            put("dragonmurder", () -> CfgMinecraft.DRAGON.enable);
+            put("packcrashinfo", () -> CfgModpack.CRASH_INFO.enable);
+            put("materialchanger", () -> CfgFeatures.MATERIAL_TWEAKER.enable);
+            put("asaafp", () -> CfgTweaks.ASTRAL_SORCERY.enable);
+            put("chunkomg", () -> CfgMinecraft.CLIENT.enable);
+            put("hidenametags", () -> CfgMinecraft.CLIENT.enable);
+            put("hideitemnames", () -> CfgMinecraft.CLIENT.enable);
+            put("antifovchange", () -> CfgMinecraft.CLIENT.enable);
+            put("icfluxnetworkenergylimitfix", () -> CfgTweaks.FLUX_NETWORKS.enable);
+            put("neat", () -> CfgFeatures.MOB_HEALTH_BAR.enable);
+            put("bonemealmod", () -> CfgFeatures.INSTANT_BONE_MEAL.enable);
         }
     });
 

@@ -1,6 +1,6 @@
 package io.enderdev.endermodpacktweaks.features.worldgen;
 
-import io.enderdev.endermodpacktweaks.EMTConfig;
+import io.enderdev.endermodpacktweaks.config.CfgMinecraft;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -10,8 +10,8 @@ import java.util.Random;
 
 public class BetterEndPodium extends WorldGen {
     private final boolean activePortal;
-    private static final ResourceLocation portal_on = new ResourceLocation(EMTConfig.MINECRAFT.END_PODIUM.activePortalStructure);
-    private static final ResourceLocation portal_off = new ResourceLocation(EMTConfig.MINECRAFT.END_PODIUM.portalStructure);
+    private static final ResourceLocation portal_on = new ResourceLocation(CfgMinecraft.END_PODIUM.activePortalStructure);
+    private static final ResourceLocation portal_off = new ResourceLocation(CfgMinecraft.END_PODIUM.portalStructure);
 
     public BetterEndPodium(boolean activePortalIn) {
         this.activePortal = activePortalIn;

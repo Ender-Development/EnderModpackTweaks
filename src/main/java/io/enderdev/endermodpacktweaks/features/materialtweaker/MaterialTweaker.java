@@ -1,7 +1,7 @@
 package io.enderdev.endermodpacktweaks.features.materialtweaker;
 
-import io.enderdev.endermodpacktweaks.EMTConfig;
 import io.enderdev.endermodpacktweaks.EnderModpackTweaks;
+import io.enderdev.endermodpacktweaks.config.CfgFeatures;
 import net.minecraft.item.*;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
@@ -28,15 +28,15 @@ public class MaterialTweaker {
     }
 
     public void load() {
-        Arrays.stream(EMTConfig.MODPACK.MATERIAL_TWEAKER.stacksize).forEach(this::setStacksize);
-        Arrays.stream(EMTConfig.MODPACK.MATERIAL_TWEAKER.durability).forEach(this::setDurability);
-        Arrays.stream(EMTConfig.MODPACK.MATERIAL_TWEAKER.harvestLevel).forEach(this::setHarvestLevel);
-        Arrays.stream(EMTConfig.MODPACK.MATERIAL_TWEAKER.enchantability).forEach(this::setEnchantability);
-        Arrays.stream(EMTConfig.MODPACK.MATERIAL_TWEAKER.efficiency).forEach(this::setEfficiency);
-        Arrays.stream(EMTConfig.MODPACK.MATERIAL_TWEAKER.attackDamage).forEach(this::setAttackDamage);
-        Arrays.stream(EMTConfig.MODPACK.MATERIAL_TWEAKER.attackSpeed).forEach(this::setAttackSpeed);
-        Arrays.stream(EMTConfig.MODPACK.MATERIAL_TWEAKER.armorProtection).forEach(this::setArmorProtection);
-        Arrays.stream(EMTConfig.MODPACK.MATERIAL_TWEAKER.armorToughness).forEach(this::setArmorToughness);
+        Arrays.stream(CfgFeatures.MATERIAL_TWEAKER.stacksize).forEach(this::setStacksize);
+        Arrays.stream(CfgFeatures.MATERIAL_TWEAKER.durability).forEach(this::setDurability);
+        Arrays.stream(CfgFeatures.MATERIAL_TWEAKER.harvestLevel).forEach(this::setHarvestLevel);
+        Arrays.stream(CfgFeatures.MATERIAL_TWEAKER.enchantability).forEach(this::setEnchantability);
+        Arrays.stream(CfgFeatures.MATERIAL_TWEAKER.efficiency).forEach(this::setEfficiency);
+        Arrays.stream(CfgFeatures.MATERIAL_TWEAKER.attackDamage).forEach(this::setAttackDamage);
+        Arrays.stream(CfgFeatures.MATERIAL_TWEAKER.attackSpeed).forEach(this::setAttackSpeed);
+        Arrays.stream(CfgFeatures.MATERIAL_TWEAKER.armorProtection).forEach(this::setArmorProtection);
+        Arrays.stream(CfgFeatures.MATERIAL_TWEAKER.armorToughness).forEach(this::setArmorToughness);
     }
 
     private void setStacksize(String input) {

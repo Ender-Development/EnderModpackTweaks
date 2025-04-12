@@ -1,6 +1,6 @@
 package io.enderdev.endermodpacktweaks.features.healthbar;
 
-import io.enderdev.endermodpacktweaks.EMTConfig;
+import io.enderdev.endermodpacktweaks.config.CfgFeatures;
 import io.enderdev.endermodpacktweaks.mixin.minecraft.WorldClientAccessor;
 import io.enderdev.endermodpacktweaks.utils.EmtConfigHandler;
 import io.enderdev.endermodpacktweaks.utils.EmtConfigParser;
@@ -19,7 +19,7 @@ import org.lwjgl.opengl.GL20;
 
 public class BarHandler {
     public final EmtConfigHandler<EmtConfigParser.ConfigItem> whitelist = new EmtConfigHandler<>(
-            EMTConfig.MODPACK.MOB_HEALTH_BAR.onlyRenderWithEquipment,
+            CfgFeatures.MOB_HEALTH_BAR.onlyRenderWithEquipment,
             EmtConfigParser.ConfigItem::new
     );
 
@@ -47,11 +47,11 @@ public class BarHandler {
     public void onRenderWorldLast(RenderWorldLastEvent event) {
         Minecraft mc = Minecraft.getMinecraft();
 
-        if ((!EMTConfig.MODPACK.MOB_HEALTH_BAR.renderInF1 && !Minecraft.isGuiEnabled()) || !shouldRender) {
+        if ((!CfgFeatures.MOB_HEALTH_BAR.renderInF1 && !Minecraft.isGuiEnabled()) || !shouldRender) {
             return;
         }
 
-        if (EMTConfig.MODPACK.MOB_HEALTH_BAR.onlyRenderWithEquipment.length != 0 && !whitelist.equipped(mc.player)) {
+        if (CfgFeatures.MOB_HEALTH_BAR.onlyRenderWithEquipment.length != 0 && !whitelist.equipped(mc.player)) {
             return;
         }
 
@@ -69,7 +69,7 @@ public class BarHandler {
         double viewZ = cameraEntity.lastTickPosZ + (cameraEntity.posZ - cameraEntity.lastTickPosZ) * partialTicks;
         frustum.setPosition(viewX, viewY, viewZ);
 
-        if (EMTConfig.MODPACK.MOB_HEALTH_BAR.showOnlyFocused) {
+        if (CfgFeatures.MOB_HEALTH_BAR.showOnlyFocused) {
             Entity focused = BarRenderer.getEntityLookedAt(mc.player);
             if (focused instanceof EntityLivingBase && focused.isEntityAlive()) {
                 renderHealthBar((EntityLivingBase) focused, partialTicks, cameraEntity);

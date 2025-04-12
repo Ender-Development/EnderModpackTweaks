@@ -1,6 +1,7 @@
 package io.enderdev.endermodpacktweaks.features.healthbar;
 
-import io.enderdev.endermodpacktweaks.EMTConfig;
+import io.enderdev.endermodpacktweaks.config.CfgFeatures;
+import io.enderdev.endermodpacktweaks.config.EnumShapeType;
 import io.enderdev.endermodpacktweaks.utils.EmtColor;
 import io.enderdev.endermodpacktweaks.utils.EmtConfigHandler;
 import io.enderdev.endermodpacktweaks.utils.EmtConfigParser;
@@ -29,8 +30,9 @@ import net.minecraft.world.World;
 import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
-import java.util.*;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Stack;
 
 public class BarRenderer {
     // Armor
@@ -45,7 +47,7 @@ public class BarRenderer {
     private static final ItemStack BOSS_SKULL = new ItemStack(Items.SKULL);
 
     public static final EmtConfigHandler<EmtConfigParser.ConfigItemWithFloat> rangeModifiers = new EmtConfigHandler<>(
-            EMTConfig.MODPACK.MOB_HEALTH_BAR.distanceMultipliers,
+            CfgFeatures.MOB_HEALTH_BAR.distanceMultipliers,
             EmtConfigParser.ConfigItemWithFloat::new
     );
 
@@ -68,14 +70,14 @@ public class BarRenderer {
             boolean boss = !entity.isNonBoss();
 
             String entityID = EntityList.getEntityString(entity);
-            if (Arrays.asList(EMTConfig.MODPACK.MOB_HEALTH_BAR.mobBlacklist).contains(entityID)) {
+            if (Arrays.asList(CfgFeatures.MOB_HEALTH_BAR.mobBlacklist).contains(entityID)) {
                 continue;
             }
 
             processing:
             {
-                float maxDistance = EMTConfig.MODPACK.MOB_HEALTH_BAR.maxDistance;
-                if (EMTConfig.MODPACK.MOB_HEALTH_BAR.distanceMultipliers.length != 0 && rangeModifiers.equipped(mc.player)) {
+                float maxDistance = CfgFeatures.MOB_HEALTH_BAR.maxDistance;
+                if (CfgFeatures.MOB_HEALTH_BAR.distanceMultipliers.length != 0 && rangeModifiers.equipped(mc.player)) {
                     EmtConfigParser.ConfigItemWithFloat modifier = (EmtConfigParser.ConfigItemWithFloat) rangeModifiers.getEquipped(mc.player);
                     maxDistance *= modifier != null ? modifier.value() : 1F;
                 }
@@ -83,10 +85,10 @@ public class BarRenderer {
                 if (distance > maxDistance || !passedEntity.canEntityBeSeen(viewPoint) || entity.isInvisible()) {
                     break processing;
                 }
-                if (!EMTConfig.MODPACK.MOB_HEALTH_BAR.showOnBosses && !boss) {
+                if (!CfgFeatures.MOB_HEALTH_BAR.showOnBosses && !boss) {
                     break processing;
                 }
-                if (!EMTConfig.MODPACK.MOB_HEALTH_BAR.showOnPlayers && entity instanceof EntityPlayer) {
+                if (!CfgFeatures.MOB_HEALTH_BAR.showOnPlayers && entity instanceof EntityPlayer) {
                     break processing;
                 }
 
@@ -106,7 +108,7 @@ public class BarRenderer {
                 RenderManager renderManager = Minecraft.getMinecraft().getRenderManager();
 
                 GlStateManager.pushMatrix();
-                GlStateManager.translate((float) (entityX - renderManager.viewerPosX), (float) (entityY - renderManager.viewerPosY + passedEntity.height + EMTConfig.MODPACK.MOB_HEALTH_BAR.heightAbove), (float) (entityZ - renderManager.viewerPosZ));
+                GlStateManager.translate((float) (entityX - renderManager.viewerPosX), (float) (entityY - renderManager.viewerPosY + passedEntity.height + CfgFeatures.MOB_HEALTH_BAR.heightAbove), (float) (entityZ - renderManager.viewerPosZ));
                 GL11.glNormal3f(0.0F, 1.0F, 0.0F);
                 GlStateManager.rotate(-renderManager.playerViewY, 0.0F, 1.0F, 0.0F);
                 GlStateManager.rotate(renderManager.playerViewX, 1.0F, 0.0F, 0.0F);
@@ -121,10 +123,10 @@ public class BarRenderer {
                 Tessellator tessellator = Tessellator.getInstance();
                 BufferBuilder buffer = tessellator.getBuffer();
 
-                float padding = EMTConfig.MODPACK.MOB_HEALTH_BAR.backgroundPadding;
-                int bgHeight = EMTConfig.MODPACK.MOB_HEALTH_BAR.backgroundHeight;
-                int barHeight = EMTConfig.MODPACK.MOB_HEALTH_BAR.barHeight;
-                float size = EMTConfig.MODPACK.MOB_HEALTH_BAR.plateSize;
+                float padding = CfgFeatures.MOB_HEALTH_BAR.backgroundPadding;
+                int bgHeight = CfgFeatures.MOB_HEALTH_BAR.backgroundHeight;
+                int barHeight = CfgFeatures.MOB_HEALTH_BAR.barHeight;
+                float size = CfgFeatures.MOB_HEALTH_BAR.plateSize;
 
                 int r = 0;
                 int g = 255;
@@ -153,13 +155,13 @@ public class BarRenderer {
 
                 if (boss) {
                     stack = BOSS_SKULL;
-                    size = EMTConfig.MODPACK.MOB_HEALTH_BAR.plateSizeBoss;
+                    size = CfgFeatures.MOB_HEALTH_BAR.plateSizeBoss;
                     r = 128;
                     g = 0;
                     b = 128;
                 }
 
-                boolean useHue = !EMTConfig.MODPACK.MOB_HEALTH_BAR.colorByType;
+                boolean useHue = !CfgFeatures.MOB_HEALTH_BAR.colorByType;
                 if (useHue) {
                     float hue = Math.max(0F, (health / maxHealth) / 3F - 0.07F);
                     Color color = Color.getHSBColor(hue, 1F, 1F);
@@ -186,35 +188,35 @@ public class BarRenderer {
                 float healthSize = size * (health / maxHealth);
 
                 // Background
-                if (EMTConfig.MODPACK.MOB_HEALTH_BAR.drawBackground) {
-                    Color bgColor = EmtColor.parseColorFromHexString(EMTConfig.MODPACK.MOB_HEALTH_BAR.backgroundColor);
-                    if (EMTConfig.MODPACK.MOB_HEALTH_BAR.shapeBackground == EMTConfig.ShapeType.STRAIGHT) {
+                if (CfgFeatures.MOB_HEALTH_BAR.drawBackground) {
+                    Color bgColor = EmtColor.parseColorFromHexString(CfgFeatures.MOB_HEALTH_BAR.backgroundColor);
+                    if (CfgFeatures.MOB_HEALTH_BAR.shapeBackground == EnumShapeType.STRAIGHT) {
                         EmtRender.renderRect(-size - padding, -bgHeight, size * 2 + padding * 2, bgHeight * 2 + padding, bgColor);
                     }
-                    if (EMTConfig.MODPACK.MOB_HEALTH_BAR.shapeBackground == EMTConfig.ShapeType.ROUND) {
-                        EmtRender.renderRoundedRect(-size - padding, -bgHeight, size * 2 + padding * 2, bgHeight * 2 + padding, EMTConfig.MODPACK.MOB_HEALTH_BAR.backgroundRadius, bgColor);
+                    if (CfgFeatures.MOB_HEALTH_BAR.shapeBackground == EnumShapeType.ROUND) {
+                        EmtRender.renderRoundedRect(-size - padding, -bgHeight, size * 2 + padding * 2, bgHeight * 2 + padding, CfgFeatures.MOB_HEALTH_BAR.backgroundRadius, bgColor);
                     }
                 }
 
                 // Gray Space
-                if (EMTConfig.MODPACK.MOB_HEALTH_BAR.drawGraySpace) {
-                    Color grayColor = EmtColor.parseColorFromHexString(EMTConfig.MODPACK.MOB_HEALTH_BAR.graySpaceColor);
-                    if (EMTConfig.MODPACK.MOB_HEALTH_BAR.shapeBar == EMTConfig.ShapeType.STRAIGHT) {
+                if (CfgFeatures.MOB_HEALTH_BAR.drawGraySpace) {
+                    Color grayColor = EmtColor.parseColorFromHexString(CfgFeatures.MOB_HEALTH_BAR.graySpaceColor);
+                    if (CfgFeatures.MOB_HEALTH_BAR.shapeBar == EnumShapeType.STRAIGHT) {
                         EmtRender.renderRect(-size, 0, size * 2, barHeight, grayColor);
                     }
-                    if (EMTConfig.MODPACK.MOB_HEALTH_BAR.shapeBar == EMTConfig.ShapeType.ROUND) {
-                        EmtRender.renderRoundedRect(-size, 0, size * 2, barHeight, EMTConfig.MODPACK.MOB_HEALTH_BAR.barRadius, grayColor);
+                    if (CfgFeatures.MOB_HEALTH_BAR.shapeBar == EnumShapeType.ROUND) {
+                        EmtRender.renderRoundedRect(-size, 0, size * 2, barHeight, CfgFeatures.MOB_HEALTH_BAR.barRadius, grayColor);
                     }
                 }
 
                 // Health Bar
-                if (EMTConfig.MODPACK.MOB_HEALTH_BAR.drawHealthBar) {
-                    Color healthColor = new Color(r, g, b, EMTConfig.MODPACK.MOB_HEALTH_BAR.healthBarAlpha);
-                    if (EMTConfig.MODPACK.MOB_HEALTH_BAR.shapeBar == EMTConfig.ShapeType.STRAIGHT) {
+                if (CfgFeatures.MOB_HEALTH_BAR.drawHealthBar) {
+                    Color healthColor = new Color(r, g, b, CfgFeatures.MOB_HEALTH_BAR.healthBarAlpha);
+                    if (CfgFeatures.MOB_HEALTH_BAR.shapeBar == EnumShapeType.STRAIGHT) {
                         EmtRender.renderRect(-size, 0, healthSize * 2, barHeight, healthColor);
                     }
-                    if (EMTConfig.MODPACK.MOB_HEALTH_BAR.shapeBar == EMTConfig.ShapeType.ROUND) {
-                        EmtRender.renderRoundedRect(-size, 0, healthSize * 2, barHeight, EMTConfig.MODPACK.MOB_HEALTH_BAR.barRadius, healthColor);
+                    if (CfgFeatures.MOB_HEALTH_BAR.shapeBar == EnumShapeType.ROUND) {
+                        EmtRender.renderRoundedRect(-size, 0, healthSize * 2, barHeight, CfgFeatures.MOB_HEALTH_BAR.barRadius, healthColor);
                     }
                 }
 
@@ -224,7 +226,7 @@ public class BarRenderer {
                 GlStateManager.translate(-size, -4.5F, 0F);
                 GlStateManager.scale(s, s, s);
 
-                if (EMTConfig.MODPACK.MOB_HEALTH_BAR.showName) {
+                if (CfgFeatures.MOB_HEALTH_BAR.showName) {
                     mc.fontRenderer.drawString(name, 0, 0, 0xFFFFFF);
                 }
 
@@ -232,7 +234,7 @@ public class BarRenderer {
                 float s1 = 0.75F;
                 GlStateManager.scale(s1, s1, s1);
 
-                int h = EMTConfig.MODPACK.MOB_HEALTH_BAR.hpTextHeight;
+                int h = CfgFeatures.MOB_HEALTH_BAR.hpTextHeight;
                 String maxHpStr = TextFormatting.BOLD + "" + Math.round(maxHealth * 100.0) / 100.0;
                 String hpStr = "" + Math.round(health * 100.0) / 100.0;
                 String percStr = (int) percent + "%";
@@ -244,16 +246,16 @@ public class BarRenderer {
                     hpStr = hpStr.substring(0, hpStr.length() - 2);
                 }
 
-                if (EMTConfig.MODPACK.MOB_HEALTH_BAR.showCurrentHP) {
+                if (CfgFeatures.MOB_HEALTH_BAR.showCurrentHP) {
                     mc.fontRenderer.drawString(hpStr, 2, h, 0xFFFFFF);
                 }
-                if (EMTConfig.MODPACK.MOB_HEALTH_BAR.showMaxHP) {
+                if (CfgFeatures.MOB_HEALTH_BAR.showMaxHP) {
                     mc.fontRenderer.drawString(maxHpStr, (int) (size / (s * s1) * 2) - 2 - mc.fontRenderer.getStringWidth(maxHpStr), h, 0xFFFFFF);
                 }
-                if (EMTConfig.MODPACK.MOB_HEALTH_BAR.showPercentage) {
+                if (CfgFeatures.MOB_HEALTH_BAR.showPercentage) {
                     mc.fontRenderer.drawString(percStr, (int) (size / (s * s1)) - mc.fontRenderer.getStringWidth(percStr) / 2, h, 0xFFFFFFFF);
                 }
-                if (EMTConfig.MODPACK.MOB_HEALTH_BAR.enableDebugInfo && mc.gameSettings.showDebugInfo) {
+                if (CfgFeatures.MOB_HEALTH_BAR.enableDebugInfo && mc.gameSettings.showDebugInfo) {
                     mc.fontRenderer.drawString("ID: \"" + entityID + "\"", 0, h + 16, 0xFFFFFFFF);
                 }
                 GlStateManager.popMatrix();
@@ -265,16 +267,16 @@ public class BarRenderer {
                 GlStateManager.scale(s1, s1, s1);
                 GlStateManager.translate(size / (s * s1) * 2 - 16, 0F, 0F);
                 mc.renderEngine.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
-                if (stack != null && EMTConfig.MODPACK.MOB_HEALTH_BAR.showAttributes) {
+                if (stack != null && CfgFeatures.MOB_HEALTH_BAR.showAttributes) {
                     renderIcon(off, 0, stack, 16, 16);
                     off -= 16;
                 }
 
-                if (EMTConfig.MODPACK.MOB_HEALTH_BAR.showArmor && entity.getTotalArmorValue() > 0) {
+                if (CfgFeatures.MOB_HEALTH_BAR.showArmor && entity.getTotalArmorValue() > 0) {
                     int armor = entity.getTotalArmorValue();
                     int ironArmor = armor % 5;
                     int diamondArmor = armor / 5;
-                    if (!EMTConfig.MODPACK.MOB_HEALTH_BAR.groupArmor) {
+                    if (!CfgFeatures.MOB_HEALTH_BAR.groupArmor) {
                         ironArmor = armor;
                         diamondArmor = 0;
                     }
