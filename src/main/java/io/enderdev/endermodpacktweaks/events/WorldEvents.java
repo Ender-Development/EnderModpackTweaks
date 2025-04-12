@@ -26,13 +26,13 @@ public class WorldEvents {
         }
         EnumDifficulty currentDifficulty = world.getDifficulty();
         EnumDifficulty forcedDifficulty = EnumDifficulty.byId(CfgMinecraft.WORLD.difficulty.getValue());
-        if (currentDifficulty != forcedDifficulty && CfgMinecraft.WORLD.force) {
+        if (currentDifficulty != forcedDifficulty && CfgMinecraft.WORLD.forceDifficulty) {
             world.getWorldInfo().setDifficulty(forcedDifficulty);
         }
         if (!world.getWorldInfo().isDifficultyLocked()) {
             world.getWorldInfo().setDifficultyLocked(CfgMinecraft.WORLD.lock);
         }
-        if (CfgMinecraft.WORLD.force) {
+        if (CfgMinecraft.WORLD.forceGamemode) {
             world.getWorldInfo().setGameType(GameType.getByID(CfgMinecraft.WORLD.gamemode.getValue()));
         }
         world.getWorldInfo().setAllowCommands(CfgMinecraft.WORLD.cheats);

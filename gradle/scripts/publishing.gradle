@@ -52,7 +52,7 @@ if (propertyBool('publish_to_curseforge')) {
                 changelogType = 'markdown'
             }
             mainArtifact tasks.reobfJar, {
-                displayName = "${propertyString('mod_name')} ${propertyString('mod_version')}"
+                displayName = "${propertyString('mod_id')}-${propertyString('mod_version')}"
                 relations {
                     requiredDependency 'mixin-booter'
                     requiredDependency 'assetmover'

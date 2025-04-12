@@ -1,34 +1,6 @@
 ####################
 # General
 ####################
-config.endermodpacktweaks=Modpack Tweaks
-config.endermodpacktweaks.tooltip=Various options for Modpack developers
-config.endermodpacktweaks.crash_info=Crash Info
-config.endermodpacktweaks.crash_info.tooltip=Shows Modpack Information in Crash Reports
-config.endermodpacktweaks.instant_bone_meal=Instant Bone Meal
-config.endermodpacktweaks.instant_bone_meal.tooltip=Instantly grows crops and trees
-config.endermodpacktweaks.mob_health_bar=Mob Health Bar
-config.endermodpacktweaks.mob_health_bar.tooltip=Shows the health bar of mobs above their heads. Very Neat!
-config.endermodpacktweaks.material_tweaker=Material Tweaker
-config.endermodpacktweaks.material_tweaker.tooltip=Tweak various item stats
-config.endermodpacktweaks.options_menu_buttons=Options Menu Buttons
-config.endermodpacktweaks.options_menu_buttons.tooltip=Adds buttons to the options menu
-config.endermodpacktweaks.options_menu_buttons.changelog=Changelog Button
-config.endermodpacktweaks.options_menu_buttons.changelog.tooltip=A button to open an external link to a changelog
-config.endermodpacktweaks.options_menu_buttons.donation=Donation Button
-config.endermodpacktweaks.options_menu_buttons.donation.tooltip=A button to open an external link to a donation page
-config.endermodpacktweaks.options_menu_buttons.github=GitHub Button
-config.endermodpacktweaks.options_menu_buttons.github.tooltip=A button to open an external link to a GitHub page
-config.endermodpacktweaks.options_menu_buttons.discord=Discord Button
-config.endermodpacktweaks.options_menu_buttons.discord.tooltip=A button to open an external link to a Discord Server
-config.endermodpacktweaks.options_menu_buttons.twitch=Twitch Button
-config.endermodpacktweaks.options_menu_buttons.twitch.tooltip=A button to open an external link to a Twitch Channel
-config.endermodpacktweaks.options_menu_buttons.youtube=YouTube Button
-config.endermodpacktweaks.options_menu_buttons.youtube.tooltip=A button to open an external link to a YouTube Channel
-config.endermodpacktweaks.server_message=Server Message
-config.endermodpacktweaks.server_message.tooltip=Prints a message to the server console
-config.endermodpacktweaks.sync_time=Sync Time
-config.endermodpacktweaks.sync_time.tooltip=Syncs the world time with real time
 
 msg.endermodpacktweaks.obsoletemods.warning1=Ender's Modpack Tweaks has replaced and improved upon functionalities from other mods.
 msg.endermodpacktweaks.obsoletemods.warning2=Therefore, the following mods are now incompatible with Ender's Modpack Tweaks:

@@ -2,7 +2,7 @@ package io.enderdev.endermodpacktweaks.mixin.waila;
 
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
-import io.enderdev.endermodpacktweaks.EMTConfig;
+import io.enderdev.endermodpacktweaks.config.CfgTweaks;
 import mcp.mobius.waila.addons.core.HUDHandlerBlocks;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
@@ -11,15 +11,16 @@ import net.minecraft.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Mixin(value = HUDHandlerBlocks.class, remap = false)
 public class HUDHandlerBlocksMixin {
 
     @Unique
     private Map<ItemStack, ItemStack> enderModpackTweaks$replacementMap = new HashMap<ItemStack, ItemStack>() {{
-        for(String line : EMTConfig.WAILA.overrideBlockName) {
+        for(String line : CfgTweaks.WAILA.overrideBlockName) {
             // line: "mod:item:meta?;mod:item:meta?", like "minecraft:stone;minecraft:sand:1"
             String[] split = line.split(";");
             if(split.length != 2)

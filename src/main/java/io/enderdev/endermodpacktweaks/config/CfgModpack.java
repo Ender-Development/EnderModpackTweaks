@@ -8,7 +8,7 @@ import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-@Config(modid = Tags.MOD_ID, name = Tags.CFG_MODPACK, category = Tags.CFG_FOLDER + Tags.CFG_MODPACK)
+@Config(modid = Tags.MOD_ID, name =  Tags.CFG_FOLDER + Tags.CFG_MODPACK, category =Tags.CFG_MODPACK)
 public class CfgModpack {
 
     @Config.Name("modpack")

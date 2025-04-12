@@ -8,7 +8,7 @@ import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-@Config(modid = Tags.MOD_ID, name = Tags.CFG_MINECRAFT, category = Tags.CFG_FOLDER + Tags.CFG_MINECRAFT)
+@Config(modid = Tags.MOD_ID, name = Tags.CFG_FOLDER + Tags.CFG_MINECRAFT, category = Tags.CFG_MINECRAFT)
 public class CfgMinecraft {
 
     @Config.Name("Boss Bar Tweaks")
@@ -370,7 +370,7 @@ public class CfgMinecraft {
 
         @Config.Name("[02] Force Difficulty")
         @Config.Comment("Force the difficulty to a specific value")
-        public boolean force = false;
+        public boolean forceDifficulty = false;
 
         @Config.Name("[03] Forced Difficulty")
         @Config.Comment("The difficulty the world should be forced to")
@@ -382,7 +382,7 @@ public class CfgMinecraft {
 
         @Config.Name("[05] Force Gamemode")
         @Config.Comment("Force the gamemode to a specific value")
-        public boolean force = false;
+        public boolean forceGamemode = false;
 
         @Config.Name("[06] Forced Gamemode")
         @Config.Comment("The gamemode the world should be forced to")

@@ -1,9 +1,12 @@
 # Changelog
 
-## [0.4.4]
+## [0.5.0] - WIP
 
+- 🆕 overhauled the config system, the mod now creates a directory in the config folder with all configs
 - 🔄 improved bar renderer with rounded options for all drawables
 - 🔄 improved the description of some config options
+- 🔄 improved instant bone meal tweak to not work on full-grown plants
+- 🧰 fixed the changelog missing on export
 
 ## [0.4.3]
 
