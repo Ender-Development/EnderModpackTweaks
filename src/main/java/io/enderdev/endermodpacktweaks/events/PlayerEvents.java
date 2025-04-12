@@ -1,6 +1,6 @@
 package io.enderdev.endermodpacktweaks.events;
 
-import io.enderdev.endermodpacktweaks.EMTConfig;
+import io.enderdev.endermodpacktweaks.config.CfgFeatures;
 import io.enderdev.endermodpacktweaks.utils.EmtPotionHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.event.entity.player.SleepingTimeCheckEvent;
@@ -10,19 +10,19 @@ import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 public class PlayerEvents {
-    public final EmtPotionHandler healthPotionHandler = new EmtPotionHandler(EMTConfig.MINECRAFT.PLAYER_EFFECTS.healthPotions, 0, 100);
-    public final EmtPotionHandler hungerPotionHandler = new EmtPotionHandler(EMTConfig.MINECRAFT.PLAYER_EFFECTS.hungerPotions, 0, 20);
+    public final EmtPotionHandler healthPotionHandler = new EmtPotionHandler(CfgFeatures.PLAYER_EFFECTS.healthPotions, 0, 100);
+    public final EmtPotionHandler hungerPotionHandler = new EmtPotionHandler(CfgFeatures.PLAYER_EFFECTS.hungerPotions, 0, 20);
 
     @SubscribeEvent
     public void cancelSleep(SleepingTimeCheckEvent event) {
-        if (EMTConfig.MODPACK.SYNC_TIME.enable && EMTConfig.MODPACK.SYNC_TIME.sleeping) {
+        if (CfgFeatures.SYNC_TIME.enable && CfgFeatures.SYNC_TIME.sleeping) {
             event.setResult(Event.Result.DENY);
         }
     }
 
     @SubscribeEvent
     public void potionPlayerTick(TickEvent.PlayerTickEvent event) {
-        if (!EMTConfig.MINECRAFT.PLAYER_EFFECTS.enable) {
+        if (!CfgFeatures.PLAYER_EFFECTS.enable) {
             return;
         }
 

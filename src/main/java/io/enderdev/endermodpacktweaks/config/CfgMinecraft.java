@@ -358,38 +358,6 @@ public class CfgMinecraft {
         public boolean disallowTraverse = false;
     }
 
-    @Config.Name("player_effects")
-    @Config.LangKey("config.endermodpacktweaks.minecraft.player_effects")
-    @Config.Comment("Apply potion effects depending on different hunger and health conditions.")
-    public static final PlayerEffects PLAYER_EFFECTS = new PlayerEffects();
-
-    public static class PlayerEffects {
-        @Config.RequiresMcRestart
-        @Config.Name("[01] Enable Player Effects Tweaks")
-        @Config.Comment("Enable tweaks for the player effects.")
-        public boolean enable = false;
-
-        @Config.RequiresMcRestart
-        @Config.Name("[02] Health Potion Effects")
-        @Config.Comment({
-                "Add additional potion effects to the player depending on the health.",
-                "The health bounds must be between 0% and 100% of max health.",
-                "FORMAT: lower_bound;upper_bound;effect;amplifier",
-                "Example: 0;5;minecraft:slowness;2"
-        })
-        public String[] healthPotions = new String[]{};
-
-        @Config.RequiresMcRestart
-        @Config.Name("[03] Hunger Potion Effects")
-        @Config.Comment({
-                "Add additional potion effects to the player depending on the hunger level.",
-                "The hunger bounds must be between 0 and 20.",
-                "FORMAT: lower_bound;upper_bound;effect;amplifier",
-                "Example: 0;5;minecraft:slowness;2"
-        })
-        public String[] hungerPotions = new String[]{};
-    }
-
     @Config.Name("world")
     @Config.LangKey("config.endermodpacktweaks.minecraft.world")
     @Config.Comment("Tweaks for world generation and world settings.")

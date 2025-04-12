@@ -1,7 +1,7 @@
 package io.enderdev.endermodpacktweaks.events;
 
-import io.enderdev.endermodpacktweaks.EMTConfig;
 import io.enderdev.endermodpacktweaks.EnderModpackTweaks;
+import io.enderdev.endermodpacktweaks.config.CfgModpack;
 import io.enderdev.endermodpacktweaks.utils.EmtSide;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -15,7 +15,7 @@ public class ServerEvents {
 
     @SubscribeEvent
     public void onTickEnd(TickEvent.ServerTickEvent event) {
-        if (!EMTConfig.MODPACK.SERVER_MESSAGE.enable || flag || !EmtSide.isDedicatedServer() || event.phase != TickEvent.Phase.END) {
+        if (!CfgModpack.SERVER_MESSAGE.enable || flag || !EmtSide.isDedicatedServer() || event.phase != TickEvent.Phase.END) {
             return;
         }
         flag = true;
@@ -23,16 +23,16 @@ public class ServerEvents {
         StringBuilder motd = new StringBuilder();
 
         motd.append("=========================================================\n");
-        motd.append(EMTConfig.MODPACK.SERVER_MESSAGE.serverName).append(" Server Successfully Started!\n");
+        motd.append(CfgModpack.SERVER_MESSAGE.serverName).append(" Server Successfully Started!\n");
 
-        if (!EMTConfig.MODPACK.modpackName.isEmpty()) {
-            motd.append(" - Pack Name: ").append(EMTConfig.MODPACK.modpackName).append("\n");
+        if (!CfgModpack.MODPACK.modpackName.isEmpty()) {
+            motd.append(" - Pack Name: ").append(CfgModpack.MODPACK.modpackName).append("\n");
         }
-        if (!EMTConfig.MODPACK.modpackVersion.isEmpty()) {
-            motd.append(" - Pack Version: ").append(EMTConfig.MODPACK.modpackVersion).append("\n");
+        if (!CfgModpack.MODPACK.modpackVersion.isEmpty()) {
+            motd.append(" - Pack Version: ").append(CfgModpack.MODPACK.modpackVersion).append("\n");
         }
-        if (!EMTConfig.MODPACK.modpackAuthor.isEmpty()) {
-            motd.append(" - Pack Author: ").append(EMTConfig.MODPACK.modpackAuthor).append("\n");
+        if (!CfgModpack.MODPACK.modpackAuthor.isEmpty()) {
+            motd.append(" - Pack Author: ").append(CfgModpack.MODPACK.modpackAuthor).append("\n");
         }
 
         motd.append(" - Port: ").append(server.getServerPort()).append("\n");

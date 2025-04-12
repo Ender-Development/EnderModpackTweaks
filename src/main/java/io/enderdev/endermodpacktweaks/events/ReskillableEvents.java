@@ -6,7 +6,7 @@ import codersafterdark.reskillable.api.event.LevelUpEvent;
 import codersafterdark.reskillable.client.gui.GuiSkillInfo;
 import codersafterdark.reskillable.client.gui.GuiSkills;
 import codersafterdark.reskillable.client.gui.button.GuiButtonLevelUp;
-import io.enderdev.endermodpacktweaks.EMTConfig;
+import io.enderdev.endermodpacktweaks.config.CfgTweaks;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
@@ -20,7 +20,7 @@ import java.util.stream.IntStream;
 public class ReskillableEvents {
     @SubscribeEvent
     public void beforeLevelUp(LevelUpEvent.Pre event) {
-        if (!EMTConfig.RESKILLABLE.enable) {
+        if (!CfgTweaks.RESKILLABLE.enable) {
             return;
         }
         if (playerDataCheck(event.getEntityPlayer())) {
@@ -31,7 +31,7 @@ public class ReskillableEvents {
     @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public void onGuiInit(GuiScreenEvent.InitGuiEvent.Post event) {
-        if (!EMTConfig.RESKILLABLE.enable) {
+        if (!CfgTweaks.RESKILLABLE.enable) {
             return;
         }
         if (event.getGui() instanceof GuiSkills) {
@@ -46,7 +46,7 @@ public class ReskillableEvents {
     @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public void onGuiRender(GuiScreenEvent.DrawScreenEvent.Post event) {
-        if (!EMTConfig.RESKILLABLE.enable) {
+        if (!CfgTweaks.RESKILLABLE.enable) {
             return;
         }
         if (event.getGui() instanceof GuiSkillInfo) {
@@ -59,9 +59,9 @@ public class ReskillableEvents {
                 ) {
                     EntityPlayer player = event.getGui().mc.player;
                     if (playerDataCheck(player)) {
-                        event.getGui().drawHoveringText(I18n.format("endermodpacktweaks.reskillable.level_max", EMTConfig.RESKILLABLE.maxLevel), event.getMouseX(), event.getMouseY());
+                        event.getGui().drawHoveringText(I18n.format("endermodpacktweaks.reskillable.level_max", CfgTweaks.RESKILLABLE.maxLevel), event.getMouseX(), event.getMouseY());
                     } else {
-                        event.getGui().drawHoveringText(I18n.format("endermodpacktweaks.reskillable.level_left", EMTConfig.RESKILLABLE.maxLevel - getSum(player)), event.getMouseX(), event.getMouseY());
+                        event.getGui().drawHoveringText(I18n.format("endermodpacktweaks.reskillable.level_left", CfgTweaks.RESKILLABLE.maxLevel - getSum(player)), event.getMouseX(), event.getMouseY());
                     }
                 }
             }
@@ -73,7 +73,7 @@ public class ReskillableEvents {
         if (sum == 0) {
             return false;
         }
-        return sum >= EMTConfig.RESKILLABLE.maxLevel && EMTConfig.RESKILLABLE.maxLevel > 0;
+        return sum >= CfgTweaks.RESKILLABLE.maxLevel && CfgTweaks.RESKILLABLE.maxLevel > 0;
     }
 
     private int getSum(EntityPlayer player) {

@@ -1,11 +1,8 @@
 package io.enderdev.endermodpacktweaks.events;
 
-import io.enderdev.endermodpacktweaks.EMTConfig;
-import io.enderdev.endermodpacktweaks.features.modpackinfo.OptionsButtonHandler;
-import io.enderdev.endermodpacktweaks.features.modpackinfo.SlideButton;
+import io.enderdev.endermodpacktweaks.config.CfgMinecraft;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.*;
-import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;
@@ -14,7 +11,6 @@ import net.minecraft.inventory.ContainerPlayer;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.inventory.SlotCrafting;
-import net.minecraft.potion.Potion;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraftforge.client.event.*;
@@ -25,12 +21,15 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @SideOnly(Side.CLIENT)
 public class ClientEvents implements GuiPageButtonList.GuiResponder, GuiSlider.FormatHelper {
 
     @SubscribeEvent
     public void onGuiInit(GuiScreenEvent.InitGuiEvent.Post event) {
-        if (EMTConfig.MINECRAFT.CLIENT.disableInventoryCrafting && event.getGui() instanceof GuiInventory) {
+        if (CfgMinecraft.CLIENT.disableInventoryCrafting && event.getGui() instanceof GuiInventory) {
             GuiInventory inv = (GuiInventory) event.getGui();
             ContainerPlayer container = (ContainerPlayer) inv.inventorySlots;
             for (int i = 0; i < container.inventorySlots.size(); i++) {
@@ -44,7 +43,7 @@ public class ClientEvents implements GuiPageButtonList.GuiResponder, GuiSlider.F
             }
         }
 
-        if (EMTConfig.MINECRAFT.CLIENT.disableAutoJump && event.getGui() instanceof GuiControls) {
+        if (CfgMinecraft.CLIENT.disableAutoJump && event.getGui() instanceof GuiControls) {
             for (GuiButton button : event.getButtonList()) {
                 if (button instanceof GuiOptionButton && ((GuiOptionButton) button).getOption() == GameSettings.Options.AUTO_JUMP) {
                     button.enabled = false;
@@ -52,7 +51,7 @@ public class ClientEvents implements GuiPageButtonList.GuiResponder, GuiSlider.F
             }
         }
 
-        if (EMTConfig.MINECRAFT.CLIENT.additionalMasterVolume && event.getGui() instanceof GuiOptions) {
+        if (CfgMinecraft.CLIENT.additionalMasterVolume && event.getGui() instanceof GuiOptions) {
             int x = 0;
             int y = 0;
             for (GuiButton guiButton : event.getButtonList()) {
@@ -67,7 +66,7 @@ public class ClientEvents implements GuiPageButtonList.GuiResponder, GuiSlider.F
 
     @SubscribeEvent
     public void renderBackground(GuiContainerEvent.DrawForeground event) {
-        if (EMTConfig.MINECRAFT.CLIENT.disableInventoryCrafting && event.getGuiContainer() instanceof GuiInventory) {
+        if (CfgMinecraft.CLIENT.disableInventoryCrafting && event.getGuiContainer() instanceof GuiInventory) {
             GlStateManager.pushMatrix();
             GlStateManager.disableLighting();
 
@@ -81,44 +80,37 @@ public class ClientEvents implements GuiPageButtonList.GuiResponder, GuiSlider.F
 
     @SubscribeEvent
     public void onRenderLivingSpecialsPre(RenderLivingEvent.Specials.Pre event) {
-        event.setCanceled(EMTConfig.MINECRAFT.CLIENT.hideNameTags);
+        event.setCanceled(CfgMinecraft.CLIENT.hideNameTags);
     }
 
     @SubscribeEvent
     public void onClientTick(TickEvent.ClientTickEvent event) {
-        if (EMTConfig.MINECRAFT.CLIENT.disableAutoJump && event.phase == TickEvent.Phase.END) {
+        if (CfgMinecraft.CLIENT.disableAutoJump && event.phase == TickEvent.Phase.END) {
             Minecraft.getMinecraft().gameSettings.autoJump = false;
         }
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public void onRenderGameOverlay(RenderGameOverlayEvent.Pre event) {
-        if (EMTConfig.MINECRAFT.CLIENT.hidePotionIcons && event.getType() == RenderGameOverlayEvent.ElementType.POTION_ICONS) {
-            event.setCanceled(true);
-        }
-        if (EMTConfig.MINECRAFT.CLIENT.hideCrosshair && event.getType() == RenderGameOverlayEvent.ElementType.CROSSHAIRS) {
-            event.setCanceled(true);
-        }
-        if (EMTConfig.MINECRAFT.CLIENT.hideArmorBar && event.getType() == RenderGameOverlayEvent.ElementType.ARMOR) {
-            event.setCanceled(true);
-        }
-        if (EMTConfig.MINECRAFT.CLIENT.hideHealthBar && event.getType() == RenderGameOverlayEvent.ElementType.HEALTH) {
-            event.setCanceled(true);
-
-        } if (EMTConfig.MINECRAFT.CLIENT.hideHungerBar && event.getType() == RenderGameOverlayEvent.ElementType.FOOD) {
-            event.setCanceled(true);
-
-        } if (EMTConfig.MINECRAFT.CLIENT.hideExperienceBar && event.getType() == RenderGameOverlayEvent.ElementType.EXPERIENCE) {
-            event.setCanceled(true);
-
-        } if (EMTConfig.MINECRAFT.CLIENT.hideAirBar && event.getType() == RenderGameOverlayEvent.ElementType.AIR) {
-            event.setCanceled(true);
+        Map<RenderGameOverlayEvent.ElementType, Boolean> hideElements = new HashMap<RenderGameOverlayEvent.ElementType, Boolean>() {
+            {
+                put(RenderGameOverlayEvent.ElementType.HEALTH, CfgMinecraft.CLIENT.hideHealthBar);
+                put(RenderGameOverlayEvent.ElementType.FOOD, CfgMinecraft.CLIENT.hideHungerBar);
+                put(RenderGameOverlayEvent.ElementType.EXPERIENCE, CfgMinecraft.CLIENT.hideExperienceBar);
+                put(RenderGameOverlayEvent.ElementType.AIR, CfgMinecraft.CLIENT.hideAirBar);
+                put(RenderGameOverlayEvent.ElementType.ARMOR, CfgMinecraft.CLIENT.hideArmorBar);
+                put(RenderGameOverlayEvent.ElementType.CROSSHAIRS, CfgMinecraft.CLIENT.hideCrosshair);
+                put(RenderGameOverlayEvent.ElementType.POTION_ICONS, CfgMinecraft.CLIENT.hidePotionIcons);
+            }
+        };
+        if (hideElements.containsKey(event.getType())) {
+            event.setCanceled(hideElements.get(event.getType()));
         }
     }
 
     @SubscribeEvent
     public void onFovUpdate(FOVUpdateEvent event) {
-        if (EMTConfig.MINECRAFT.CLIENT.disableFovChange) {
+        if (CfgMinecraft.CLIENT.disableFovChange) {
             event.setNewfov(1.0f);
         }
     }
