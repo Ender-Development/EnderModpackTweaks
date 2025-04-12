@@ -4,7 +4,7 @@ import com.blamejared.recipestages.compat.StagedRecipeWrapperShaped;
 import com.blamejared.recipestages.recipes.RecipeStage;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import io.enderdev.endermodpacktweaks.EMTConfig;
+import io.enderdev.endermodpacktweaks.config.CfgTweaks;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.resources.I18n;
 import org.spongepowered.asm.mixin.Mixin;
@@ -20,10 +20,10 @@ public class StagedRecipeWrapperShapedMixin {
 
     @WrapOperation(method = "drawInfo", at = @At(value = "INVOKE", target="Lnet/minecraft/client/gui/FontRenderer;drawString(Ljava/lang/String;III)I", remap = true), remap = false)
     public int drawString(FontRenderer instance, String text, int x, int y, int color, Operation<Integer> original) {
-        if (!EMTConfig.GAME_STAGES.localizeRecipeStages) {
-            return original.call(instance, text, x + EMTConfig.GAME_STAGES.recipeStagesTooltipXOffset, y + EMTConfig.GAME_STAGES.recipeStagesTooltipYOffset, color);
+        if (!CfgTweaks.GAME_STAGES.localizeRecipeStages) {
+            return original.call(instance, text, x + CfgTweaks.GAME_STAGES.recipeStagesTooltipXOffset, y + CfgTweaks.GAME_STAGES.recipeStagesTooltipYOffset, color);
         }
         String localizedText = I18n.format("emt.game_stages." + recipe.getTier().toLowerCase(Locale.ROOT).trim());
-        return instance.drawString(I18n.format("gui.rs.tip.stage", localizedText), x + EMTConfig.GAME_STAGES.recipeStagesTooltipXOffset, y + EMTConfig.GAME_STAGES.recipeStagesTooltipYOffset, color);
+        return instance.drawString(I18n.format("gui.rs.tip.stage", localizedText), x + CfgTweaks.GAME_STAGES.recipeStagesTooltipXOffset, y + CfgTweaks.GAME_STAGES.recipeStagesTooltipYOffset, color);
     }
 }

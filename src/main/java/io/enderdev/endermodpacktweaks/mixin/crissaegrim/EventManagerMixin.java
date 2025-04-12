@@ -5,7 +5,7 @@ import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import epicsquid.crissaegrim.EventManager;
 import epicsquid.crissaegrim.RegistryManager;
 import epicsquid.mysticallib.util.Util;
-import io.enderdev.endermodpacktweaks.EMTConfig;
+import io.enderdev.endermodpacktweaks.config.CfgTweaks;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -22,7 +22,7 @@ public class EventManagerMixin {
         EntityEntry entityEntry = EntityRegistry.getEntry(event.getEntity().getClass());
         ResourceLocation entityName = entityEntry != null ? entityEntry.getRegistryName() : null;
 
-        if (entityName == null || EMTConfig.CRISSAEGRIM.disableRandomDrop) {
+        if (entityName == null || CfgTweaks.CRISSAEGRIM.disableRandomDrop) {
             return;
         }
 
@@ -31,8 +31,8 @@ public class EventManagerMixin {
                 && event.getAttackingPlayer().getGameProfile() != null
                 && !event.getAttackingPlayer().world.isRemote
                 && !(event.getAttackingPlayer() instanceof FakePlayer)
-                && entityName.equals(new ResourceLocation(EMTConfig.CRISSAEGRIM.specialMob))
-                && Util.rand.nextFloat() < EMTConfig.CRISSAEGRIM.specialMobChance) {
+                && entityName.equals(new ResourceLocation(CfgTweaks.CRISSAEGRIM.specialMob))
+                && Util.rand.nextFloat() < CfgTweaks.CRISSAEGRIM.specialMobChance) {
             event.getAttackingPlayer().world.spawnEntity(new EntityItem(event.getEntity().world, event.getEntity().posX, event.getEntity().posY, event.getEntity().posZ, new ItemStack(RegistryManager.crissaegrim, 1)));
         }
     }

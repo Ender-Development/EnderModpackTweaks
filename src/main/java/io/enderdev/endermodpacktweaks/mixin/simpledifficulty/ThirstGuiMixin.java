@@ -4,10 +4,13 @@ import com.charles445.simpledifficulty.api.SDPotions;
 import com.charles445.simpledifficulty.client.gui.ThirstGui;
 import com.charles445.simpledifficulty.config.ModConfig;
 import com.charles445.simpledifficulty.util.RenderUtil;
-import io.enderdev.endermodpacktweaks.EMTConfig;
+import io.enderdev.endermodpacktweaks.config.CfgTweaks;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
-import org.spongepowered.asm.mixin.*;
+import org.spongepowered.asm.mixin.Final;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Overwrite;
+import org.spongepowered.asm.mixin.Shadow;
 
 import java.util.Random;
 
@@ -40,8 +43,8 @@ public class ThirstGuiMixin {
         GlStateManager.enableBlend();
         GlStateManager.color(1.0f, 1.0f, 1.0f);
 
-        int left = width / 2 + EMTConfig.SIMPLE_DIFFICULTY.thirstbarXOffset;
-        int top = height + EMTConfig.SIMPLE_DIFFICULTY.thirstbarYOffset;
+        int left = width / 2 + CfgTweaks.SIMPLE_DIFFICULTY.thirstbarXOffset;
+        int top = height + CfgTweaks.SIMPLE_DIFFICULTY.thirstbarYOffset;
 
         for (int i = 0; i < 10; i++) {
             int halfIcon = i * 2 + 1;

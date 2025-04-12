@@ -2,7 +2,7 @@ package io.enderdev.endermodpacktweaks.mixin.minecraft;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import io.enderdev.endermodpacktweaks.EMTConfig;
+import io.enderdev.endermodpacktweaks.config.CfgMinecraft;
 import io.enderdev.endermodpacktweaks.features.worldgen.BetterEndGateway;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -17,10 +17,10 @@ import java.util.Random;
 public class ChunkGeneratorEndMixin {
     @WrapOperation(method = "populate", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/gen/feature/WorldGenEndGateway;generate(Lnet/minecraft/world/World;Ljava/util/Random;Lnet/minecraft/util/math/BlockPos;)Z"))
     private boolean populateEndGateway(WorldGenEndGateway instance, World flag1, Random flag2, BlockPos flag3, Operation<Boolean> original) {
-        if (EMTConfig.MINECRAFT.DRAGON.disableGateway) {
+        if (CfgMinecraft.DRAGON.disableGateway) {
             return false;
         }
-        if (EMTConfig.MINECRAFT.END_GATEWAY.enable && EMTConfig.MINECRAFT.END_GATEWAY.replaceGateway) {
+        if (CfgMinecraft.END_GATEWAY.enable && CfgMinecraft.END_GATEWAY.replaceGateway) {
             return (new BetterEndGateway()).generate(flag1, new Random(), flag3);
         }
         return original.call(instance, flag1, flag2, flag3);

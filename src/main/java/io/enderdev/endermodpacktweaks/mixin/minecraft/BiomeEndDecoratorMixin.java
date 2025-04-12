@@ -6,7 +6,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Range;
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
-import io.enderdev.endermodpacktweaks.EMTConfig;
+import io.enderdev.endermodpacktweaks.config.CfgMinecraft;
 import net.minecraft.world.gen.feature.WorldGenSpikes;
 import net.minecraftforge.fml.common.Loader;
 import org.spongepowered.asm.mixin.Mixin;
@@ -19,26 +19,26 @@ import java.util.Random;
 @Mixin(targets = "net.minecraft.world.biome.BiomeEndDecorator$SpikeCacheLoader")
 public class BiomeEndDecoratorMixin {
     @Unique
-    private int enderModpackTweaks$pillarCount = EMTConfig.MINECRAFT.OBSIDIAN_SPIKE.spikeCount;
+    private int enderModpackTweaks$pillarCount = CfgMinecraft.OBSIDIAN_SPIKE.spikeCount;
 
     @Unique
-    private double enderModpackTweaks$pillarRadius = EMTConfig.MINECRAFT.OBSIDIAN_SPIKE.spikeDistance;
+    private double enderModpackTweaks$pillarRadius = CfgMinecraft.OBSIDIAN_SPIKE.spikeDistance;
 
     @Unique
-    private int enderModpackTweaks$baseHeight = EMTConfig.MINECRAFT.OBSIDIAN_SPIKE.spikeHeight;
+    private int enderModpackTweaks$baseHeight = CfgMinecraft.OBSIDIAN_SPIKE.spikeHeight;
 
     @Unique
-    private int enderModpackTweaks$baseRadius = EMTConfig.MINECRAFT.OBSIDIAN_SPIKE.spikeRadius;
+    private int enderModpackTweaks$baseRadius = CfgMinecraft.OBSIDIAN_SPIKE.spikeRadius;
 
     @Unique
-    private boolean enderModpackTweaks$alwaysGuarded = EMTConfig.MINECRAFT.OBSIDIAN_SPIKE.alwaysGuarded;
+    private boolean enderModpackTweaks$alwaysGuarded = CfgMinecraft.OBSIDIAN_SPIKE.alwaysGuarded;
 
     @Unique
-    private int enderModpackTweaks$guradChance = EMTConfig.MINECRAFT.OBSIDIAN_SPIKE.guardChance;
+    private int enderModpackTweaks$guradChance = CfgMinecraft.OBSIDIAN_SPIKE.guardChance;
 
     @WrapMethod(method = "load(Ljava/lang/Long;)[Lnet/minecraft/world/gen/feature/WorldGenSpikes$EndSpike;")
     private WorldGenSpikes.EndSpike[] load(Long p_load_1_, Operation<WorldGenSpikes.EndSpike[]> original) throws Exception {
-        if (EMTConfig.MINECRAFT.OBSIDIAN_SPIKE.enable) {
+        if (CfgMinecraft.OBSIDIAN_SPIKE.enable) {
             Random random = new Random(p_load_1_);
             List<Integer> list = Lists.newArrayList(ContiguousSet.create(Range.closedOpen(0, enderModpackTweaks$pillarCount), DiscreteDomain.integers()));
             Collections.shuffle(list, random);

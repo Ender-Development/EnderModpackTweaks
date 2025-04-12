@@ -6,8 +6,7 @@ import io.bluebeaker.bpopener.BPOHandler;
 import io.bluebeaker.bpopener.BPOpenerConfig;
 import io.bluebeaker.bpopener.BPOpenerMod;
 import io.bluebeaker.bpopener.OpenAction;
-import io.enderdev.endermodpacktweaks.EMTConfig;
-import io.enderdev.endermodpacktweaks.EnderModpackTweaks;
+import io.enderdev.endermodpacktweaks.config.CfgTweaks;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.gui.GuiScreen;
@@ -22,14 +21,13 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
+import org.lwjgl.input.Mouse;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
-import org.lwjgl.input.Mouse;
 
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Map;
 
 
 @Mixin(value = BPOHandler.class, remap = false)
@@ -65,7 +63,7 @@ public abstract class BPOHandlerMixin {
     @Unique
     private static HashMap<Item, OpenAction> enderModpackTweaks$bpoMap = new HashMap<Item, OpenAction>() {
         {
-            Arrays.asList(EMTConfig.BP_OPENER.validItems).forEach(item -> {
+            Arrays.asList(CfgTweaks.BP_OPENER.validItems).forEach(item -> {
                 String[] input = item.split(";");
                 if (input.length == 2) {
                     Item item1 = Item.getByNameOrId(input[0]);

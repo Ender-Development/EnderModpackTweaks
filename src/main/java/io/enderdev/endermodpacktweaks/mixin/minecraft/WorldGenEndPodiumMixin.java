@@ -2,8 +2,8 @@ package io.enderdev.endermodpacktweaks.mixin.minecraft;
 
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
-import io.enderdev.endermodpacktweaks.EMTConfig;
 import io.enderdev.endermodpacktweaks.EnderModpackTweaks;
+import io.enderdev.endermodpacktweaks.config.CfgMinecraft;
 import io.enderdev.endermodpacktweaks.features.worldgen.BetterEndPodium;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockTorch;
@@ -33,8 +33,8 @@ public abstract class WorldGenEndPodiumMixin extends WorldGenerator {
 
     @WrapMethod(method = "generate")
     private boolean generate(World worldIn, Random rand, BlockPos position, Operation<Boolean> original) {
-        activePortal = !EMTConfig.MINECRAFT.DRAGON.disablePortal && this.activePortal;
-        if (EMTConfig.MINECRAFT.END_PODIUM.replacePortal) {
+        activePortal = !CfgMinecraft.DRAGON.disablePortal && this.activePortal;
+        if (CfgMinecraft.END_PODIUM.replacePortal) {
             BetterEndPodium betterEndPodium = new BetterEndPodium(activePortal);
             if (betterEndPodium.generate(worldIn, rand, position)) {
                 return true;
@@ -46,10 +46,10 @@ public abstract class WorldGenEndPodiumMixin extends WorldGenerator {
 
     @ModifyArg(method = "generate", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/gen/feature/WorldGenEndPodium;setBlockAndNotifyAdequately(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/state/IBlockState;)V"), index = 2)
     private IBlockState generateEndPodium(IBlockState iBlockState) {
-        Block newBedrock = Block.getBlockFromName(EMTConfig.MINECRAFT.END_PODIUM.bedrock);
-        Block newAir = Block.getBlockFromName(EMTConfig.MINECRAFT.END_PODIUM.air);
-        Block newEndstone = Block.getBlockFromName(EMTConfig.MINECRAFT.END_PODIUM.endStone);
-        Block newTorch = Block.getBlockFromName(EMTConfig.MINECRAFT.END_PODIUM.torch);
+        Block newBedrock = Block.getBlockFromName(CfgMinecraft.END_PODIUM.bedrock);
+        Block newAir = Block.getBlockFromName(CfgMinecraft.END_PODIUM.air);
+        Block newEndstone = Block.getBlockFromName(CfgMinecraft.END_PODIUM.endStone);
+        Block newTorch = Block.getBlockFromName(CfgMinecraft.END_PODIUM.torch);
 
         if (iBlockState.getBlock() == Blocks.BEDROCK) {
             return newBedrock == null ? Blocks.BEDROCK.getDefaultState() : newBedrock.getDefaultState();

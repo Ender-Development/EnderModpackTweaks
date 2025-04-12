@@ -9,7 +9,7 @@ import com.asx.mdx.client.render.Draw;
 import com.asx.mdx.client.render.OpenGL;
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
-import io.enderdev.endermodpacktweaks.EMTConfig;
+import io.enderdev.endermodpacktweaks.config.CfgTweaks;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -29,17 +29,17 @@ public class RenderBloodOverlayEventMixin {
         if (!ClientGame.instance.minecraft().player.capabilities.isCreativeMode
                 && bleedable != null
                 && (System.currentTimeMillis() - lastBloodBarActivationTime <= 5000L
-                || EMTConfig.LBM.alwaysShowBloodOverlay
+                || CfgTweaks.LBM.alwaysShowBloodOverlay
                 || ClientGame.instance.minecraft().player.isPotionActive(PotionHandler.LIGHT_BLEED)
                 || ClientGame.instance.minecraft().player.isPotionActive(PotionHandler.HEAVY_BLEED))) {
             if (bleedable.getMaxBloodCount() > 0 && bleedable.getBloodCount() > 0) {
-                int width = EMTConfig.LBM.bloodWidth;
-                int height = EMTConfig.LBM.bloodHeight;
-                int posX = (event.getResolution().getScaledWidth() / 2 + 93) + EMTConfig.LBM.bloodXOffset;
-                int posY =( event.getResolution().getScaledHeight() - height) - EMTConfig.LBM.bloodYOffset;
-                int posX2 = posX - 1 + EMTConfig.LBM.bloodIconXOffset;
-                int posY2 = posY - 9 - EMTConfig.LBM.bloodIconYOffset;
-                drawVerticalProgressBar(bleedable.getBloodCount(), bleedable.getMaxBloodCount(), posX, posY, width, height, EMTConfig.LBM.bloodForegroundColor, EMTConfig.LBM.bloodBackgroundColor);
+                int width = CfgTweaks.LBM.bloodWidth;
+                int height = CfgTweaks.LBM.bloodHeight;
+                int posX = (event.getResolution().getScaledWidth() / 2 + 93) + CfgTweaks.LBM.bloodXOffset;
+                int posY =( event.getResolution().getScaledHeight() - height) - CfgTweaks.LBM.bloodYOffset;
+                int posX2 = posX - 1 + CfgTweaks.LBM.bloodIconXOffset;
+                int posY2 = posY - 9 - CfgTweaks.LBM.bloodIconYOffset;
+                drawVerticalProgressBar(bleedable.getBloodCount(), bleedable.getMaxBloodCount(), posX, posY, width, height, CfgTweaks.LBM.bloodForegroundColor, CfgTweaks.LBM.bloodBackgroundColor);
                 OpenGL.enableBlend();
                 Draw.drawResource(Resources.BLOOD_DROP, posX2, posY2, 8, 8);
             }

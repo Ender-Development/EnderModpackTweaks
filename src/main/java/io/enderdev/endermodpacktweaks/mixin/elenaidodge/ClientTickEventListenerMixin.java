@@ -5,7 +5,7 @@ import com.charles445.simpledifficulty.api.thirst.IThirstCapability;
 import com.elenai.elenaidodge2.event.ClientTickEventListener;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.sugar.Local;
-import io.enderdev.endermodpacktweaks.EMTConfig;
+import io.enderdev.endermodpacktweaks.config.CfgTweaks;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
@@ -22,9 +22,9 @@ public class ClientTickEventListenerMixin {
 
     @Inject(method = "onPlayerClientTick", at = @At(value = "INVOKE", target = "Lcom/elenai/elenaidodge2/util/Utils;tanEnabled(Lnet/minecraft/client/entity/EntityPlayerSP;)Z", ordinal = 0), cancellable = true)
     private void disableStaminaRegen(TickEvent.ClientTickEvent event, CallbackInfo ci, @Local EntityPlayerSP player) {
-        if (EMTConfig.ELENAI_DODGE.enableSimpleDifficulty && regen > 0 && Loader.isModLoaded("simpledifficulty")) {
+        if (CfgTweaks.ELENAI_DODGE.enableSimpleDifficulty && regen > 0 && Loader.isModLoaded("simpledifficulty")) {
             IThirstCapability thirst = SDCapabilities.getThirstData(player);
-            if (thirst != null && thirst.getThirstLevel() < EMTConfig.ELENAI_DODGE.dodgeRegeneration) {
+            if (thirst != null && thirst.getThirstLevel() < CfgTweaks.ELENAI_DODGE.dodgeRegeneration) {
                 ci.cancel();
             }
         }
@@ -32,10 +32,10 @@ public class ClientTickEventListenerMixin {
 
     @ModifyExpressionValue(method = "onPlayerClientTick", at = @At(value = "FIELD", target = "Lcom/elenai/elenaidodge2/util/ClientStorage;regenModifier:I"))
     private int modifyStaminaRegenModifier(int value, @Local EntityPlayerSP player) {
-        if (EMTConfig.ELENAI_DODGE.enableSimpleDifficulty && Loader.isModLoaded("simpledifficulty")) {
+        if (CfgTweaks.ELENAI_DODGE.enableSimpleDifficulty && Loader.isModLoaded("simpledifficulty")) {
             IThirstCapability thirst = SDCapabilities.getThirstData(player);
             if (thirst != null && thirst.isThirsty()) {
-                return value + ((20 - thirst.getThirstLevel()) * EMTConfig.ELENAI_DODGE.dodgeRegenerationRate);
+                return value + ((20 - thirst.getThirstLevel()) * CfgTweaks.ELENAI_DODGE.dodgeRegenerationRate);
             }
         }
         return value;

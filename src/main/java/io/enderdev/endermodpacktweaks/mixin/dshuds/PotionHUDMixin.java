@@ -2,7 +2,8 @@ package io.enderdev.endermodpacktweaks.mixin.dshuds;
 
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
-import io.enderdev.endermodpacktweaks.EMTConfig;
+import io.enderdev.endermodpacktweaks.config.CfgTweaks;
+import io.enderdev.endermodpacktweaks.config.EnumListType;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import org.orecruncher.dshuds.hud.PotionHUD;
@@ -23,10 +24,10 @@ public class PotionHUDMixin {
 
     @Unique
     private boolean enderModpackTweaks$listCheck(PotionEffect effect) {
-        List<Potion> potionList = Arrays.stream(EMTConfig.DSHUDS.potionHUDHideList)
+        List<Potion> potionList = Arrays.stream(CfgTweaks.DSHUDS.potionHUDHideList)
                 .map(Potion::getPotionFromResourceLocation)
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
-        return (EMTConfig.DSHUDS.potionHUDHideListType == EMTConfig.ListType.BLACKLIST) == potionList.contains(effect.getPotion());
+        return (CfgTweaks.DSHUDS.potionHUDHideListType == EnumListType.BLACKLIST) == potionList.contains(effect.getPotion());
     }
 }

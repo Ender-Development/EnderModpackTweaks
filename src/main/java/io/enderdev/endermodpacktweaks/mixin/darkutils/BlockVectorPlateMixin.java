@@ -2,7 +2,7 @@ package io.enderdev.endermodpacktweaks.mixin.darkutils;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import com.llamalad7.mixinextras.sugar.Local;
-import io.enderdev.endermodpacktweaks.EMTConfig;
+import io.enderdev.endermodpacktweaks.config.CfgTweaks;
 import net.darkhax.darkutils.features.vector.BlockVectorPlate;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -34,7 +34,7 @@ public class BlockVectorPlateMixin {
 
     @Inject(method = "onEntityCollision", at = @At("HEAD"), remap = true, cancellable = true)
     public void onEntityCollisionMixin(World world, BlockPos pos, IBlockState state, Entity entity, CallbackInfo ci) {
-        if (!(entity instanceof EntityItem) && EMTConfig.DARK_UTILS.vectorPlateItemOnly) {
+        if (!(entity instanceof EntityItem) && CfgTweaks.DARK_UTILS.vectorPlateItemOnly) {
             ci.cancel();
         }
     }
@@ -44,10 +44,10 @@ public class BlockVectorPlateMixin {
         if (!world.isRemote && entity instanceof EntityItem) {
             ItemStack stack = ((EntityItem) entity).getItem();
             List<EnumFacing> faces = new ArrayList<>(2);
-            if (EMTConfig.DARK_UTILS.vectorPlatesInsertFront) {
+            if (CfgTweaks.DARK_UTILS.vectorPlatesInsertFront) {
                 faces.add(direction);
             }
-            if (EMTConfig.DARK_UTILS.vectorPlatesInsertBelow) {
+            if (CfgTweaks.DARK_UTILS.vectorPlatesInsertBelow) {
                 faces.add(EnumFacing.DOWN);
             }
             for (EnumFacing facing : faces) {
@@ -68,6 +68,6 @@ public class BlockVectorPlateMixin {
 
     @ModifyReturnValue(method = "getCollisionBoundingBox", at = @At("RETURN"), remap = true)
     public AxisAlignedBB getCollisionBoundingBoxMixin(AxisAlignedBB original) {
-        return EMTConfig.DARK_UTILS.overrideVectorPlateCollisionBox ? BOUNDS : original;
+        return CfgTweaks.DARK_UTILS.overrideVectorPlateCollisionBox ? BOUNDS : original;
     }
 }

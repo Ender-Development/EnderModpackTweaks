@@ -2,8 +2,8 @@ package io.enderdev.endermodpacktweaks.mixin.minecraft;
 
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
-import io.enderdev.endermodpacktweaks.EMTConfig;
 import io.enderdev.endermodpacktweaks.EnderModpackTweaks;
+import io.enderdev.endermodpacktweaks.config.CfgMinecraft;
 import net.minecraft.block.Block;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.init.Blocks;
@@ -49,19 +49,19 @@ public abstract class DragonFightManagerMixin {
 
     @WrapMethod(method = "hasDragonBeenKilled")
     private boolean hasDragonBeenKilled(Operation<Boolean> original) {
-        if (!this.enderModpackTweaks$firstTime || !EMTConfig.MINECRAFT.DRAGON.killDragon) {
+        if (!this.enderModpackTweaks$firstTime || !CfgMinecraft.DRAGON.killDragon) {
             return false;
         }
         enderModpackTweaks$firstTime = false;
         EnderModpackTweaks.LOGGER.debug("Generating portal for the first time.");
-        this.generatePortal(EMTConfig.MINECRAFT.DRAGON.createPortal);
-        if (EMTConfig.MINECRAFT.DRAGON.dropEgg) {
-            String eggBlock = EMTConfig.MINECRAFT.DRAGON.eggBlock;
+        this.generatePortal(CfgMinecraft.DRAGON.createPortal);
+        if (CfgMinecraft.DRAGON.dropEgg) {
+            String eggBlock = CfgMinecraft.DRAGON.eggBlock;
             Block block = Block.getBlockFromName(eggBlock) == null ? Blocks.DRAGON_EGG : Block.getBlockFromName(eggBlock);
             this.world.setBlockState(this.world.getHeight(WorldGenEndPodium.END_PODIUM_LOCATION), block.getDefaultState());
             this.world.notifyNeighborsOfStateChange(world.getHeight(WorldGenEndPodium.END_PODIUM_LOCATION), block, true);
         }
-        if (EMTConfig.MINECRAFT.DRAGON.createGateway) {
+        if (CfgMinecraft.DRAGON.createGateway) {
             EnderModpackTweaks.LOGGER.debug("Creating gateway for the first time.");
             this.spawnNewGateway();
         }
@@ -70,9 +70,9 @@ public abstract class DragonFightManagerMixin {
 
     @WrapMethod(method = "spawnNewGateway")
     private void spawnNewGateway(Operation<Void> original) {
-        if (!this.gateways.isEmpty() && EMTConfig.MINECRAFT.END_GATEWAY.enable) {
-            double radius = EMTConfig.MINECRAFT.END_GATEWAY.gatewayDistance;
-            int height = EMTConfig.MINECRAFT.END_GATEWAY.gatewayHeight;
+        if (!this.gateways.isEmpty() && CfgMinecraft.END_GATEWAY.enable) {
+            double radius = CfgMinecraft.END_GATEWAY.gatewayDistance;
+            int height = CfgMinecraft.END_GATEWAY.gatewayHeight;
             int i = this.gateways.remove(this.gateways.size() - 1);
             int j = (int) (radius * Math.cos(2.0D * (-Math.PI + 0.15707963267948966D * (double) i)));
             int k = (int) (radius * Math.sin(2.0D * (-Math.PI + 0.15707963267948966D * (double) i)));
@@ -84,7 +84,7 @@ public abstract class DragonFightManagerMixin {
 
     @Inject(method = "processDragonDeath", at = @At("RETURN"))
     private void processDragonDeath(EntityDragon dragon, CallbackInfo ci) {
-        if (EMTConfig.MINECRAFT.DRAGON.multipleEgg && this.previouslyKilled) {
+        if (CfgMinecraft.DRAGON.multipleEgg && this.previouslyKilled) {
             this.world.setBlockState(this.world.getHeight(WorldGenEndPodium.END_PODIUM_LOCATION), Blocks.DRAGON_EGG.getDefaultState());
         }
     }

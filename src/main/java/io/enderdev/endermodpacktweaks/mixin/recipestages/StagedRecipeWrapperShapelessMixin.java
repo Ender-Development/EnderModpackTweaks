@@ -4,7 +4,7 @@ import com.blamejared.recipestages.compat.StagedRecipeWrapperShapeless;
 import com.blamejared.recipestages.recipes.RecipeStage;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import io.enderdev.endermodpacktweaks.EMTConfig;
+import io.enderdev.endermodpacktweaks.config.CfgTweaks;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.resources.I18n;
 import org.spongepowered.asm.mixin.Mixin;
@@ -20,7 +20,7 @@ public class StagedRecipeWrapperShapelessMixin {
 
     @WrapOperation(method = "drawInfo", at = @At(value = "INVOKE", target="Lnet/minecraft/client/gui/FontRenderer;drawString(Ljava/lang/String;III)I", remap = true), remap = false)
     public int drawString(FontRenderer instance, String text, int x, int y, int color, Operation<Integer> original) {
-        if (!EMTConfig.GAME_STAGES.localizeRecipeStages) {
+        if (!CfgTweaks.GAME_STAGES.localizeRecipeStages) {
             return original.call(instance, text, x, y, color);
         }
         String localizedText = I18n.format("emt.game_stages." + recipe.getTier().toLowerCase(Locale.ROOT).trim());

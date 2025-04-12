@@ -3,7 +3,7 @@ package io.enderdev.endermodpacktweaks.mixin.itemstages;
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import io.enderdev.endermodpacktweaks.EMTConfig;
+import io.enderdev.endermodpacktweaks.config.CfgTweaks;
 import net.darkhax.bookshelf.util.PlayerUtils;
 import net.darkhax.gamestages.GameStageHelper;
 import net.darkhax.itemstages.ConfigurationHandler;
@@ -22,7 +22,7 @@ import java.util.Locale;
 public class ItemStagesMixin {
     @WrapMethod(method = "onTooltip")
     private void wrapOnTooltip(ItemTooltipEvent event, Operation<Void> original) {
-        if (!EMTConfig.GAME_STAGES.disableTooltip) {
+        if (!CfgTweaks.GAME_STAGES.disableTooltip) {
             original.call(event);
         } else {
             EntityPlayerSP player = PlayerUtils.getClientPlayerSP();
@@ -56,12 +56,12 @@ public class ItemStagesMixin {
     @WrapOperation(method = "onTooltip", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/resources/I18n;format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;", remap = true, ordinal = 1), remap = false)
     private String wrapOnTooltipFormat(String key, Object[] args, Operation<String> original) {
         String localizedKey = I18n.format("emt.game_stages." + args[0].toString().toLowerCase(Locale.ROOT).trim());
-        return original.call(key, EMTConfig.GAME_STAGES.localizeRecipeStages ? new Object[]{localizedKey + TextFormatting.RED} : args);
+        return original.call(key, CfgTweaks.GAME_STAGES.localizeRecipeStages ? new Object[]{localizedKey + TextFormatting.RED} : args);
     }
 
     @WrapOperation(method = "onTooltip", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/resources/I18n;format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;", remap = true, ordinal = 3), remap = false)
     private String wrapOnTooltipFormat2(String key, Object[] args, Operation<String> original) {
         String localizedKey = I18n.format("emt.game_stages." + args[0].toString().toLowerCase(Locale.ROOT).trim());
-        return original.call(key, EMTConfig.GAME_STAGES.localizeRecipeStages ? new Object[]{localizedKey + TextFormatting.RED} : args);
+        return original.call(key, CfgTweaks.GAME_STAGES.localizeRecipeStages ? new Object[]{localizedKey + TextFormatting.RED} : args);
     }
 }

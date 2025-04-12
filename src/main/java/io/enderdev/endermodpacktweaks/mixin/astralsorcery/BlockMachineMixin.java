@@ -4,7 +4,7 @@ import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import hellfirepvp.astralsorcery.common.block.BlockMachine;
-import io.enderdev.endermodpacktweaks.EMTConfig;
+import io.enderdev.endermodpacktweaks.config.CfgTweaks;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -26,12 +26,12 @@ public abstract class BlockMachineMixin {
 
     @WrapOperation(method = "handleSpecificActivateEvent", at = @At(value = "INVOKE", target = "Lhellfirepvp/astralsorcery/common/util/MiscUtils;isPlayerFakeMP(Lnet/minecraft/entity/player/EntityPlayerMP;)Z"))
     private boolean onHandleSpecificActivateEvent(EntityPlayerMP specificPlayerClass, Operation<Boolean> original) {
-        return EMTConfig.ASTRAL_SORCERY.allowFakePlayer || original.call(specificPlayerClass);
+        return CfgTweaks.ASTRAL_SORCERY.allowFakePlayer || original.call(specificPlayerClass);
     }
 
     @WrapMethod(method = "onBlockActivated")
     private boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ, Operation<Boolean> original) {
-        if (!EMTConfig.ASTRAL_SORCERY.allowFakePlayer) {
+        if (!CfgTweaks.ASTRAL_SORCERY.allowFakePlayer) {
             return original.call(worldIn, pos, state, player, hand, facing, hitX, hitY, hitZ);
         }
         PlayerInteractEvent.RightClickBlock event = new PlayerInteractEvent.RightClickBlock(player, hand, pos, facing, new Vec3d(hitX, hitY, hitZ));
