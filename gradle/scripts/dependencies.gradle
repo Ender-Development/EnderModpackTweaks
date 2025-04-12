@@ -284,5 +284,12 @@ dependencies {
     if (project.debug_tinkers.toBoolean()) {
         runtimeOnly "curse.maven:tinkers-construct-74072:2902483"
     }
-
+/*
+    compileOnly rfg.deobf("curse.maven:silent-lib-242998:2851111")
+    compileOnly rfg.deobf("curse.maven:scaling-health-248027:2816920")
+    if (project.debug_scalinghealth.toBoolean()) {
+        runtimeOnly "curse.maven:silent-lib-242998:2851111"
+        runtimeOnly "curse.maven:scaling-health-248027:2816920"
+    }
+*/
 }
