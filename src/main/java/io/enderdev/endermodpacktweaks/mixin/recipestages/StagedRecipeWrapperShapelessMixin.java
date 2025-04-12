@@ -46,16 +46,25 @@ public class StagedRecipeWrapperShapelessMixin {
     @Unique
     private boolean enderModpackTweaks$onFreezeTiming = true;
 
-    public float rectWidth = 100f;
-    public float spareWidth = 20f;
-    public float xShiftSpeed = 15f;
-    public float freezeTime = 2f;
-    public boolean onDemandSliding = false;
-
     @WrapOperation(method = "drawInfo", at = @At(value = "INVOKE", target="Lnet/minecraft/client/gui/FontRenderer;drawString(Ljava/lang/String;III)I", remap = true), remap = false)
     public int drawString(FontRenderer instance, String text, int x, int y, int color, Operation<Integer> original) {
         if (!CfgTweaks.GAME_STAGES.localizeRecipeStages) {
             return original.call(instance, text, x, y, color);
+        }
+
+        x += CfgTweaks.GAME_STAGES.recipeStagesTooltipXOffset;
+        y += CfgTweaks.GAME_STAGES.recipeStagesTooltipYOffset;
+
+        if (enderModpackTweaks$localizedText == null) {
+            enderModpackTweaks$localizedText = I18n.format("emt.game_stages." + recipe.getTier().toLowerCase(Locale.ROOT).trim());
+            enderModpackTweaks$localizedText = I18n.format("gui.rs.tip.stage", enderModpackTweaks$localizedText);
+            enderModpackTweaks$textWidth = Minecraft.getMinecraft().fontRenderer.getStringWidth(enderModpackTweaks$localizedText);
+            enderModpackTweaks$needSliding = enderModpackTweaks$textWidth > CfgTweaks.GAME_STAGES.recipeStagesTooltipRectWidth;
+        }
+
+        if (!CfgTweaks.GAME_STAGES.recipeStagesTooltipSliding) {
+            EmtRender.renderText(enderModpackTweaks$localizedText, x, y, color);
+            return 0;
         }
 
         if (enderModpackTweaks$stopWatch == null) {
@@ -69,37 +78,28 @@ public class StagedRecipeWrapperShapelessMixin {
         }
 
         // <https://github.com/tttsaurus/Ingame-Info-Reborn/blob/master/src/main/java/com/tttsaurus/ingameinfo/common/impl/gui/control/SlidingText.java>
-        if ((!onDemandSliding || enderModpackTweaks$needSliding) && !enderModpackTweaks$onFreezeTiming) {
-            enderModpackTweaks$xShift += (enderModpackTweaks$deltaTime * xShiftSpeed);
+        if ((!CfgTweaks.GAME_STAGES.recipeStagesTooltipOnDemandSliding || enderModpackTweaks$needSliding) && !enderModpackTweaks$onFreezeTiming) {
+            enderModpackTweaks$xShift += (enderModpackTweaks$deltaTime * CfgTweaks.GAME_STAGES.recipeStagesTooltipSlidingSpeed);
         }
         if (enderModpackTweaks$onFreezeTiming) {
-            if (enderModpackTweaks$freezeTimer > freezeTime) {
+            if (enderModpackTweaks$freezeTimer > CfgTweaks.GAME_STAGES.recipeStagesTooltipFreezeTime) {
                 enderModpackTweaks$freezeTimer = 0;
                 enderModpackTweaks$onFreezeTiming = false;
             }
             enderModpackTweaks$freezeTimer += enderModpackTweaks$deltaTime;
         }
 
-        if (enderModpackTweaks$localizedText == null) {
-            enderModpackTweaks$localizedText = I18n.format("emt.game_stages." + recipe.getTier().toLowerCase(Locale.ROOT).trim());
-            enderModpackTweaks$localizedText = I18n.format("gui.rs.tip.stage", enderModpackTweaks$localizedText);
-            enderModpackTweaks$textWidth = Minecraft.getMinecraft().fontRenderer.getStringWidth(enderModpackTweaks$localizedText);
-            enderModpackTweaks$needSliding = enderModpackTweaks$textWidth > rectWidth;
-        }
-
-        x += CfgTweaks.GAME_STAGES.recipeStagesTooltipXOffset;
-        y += CfgTweaks.GAME_STAGES.recipeStagesTooltipYOffset;
-        if (!onDemandSliding || enderModpackTweaks$needSliding) {
+        if (!CfgTweaks.GAME_STAGES.recipeStagesTooltipOnDemandSliding || enderModpackTweaks$needSliding) {
             EmtRender.prepareStencilToWrite(1);
-            EmtRender.drawRectStencilArea(x, y, rectWidth, Minecraft.getMinecraft().fontRenderer.FONT_HEIGHT);
+            EmtRender.drawRectStencilArea(x, y, CfgTweaks.GAME_STAGES.recipeStagesTooltipRectWidth, Minecraft.getMinecraft().fontRenderer.FONT_HEIGHT);
             EmtRender.prepareStencilToRender(1);
 
             float firstX = x - enderModpackTweaks$xShift;
             if (firstX > x - enderModpackTweaks$textWidth) {
                 EmtRender.renderText(enderModpackTweaks$localizedText, firstX, y, color);
             }
-            if (enderModpackTweaks$xShift > spareWidth + enderModpackTweaks$textWidth - rectWidth) {
-                float secondX = x + spareWidth + enderModpackTweaks$textWidth - enderModpackTweaks$xShift;
+            if (enderModpackTweaks$xShift > CfgTweaks.GAME_STAGES.recipeStagesTooltipsGap + enderModpackTweaks$textWidth - CfgTweaks.GAME_STAGES.recipeStagesTooltipRectWidth) {
+                float secondX = x + CfgTweaks.GAME_STAGES.recipeStagesTooltipsGap + enderModpackTweaks$textWidth - enderModpackTweaks$xShift;
                 if (secondX <= x) {
                     enderModpackTweaks$xShift = 0;
                     enderModpackTweaks$onFreezeTiming = true;
@@ -111,7 +111,7 @@ public class StagedRecipeWrapperShapelessMixin {
 
             EmtRender.endStencil();
         } else {
-            EmtRender.renderText(enderModpackTweaks$localizedText, x, y, 1f, color, true);
+            EmtRender.renderText(enderModpackTweaks$localizedText, x, y, color);
         }
 
         return 0;

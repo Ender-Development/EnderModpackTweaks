@@ -289,6 +289,30 @@ public class CfgTweaks {
         @Config.Name("[05] Recipe Stages Tooltip Y-Offset")
         @Config.Comment("Set the Y-Offset of the recipe stages tooltip.")
         public int recipeStagesTooltipYOffset = 0;
+
+        @Config.Name("[06] Recipe Stages Tooltip Sliding")
+        @Config.Comment("Enable the Tooltip to slide.")
+        public boolean recipeStagesTooltipSliding = false;
+
+        @Config.Name("[07] Recipe Stages Tooltip On Demand Sliding")
+        @Config.Comment("Only slide the Tooltip when text width exceeds the set width.")
+        public boolean recipeStagesTooltipOnDemandSliding = true;
+
+        @Config.Name("[08] Recipe Stages Tooltip Rect Width")
+        @Config.Comment("The width of the Tooltip display area.")
+        public int recipeStagesTooltipRectWidth = 70;
+
+        @Config.Name("[09] Recipe Stages Sliding Tooltip Gap Width")
+        @Config.Comment("The gap between the end of one sliding tooltip and the start of the next.")
+        public int recipeStagesTooltipsGap = 20;
+
+        @Config.Name("[10] Recipe Stages Tooltip Sliding Speed")
+        @Config.Comment("The speed of sliding.")
+        public int recipeStagesTooltipSlidingSpeed = 15;
+
+        @Config.Name("[11] Recipe Stages Tooltip Sliding Freeze Time")
+        @Config.Comment("The time the sliding tooltip stays still before sliding again.")
+        public float recipeStagesTooltipFreezeTime = 2f;
     }
 
     @Config.Name("item_physics")
