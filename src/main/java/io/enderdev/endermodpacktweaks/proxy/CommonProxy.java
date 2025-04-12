@@ -1,8 +1,10 @@
 package io.enderdev.endermodpacktweaks.proxy;
 
-import io.enderdev.endermodpacktweaks.EMTConfig;
 import io.enderdev.endermodpacktweaks.EnderModpackTweaks;
 import io.enderdev.endermodpacktweaks.Tags;
+import io.enderdev.endermodpacktweaks.config.CfgFeatures;
+import io.enderdev.endermodpacktweaks.config.CfgModpack;
+import io.enderdev.endermodpacktweaks.config.CfgTweaks;
 import io.enderdev.endermodpacktweaks.events.*;
 import io.enderdev.endermodpacktweaks.features.compatscreen.CompatModsHandler;
 import io.enderdev.endermodpacktweaks.features.crashinfo.InfoBuilder;
@@ -41,31 +43,31 @@ public class CommonProxy implements IProxy {
         MinecraftForge.EVENT_BUS.register(worldEvents);
         MinecraftForge.EVENT_BUS.register(serverEvents);
 
-        if (EMTConfig.MODPACK.INSTANT_BONE_MEAL.enable) {
+        if (CfgFeatures.INSTANT_BONE_MEAL.enable) {
             MinecraftForge.EVENT_BUS.register(boneMealEvents);
         }
 
-        if (EMTConfig.ELENAI_DODGE.enable && Loader.isModLoaded("elenaidodge2")) {
+        if (CfgTweaks.ELENAI_DODGE.enable && Loader.isModLoaded("elenaidodge2")) {
             elenaiDodgeEvents = new ElenaiDodgeEvents();
             MinecraftForge.EVENT_BUS.register(elenaiDodgeEvents);
         }
 
-        if (EMTConfig.RESKILLABLE.enable && Loader.isModLoaded("reskillable")) {
+        if (CfgTweaks.RESKILLABLE.enable && Loader.isModLoaded("reskillable")) {
             reskillableEvents = new ReskillableEvents();
             MinecraftForge.EVENT_BUS.register(reskillableEvents);
         }
 
-        if (EMTConfig.PYROTECH.enable && Loader.isModLoaded("pyrotech")) {
+        if (CfgTweaks.PYROTECH.enable && Loader.isModLoaded("pyrotech")) {
             pyrotechEvents = new PyrotechEvents();
             MinecraftForge.EVENT_BUS.register(pyrotechEvents);
         }
 
-        if (EMTConfig.SIMPLE_DIFFICULTY.enable && Loader.isModLoaded("simpledifficulty")) {
+        if (CfgTweaks.SIMPLE_DIFFICULTY.enable && Loader.isModLoaded("simpledifficulty")) {
             simpleDifficultyEvents = new SimpleDifficultyEvents();
             MinecraftForge.EVENT_BUS.register(simpleDifficultyEvents);
         }
 
-        if (EMTConfig.MODPACK.MOB_HEALTH_BAR.enable) {
+        if (CfgFeatures.MOB_HEALTH_BAR.enable) {
             barHandler = new BarHandler();
             MinecraftForge.EVENT_BUS.register(barHandler);
         }
@@ -75,18 +77,18 @@ public class CommonProxy implements IProxy {
     }
 
     public void postInit(FMLPostInitializationEvent event) {
-        if (EMTConfig.MODPACK.MATERIAL_TWEAKER.enable) {
+        if (CfgFeatures.MATERIAL_TWEAKER.enable) {
             MaterialTweaker.INSTANCE.load();
         }
-        if (EMTConfig.MODPACK.MOB_HEALTH_BAR.enable) {
+        if (CfgFeatures.MOB_HEALTH_BAR.enable) {
             barHandler.whitelist.init();
             BarRenderer.rangeModifiers.init();
         }
-        if (EMTConfig.SIMPLE_DIFFICULTY.enable && Loader.isModLoaded("simpledifficulty")) {
+        if (CfgTweaks.SIMPLE_DIFFICULTY.enable && Loader.isModLoaded("simpledifficulty")) {
             simpleDifficultyEvents.temperaturePotionHandler.init();
             simpleDifficultyEvents.thirstPotionHandler.init();
         }
-        if (EMTConfig.MINECRAFT.PLAYER_EFFECTS.enable) {
+        if (CfgFeatures.PLAYER_EFFECTS.enable) {
             playerEvents.healthPotionHandler.init();
             playerEvents.hungerPotionHandler.init();
         }
@@ -94,7 +96,7 @@ public class CommonProxy implements IProxy {
 
     @Override
     public void construct(FMLConstructionEvent event) throws Exception {
-        if (EMTConfig.MODPACK.CRASH_INFO.enable) {
+        if (CfgModpack.CRASH_INFO.enable) {
             FMLCommonHandler.instance().registerCrashCallable(INFO_BUILDER);
         }
     }

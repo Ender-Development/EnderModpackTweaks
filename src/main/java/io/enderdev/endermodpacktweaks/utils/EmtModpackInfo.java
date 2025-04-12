@@ -4,17 +4,17 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
-import io.enderdev.endermodpacktweaks.EMTConfig;
 import io.enderdev.endermodpacktweaks.EnderModpackTweaks;
+import io.enderdev.endermodpacktweaks.config.CfgModpack;
 
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
 public class EmtModpackInfo {
-    private String modpackName = EMTConfig.MODPACK.modpackName;
-    private String modpackVersion = EMTConfig.MODPACK.modpackVersion;
-    private String modpackAuthor = EMTConfig.MODPACK.modpackAuthor;
+    private String modpackName = CfgModpack.MODPACK.modpackName;
+    private String modpackVersion = CfgModpack.MODPACK.modpackVersion;
+    private String modpackAuthor = CfgModpack.MODPACK.modpackAuthor;
 
     private boolean sourcedFromManifest = false;
     private boolean readFromManifest = true;

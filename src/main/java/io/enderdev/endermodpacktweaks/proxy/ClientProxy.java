@@ -1,6 +1,7 @@
 package io.enderdev.endermodpacktweaks.proxy;
 
-import io.enderdev.endermodpacktweaks.EMTConfig;
+import io.enderdev.endermodpacktweaks.config.CfgMinecraft;
+import io.enderdev.endermodpacktweaks.config.CfgModpack;
 import io.enderdev.endermodpacktweaks.core.EMTAssetMover;
 import io.enderdev.endermodpacktweaks.events.ClientEvents;
 import io.enderdev.endermodpacktweaks.features.modpackinfo.ModpackInfoEventHandler;
@@ -22,7 +23,7 @@ public class ClientProxy extends CommonProxy implements IProxy {
             MinecraftForge.EVENT_BUS.register(new EffectManager());
         }
 
-        if (EMTConfig.MODPACK.OPTIONS_MENU_BUTTONS.enable) {
+        if (CfgModpack.OPTIONS_MENU_BUTTONS.enable) {
             MinecraftForge.EVENT_BUS.register(new ModpackInfoEventHandler());
         }
     }
@@ -36,7 +37,7 @@ public class ClientProxy extends CommonProxy implements IProxy {
     public void postInit(FMLPostInitializationEvent event) {
         super.postInit(event);
         if (!EmtOptifine.isOptiFineInstalled()) {
-            GameSettings.Options.RENDER_DISTANCE.setValueMax(EMTConfig.MINECRAFT.CLIENT.maxRenderDistance);
+            GameSettings.Options.RENDER_DISTANCE.setValueMax(CfgMinecraft.CLIENT.maxRenderDistance);
         }
     }
 
@@ -56,7 +57,7 @@ public class ClientProxy extends CommonProxy implements IProxy {
     @Override
     public void serverStarting(FMLServerStartingEvent event) {
         super.serverStarting(event);
-        if (EMTConfig.MINECRAFT.CLIENT.enable && EMTConfig.MINECRAFT.CLIENT.disableItemNames) {
+        if (CfgMinecraft.CLIENT.enable && CfgMinecraft.CLIENT.disableItemNames) {
             GameSettings gameSettings = Minecraft.getMinecraft().gameSettings;
             gameSettings.heldItemTooltips = false;
         }
