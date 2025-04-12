@@ -211,6 +211,12 @@
 - licensed under Public Domain
 - single class mod, merged
 
+### [Controlling](https://www.curseforge.com/minecraft/mc-mods/controlling)
+
+- licensed under MIT
+- as I have plans to expand on its functionality, I decided to adapt it
+- more features will be added in the future
+
 ### [Dragon Murder](https://www.curseforge.com/minecraft/mc-mods/dragon-murder)
 
 - licensed under MIT
