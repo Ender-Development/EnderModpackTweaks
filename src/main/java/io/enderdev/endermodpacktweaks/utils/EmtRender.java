@@ -40,18 +40,12 @@ public class EmtRender {
         float g = (float) color.getGreen() / 255.0F;
         float b = (float) color.getBlue() / 255.0F;
 
-        GlStateManager.glPolygonMode(GL11.GL_FRONT_AND_BACK, GL11.GL_FILL);
-        GL11.glEnable(GL11.GL_POLYGON_SMOOTH);
-
         GlStateManager.disableCull();
         GlStateManager.disableTexture2D();
         GlStateManager.enableBlend();
         GlStateManager.disableAlpha();
         GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
         GlStateManager.color(r, g, b, a);
-
-        GlStateManager.glPolygonMode(GL11.GL_FRONT_AND_BACK, GL11.GL_FILL);
-        GL11.glEnable(GL11.GL_POLYGON_SMOOTH);
 
         GlStateManager.pushMatrix();
         GlStateManager.translate(0, 0, 0);
@@ -81,7 +75,6 @@ public class EmtRender {
         TESSELLATOR.draw();
 
         GlStateManager.popMatrix();
-        GL11.glDisable(GL11.GL_POLYGON_SMOOTH);
     }
 
     private static void addArcVertices(float cx, float cy, float radius, float startAngle, float endAngle, int segments) {
