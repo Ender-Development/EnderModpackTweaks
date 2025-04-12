@@ -29,7 +29,7 @@ public class BarHandler {
     private boolean shouldRender = true;
 
     public BarHandler() {
-        key = new KeyBinding("emt.keybind.toggle", 0, "key.categories.misc");
+        key = new KeyBinding("keybind.endermodpacktweaks.toggle", 0, "key.categories.misc");
         ClientRegistry.registerKeyBinding(key);
     }
 

@@ -10,9 +10,32 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @Config(modid = Tags.MOD_ID, name = Tags.CFG_FOLDER + Tags.CFG_FEATURE, category = Tags.CFG_FEATURE)
 public class CfgFeatures {
+    @Config.Name("boss_bar")
+    @Config.LangKey("cfg.endermodpacktweaks.features.boss_bar")
+    @Config.Comment("Replace the boring old boss bars with something more fancy.")
+    public static final BossBar BOSS_BAR = new BossBar();
+
+    public static class BossBar {
+        @Config.RequiresMcRestart
+        @Config.Name("[01] Enable Boss Bar Tweaks")
+        @Config.Comment("Enable tweaks for the Boss Bar. This requires AssetMover.")
+        public boolean enable = false;
+    }
+
+    @Config.Name("improved_keybinds")
+    @Config.LangKey("cfg.endermodpacktweaks.features.improved_keybinds")
+    @Config.Comment("Improved keybinds for the game.")
+    public static final ImprovedKeybinds IMPROVED_KEYBINDS = new ImprovedKeybinds();
+
+    public static class ImprovedKeybinds {
+        @Config.RequiresMcRestart
+        @Config.Name("[01] Enable Improved Keybinds")
+        @Config.Comment("Enable the Improved Keybinds feature.")
+        public boolean enable = false;
+    }
 
     @Config.Name("instant_bone_meal")
-    @Config.LangKey("config.endermodpacktweaks.instant_bone_meal")
+    @Config.LangKey("cfg.endermodpacktweaks.features.instant_bone_meal")
     @Config.Comment("Instantly grow crops, trees, and other plants with bone meal.")
     public static final InstantBoneMeal INSTANT_BONE_MEAL = new InstantBoneMeal();
 
@@ -27,7 +50,7 @@ public class CfgFeatures {
     }
 
     @Config.Name("material_tweaker")
-    @Config.LangKey("config.endermodpacktweaks.material_tweaker")
+    @Config.LangKey("cfg.endermodpacktweaks.features.material_tweaker")
     @Config.Comment("A tool is not to your linkings? Tweak it to your likings!")
     public static final MaterialTweaker MATERIAL_TWEAKER = new MaterialTweaker();
 
@@ -102,7 +125,7 @@ public class CfgFeatures {
     }
 
     @Config.Name("mob_health_bar")
-    @Config.LangKey("config.endermodpacktweaks.mob_health_bar")
+    @Config.LangKey("cfg.endermodpacktweaks.features.mob_health_bar")
     @Config.Comment("Add a health bar to mobs. This is a 'neat' feature.")
     public static final MobHealthBar MOB_HEALTH_BAR = new MobHealthBar();
 
@@ -273,12 +296,12 @@ public class CfgFeatures {
         @Config.Name("[35] Mob Blacklist")
         @Config.Comment("Blacklist uses entity IDs. FORMAT: modid:entityid")
         public String[] mobBlacklist = new String[]{
-                "minecraft:armorstand"
+                "ArmorStand"
         };
     }
 
     @Config.Name("player_effects")
-    @Config.LangKey("config.endermodpacktweaks.minecraft.player_effects")
+    @Config.LangKey("cfg.endermodpacktweaks.features.player_effects")
     @Config.Comment("Apply potion effects depending on different hunger and health conditions.")
     public static final PlayerEffects PLAYER_EFFECTS = new PlayerEffects();
 
@@ -310,7 +333,7 @@ public class CfgFeatures {
     }
 
     @Config.Name("sync_time")
-    @Config.LangKey("config.endermodpacktweaks.sync_time")
+    @Config.LangKey("cfg.endermodpacktweaks.features.sync_time")
     @Config.Comment("Never see the light of day again. (If you only play at night.)")
     public static final SyncTime SYNC_TIME = new SyncTime();
 

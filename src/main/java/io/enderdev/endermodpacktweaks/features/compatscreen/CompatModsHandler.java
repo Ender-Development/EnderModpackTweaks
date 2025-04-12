@@ -32,6 +32,7 @@ public class CompatModsHandler {
             put("icfluxnetworkenergylimitfix", () -> CfgTweaks.FLUX_NETWORKS.enable);
             put("neat", () -> CfgFeatures.MOB_HEALTH_BAR.enable);
             put("bonemealmod", () -> CfgFeatures.INSTANT_BONE_MEAL.enable);
+            put("controlling", () -> CfgFeatures.IMPROVED_KEYBINDS.enable);
         }
     });
 
