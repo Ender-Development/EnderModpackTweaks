@@ -10,21 +10,8 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @Config(modid = Tags.MOD_ID, name = Tags.CFG_FOLDER + Tags.CFG_MINECRAFT, category = Tags.CFG_MINECRAFT)
 public class CfgMinecraft {
-
-    @Config.Name("Boss Bar Tweaks")
-    @Config.LangKey("config.endermodpacktweaks.minecraft.boss_bar")
-    @Config.Comment("Replace the boring old boss bars with something more fancy.")
-    public static final BossBar BOSS_BAR = new BossBar();
-
-    public static class BossBar {
-        @Config.RequiresMcRestart
-        @Config.Name("[01] Enable Boss Bar Tweaks")
-        @Config.Comment("Enable tweaks for the Boss Bar. This requires AssetMover.")
-        public boolean enable = false;
-    }
-
-    @Config.Name("Client Tweaks")
-    @Config.LangKey("config.endermodpacktweaks.minecraft.client")
+    @Config.Name("client")
+    @Config.LangKey("cfg.endermodpacktweaks.minecraft.client")
     @Config.Comment("Disable various Client elements.")
     public static final Client CLIENT = new Client();
 
@@ -102,8 +89,8 @@ public class CfgMinecraft {
         public boolean disableFovChange = false;
     }
 
-    @Config.Name("Dragon Tweaks")
-    @Config.LangKey("config.endermodpacktweaks.minecraft.dragon")
+    @Config.Name("dragon")
+    @Config.LangKey("cfg.endermodpacktweaks.minecraft.dragon")
     @Config.Comment("Tweaks for the initial Dragon Fight.")
     public static final Dragon DRAGON = new Dragon();
 
@@ -149,8 +136,8 @@ public class CfgMinecraft {
         public boolean disableGateway = false;
     }
 
-    @Config.Name("End Gateway Tweaks")
-    @Config.LangKey("config.endermodpacktweaks.minecraft.end_gateway")
+    @Config.Name("end_gateway")
+    @Config.LangKey("cfg.endermodpacktweaks.minecraft.end_gateway")
     @Config.Comment("Tweak the End Gateway to your liking.")
     public static final EndGateway END_GATEWAY = new EndGateway();
 
@@ -190,8 +177,8 @@ public class CfgMinecraft {
         public int gatewayHeight = 75;
     }
 
-    @Config.Name("End Island Tweaks")
-    @Config.LangKey("config.endermodpacktweaks.minecraft.end_island")
+    @Config.Name("end_island")
+    @Config.LangKey("cfg.endermodpacktweaks.minecraft.end_island")
     @Config.Comment("Tweak the End Island to your liking.")
     public static final EndIsland END_ISLAND = new EndIsland();
 
@@ -214,8 +201,8 @@ public class CfgMinecraft {
         public String endStone = "minecraft:end_stone";
     }
 
-    @Config.Name("End Portal Tweaks")
-    @Config.LangKey("config.endermodpacktweaks.minecraft.end_portal")
+    @Config.Name("end_portal")
+    @Config.LangKey("cfg.endermodpacktweaks.minecraft.end_portal")
     @Config.Comment("Tweak the End Portal to your liking.")
     public static final EndPodium END_PODIUM = new EndPodium();
 
@@ -261,7 +248,7 @@ public class CfgMinecraft {
     }
 
     @Config.Name("obsidian_spike")
-    @Config.LangKey("config.endermodpacktweaks.minecraft.obsidian_spike")
+    @Config.LangKey("cfg.endermodpacktweaks.minecraft.obsidian_spike")
     @Config.Comment("Tweak the Obsidian Spikes in the End.")
     public static final ObsidianSpike OBSIDIAN_SPIKE = new ObsidianSpike();
 
@@ -335,7 +322,7 @@ public class CfgMinecraft {
     }
 
     @Config.Name("nether_portal")
-    @Config.LangKey("config.endermodpacktweaks.minecraft.nether_portal")
+    @Config.LangKey("cfg.endermodpacktweaks.minecraft.nether_portal")
     @Config.Comment("Tweak the Nether Portal to your liking.")
     public static final NetherPortal NETHER_PORTAL = new NetherPortal();
 
@@ -359,7 +346,7 @@ public class CfgMinecraft {
     }
 
     @Config.Name("world")
-    @Config.LangKey("config.endermodpacktweaks.minecraft.world")
+    @Config.LangKey("cfg.endermodpacktweaks.minecraft.world")
     @Config.Comment("Tweaks for world generation and world settings.")
     public static final World WORLD = new World();
 

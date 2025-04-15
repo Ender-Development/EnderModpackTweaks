@@ -1,6 +1,7 @@
 package io.enderdev.endermodpacktweaks.core;
 
 import com.google.common.collect.ImmutableMap;
+import io.enderdev.endermodpacktweaks.config.CfgFeatures;
 import io.enderdev.endermodpacktweaks.config.CfgMinecraft;
 import net.minecraft.launchwrapper.Launch;
 import net.minecraft.launchwrapper.LaunchClassLoader;
@@ -38,7 +39,7 @@ public class EMTLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader {
 
     private static final Map<String, BooleanSupplier> clientsideMixinConfigs = ImmutableMap.copyOf(new HashMap<String, BooleanSupplier>() {
         {
-            put("mixins.emt.minecraft.bossbar.json", () -> CfgMinecraft.BOSS_BAR.enable);
+            put("mixins.emt.minecraft.bossbar.json", () -> CfgFeatures.BOSS_BAR.enable);
             put("mixins.emt.minecraft.client.json", () -> true);
         }
     });

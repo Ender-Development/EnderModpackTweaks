@@ -1,231 +1,165 @@
 ####################
-# General
+# en_us.lang
 ####################
+
+endermodpacktweaks/features=Features
+endermodpacktweaks/features.tooltip=Additional features of Ender's Modpack Tweaks mod.
+endermodpacktweaks/minecraft=Minecraft
+endermodpacktweaks/minecraft.tooltip=Tweaks for the base Minecraft game.
+endermodpacktweaks/modpack=Modpack
+endermodpacktweaks/modpack.tooltip=Modpack specific tweaks.
+endermodpacktweaks/tweaks=Tweaks
+endermodpacktweaks/tweaks.tooltip=Mod specific tweaks.
+
+cfg.endermodpacktweaks.features.boss_bar=Enhanced Boss Bars
+cfg.endermodpacktweaks.features.boss_bar.tooltip=Replaces the boring default boss bars with something more fancy.
+cfg.endermodpacktweaks.features.instant_bone_meal=Instant Bone Meal
+cfg.endermodpacktweaks.features.instant_bone_meal.tooltip=Allows you to instantly grow crops and trees using bone meal.
+cfg.endermodpacktweaks.features.improved_keybinds=Improved Keybinds
+cfg.endermodpacktweaks.features.improved_keybinds.tooltip=Improves the keybinding system of Minecraft. Pretty much like the one from the mod 'Controlling'.
+cfg.endermodpacktweaks.features.material_tweaker=Material Tweaker
+cfg.endermodpacktweaks.features.material_tweaker.tooltip=Tweaks the properties of certain tools and armor to make them more balanced.
+endermodpacktweaks.features.material_tweaker.stacksize=Stack Size
+endermodpacktweaks.features.material_tweaker.durability=Durability
+endermodpacktweaks.features.material_tweaker.harvestlevel=Harvest Level
+endermodpacktweaks.features.material_tweaker.enchantability=Enchantability
+endermodpacktweaks.features.material_tweaker.efficiency=Efficiency
+endermodpacktweaks.features.material_tweaker.attackdamage=Attack Damage
+endermodpacktweaks.features.material_tweaker.attackspeed=Attack Speed
+endermodpacktweaks.features.material_tweaker.armorprotection=Armor Protection
+endermodpacktweaks.features.material_tweaker.armortoughness=Armor Toughness
+cfg.endermodpacktweaks.features.mob_health_bar=Mob Health Bar
+cfg.endermodpacktweaks.features.mob_health_bar.tooltip=A feature pretty similar to 'Neat' with more customization options.
+endermodpacktweaks.features.mob_health_bar.onlyrenderwithequipment=Only Render With Equipment
+endermodpacktweaks.features.mob_health_bar.distancemultipliers=Distance Multipliers
+endermodpacktweaks.features.mob_health_bar.mobblacklist=Mob Blacklist
+cfg.endermodpacktweaks.features.player_effects=Player Effects
+cfg.endermodpacktweaks.features.player_effects.tooltip=Applys potion effects to players based on certain conditions.
+cfg.endermodpacktweaks.features.sync_time=Sync Time
+cfg.endermodpacktweaks.features.sync_time.tooltip=Syncs the ingame time with the real world time of the server.
+
+cfg.endermodpacktweaks.minecraft.client=Client
+cfg.endermodpacktweaks.minecraft.client.tooltip=Tweaks the client side of the game.
+cfg.endermodpacktweaks.minecraft.dragon=Dragon
+cfg.endermodpacktweaks.minecraft.dragon.tooltip=Tweaks for the ender dragon fight.
+cfg.endermodpacktweaks.minecraft.end_gateway=End Gateway
+cfg.endermodpacktweaks.minecraft.end_gateway.tooltip=Tweaks for the end gateway.
+cfg.endermodpacktweaks.minecraft.end_island=End Island
+cfg.endermodpacktweaks.minecraft.end_island.tooltip=Tweaks for the end island.
+cfg.endermodpacktweaks.minecraft.end_portal=End Portal
+cfg.endermodpacktweaks.minecraft.end_portal.tooltip=Tweaks for the end portal.
+cfg.endermodpacktweaks.minecraft.obsidian_spike=Obsidian Spike
+cfg.endermodpacktweaks.minecraft.obsidian_spike.tooltip=Tweaks for the obsidian spike.
+cfg.endermodpacktweaks.minecraft.nether_portal=Nether Portal
+cfg.endermodpacktweaks.minecraft.nether_portal.tooltip=Tweaks for the nether portal.
+cfg.endermodpacktweaks.minecraft.world=World
+cfg.endermodpacktweaks.minecraft.world.tooltip=Tweaks for the world like difficulty and gamemode.
+
+cfg.endermodpacktweaks.modpack.modpack=Modpack
+cfg.endermodpacktweaks.modpack.modpack.tooltip=Information about the modpack.
+cfg.endermodpacktweaks.modpack.crash_info=Crash Info
+cfg.endermodpacktweaks.modpack.crash_info.tooltip=Adds modpack informations to the crash report.
+cfg.endermodpacktweaks.modpack.options_menu_buttons=Menu Buttons
+cfg.endermodpacktweaks.modpack.options_menu_buttons.tooltip=Additional buttons for the options menu.
+cfg.endermodpacktweaks.modpack.options_menu_buttons.changelog=Changelog Button
+cfg.endermodpacktweaks.modpack.options_menu_buttons.changelog.tooltip=A button to open the changelog.
+cfg.endermodpacktweaks.modpack.options_menu_buttons.donation=Donation Button
+cfg.endermodpacktweaks.modpack.options_menu_buttons.donation.tooltip=A button to open the donation page.
+cfg.endermodpacktweaks.modpack.options_menu_buttons.github=GitHub Button
+cfg.endermodpacktweaks.modpack.options_menu_buttons.github.tooltip=A button to open the GitHub page.
+cfg.endermodpacktweaks.modpack.options_menu_buttons.discord=Discord Button
+cfg.endermodpacktweaks.modpack.options_menu_buttons.discord.tooltip=A button to open the Discord server.
+cfg.endermodpacktweaks.modpack.options_menu_buttons.twitch=Twitch Button
+cfg.endermodpacktweaks.modpack.options_menu_buttons.twitch.tooltip=A button to open the Twitch channel.
+cfg.endermodpacktweaks.modpack.options_menu_buttons.youtube=YouTube Button
+cfg.endermodpacktweaks.modpack.options_menu_buttons.youtube.tooltip=A button to open the YouTube channel.
+cfg.endermodpacktweaks.modpack.server_message=Server Message
+cfg.endermodpacktweaks.modpack.server_message.tooltip=Adds a message to the server log when the modpack is loaded.
+
+cfg.endermodpacktweaks.tweaks.astral_sorcery=Astral Sorcery
+cfg.endermodpacktweaks.tweaks.astral_sorcery.tooltip=Tweaks for the Astral Sorcery mod.
+cfg.endermodpacktweaks.tweaks.bp_opener=Backpack Opener
+cfg.endermodpacktweaks.tweaks.bp_opener.tooltip=Tweaks for the backpack opener mod.
+endermodpacktweaks.tweaks.bp_opener.validitems=Valid Items
+cfg.endermodpacktweaks.tweaks.better_end=Better End
+cfg.endermodpacktweaks.tweaks.better_end.tooltip=Tweaks for the Better End mod.
+cfg.endermodpacktweaks.tweaks.crissaegrim=Crissaegrim
+cfg.endermodpacktweaks.tweaks.crissaegrim.tooltip=Tweaks for the Crissaegrim mod.
+cfg.endermodpacktweaks.tweaks.dark_utils=Dark Utilities
+cfg.endermodpacktweaks.tweaks.dark_utils.tooltip=Tweaks for the Dark Utilities mod.
+cfg.endermodpacktweaks.tweaks.default_world_generator=Default World Generator
+cfg.endermodpacktweaks.tweaks.default_world_generator.tooltip=Tweaks for the default world generator.
+cfg.endermodpacktweaks.tweaks.ds_huds=Dynamic Surroundings HUDs
+cfg.endermodpacktweaks.tweaks.ds_huds.tooltip=Tweaks for the Dynamic Surroundings mod.
+endermodpacktweaks.tweaks.ds_huds.potionhudhidelist=Potion HUD Hide List
+cfg.endermodpacktweaks.tweaks.elenai_dodge=Elenai Dodge 2
+cfg.endermodpacktweaks.tweaks.elenai_dodge.tooltip=Tweaks for the Elenai Dodge 2 mod.
+cfg.endermodpacktweaks.tweaks.ender_storage=Ender Storage
+cfg.endermodpacktweaks.tweaks.ender_storage.tooltip=Tweaks for the Ender Storage mod.
+cfg.endermodpacktweaks.tweaks.first_aid=First Aid
+cfg.endermodpacktweaks.tweaks.first_aid.tooltip=Tweaks for the First Aid mod.
+cfg.endermodpacktweaks.tweaks.flux_networks=Flux Networks
+cfg.endermodpacktweaks.tweaks.flux_networks.tooltip=Tweaks for the Flux Networks mod.
+cfg.endermodpacktweaks.tweaks.game_stages=Game Stages
+cfg.endermodpacktweaks.tweaks.game_stages.tooltip=Tweaks for the Game Stages mod.
+cfg.endermodpacktweaks.tweaks.item_physics=Item Physics
+cfg.endermodpacktweaks.tweaks.item_physics.tooltip=Tweaks for the Item Physics mod.
+cfg.endermodpacktweaks.tweaks.lightweight_blood_mechanics=Lightweight Blood Mechanics
+cfg.endermodpacktweaks.tweaks.lightweight_blood_mechanics.tooltip=Tweaks for the Lightweight Blood Mechanics mod.
+cfg.endermodpacktweaks.tweaks.matter_overdrive=Matter Overdrive
+cfg.endermodpacktweaks.tweaks.matter_overdrive.tooltip=Tweaks for the Matter Overdrive mod.
+cfg.endermodpacktweaks.tweaks.multi_builder_tool=Multi Builder Tool
+cfg.endermodpacktweaks.tweaks.multi_builder_tool.tooltip=Tweaks for the Multi Builder Tool mod.
+cfg.endermodpacktweaks.tweaks.perfect_spawn=Perfect Spawn
+cfg.endermodpacktweaks.tweaks.perfect_spawn.tooltip=Tweaks for the Perfect Spawn mod.
+cfg.endermodpacktweaks.tweaks.pickle_tweaks=Pickle Tweaks
+cfg.endermodpacktweaks.tweaks.pickle_tweaks.tooltip=Tweaks for the Pickle Tweaks mod.
+cfg.endermodpacktweaks.tweaks.potion_core=Potion Core
+cfg.endermodpacktweaks.tweaks.potion_core.tooltip=Tweaks for the Potion Core mod.
+cfg.endermodpacktweaks.tweaks.pyrotech=Pyrotech
+cfg.endermodpacktweaks.tweaks.pyrotech.tooltip=Tweaks for the Pyrotech mod.
+cfg.endermodpacktweaks.tweaks.quark=Quark
+cfg.endermodpacktweaks.tweaks.quark.tooltip=Tweaks for the Quark mod.
+cfg.endermodpacktweaks.tweaks.reskillable=Reskillable
+cfg.endermodpacktweaks.tweaks.reskillable.tooltip=Tweaks for the Reskillable mod.
+cfg.endermodpacktweaks.tweaks.rustic=Rustic
+cfg.endermodpacktweaks.tweaks.rustic.tooltip=Tweaks for the Rustic mod.
+endermodpacktweaks.tweaks.rustic.listberrybushblocks=Berry Bush Blocks
+endermodpacktweaks.tweaks.rustic.listbiomesblacklist=Biome Blacklist
+cfg.endermodpacktweaks.tweaks.simple_difficulty=Simple Difficulty
+cfg.endermodpacktweaks.tweaks.simple_difficulty.tooltip=Tweaks for the Simple Difficulty mod.
+endermodpacktweaks.tweaks.simple_difficulty.temperaturepotions=Temperature Potions
+endermodpacktweaks.tweaks.simple_difficulty.thirstpotions=Thirst Potions
+cfg.endermodpacktweaks.tweaks.tool_progression=Tool Progression
+cfg.endermodpacktweaks.tweaks.tool_progression.tooltip=Tweaks for the Tool Progression mod.
+cfg.endermodpacktweaks.tweaks.waila=Waila / Hwyla
+cfg.endermodpacktweaks.tweaks.waila.tooltip=Tweaks for the Waila / Hwyla mods.
+endermodpacktweaks.tweaks.waila.overrideblockname=Override Block Name
 
 msg.endermodpacktweaks.obsoletemods.warning1=Ender's Modpack Tweaks has replaced and improved upon functionalities from other mods.
 msg.endermodpacktweaks.obsoletemods.warning2=Therefore, the following mods are now incompatible with Ender's Modpack Tweaks:
 msg.endermodpacktweaks.obsoletemods.warning3=Consider removing them from your game or disabling the respective features.
 
-emt.keybind.toggle=Toggle Mob Health Display
+keybind.endermodpacktweaks.toggle=Toggle Mob Health Display
 
-####################
-# Minecraft
-####################
-config.endermodpacktweaks.minecraft=Minecraft
-config.endermodpacktweaks.minecraft.tooltip=Tweaks to the base game
-
-config.endermodpacktweaks.minecraft.boss_bar=Boss Bars
-config.endermodpacktweaks.minecraft.boss_bar.tooltip=Tweaks to the boss bars
-
-config.endermodpacktweaks.minecraft.client=Client
-config.endermodpacktweaks.minecraft.client.tooltip=Tweaks to the client
-
-config.endermodpacktweaks.minecraft.dragon=Ender Dragon
-config.endermodpacktweaks.minecraft.dragon.tooltip=Tweaks to the Ender Dragon
-
-config.endermodpacktweaks.minecraft.end_gateway=The End Gateway
-config.endermodpacktweaks.minecraft.end_gateway.tooltip=Tweaks to the End Gateway
-
-config.endermodpacktweaks.minecraft.end_island=The End Island
-config.endermodpacktweaks.minecraft.end_island.tooltip=Tweaks to the End Island
-
-config.endermodpacktweaks.minecraft.end_portal=The End Portal
-config.endermodpacktweaks.minecraft.end_portal.tooltip=Tweaks to the End Portal
-
-config.endermodpacktweaks.minecraft.nether_portal=The Nether Portal
-config.endermodpacktweaks.minecraft.nether_portal.tooltip=Tweaks to the Nether Portal
-
-config.endermodpacktweaks.minecraft.obsidian_spike=Obsidian Pillars
-config.endermodpacktweaks.minecraft.obsidian_spike.tooltip=Tweaks to the Obsidian Pillars
-
-config.endermodpacktweaks.minecraft.player_effects=Player Effects
-config.endermodpacktweaks.minecraft.player_effects.tooltip=Tweaks to the player effects
-
-config.endermodpacktweaks.minecraft.world=World
-config.endermodpacktweaks.minecraft.world.tooltip=Tweaks to the world
-config.endermodpacktweaks.minecraft.world.difficulty=Dificulty
-config.endermodpacktweaks.minecraft.world.difficulty.tooltip=Tweaks to the world difficulty
-config.endermodpacktweaks.minecraft.world.gamemode=Gamemode
-config.endermodpacktweaks.minecraft.world.gamemode.tooltip=Tweaks to the world gamemode
-
-####################
-# Mods
-####################
-
-####################
-# Astral Sorcery
-####################
-config.endermodpacktweaks.astral_sorcery=Astral Sorcery
-config.endermodpacktweaks.astral_sorcery.tooltip=Tweaks to the astral sorcery mod
-
-####################
-# Backpack Opener
-####################
-config.endermodpacktweaks.bp_opener=Backpack Opener
-config.endermodpacktweaks.bp_opener.tooltip=Tweaks to the backpack opener mod
-
-endermodpacktweaks.endermodpacktweaks.backpack opener.validitems=Valid Items
-
-####################
-# BetterEnd
-####################
-config.endermodpacktweaks.better_end=Better End
-config.endermodpacktweaks.better_end.tooltip=Tweaks to the better end mod
-
-####################
-# Crissaegrim
-####################
-config.endermodpacktweaks.crissaegrim=Crissaegrim
-config.endermodpacktweaks.crissaegrim.tooltip=Tweaks to the crissaegrim mod
-
-####################
-# Dark Utilities
-####################
-config.endermodpacktweaks.dark_utils=Dark Utilities
-config.endermodpacktweaks.dark_utils.tooltip=Tweaks to the dark utilities mod
-
-####################
-# Default World Generator
-####################
-config.endermodpacktweaks.default_world_generator=Default World Generator
-config.endermodpacktweaks.default_world_generator.tooltip=Tweaks to the default world generator mod
-
-####################
-# Dynamic Surroundings: HUDs
-####################
-config.endermodpacktweaks.ds_huds=Dynamic Surroundings: HUDs
-config.endermodpacktweaks.ds_huds.tooltip=Tweaks to the dynamic surroundings HUDs mod
-
-endermodpacktweaks.endermodpacktweaks.dynamic surroundings:huds.potionhudhidelist=Potion HUD Hide List
-
-####################
-# Elenai Dodge 2
-####################
-config.endermodpacktweaks.elenai_dodge=Elanai Dodge 2
-config.endermodpacktweaks.elenai_dodge.tooltip=Tweaks to the elenai dodge 2 mod
-
-####################
-# Ender Storage
-####################
-config.endermodpacktweaks.ender_storage=Ender Storage
-config.endermodpacktweaks.ender_storage.tooltip=Tweaks to the ender storage mod
-
-####################
-# First Aid
-####################
-config.endermodpacktweaks.first_aid=First Aid
-config.endermodpacktweaks.first_aid.tooltip=Tweaks to the first aid mod
-
-####################
-# Flux Networks
-####################
-config.endermodpacktweaks.flux_networks=Flux Networks
-config.endermodpacktweaks.flux_networks.tooltip=Tweaks to the flux networks mod
-
-#####################
-# Game Stages
-####################
-config.endermodpacktweaks.game_stages=Game Stages
-config.endermodpacktweaks.game_stages.tooltip=Tweaks to the game stages mod
-
-endermodspacktweaks.gamestages.unknown_item=Unfamiliar Item
-
-####################
-# Item Physics
-####################
-config.endermodpacktweaks.item_physics=ItemPhysics
-config.endermodpacktweaks.item_physics.tooltip=Tweaks to the item physics mod
+endermodpacktweaks.options.search=Search
+endermodpacktweaks.options.showall=Show All
+endermodpacktweaks.options.showconflicts=Show Conflicts
+endermodpacktweaks.options.shownone=Show Unbound
+endermodpacktweaks.options.availablekeys=Available Keys
+endermodpacktweaks.options.sort=Sort
+endermodpacktweaks.options.category=Category
+endermodpacktweaks.options.key=Key
+endermodpacktweaks.options.sortnone=None
+endermodpacktweaks.options.sortaz=A->Z
+endermodpacktweaks.options.sortza=Z->A
+endermodpacktweaks.options.togglefree=Toggle Free
+endermodpacktweaks.options.confirmreset=Confirm?
 
 endermodpacktweaks.itemphysic.render_tooltip=%dx %s
-
-####################
-# LBM
-####################
-config.endermodpacktweaks.lightweight_blood_mechanics=Lightweight Blood Mechanics
-config.endermodpacktweaks.lightweight_blood_mechanics.tooltip=Tweaks to the lightweight blood mechanics mod
-
-####################
-# Matter Overdrive
-####################
-config.endermodpacktweaks.matter_overdrive=Matter Overdrive
-config.endermodpacktweaks.matter_overdrive.tooltip=Tweaks to the matter overdrive mod
-
-####################
-# Multi Builder Tool
-####################
-config.endermodpacktweaks.multi_builder_tool=Multi Builder Tool
-config.endermodpacktweaks.multi_builder_tool.tooltip=Tweak to the multi builder tool mod
-
-####################
-# Perfect Spawn
-####################
-config.endermodpacktweaks.perfect_spawn=Perfect Spawn
-config.endermodpacktweaks.perfect_spawn.tooltip=Tweaks to the perfect spawn mod
-
-####################
-# Pickle Tweaks
-####################
-config.endermodpacktweaks.pickle_tweaks=Pickle Tweaks
-config.endermodpacktweaks.pickle_tweaks.tooltip=Tweaks to the pickle tweaks mod
-
-####################
-# Potion Core
-####################
-config.endermodpacktweaks.potion_core=Potion Core
-config.endermodpacktweaks.potion_core.tooltip=Tweaks to the potion core mod
-
-####################
-# Pyrotech
-####################
-config.endermodpacktweaks.pyrotech=Pyrotech
-config.endermodpacktweaks.pyrotech.tooltip=Tweaks to the pyrotech mod
-
-####################
-# Quark
-####################
-config.endermodpacktweaks.quark=Quark
-config.endermodpacktweaks.quark.tooltip=Tweaks to the quark mod
-
-tile.quark:endstone_speleothem.name=Endstone Speleothem
-tile.quark:obsidian_speleothem.name=Obsidian Speleothem
-
-####################
-# Reskillable
-####################
-config.endermodpacktweaks.reskillable=Reskillable
-config.endermodpacktweaks.reskillable.tooltip=Tweaks to the reskillable mod
 
 endermodpacktweaks.reskillable.level_max=§4Can't level up, already at max level of %d§r
 endermodpacktweaks.reskillable.level_left=§2%d levels left until reaching max level§r
 
-####################
-# Rustic
-####################
-config.endermodpacktweaks.rustic=Rustic
-config.endermodpacktweaks.rustic.tooltip=Tweaks to the rustic mod
-
-endermodpacktweaks.endermodpacktweaks.rustic.listberrybushblocks=List of Berry Bush Blocks
-endermodpacktweaks.endermodpacktweaks.rustic.listbiomesblacklist=Blacklist of Biomes
-
-####################
-# Simple Difficulty
-####################
-config.endermodpacktweaks.simple_difficulty=Simple Difficulty
-config.endermodpacktweaks.simple_difficulty.tooltip=Tweaks to the simple difficulty mod
-
-endermodpacktweaks.endermodpacktweaks.simple difficulty.temperaturepotions=Temperature Potions
-endermodpacktweaks.endermodpacktweaks.simple difficulty.thirstpotions=Thirst Potions
-
-####################
-# Tool Progression
-####################
-config.endermodpacktweaks.tool_progression=Tool Progression
-config.endermodpacktweaks.tool_progression.tooltip=Tweaks to the tool progression mod
-
-####################
-# WAILA
-####################
-config.endermodpacktweaks.waila=WAILA / HWYLA
-config.endermodpacktweaks.waila.tooltip=Tweaks to the WAILA / HWYLA mod
-
-endermodpacktweaks.endermodpacktweaks.waila / hwyla.overrideblockname=Override Block Name
+tile.quark:endstone_speleothem.name=Endstone Speleothem
+tile.quark:obsidian_speleothem.name=Obsidian Speleothem

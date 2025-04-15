@@ -12,7 +12,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 public class CfgModpack {
 
     @Config.Name("modpack")
-    @Config.LangKey("config.endermodpacktweaks.modpack")
+    @Config.LangKey("cfg.endermodpacktweaks.modpack.modpack")
     @Config.Comment("Made with <3 by Ender-Development")
     public static final Modpack MODPACK = new Modpack();
 
@@ -35,7 +35,7 @@ public class CfgModpack {
     }
 
     @Config.Name("crash_info")
-    @Config.LangKey("config.endermodpacktweaks.crash_info")
+    @Config.LangKey("cfg.endermodpacktweaks.modpack.crash_info")
     @Config.Comment("Add additional modpack information to the crash report.")
     public static final CrashInfo CRASH_INFO = new CrashInfo();
 
@@ -59,7 +59,7 @@ public class CfgModpack {
     }
 
     @Config.Name("options_menu_buttons")
-    @Config.LangKey("config.endermodpacktweaks.options_menu_buttons")
+    @Config.LangKey("cfg.endermodpacktweaks.modpack.options_menu_buttons")
     @Config.Comment("Link everything related to the modpack in the options and main menu.")
     public static final OptionsMenuButtons OPTIONS_MENU_BUTTONS = new OptionsMenuButtons();
 
@@ -70,27 +70,27 @@ public class CfgModpack {
         public boolean enable = false;
 
         @Config.Name("changelog_button")
-        @Config.LangKey("config.endermodpacktweaks.options_menu_buttons.changelog")
+        @Config.LangKey("cfg.endermodpacktweaks.modpack.options_menu_buttons.changelog")
         public final OptionsMenuButton CHANGELOG_BUTTON = new OptionsMenuButton("Changelog", "");
 
         @Config.Name("donation_button")
-        @Config.LangKey("config.endermodpacktweaks.options_menu_buttons.donation")
+        @Config.LangKey("cfg.endermodpacktweaks.modpack.options_menu_buttons.donation")
         public final OptionsMenuButton DONATION_BUTTON = new OptionsMenuButton("Donation", "");
 
         @Config.Name("github_button")
-        @Config.LangKey("config.endermodpacktweaks.options_menu_buttons.github")
+        @Config.LangKey("cfg.endermodpacktweaks.modpack.options_menu_buttons.github")
         public final OptionsMenuButton GITHUB_BUTTON = new OptionsMenuButton("GitHub", "");
 
         @Config.Name("discord_button")
-        @Config.LangKey("config.endermodpacktweaks.options_menu_buttons.discord")
+        @Config.LangKey("cfg.endermodpacktweaks.modpack.options_menu_buttons.discord")
         public final OptionsMenuButton DISCORD_BUTTON = new OptionsMenuButton("Discord", "");
 
         @Config.Name("twitch_button")
-        @Config.LangKey("config.endermodpacktweaks.options_menu_buttons.twitch")
+        @Config.LangKey("cfg.endermodpacktweaks.modpack.options_menu_buttons.twitch")
         public final OptionsMenuButton TWITCH_BUTTON = new OptionsMenuButton("Twitch", "");
 
         @Config.Name("youtube_button")
-        @Config.LangKey("config.endermodpacktweaks.options_menu_buttons.youtube")
+        @Config.LangKey("cfg.endermodpacktweaks.modpack.options_menu_buttons.youtube")
         public final OptionsMenuButton YOUTUBE_BUTTON = new OptionsMenuButton("Youtube", "");
 
         public static class OptionsMenuButton {
@@ -112,7 +112,7 @@ public class CfgModpack {
     }
 
     @Config.Name("Server Message")
-    @Config.LangKey("config.endermodpacktweaks.server_message")
+    @Config.LangKey("cfg.endermodpacktweaks.modpack.server_message")
     @Config.Comment("Similar to something that Nomifactory came up with.")
     public static final ServerMessage SERVER_MESSAGE = new ServerMessage();
 

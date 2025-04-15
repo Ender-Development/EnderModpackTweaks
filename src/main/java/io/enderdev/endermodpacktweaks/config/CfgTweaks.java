@@ -12,7 +12,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 public class CfgTweaks {
 
     @Config.Name("astral_sorcery")
-    @Config.LangKey("config.endermodpacktweaks.astral_sorcery")
+    @Config.LangKey("cfg.endermodpacktweaks.tweaks.astral_sorcery")
     @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/astral-sorcery")
     public static final AstralSorcery ASTRAL_SORCERY = new AstralSorcery();
 
@@ -28,7 +28,7 @@ public class CfgTweaks {
     }
 
     @Config.Name("bp_opener")
-    @Config.LangKey("config.endermodpacktweaks.bp_opener")
+    @Config.LangKey("cfg.endermodpacktweaks.tweaks.bp_opener")
     @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/backpack-opener")
     public static final BpOpener BP_OPENER = new BpOpener();
 
@@ -48,7 +48,7 @@ public class CfgTweaks {
     }
 
     @Config.Name("better_end")
-    @Config.LangKey("config.endermodpacktweaks.better_end")
+    @Config.LangKey("cfg.endermodpacktweaks.tweaks.better_end")
     @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/betterendforge-backport")
     public static final BetterEnd BETTER_END = new BetterEnd();
 
@@ -60,7 +60,7 @@ public class CfgTweaks {
     }
 
     @Config.Name("crissaegrim")
-    @Config.LangKey("config.endermodpacktweaks.crissaegrim")
+    @Config.LangKey("cfg.endermodpacktweaks.tweaks.crissaegrim")
     @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/crissaegrim")
     public static final Crissaegrim CRISSAEGRIM = new Crissaegrim();
 
@@ -85,7 +85,7 @@ public class CfgTweaks {
     }
 
     @Config.Name("dark_utils")
-    @Config.LangKey("config.endermodpacktweaks.dark_utils")
+    @Config.LangKey("cfg.endermodpacktweaks.tweaks.dark_utils")
     @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/dark-utilities")
     public static final DarkUtils DARK_UTILS = new DarkUtils();
 
@@ -116,7 +116,7 @@ public class CfgTweaks {
     }
 
     @Config.Name("default_world_generator")
-    @Config.LangKey("config.endermodpacktweaks.default_world_generator")
+    @Config.LangKey("cfg.endermodpacktweaks.tweaks.default_world_generator")
     @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/default-world-generator-ssp")
     public static final DefaultWorldGenerator DEFAULT_WORLD_GENERATOR = new DefaultWorldGenerator();
 
@@ -130,7 +130,7 @@ public class CfgTweaks {
     }
 
     @Config.Name("ds_huds")
-    @Config.LangKey("config.endermodpacktweaks.ds_huds")
+    @Config.LangKey("cfg.endermodpacktweaks.tweaks.ds_huds")
     @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/dynamic-surroundings-huds")
     public static final DSHUDs DSHUDS = new DSHUDs();
 
@@ -154,7 +154,7 @@ public class CfgTweaks {
     }
 
     @Config.Name("elenai_dodge")
-    @Config.LangKey("config.endermodpacktweaks.elenai_dodge")
+    @Config.LangKey("cfg.endermodpacktweaks.tweaks.elenai_dodge")
     @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/elenai-dodge-2")
     public static final ElenaiDodge ELENAI_DODGE = new ElenaiDodge();
 
@@ -195,7 +195,7 @@ public class CfgTweaks {
     }
 
     @Config.Name("ender_storage")
-    @Config.LangKey("config.endermodpacktweaks.ender_storage")
+    @Config.LangKey("cfg.endermodpacktweaks.tweaks.ender_storage")
     @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/ender-storage-1-12-continuation")
     public static final EnderStorage ENDER_STORAGE = new EnderStorage();
 
@@ -212,7 +212,7 @@ public class CfgTweaks {
     }
 
     @Config.Name("first_aid")
-    @Config.LangKey("config.endermodpacktweaks.first_aid")
+    @Config.LangKey("cfg.endermodpacktweaks.tweaks.first_aid")
     @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/first-aid")
     public static final FirstAid FIRST_AID = new FirstAid();
 
@@ -232,7 +232,7 @@ public class CfgTweaks {
     }
 
     @Config.Name("flux_networks")
-    @Config.LangKey("config.endermodpacktweaks.flux_networks")
+    @Config.LangKey("cfg.endermodpacktweaks.tweaks.flux_networks")
     @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/flux-networks")
     public static final FluxNetworks FLUX_NETWORKS = new FluxNetworks();
 
@@ -261,7 +261,7 @@ public class CfgTweaks {
     }
 
     @Config.Name("game_stages")
-    @Config.LangKey("config.endermodpacktweaks.game_stages")
+    @Config.LangKey("cfg.endermodpacktweaks.tweaks.game_stages")
     @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/game-stages")
     public static final GameStages GAME_STAGES = new GameStages();
 
@@ -316,7 +316,7 @@ public class CfgTweaks {
     }
 
     @Config.Name("item_physics")
-    @Config.LangKey("config.endermodpacktweaks.item_physics")
+    @Config.LangKey("cfg.endermodpacktweaks.tweaks.item_physics")
     @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/itemphysic")
     public static final ItemPhysics ITEM_PHYSICS = new ItemPhysics();
 
@@ -339,7 +339,7 @@ public class CfgTweaks {
     }
 
     @Config.Name("lightweight_blood_mechanics")
-    @Config.LangKey("config.endermodpacktweaks.lightweight_blood_mechanics")
+    @Config.LangKey("cfg.endermodpacktweaks.tweaks.lightweight_blood_mechanics")
     @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/lightweight-blood-mechanics")
     public static final Lbm LBM = new Lbm();
 
@@ -389,7 +389,7 @@ public class CfgTweaks {
     }
 
     @Config.Name("matter_overdrive")
-    @Config.LangKey("config.endermodpacktweaks.matter_overdrive")
+    @Config.LangKey("cfg.endermodpacktweaks.tweaks.matter_overdrive")
     @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/matter-overdrive-community-edition")
     public static final MatterOverdrive MATTER_OVERDRIVE = new MatterOverdrive();
 
@@ -405,7 +405,7 @@ public class CfgTweaks {
     }
 
     @Config.Name("multi_builder_tool")
-    @Config.LangKey("config.endermodpacktweaks.multi_builder_tool")
+    @Config.LangKey("cfg.endermodpacktweaks.tweaks.multi_builder_tool")
     @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/multi-builder-tool")
     public static final MultiBuilderTool MULTI_BUILDER_TOOL = new MultiBuilderTool();
 
@@ -420,7 +420,7 @@ public class CfgTweaks {
     }
 
     @Config.Name("perfect_spawn")
-    @Config.LangKey("config.endermodpacktweaks.perfect_spawn")
+    @Config.LangKey("cfg.endermodpacktweaks.tweaks.perfect_spawn")
     @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/perfect-spawn")
     public static final PerfectSpawn PERFECT_SPAWN = new PerfectSpawn();
 
@@ -435,7 +435,7 @@ public class CfgTweaks {
     }
 
     @Config.Name("pickle_tweaks")
-    @Config.LangKey("config.endermodpacktweaks.pickle_tweaks")
+    @Config.LangKey("cfg.endermodpacktweaks.tweaks.pickle_tweaks")
     @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/pickle-tweaks")
     public static final PickleTweaks PICKLE_TWEAKS = new PickleTweaks();
 
@@ -463,7 +463,7 @@ public class CfgTweaks {
     }
 
     @Config.Name("potion_core")
-    @Config.LangKey("config.endermodpacktweaks.potion_core")
+    @Config.LangKey("cfg.endermodpacktweaks.tweaks.potion_core")
     @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/potion-core")
     public static final PotionCore POTION_CORE = new PotionCore();
 
@@ -479,7 +479,7 @@ public class CfgTweaks {
     }
 
     @Config.Name("pyrotech")
-    @Config.LangKey("config.endermodpacktweaks.pyrotech")
+    @Config.LangKey("cfg.endermodpacktweaks.tweaks.pyrotech")
     @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/pyrotech")
     public static final Pyrotech PYROTECH = new Pyrotech();
 
@@ -555,7 +555,7 @@ public class CfgTweaks {
     }
 
     @Config.Name("quark")
-    @Config.LangKey("config.endermodpacktweaks.quark")
+    @Config.LangKey("cfg.endermodpacktweaks.tweaks.quark")
     @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/quark-rotn-edition")
     public static final Quark QUARK = new Quark();
 
@@ -587,7 +587,7 @@ public class CfgTweaks {
     }
 
     @Config.Name("reskillable")
-    @Config.LangKey("config.endermodpacktweaks.reskillable")
+    @Config.LangKey("cfg.endermodpacktweaks.tweaks.reskillable")
     @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/reskillable-fork")
     public static final Reskillable RESKILLABLE = new Reskillable();
 
@@ -604,7 +604,7 @@ public class CfgTweaks {
     }
 
     @Config.Name("rustic")
-    @Config.LangKey("config.endermodpacktweaks.rustic")
+    @Config.LangKey("cfg.endermodpacktweaks.tweaks.rustic")
     @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/rustic")
     public static final Rustic RUSTIC = new Rustic();
 
@@ -673,7 +673,7 @@ public class CfgTweaks {
     }
 
     @Config.Name("simple_difficulty")
-    @Config.LangKey("config.endermodpacktweaks.simple_difficulty")
+    @Config.LangKey("cfg.endermodpacktweaks.tweaks.simple_difficulty")
     @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/simpledifficulty-for-underdog")
     public static final SimpleDifficulty SIMPLE_DIFFICULTY = new SimpleDifficulty();
 
@@ -733,7 +733,7 @@ public class CfgTweaks {
     }
 
     @Config.Name("tool_progression")
-    @Config.LangKey("config.endermodpacktweaks.tool_progression")
+    @Config.LangKey("cfg.endermodpacktweaks.tweaks.tool_progression")
     @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/tool-progression")
     public static final ToolProgression TOOL_PROGRESSION = new ToolProgression();
 
@@ -748,7 +748,7 @@ public class CfgTweaks {
     }
 
     @Config.Name("waila")
-    @Config.LangKey("config.endermodpacktweaks.waila")
+    @Config.LangKey("cfg.endermodpacktweaks.tweaks.waila")
     @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/hwyla")
     public static final Waila WAILA = new Waila();
 

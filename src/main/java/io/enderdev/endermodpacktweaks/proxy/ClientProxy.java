@@ -1,9 +1,11 @@
 package io.enderdev.endermodpacktweaks.proxy;
 
+import io.enderdev.endermodpacktweaks.config.CfgFeatures;
 import io.enderdev.endermodpacktweaks.config.CfgMinecraft;
 import io.enderdev.endermodpacktweaks.config.CfgModpack;
 import io.enderdev.endermodpacktweaks.core.EMTAssetMover;
 import io.enderdev.endermodpacktweaks.events.ClientEvents;
+import io.enderdev.endermodpacktweaks.features.keybinds.KeybindHandler;
 import io.enderdev.endermodpacktweaks.features.modpackinfo.ModpackInfoEventHandler;
 import io.enderdev.endermodpacktweaks.patches.mysticallib.EffectManager;
 import io.enderdev.endermodpacktweaks.utils.EmtOptifine;
@@ -25,6 +27,10 @@ public class ClientProxy extends CommonProxy implements IProxy {
 
         if (CfgModpack.OPTIONS_MENU_BUTTONS.enable) {
             MinecraftForge.EVENT_BUS.register(new ModpackInfoEventHandler());
+        }
+
+        if (CfgFeatures.IMPROVED_KEYBINDS.enable) {
+            MinecraftForge.EVENT_BUS.register(new KeybindHandler());
         }
     }
 

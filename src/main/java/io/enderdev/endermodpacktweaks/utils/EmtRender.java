@@ -92,8 +92,6 @@ public class EmtRender {
 
         BUFFER_BUILDER.pos(x + radius, y, 0).endVertex();
         BUFFER_BUILDER.pos(x + width - radius, y, 0).endVertex();
-
-        TESSELLATOR.draw();
     }
 
     // <https://github.com/tttsaurus/Ingame-Info-Reborn/blob/4e79541b1f77ecf44f7d3718fd32555ca498d1cb/src/main/java/com/tttsaurus/ingameinfo/common/api/render/RenderUtils.java>
