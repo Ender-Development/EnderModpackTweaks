@@ -59,17 +59,15 @@ public class EmtRender {
     // <https://github.com/tttsaurus/Ingame-Info-Reborn/blob/4e79541b1f77ecf44f7d3718fd32555ca498d1cb/src/main/java/com/tttsaurus/ingameinfo/common/api/render/RenderUtils.java>
     public static void renderRoundedRect(float x, float y, float width, float height, float radius, Color color) {
         int segments = Math.max(3, (int) (radius / 2f));
-        float a = (float) color.getAlpha() / 255.0F;
-        float r = (float) color.getRed() / 255.0F;
-        float g = (float) color.getGreen() / 255.0F;
-        float b = (float) color.getBlue() / 255.0F;
+
+        GlStateManager.pushMatrix();
 
         GlStateManager.disableCull();
         GlStateManager.disableTexture2D();
         GlStateManager.enableBlend();
         GlStateManager.disableAlpha();
         GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
-        GlStateManager.color(r, g, b, a);
+        GlStateManager.color(color.getRed() / 255f, color.getGreen() / 255f, color.getBlue() / 255f, color.getAlpha() / 255f);
 
         BUFFER_BUILDER.begin(GL11.GL_TRIANGLE_FAN, DefaultVertexFormats.POSITION);
 
@@ -92,6 +90,10 @@ public class EmtRender {
 
         BUFFER_BUILDER.pos(x + radius, y, 0).endVertex();
         BUFFER_BUILDER.pos(x + width - radius, y, 0).endVertex();
+
+        TESSELLATOR.draw();
+
+        GlStateManager.popMatrix();
     }
 
     // <https://github.com/tttsaurus/Ingame-Info-Reborn/blob/4e79541b1f77ecf44f7d3718fd32555ca498d1cb/src/main/java/com/tttsaurus/ingameinfo/common/api/render/RenderUtils.java>
