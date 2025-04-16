@@ -120,8 +120,6 @@ public class BarRenderer {
                 GlStateManager.disableTexture2D();
                 GlStateManager.enableBlend();
                 GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-                Tessellator tessellator = Tessellator.getInstance();
-                BufferBuilder buffer = tessellator.getBuffer();
 
                 float padding = CfgFeatures.MOB_HEALTH_BAR.backgroundPadding;
                 int bgHeight = CfgFeatures.MOB_HEALTH_BAR.backgroundHeight;
