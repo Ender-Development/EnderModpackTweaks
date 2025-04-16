@@ -43,6 +43,7 @@ public class EMTMixinLoader implements ILateMixinLoader {
             put("mixins.emt.matteroverdrive.json", () -> Loader.isModLoaded("matteroverdrive") && CfgTweaks.MATTER_OVERDRIVE.enable);
             put("mixins.emt.itemstages.json", () -> Loader.isModLoaded("itemstages") && CfgTweaks.GAME_STAGES.enable);
             put("mixins.emt.recipestages.json", () -> Loader.isModLoaded("recipestages") && CfgTweaks.GAME_STAGES.enable);
+            put("mixins.emt.cases.json", () -> Loader.isModLoaded("cases") && CfgTweaks.CASES.enable);
         }
     });
 

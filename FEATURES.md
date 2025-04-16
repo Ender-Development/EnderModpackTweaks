@@ -73,6 +73,12 @@
 - override a few hardcoded values to make it compatible with my other end tweaks
 - **these may be removed in the future when the mod author actually makes them configurable**
 
+### [Cases](https://www.curseforge.com/minecraft/mc-mods/cases)
+
+- allow decreasing the minimum spin time
+- this allows making the spin instantaneous
+- this also overrides the specific cases config entry
+
 ### [Crissaegrim](https://www.curseforge.com/minecraft/mc-mods/crissaegrim)
 
 - [works again with the newest version of MysticalLib](https://github.com/MysticMods/MysticalLib/issues/40)

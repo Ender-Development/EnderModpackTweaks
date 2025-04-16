@@ -59,6 +59,23 @@ public class CfgTweaks {
         public boolean enable = true;
     }
 
+    @Config.Name("cases")
+    @Config.LangKey("cfg.endermodpacktweaks.tweaks.cases")
+    @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/cases")
+    public static final Cases CASES = new Cases();
+
+    public static class Cases {
+        @Config.RequiresMcRestart
+        @Config.Name("[01] Enable Cases Tweaks")
+        @Config.Comment("Enable tweaks for the Cases mod.")
+        public boolean enable = false;
+
+        @Config.Name("[02] Spin Count")
+        @Config.Comment("Override the maximum spin length.")
+        @Config.RangeInt(min = 1)
+        public int spinCount = 200;
+    }
+
     @Config.Name("crissaegrim")
     @Config.LangKey("cfg.endermodpacktweaks.tweaks.crissaegrim")
     @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/crissaegrim")
