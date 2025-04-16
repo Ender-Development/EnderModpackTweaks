@@ -1,3 +1,7 @@
 Artists:
 - "ancient_wyrk.png" - 维生素
 - "flame_knight.png" - 维生素
+- "anc_dreadnaut.png" - thomaslovlin
+- "anc_overlord.png" - thomaslovlin
+- "beckon_siv.png" - thomaslovlin
+- "dispatcher_siv.png" - thomaslovlin

@@ -1,0 +1,3 @@
+Artists:
+- "awaken_progress.png" - thomaslovlin
+- "parasitic_progress.png" - thomaslovlin
