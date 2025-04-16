@@ -114,6 +114,8 @@
 
 - disable the [Item Stages](https://www.curseforge.com/minecraft/mc-mods/item-stages) tooltip
 - localize the stage names displayed by [Recipe Stages](https://www.curseforge.com/minecraft/mc-mods/recipe-stages)
+- added a scroll through effect if the stage name becomes to long
+- a bunch of config option for said effect
 
 ### [ItemPhysic Full](https://www.curseforge.com/minecraft/mc-mods/itemphysic)
 
