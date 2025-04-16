@@ -296,4 +296,8 @@ dependencies {
     if (project.debug_cases.toBoolean()) {
         runtimeOnly "curse.maven:cases-294799:3497489"
     }
+
+    if (project.debug_srparasites.toBoolean()) {
+        runtimeOnly "curse.maven:scape-and-run-parasites-348025:5370258"
+    }
 }

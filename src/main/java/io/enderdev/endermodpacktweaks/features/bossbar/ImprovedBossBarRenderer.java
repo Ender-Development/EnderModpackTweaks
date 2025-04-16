@@ -30,7 +30,7 @@ public class ImprovedBossBarRenderer extends Gui {
 
     public int getOverlayHeight(BossInfo info) {
         String mob = getEntityFromBossInfo(info);
-        BossType boss = BossType.getBossType(mob);
+        BossType boss = BossRegister.getBossType(mob);
         return boss == null ? 0 : boss.getOverlayHeight();
     }
 
@@ -40,7 +40,7 @@ public class ImprovedBossBarRenderer extends Gui {
 
     public boolean render(int x, int y, BossInfo info) {
         String mob = getEntityFromBossInfo(info);
-        BossType boss = BossType.getBossType(mob);
+        BossType boss = BossRegister.getBossType(mob);
         if (boss == null) {
             if (!unknownBossMobs.containsKey(mob)) {
                 unknownBossMobs.put(mob, info.getName().getFormattedText());
