@@ -69,11 +69,6 @@ public class CfgTweaks {
         @Config.Name("[01] Enable Cases Tweaks")
         @Config.Comment("Enable tweaks for the Cases mod.")
         public boolean enable = false;
-
-        @Config.Name("[02] Spin Count")
-        @Config.Comment("Override the maximum spin length.")
-        @Config.RangeInt(min = 1)
-        public int spinCount = 200;
     }
 
     @Config.Name("crissaegrim")
