@@ -88,6 +88,7 @@ dependencies {
     runtimeOnly "curse.maven:valkyrie-874067:5891664"
 
     runtimeOnly "curse.maven:geckolib-388172:4020277"
+    runtimeOnly "curse.maven:renderlib-624967:6327296"
 
     implementation "com.cleanroommc:configanytime:3.0"
     implementation rfg.deobf("maven.modrinth:nether-api:1m3gvzYh")
@@ -297,6 +298,7 @@ dependencies {
         runtimeOnly "curse.maven:cases-294799:3497489"
     }
 
+    compileOnly rfg.deobf("curse.maven:scape-and-run-parasites-348025:5370258")
     if (project.debug_srparasites.toBoolean()) {
         runtimeOnly "curse.maven:scape-and-run-parasites-348025:5370258"
     }
