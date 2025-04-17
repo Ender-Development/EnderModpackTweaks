@@ -1,4 +1,4 @@
-package io.enderdev.endermodpacktweaks.events;
+package io.enderdev.endermodpacktweaks.features.playerpotions;
 
 import com.charles445.simpledifficulty.api.SDCapabilities;
 import com.charles445.simpledifficulty.api.SDPotions;
@@ -10,7 +10,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
-public class SimpleDifficultyEvents {
+public class SimpleDifficultyHandler {
     public final EmtPotionHandler temperaturePotionHandler = new EmtPotionHandler(CfgTweaks.SIMPLE_DIFFICULTY.temperaturePotions, 0, 25);
     public final EmtPotionHandler thirstPotionHandler = new EmtPotionHandler(CfgTweaks.SIMPLE_DIFFICULTY.thirstPotions, 0, 20);
 

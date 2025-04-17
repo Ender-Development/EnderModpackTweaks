@@ -20,9 +20,6 @@ import java.util.stream.IntStream;
 public class ReskillableEvents {
     @SubscribeEvent
     public void beforeLevelUp(LevelUpEvent.Pre event) {
-        if (!CfgTweaks.RESKILLABLE.enable) {
-            return;
-        }
         if (playerDataCheck(event.getEntityPlayer())) {
             event.setCanceled(true);
         }
@@ -31,9 +28,6 @@ public class ReskillableEvents {
     @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public void onGuiInit(GuiScreenEvent.InitGuiEvent.Post event) {
-        if (!CfgTweaks.RESKILLABLE.enable) {
-            return;
-        }
         if (event.getGui() instanceof GuiSkills) {
             for (GuiButton button : event.getButtonList()) {
                 if (button instanceof GuiButtonLevelUp && playerDataCheck(event.getGui().mc.player)) {
@@ -46,9 +40,6 @@ public class ReskillableEvents {
     @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public void onGuiRender(GuiScreenEvent.DrawScreenEvent.Post event) {
-        if (!CfgTweaks.RESKILLABLE.enable) {
-            return;
-        }
         if (event.getGui() instanceof GuiSkillInfo) {
             for (GuiButton button : event.getGui().buttonList) {
                 if (button instanceof GuiButtonLevelUp

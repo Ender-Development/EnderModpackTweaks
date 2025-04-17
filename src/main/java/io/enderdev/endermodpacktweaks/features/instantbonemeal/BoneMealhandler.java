@@ -1,4 +1,4 @@
-package io.enderdev.endermodpacktweaks.events;
+package io.enderdev.endermodpacktweaks.features.instantbonemeal;
 
 import net.minecraft.block.*;
 import net.minecraft.block.state.IBlockState;
@@ -8,8 +8,8 @@ import net.minecraftforge.event.entity.player.BonemealEvent;
 import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-public class BoneMealEvents {
-    @SubscribeEvent
+public class BoneMealhandler {
+     @SubscribeEvent
     public void onBoneMealUse(BonemealEvent event) {
         if (event.getWorld().isRemote) {
             return;

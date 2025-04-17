@@ -1,4 +1,4 @@
-package io.enderdev.endermodpacktweaks.events;
+package io.enderdev.endermodpacktweaks.features.servermsg;
 
 import io.enderdev.endermodpacktweaks.EnderModpackTweaks;
 import io.enderdev.endermodpacktweaks.config.CfgModpack;
@@ -10,7 +10,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 import java.util.Arrays;
 
-public class ServerEvents {
+public class ServerHandler {
     boolean flag = false;
 
     @SubscribeEvent

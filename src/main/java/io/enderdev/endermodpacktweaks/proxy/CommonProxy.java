@@ -3,14 +3,24 @@ package io.enderdev.endermodpacktweaks.proxy;
 import io.enderdev.endermodpacktweaks.EnderModpackTweaks;
 import io.enderdev.endermodpacktweaks.Tags;
 import io.enderdev.endermodpacktweaks.config.CfgFeatures;
+import io.enderdev.endermodpacktweaks.config.CfgMinecraft;
 import io.enderdev.endermodpacktweaks.config.CfgModpack;
 import io.enderdev.endermodpacktweaks.config.CfgTweaks;
-import io.enderdev.endermodpacktweaks.events.*;
+import io.enderdev.endermodpacktweaks.events.PyrotechEvents;
+import io.enderdev.endermodpacktweaks.events.ReskillableEvents;
 import io.enderdev.endermodpacktweaks.features.compatscreen.CompatModsHandler;
 import io.enderdev.endermodpacktweaks.features.crashinfo.InfoBuilder;
+import io.enderdev.endermodpacktweaks.features.dodgethirst.DodgeHandler;
 import io.enderdev.endermodpacktweaks.features.healthbar.BarHandler;
 import io.enderdev.endermodpacktweaks.features.healthbar.BarRenderer;
+import io.enderdev.endermodpacktweaks.features.instantbonemeal.BoneMealhandler;
 import io.enderdev.endermodpacktweaks.features.materialtweaker.MaterialTweaker;
+import io.enderdev.endermodpacktweaks.features.netherportal.PortalHandler;
+import io.enderdev.endermodpacktweaks.features.playerpotions.SimpleDifficultyHandler;
+import io.enderdev.endermodpacktweaks.features.playerpotions.VanillaHandler;
+import io.enderdev.endermodpacktweaks.features.servermsg.ServerHandler;
+import io.enderdev.endermodpacktweaks.features.timesync.TimeEventHandler;
+import io.enderdev.endermodpacktweaks.features.worldoptions.WorldOptionsHandler;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Loader;
@@ -21,50 +31,66 @@ import java.util.Objects;
 
 public class CommonProxy implements IProxy {
     private static final InfoBuilder INFO_BUILDER = new InfoBuilder("Modpack Informations");
-    // Minecraft Internal
-    private final BlockEvents blockEvents = new BlockEvents();
-    private final BoneMealEvents boneMealEvents = new BoneMealEvents();
-    private final PlayerEvents playerEvents = new PlayerEvents();
-    private final WorldEvents worldEvents = new WorldEvents();
-    private final ServerEvents serverEvents = new ServerEvents();
+    // Player Effects
+    private VanillaHandler vanillaHandler;
+    private SimpleDifficultyHandler simpleDifficultyHandler;
+
     // EMT Internal
     private BarHandler barHandler;
-    // Mod Compatibility
-    private ElenaiDodgeEvents elenaiDodgeEvents;
-    private ReskillableEvents reskillableEvents;
-    private PyrotechEvents pyrotechEvents;
-    private SimpleDifficultyEvents simpleDifficultyEvents;
 
     public void preInit(FMLPreInitializationEvent event) {
         EnderModpackTweaks.network = NetworkRegistry.INSTANCE.newSimpleChannel(Tags.MOD_ID);
 
-        MinecraftForge.EVENT_BUS.register(blockEvents);
-        MinecraftForge.EVENT_BUS.register(playerEvents);
-        MinecraftForge.EVENT_BUS.register(worldEvents);
-        MinecraftForge.EVENT_BUS.register(serverEvents);
+        if (CfgModpack.SERVER_MESSAGE.enable) {
+            MinecraftForge.EVENT_BUS.register(new ServerHandler());
+        }
+
+        if (CfgFeatures.PLAYER_EFFECTS.enable) {
+            vanillaHandler = new VanillaHandler();
+            MinecraftForge.EVENT_BUS.register(vanillaHandler);
+        }
+
+        if (CfgMinecraft.NETHER_PORTAL.enable) {
+            MinecraftForge.EVENT_BUS.register(new PortalHandler());
+        }
 
         if (CfgFeatures.INSTANT_BONE_MEAL.enable) {
-            MinecraftForge.EVENT_BUS.register(boneMealEvents);
+            MinecraftForge.EVENT_BUS.register(new BoneMealhandler());
         }
 
-        if (CfgTweaks.ELENAI_DODGE.enable && Loader.isModLoaded("elenaidodge2")) {
-            elenaiDodgeEvents = new ElenaiDodgeEvents();
-            MinecraftForge.EVENT_BUS.register(elenaiDodgeEvents);
+        if (CfgFeatures.SYNC_TIME.enable) {
+            MinecraftForge.EVENT_BUS.register(new TimeEventHandler());
         }
 
-        if (CfgTweaks.RESKILLABLE.enable && Loader.isModLoaded("reskillable")) {
-            reskillableEvents = new ReskillableEvents();
-            MinecraftForge.EVENT_BUS.register(reskillableEvents);
+        if (CfgMinecraft.WORLD.enable) {
+            MinecraftForge.EVENT_BUS.register(new WorldOptionsHandler());
         }
 
-        if (CfgTweaks.PYROTECH.enable && Loader.isModLoaded("pyrotech")) {
-            pyrotechEvents = new PyrotechEvents();
-            MinecraftForge.EVENT_BUS.register(pyrotechEvents);
+        if (CfgTweaks.ELENAI_DODGE.enable
+                && Loader.isModLoaded("elenaidodge2")
+                && Loader.isModLoaded("simpledifficulty")
+                && CfgTweaks.ELENAI_DODGE.enableSimpleDifficulty
+        ) {
+            MinecraftForge.EVENT_BUS.register(new DodgeHandler());
         }
 
-        if (CfgTweaks.SIMPLE_DIFFICULTY.enable && Loader.isModLoaded("simpledifficulty")) {
-            simpleDifficultyEvents = new SimpleDifficultyEvents();
-            MinecraftForge.EVENT_BUS.register(simpleDifficultyEvents);
+        if (CfgTweaks.RESKILLABLE.enable
+                && Loader.isModLoaded("reskillable")
+        ) {
+            MinecraftForge.EVENT_BUS.register(new ReskillableEvents());
+        }
+
+        if (CfgTweaks.PYROTECH.enable
+                && Loader.isModLoaded("pyrotech")
+        ) {
+            MinecraftForge.EVENT_BUS.register(new PyrotechEvents());
+        }
+
+        if (CfgTweaks.SIMPLE_DIFFICULTY.enable
+                && Loader.isModLoaded("simpledifficulty")
+        ) {
+            simpleDifficultyHandler = new SimpleDifficultyHandler();
+            MinecraftForge.EVENT_BUS.register(simpleDifficultyHandler);
         }
 
         if (CfgFeatures.MOB_HEALTH_BAR.enable) {
@@ -80,17 +106,22 @@ public class CommonProxy implements IProxy {
         if (CfgFeatures.MATERIAL_TWEAKER.enable) {
             MaterialTweaker.INSTANCE.load();
         }
+
         if (CfgFeatures.MOB_HEALTH_BAR.enable) {
             barHandler.whitelist.init();
             BarRenderer.rangeModifiers.init();
         }
-        if (CfgTweaks.SIMPLE_DIFFICULTY.enable && Loader.isModLoaded("simpledifficulty")) {
-            simpleDifficultyEvents.temperaturePotionHandler.init();
-            simpleDifficultyEvents.thirstPotionHandler.init();
+
+        if (CfgTweaks.SIMPLE_DIFFICULTY.enable
+                && Loader.isModLoaded("simpledifficulty")
+        ) {
+            simpleDifficultyHandler.temperaturePotionHandler.init();
+            simpleDifficultyHandler.thirstPotionHandler.init();
         }
+
         if (CfgFeatures.PLAYER_EFFECTS.enable) {
-            playerEvents.healthPotionHandler.init();
-            playerEvents.hungerPotionHandler.init();
+            vanillaHandler.healthPotionHandler.init();
+            vanillaHandler.hungerPotionHandler.init();
         }
     }
 

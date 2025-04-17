@@ -1,4 +1,4 @@
-package io.enderdev.endermodpacktweaks.events;
+package io.enderdev.endermodpacktweaks.features.playerpotions;
 
 import io.enderdev.endermodpacktweaks.config.CfgFeatures;
 import io.enderdev.endermodpacktweaks.utils.EmtPotionHandler;
@@ -9,7 +9,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
-public class PlayerEvents {
+public class VanillaHandler {
     public final EmtPotionHandler healthPotionHandler = new EmtPotionHandler(CfgFeatures.PLAYER_EFFECTS.healthPotions, 0, 100);
     public final EmtPotionHandler hungerPotionHandler = new EmtPotionHandler(CfgFeatures.PLAYER_EFFECTS.hungerPotions, 0, 20);
 

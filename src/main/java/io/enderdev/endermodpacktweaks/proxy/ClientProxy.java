@@ -4,9 +4,14 @@ import io.enderdev.endermodpacktweaks.config.CfgFeatures;
 import io.enderdev.endermodpacktweaks.config.CfgMinecraft;
 import io.enderdev.endermodpacktweaks.config.CfgModpack;
 import io.enderdev.endermodpacktweaks.core.EMTAssetMover;
-import io.enderdev.endermodpacktweaks.events.ClientEvents;
+import io.enderdev.endermodpacktweaks.features.additionalmastervolume.MasterVolumeHandler;
 import io.enderdev.endermodpacktweaks.features.keybinds.KeybindHandler;
 import io.enderdev.endermodpacktweaks.features.modpackinfo.ModpackInfoEventHandler;
+import io.enderdev.endermodpacktweaks.features.noautojump.AutoJumpHandler;
+import io.enderdev.endermodpacktweaks.features.nofovchange.FovHandler;
+import io.enderdev.endermodpacktweaks.features.noinventorycrafting.InventoryHandler;
+import io.enderdev.endermodpacktweaks.features.nonametags.NameTagHandler;
+import io.enderdev.endermodpacktweaks.features.nooverlay.OverlayHandler;
 import io.enderdev.endermodpacktweaks.patches.mysticallib.EffectManager;
 import io.enderdev.endermodpacktweaks.utils.EmtOptifine;
 import net.minecraft.client.Minecraft;
@@ -16,10 +21,34 @@ import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.*;
 
 public class ClientProxy extends CommonProxy implements IProxy {
+
     @Override
     public void preInit(FMLPreInitializationEvent event) {
         super.preInit(event);
-        MinecraftForge.EVENT_BUS.register(new ClientEvents());
+
+        if (CfgMinecraft.CLIENT.enable) {
+            MinecraftForge.EVENT_BUS.register(new OverlayHandler());
+
+            if (CfgMinecraft.CLIENT.disableFovChange) {
+                MinecraftForge.EVENT_BUS.register(new FovHandler());
+            }
+
+            if (CfgMinecraft.CLIENT.hideNameTags) {
+                MinecraftForge.EVENT_BUS.register(new NameTagHandler());
+            }
+
+            if (CfgMinecraft.CLIENT.additionalMasterVolume) {
+                MinecraftForge.EVENT_BUS.register(new MasterVolumeHandler());
+            }
+
+            if (CfgMinecraft.CLIENT.disableAutoJump) {
+                MinecraftForge.EVENT_BUS.register(new AutoJumpHandler());
+            }
+
+            if (CfgMinecraft.CLIENT.disableInventoryCrafting) {
+                MinecraftForge.EVENT_BUS.register(new InventoryHandler());
+            }
+        }
 
         if (Loader.isModLoaded("crissaegrim")) {
             MinecraftForge.EVENT_BUS.register(new EffectManager());
@@ -42,7 +71,7 @@ public class ClientProxy extends CommonProxy implements IProxy {
     @Override
     public void postInit(FMLPostInitializationEvent event) {
         super.postInit(event);
-        if (!EmtOptifine.isOptiFineInstalled()) {
+        if (CfgMinecraft.CLIENT.enable && !EmtOptifine.isOptiFineInstalled()) {
             GameSettings.Options.RENDER_DISTANCE.setValueMax(CfgMinecraft.CLIENT.maxRenderDistance);
         }
     }
@@ -50,7 +79,7 @@ public class ClientProxy extends CommonProxy implements IProxy {
     @Override
     public void construct(FMLConstructionEvent event) throws Exception {
         super.construct(event);
-        if (Loader.isModLoaded("assetmover")) {
+        if (Loader.isModLoaded("assetmover") && CfgFeatures.BOSS_BAR.enable) {
             EMTAssetMover.getAssets();
         }
     }
