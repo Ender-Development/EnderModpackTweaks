@@ -69,6 +69,10 @@ public class CfgTweaks {
         @Config.Name("[01] Enable Cases Tweaks")
         @Config.Comment("Enable tweaks for the Cases mod.")
         public boolean enable = false;
+
+        @Config.Name("[02] Disable Animation")
+        @Config.Comment("Disable the opening animation of the cases.")
+        public boolean disableAnimation = false;
     }
 
     @Config.Name("crissaegrim")

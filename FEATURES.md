@@ -75,9 +75,7 @@
 
 ### [Cases](https://www.curseforge.com/minecraft/mc-mods/cases)
 
-- allow decreasing the minimum spin time
-- this allows making the spin instantaneous
-- this also overrides the specific cases config entry
+- allow skipping the case opening animation
 
 ### [Crissaegrim](https://www.curseforge.com/minecraft/mc-mods/crissaegrim)
 

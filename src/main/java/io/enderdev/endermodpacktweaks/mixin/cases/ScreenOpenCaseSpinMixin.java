@@ -2,6 +2,7 @@ package io.enderdev.endermodpacktweaks.mixin.cases;
 
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import io.enderdev.endermodpacktweaks.config.CfgTweaks;
 import org.spongepowered.asm.mixin.Mixin;
 import ru.radviger.cases.client.gui.ScreenOpenCase;
 
@@ -9,6 +10,8 @@ import ru.radviger.cases.client.gui.ScreenOpenCase;
 public class ScreenOpenCaseSpinMixin {
     @WrapMethod(method = "draw")
     public void draw(int x, int y, Operation<Void> original) {
-        // We don't want to draw the spin animation
+        if (!CfgTweaks.CASES.disableAnimation) {
+            original.call(x, y);
+        }
     }
 }
