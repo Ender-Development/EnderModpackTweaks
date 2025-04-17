@@ -102,4 +102,23 @@ public class EmtConfigParser {
             return value;
         }
     }
+
+    public static class ConfigItemWithBoolean extends ConfigItem {
+        private final boolean value;
+
+        public ConfigItemWithBoolean(String configString) {
+            String[] parts = configString.split(";");
+            if (parts.length == 2) {
+                parseConfigString(parts[0]);
+                this.value = Boolean.parseBoolean(parts[1]);
+            } else {
+                throw new IllegalArgumentException("Invalid config string format: " + configString);
+            }
+            validateConfigItem();
+        }
+
+        public boolean value() {
+            return value;
+        }
+    }
 }

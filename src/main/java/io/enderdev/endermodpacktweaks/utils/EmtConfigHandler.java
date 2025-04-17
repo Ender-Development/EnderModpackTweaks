@@ -18,7 +18,7 @@ public class EmtConfigHandler<T extends EmtConfigParser.ConfigItem> {
         this.parser = parser;
     }
 
-    public void init() {
+    public EmtConfigHandler<T> init() {
         for (String line : configData) {
             try {
                 T entry = parser.apply(line);
@@ -27,8 +27,14 @@ public class EmtConfigHandler<T extends EmtConfigParser.ConfigItem> {
                 EnderModpackTweaks.LOGGER.error("Error parsing config data: {}", line, e);
             }
         }
+        return this;
     }
 
+    /**
+     * Check if the list contains the given item stack.
+     * @param stack The item stack to check.
+     * @return True if the list contains the item stack, false otherwise.
+     */
     public boolean contains(ItemStack stack) {
         return configItems.stream().anyMatch(item -> item.compare(stack));
     }
@@ -49,10 +55,15 @@ public class EmtConfigHandler<T extends EmtConfigParser.ConfigItem> {
 
     public EmtConfigParser.ConfigItem getEquipped(EntityPlayer player) {
         for (ItemStack itemStack : player.getEquipmentAndArmor()) {
-            for (T item : configItems) {
-                if (item.compare(itemStack)) {
-                    return item;
-                }
+            get(itemStack);
+        }
+        return null;
+    }
+
+    public EmtConfigParser.ConfigItem get(ItemStack stack) {
+        for (T item : configItems) {
+            if (item.compare(stack)) {
+                return item;
             }
         }
         return null;
