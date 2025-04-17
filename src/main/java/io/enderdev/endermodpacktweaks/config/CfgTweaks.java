@@ -491,7 +491,7 @@ public class CfgTweaks {
 
         @Config.Name("[02] Render Offset")
         @Config.Comment("Set the render offset of the HUD renderer.")
-        public int renderOffset = -3;
+        public int renderOffset = 0;
     }
 
     @Config.Name("pyrotech")
@@ -686,6 +686,22 @@ public class CfgTweaks {
         @Config.Name("[10] Armor Overlay Y-Offset")
         @Config.Comment("Set the Y-Offset of the Armor Overlay.")
         public int armorYOffset = 0;
+    }
+
+    @Config.Name("scalinghealth")
+    @Config.LangKey("cfg.endermodpacktweaks.tweaks.scalinghealth")
+    @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/scaling-health")
+    public static final ScalingHealth SCALING_HEALTH = new ScalingHealth();
+
+    public static class ScalingHealth {
+        @Config.RequiresMcRestart
+        @Config.Name("[01] Enable Scaling Health Tweaks")
+        @Config.Comment("Enable tweaks for the Scaling Health mod.")
+        public boolean enable = false;
+
+        @Config.Name("[02] Y-Offset")
+        @Config.Comment("Set the Y-Offset of the health bar.")
+        public int yOffset = 0;
     }
 
     @Config.Name("simple_difficulty")

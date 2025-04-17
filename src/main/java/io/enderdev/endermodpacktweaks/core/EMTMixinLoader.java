@@ -13,7 +13,7 @@ import java.util.Map;
 import java.util.function.BooleanSupplier;
 
 public class EMTMixinLoader implements ILateMixinLoader {
-    private static final Map<String, BooleanSupplier> mixinConfigs = ImmutableMap.copyOf(new HashMap<String, BooleanSupplier>(){
+    private static final Map<String, BooleanSupplier> MIXIN_CONFIGS = ImmutableMap.copyOf(new HashMap<String, BooleanSupplier>(){
         {
             put("mixins.emt.perfectspawn.json", () -> Loader.isModLoaded("perfectspawn") && CfgTweaks.PERFECT_SPAWN.enable);
             put("mixins.emt.pyrotech.json", () -> Loader.isModLoaded("pyrotech") && CfgTweaks.PYROTECH.enable);
@@ -44,16 +44,17 @@ public class EMTMixinLoader implements ILateMixinLoader {
             put("mixins.emt.itemstages.json", () -> Loader.isModLoaded("itemstages") && CfgTweaks.GAME_STAGES.enable);
             put("mixins.emt.recipestages.json", () -> Loader.isModLoaded("recipestages") && CfgTweaks.GAME_STAGES.enable);
             put("mixins.emt.cases.json", () -> Loader.isModLoaded("cases") && CfgTweaks.CASES.enable);
+            put("mixins.emt.scalinghealth.json", () -> Loader.isModLoaded("scalinghealth") && CfgTweaks.SCALING_HEALTH.enable);
         }
     });
 
     @Override
     public List<String> getMixinConfigs() {
-        return new ArrayList<>(mixinConfigs.keySet());
+        return new ArrayList<>(MIXIN_CONFIGS.keySet());
     }
 
     @Override
     public boolean shouldMixinConfigQueue(String config) {
-        return mixinConfigs.get(config).getAsBoolean();
+        return MIXIN_CONFIGS.get(config).getAsBoolean();
     }
 }

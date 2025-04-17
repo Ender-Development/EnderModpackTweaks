@@ -171,6 +171,10 @@
 - allow placing Wildberry Bushes on more blocks
 - allow adding an offset to the Armor and Toughness Renderer
 
+### [Scaling Health](https://www.curseforge.com/minecraft/mc-mods/scaling-health)
+
+- add an offset to the health bar renderer
+
 ### [Simple Difficulty](https://www.curseforge.com/minecraft/mc-mods/simpledifficulty)
 
 - allow moving the thirst bar if it overlaps with something else
@@ -205,12 +209,13 @@
 - licensed under Public Domain
 - single class mod, merged
 - fixed a small issue where the mod wouldn't work properly
+- added a check so you won't waste bone meal on fully grown plants
 
 ### [Client Tweaks](https://www.curseforge.com/minecraft/mc-mods/client-tweaks)
 
 - licensed under MIT
 - disable Auto-Jump (this includes the Button in the Controls)
-- add an additional Master Volume Slider to the main options screen
+- add a master Volume Slider to the main options screen
 
 ### [ChunkOMG](https://www.curseforge.com/minecraft/mc-mods/chunkomg)
 
