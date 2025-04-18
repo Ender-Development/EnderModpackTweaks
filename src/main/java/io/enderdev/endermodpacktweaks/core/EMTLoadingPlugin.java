@@ -27,20 +27,20 @@ public class EMTLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader {
 
     private static final Map<String, BooleanSupplier> commonMixinConfigs = ImmutableMap.copyOf(new HashMap<String, BooleanSupplier>() {
         {
-            put("mixins.emt.minecraft.dragonfightmanager.json", () -> CfgMinecraft.DRAGON.enable);
-            put("mixins.emt.minecraft.endgateway.json", () -> CfgMinecraft.END_GATEWAY.enable);
-            put("mixins.emt.minecraft.endpodium.json", () -> CfgMinecraft.END_PODIUM.enable);
-            put("mixins.emt.minecraft.netherportal.json", () -> CfgMinecraft.NETHER_PORTAL.enable);
-            put("mixins.emt.minecraft.obsidianspike.json", () -> CfgMinecraft.OBSIDIAN_SPIKE.enable);
-            put("mixins.emt.minecraft.endisland.json", () -> CfgMinecraft.END_ISLAND.enable);
-            put("mixins.emt.minecraftforge.json", () -> true);
+            put("mixins/mixins.emt.minecraft.dragonfightmanager.json", () -> CfgMinecraft.DRAGON.enable);
+            put("mixins/mixins.emt.minecraft.endgateway.json", () -> CfgMinecraft.END_GATEWAY.enable);
+            put("mixins/mixins.emt.minecraft.endpodium.json", () -> CfgMinecraft.END_PODIUM.enable);
+            put("mixins/mixins.emt.minecraft.netherportal.json", () -> CfgMinecraft.NETHER_PORTAL.enable);
+            put("mixins/mixins.emt.minecraft.obsidianspike.json", () -> CfgMinecraft.OBSIDIAN_SPIKE.enable);
+            put("mixins/mixins.emt.minecraft.endisland.json", () -> CfgMinecraft.END_ISLAND.enable);
+            put("mixins/mixins.emt.minecraftforge.json", () -> true);
         }
     });
 
     private static final Map<String, BooleanSupplier> clientsideMixinConfigs = ImmutableMap.copyOf(new HashMap<String, BooleanSupplier>() {
         {
-            put("mixins.emt.minecraft.bossbar.json", () -> CfgFeatures.BOSS_BAR.enable);
-            put("mixins.emt.minecraft.client.json", () -> true);
+            put("mixins/mixins.emt.minecraft.bossbar.json", () -> CfgFeatures.BOSS_BAR.enable);
+            put("mixins/mixins.emt.minecraft.client.json", () -> true);
         }
     });
 
