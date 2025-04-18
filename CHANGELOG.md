@@ -1,17 +1,19 @@
 # Changelog
 
-## [0.5.0] - WIP
+## [0.5.0]
 
 - 🆕 overhauled the config system, the mod now creates a directory in the config folder with all configs
 - 🆕 added a tweak that mimics 'Controlling' (to be extended in the future)
 - 🆕 added a tweak to the cases mod to skip the opening animation
 - 🆕 added an offset to the 'scaling health' health renderer
 - 🆕 added boss bars to 'Scape and Run: Parasites' (Thanks to thomaslovlin)
+- 🆕 added Elenai Dodge Stamina as player potion criteria
 - 🔄 improved bar renderer with rounded options for all drawables
 - 🔄 improved the description of some config options
 - 🔄 improved instant bone meal tweak to not work on full-grown plants
 - 🧰 fixed the changelog missing on export
 - 🧰 fixed the rounded mob health bar having weird artefacts
+- 🧰 fixed weird behavior with the player potion effects
 
 ## [0.4.3]
 

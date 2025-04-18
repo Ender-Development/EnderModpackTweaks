@@ -6,6 +6,7 @@
 
 - my own version of the mod, since the original one is ARR licensed and only available for modern versions
 - utilizes [AssetMover](https://www.curseforge.com/minecraft/mc-mods/assetmover) to obtain the textures without breaking the license
+- now also contains some custom made ones by `维生素` and `thomaslovlin`
 
 ### 🔘 Menu Buttons
 
@@ -97,6 +98,10 @@
 ### [Dynamics Surroundings: HUDs](https://www.curseforge.com/minecraft/mc-mods/dynamic-surroundings-huds)
 
 - added the options to blacklist potion effects from showing on the potion HUD
+
+### [Elenai Dodge 2](https://www.curseforge.com/minecraft/mc-mods/elenai-dodge-2)
+
+- add potion effects according to the stamina of the player
 
 ### [First Aid](https://www.curseforge.com/minecraft/mc-mods/first-aid)
 
