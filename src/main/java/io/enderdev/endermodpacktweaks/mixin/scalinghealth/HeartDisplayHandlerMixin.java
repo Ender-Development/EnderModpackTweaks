@@ -13,7 +13,7 @@ public class HeartDisplayHandlerMixin {
         return height + CfgTweaks.SCALING_HEALTH.yOffset;
     }
 
-    @ModifyArg(method = "renderHearts", at = @At(value = "INVOKE", target = "Lnet/silentchaos512/scalinghealth/client/HeartDisplayHandler;drawTexturedModalRect(IIIIIII)V", remap = true), remap = false, index = 1)
+    @ModifyArg(method = "renderHearts", at = @At(value = "INVOKE", target = "Lnet/silentchaos512/scalinghealth/client/HeartDisplayHandler;drawTexturedModalRect(IIIIIII)V"), index = 1)
     private int yOffset(int y) {
         return y + CfgTweaks.SCALING_HEALTH.yOffset;
     }
