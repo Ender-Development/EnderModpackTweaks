@@ -180,31 +180,42 @@ public class CfgTweaks {
         @Config.Comment("Enable tweaks for the Elenai Dodge 2 mod.")
         public boolean enable = false;
 
-        @Config.Name("[02] Enable Simple Difficulty Integration")
+        @Config.RequiresMcRestart
+        @Config.Name("[02] Stamina Potion Effects")
+        @Config.Comment({
+                "Requires 'Player Effects' in the 'Features.cfg' to be enabled.",
+                "Add additional potion effects to the player depending on the stamina level.",
+                "The stamina bounds must be between 0 and 20.",
+                "FORMAT: lower_bound;upper_bound;effect;amplifier",
+                "Example: 0;5;minecraft:slowness;2"
+        })
+        public String[] staminaPotions = new String[]{};
+
+        @Config.Name("[03] Enable Simple Difficulty Integration")
         @Config.Comment("Enable the integration with the Simple Difficulty mod.")
         public boolean enableSimpleDifficulty = false;
 
-        @Config.Name("[03] Simple Difficulty: Thirst Exhaustion on Dodge")
+        @Config.Name("[04] Simple Difficulty: Thirst Exhaustion on Dodge")
         @Config.Comment("How much thirst should be added when the player dodges.")
         @Config.RangeDouble(min = 0.0, max = 40.0)
         public double thirst = 6.0;
 
-        @Config.Name("[04] Simple Difficulty: Thirst Threshold")
+        @Config.Name("[05] Simple Difficulty: Thirst Threshold")
         @Config.Comment("The threshold at which the dodge should be canceled.")
         @Config.RangeInt(min = 0, max = 20)
         public int thirstThreshold = 6;
 
-        @Config.Name("[05] Simple Difficulty: Stamina Regeneration")
+        @Config.Name("[06] Simple Difficulty: Stamina Regeneration")
         @Config.Comment("The minimum thirst level required to regenerate stamina.")
         @Config.RangeInt(min = 0, max = 20)
         public int dodgeRegeneration = 8;
 
-        @Config.Name("[06] Simple Difficulty: Stamina Regeneration Rate")
+        @Config.Name("[07] Simple Difficulty: Stamina Regeneration Rate")
         @Config.Comment("How much longer (in ticks) it takes to regenerate stamina for each missing thirst level.")
         @Config.RangeInt(min = 0, max = 100)
         public int dodgeRegenerationRate = 10;
 
-        @Config.Name("[07] Simple Difficulty: Thirst Exhaustion on Stamina Regeneration")
+        @Config.Name("[08] Simple Difficulty: Thirst Exhaustion on Stamina Regeneration")
         @Config.Comment("How much thirst should be added when the player regenerates stamina.")
         @Config.RangeDouble(min = 0.0, max = 40.0)
         public double thirstRegeneration = 0.2;
@@ -726,6 +737,7 @@ public class CfgTweaks {
         @Config.RequiresMcRestart
         @Config.Name("[04] Temperature Potion Effects")
         @Config.Comment({
+                "Requires 'Player Effects' in the 'Features.cfg' to be enabled.",
                 "Add additional potion effects to the player depending on the temperature.",
                 "The temperature bounds must be between 0 and 25.",
                 "FORMAT: lower_bound;upper_bound;effect;amplifier",
@@ -736,6 +748,7 @@ public class CfgTweaks {
         @Config.RequiresMcRestart
         @Config.Name("[05] Thirst Potion Effects")
         @Config.Comment({
+                "Requires 'Player Effects' in the 'Features.cfg' to be enabled.",
                 "Add additional potion effects to the player depending on the thirst level.",
                 "The thirst bounds must be between 0 and 20.",
                 "FORMAT: lower_bound;upper_bound;effect;amplifier",

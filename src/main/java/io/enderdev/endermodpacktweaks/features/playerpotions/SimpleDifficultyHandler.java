@@ -2,27 +2,20 @@ package io.enderdev.endermodpacktweaks.features.playerpotions;
 
 import com.charles445.simpledifficulty.api.SDCapabilities;
 import com.charles445.simpledifficulty.api.SDPotions;
-import com.charles445.simpledifficulty.api.thirst.IThirstCapability;
 import io.enderdev.endermodpacktweaks.config.CfgTweaks;
-import io.enderdev.endermodpacktweaks.utils.EmtPotionHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 public class SimpleDifficultyHandler {
-    public final EmtPotionHandler temperaturePotionHandler = new EmtPotionHandler(CfgTweaks.SIMPLE_DIFFICULTY.temperaturePotions, 0, 25);
-    public final EmtPotionHandler thirstPotionHandler = new EmtPotionHandler(CfgTweaks.SIMPLE_DIFFICULTY.thirstPotions, 0, 20);
-
-    @SubscribeEvent
-    public void setThirstOnRespawn(PlayerEvent.PlayerRespawnEvent event) {
-        IThirstCapability thirstCapability = SDCapabilities.getThirstData(event.player);
-        thirstCapability.setThirstLevel(CfgTweaks.SIMPLE_DIFFICULTY.respawnThirst);
-        thirstCapability.setThirstSaturation(CfgTweaks.SIMPLE_DIFFICULTY.respawnThirstSaturation);
-    }
+    public final PotionHandler temperaturePotionHandler = new PotionHandler(CfgTweaks.SIMPLE_DIFFICULTY.temperaturePotions, 0, 25);
+    public final PotionHandler thirstPotionHandler = new PotionHandler(CfgTweaks.SIMPLE_DIFFICULTY.thirstPotions, 0, 20);
 
     @SubscribeEvent
     public void simpleDifficultyPlayerTick(TickEvent.PlayerTickEvent event) {
+        if (event.player.getEntityWorld().isRemote) {
+            return;
+        }
         EntityPlayer player = event.player;
 
         // Temperature
@@ -36,12 +29,5 @@ public class SimpleDifficultyHandler {
         // Thirst
         int thirst = SDCapabilities.getThirstData(player).getThirstLevel();
         thirstPotionHandler.apply(player, thirst);
-    }
-
-    @SubscribeEvent
-    public void playerLogout(PlayerEvent.PlayerLoggedOutEvent event) {
-        EntityPlayer player = event.player;
-        temperaturePotionHandler.clear(player);
-        thirstPotionHandler.clear(player);
     }
 }

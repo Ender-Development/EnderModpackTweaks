@@ -8,6 +8,7 @@ import io.enderdev.endermodpacktweaks.config.CfgModpack;
 import io.enderdev.endermodpacktweaks.config.CfgTweaks;
 import io.enderdev.endermodpacktweaks.events.PyrotechEvents;
 import io.enderdev.endermodpacktweaks.events.ReskillableEvents;
+import io.enderdev.endermodpacktweaks.events.SimpleDifficultyEvents;
 import io.enderdev.endermodpacktweaks.features.compatscreen.CompatModsHandler;
 import io.enderdev.endermodpacktweaks.features.crashinfo.InfoBuilder;
 import io.enderdev.endermodpacktweaks.features.dodgethirst.DodgeHandler;
@@ -16,6 +17,7 @@ import io.enderdev.endermodpacktweaks.features.healthbar.BarRenderer;
 import io.enderdev.endermodpacktweaks.features.instantbonemeal.BoneMealhandler;
 import io.enderdev.endermodpacktweaks.features.materialtweaker.MaterialTweaker;
 import io.enderdev.endermodpacktweaks.features.netherportal.PortalHandler;
+import io.enderdev.endermodpacktweaks.features.playerpotions.ElenaiDodgeHandler;
 import io.enderdev.endermodpacktweaks.features.playerpotions.SimpleDifficultyHandler;
 import io.enderdev.endermodpacktweaks.features.playerpotions.VanillaHandler;
 import io.enderdev.endermodpacktweaks.features.servermsg.ServerHandler;
@@ -34,6 +36,7 @@ public class CommonProxy implements IProxy {
     // Player Effects
     private VanillaHandler vanillaHandler;
     private SimpleDifficultyHandler simpleDifficultyHandler;
+    private ElenaiDodgeHandler elenaiDodgeHandler;
 
     // EMT Internal
     private BarHandler barHandler;
@@ -48,6 +51,14 @@ public class CommonProxy implements IProxy {
         if (CfgFeatures.PLAYER_EFFECTS.enable) {
             vanillaHandler = new VanillaHandler();
             MinecraftForge.EVENT_BUS.register(vanillaHandler);
+            if (Loader.isModLoaded("simpledifficulty")) {
+                simpleDifficultyHandler = new SimpleDifficultyHandler();
+                MinecraftForge.EVENT_BUS.register(simpleDifficultyHandler);
+            }
+            if (Loader.isModLoaded("elenaidodge2")) {
+                elenaiDodgeHandler = new ElenaiDodgeHandler();
+                MinecraftForge.EVENT_BUS.register(elenaiDodgeHandler);
+            }
         }
 
         if (CfgMinecraft.NETHER_PORTAL.enable) {
@@ -89,8 +100,7 @@ public class CommonProxy implements IProxy {
         if (CfgTweaks.SIMPLE_DIFFICULTY.enable
                 && Loader.isModLoaded("simpledifficulty")
         ) {
-            simpleDifficultyHandler = new SimpleDifficultyHandler();
-            MinecraftForge.EVENT_BUS.register(simpleDifficultyHandler);
+            MinecraftForge.EVENT_BUS.register(new SimpleDifficultyEvents());
         }
 
         if (CfgFeatures.MOB_HEALTH_BAR.enable) {
@@ -112,16 +122,16 @@ public class CommonProxy implements IProxy {
             BarRenderer.rangeModifiers.init();
         }
 
-        if (CfgTweaks.SIMPLE_DIFFICULTY.enable
-                && Loader.isModLoaded("simpledifficulty")
-        ) {
-            simpleDifficultyHandler.temperaturePotionHandler.init();
-            simpleDifficultyHandler.thirstPotionHandler.init();
-        }
-
         if (CfgFeatures.PLAYER_EFFECTS.enable) {
             vanillaHandler.healthPotionHandler.init();
             vanillaHandler.hungerPotionHandler.init();
+            if (Loader.isModLoaded("simpledifficulty")) {
+                simpleDifficultyHandler.temperaturePotionHandler.init();
+                simpleDifficultyHandler.thirstPotionHandler.init();
+            }
+            if (Loader.isModLoaded("elenaidodge2")) {
+                elenaiDodgeHandler.staminaPotionHandler.init();
+            }
         }
     }
 

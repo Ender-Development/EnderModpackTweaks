@@ -311,8 +311,18 @@ public class CfgFeatures {
         @Config.Comment("Enable tweaks for the player effects.")
         public boolean enable = false;
 
+        @Config.Name("[02] Effect Duration")
+        @Config.Comment("The duration of the potion effects in ticks.")
+        @Config.RangeInt(min = 0)
+        public int effectDuration = 300;
+
+        @Config.Name("[03] Effect Refresh Rate")
+        @Config.Comment("The refresh rate of the potion effects in ticks.")
+        @Config.RangeInt(min = 0)
+        public int effectRefreshRate = 60;
+
         @Config.RequiresMcRestart
-        @Config.Name("[02] Health Potion Effects")
+        @Config.Name("[04] Health Potion Effects")
         @Config.Comment({
                 "Add additional potion effects to the player depending on the health.",
                 "The health bounds must be between 0% and 100% of max health.",
@@ -322,7 +332,7 @@ public class CfgFeatures {
         public String[] healthPotions = new String[]{};
 
         @Config.RequiresMcRestart
-        @Config.Name("[03] Hunger Potion Effects")
+        @Config.Name("[05] Hunger Potion Effects")
         @Config.Comment({
                 "Add additional potion effects to the player depending on the hunger level.",
                 "The hunger bounds must be between 0 and 20.",
