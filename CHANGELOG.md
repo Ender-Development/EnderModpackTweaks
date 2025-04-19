@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.5.1]
+
+- 🧰 fixed cases mod mixins
+
 ## [0.5.0]
 
 - 🆕 overhauled the config system, the mod now creates a directory in the config folder with all configs

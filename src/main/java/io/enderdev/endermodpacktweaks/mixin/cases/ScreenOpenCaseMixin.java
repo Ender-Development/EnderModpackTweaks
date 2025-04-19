@@ -25,7 +25,7 @@ public class ScreenOpenCaseMixin {
     @Shadow
     private Case entry;
 
-    @WrapMethod(method = "update")
+    @WrapMethod(method = "update", remap = true)
     public void update(Operation<Void> original) {
         if (spin != null && CfgTweaks.CASES.disableAnimation) {
             SingleCaseSlot result = this.spin.getResultSlot();
