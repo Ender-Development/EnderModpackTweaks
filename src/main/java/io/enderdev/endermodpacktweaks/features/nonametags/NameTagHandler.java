@@ -9,6 +9,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class NameTagHandler {
     @SubscribeEvent
     public void onRenderLivingSpecialsPre(RenderLivingEvent.Specials.Pre event) {
-        event.setCanceled(false);
+        event.setCanceled(true);
     }
 }
