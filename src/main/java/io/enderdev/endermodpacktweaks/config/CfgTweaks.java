@@ -145,6 +145,17 @@ public class CfgTweaks {
         public boolean enable = true;
     }
 
+    @Config.Name("delivery")
+    @Config.LangKey("cfg.endermodpacktweaks.tweaks.delivery")
+    @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/delivery")
+    public static final Delivery DELIVERY = new Delivery();
+
+    public static class Delivery {
+        @Config.Name("[01] Enable Delivery Tweaks")
+        @Config.Comment("This fixes a NPE each time you try to open the Store block.")
+        public boolean enable = true;
+    }
+
     @Config.Name("ds_huds")
     @Config.LangKey("cfg.endermodpacktweaks.tweaks.ds_huds")
     @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/dynamic-surroundings-huds")

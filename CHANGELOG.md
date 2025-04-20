@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.5.2]
+
+- 🆕 fixed the NPE spam when using the 'delivery' mod (suggested by Sereath)
+- 🔄 removed categories from config (requested by WaitingIdly) to remove an unnecessary indentation
+- 🧰 fixed name hide tweak
+
 ## [0.5.1]
 
 - 🧰 fixed cases mod mixins

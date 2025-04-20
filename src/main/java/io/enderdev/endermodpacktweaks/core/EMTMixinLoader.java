@@ -45,6 +45,7 @@ public class EMTMixinLoader implements ILateMixinLoader {
             put("mixins/mixins.emt.recipestages.json", () -> Loader.isModLoaded("recipestages") && CfgTweaks.GAME_STAGES.enable);
             put("mixins/mixins.emt.cases.json", () -> Loader.isModLoaded("cases") && CfgTweaks.CASES.enable);
             put("mixins/mixins.emt.scalinghealth.json", () -> Loader.isModLoaded("scalinghealth") && CfgTweaks.SCALING_HEALTH.enable);
+            put("mixins/mixins.emt.delivery.json", () -> Loader.isModLoaded("delivery") && CfgTweaks.DELIVERY.enable);
         }
     });
 

@@ -302,4 +302,9 @@ dependencies {
     if (project.debug_srparasites.toBoolean()) {
         runtimeOnly "curse.maven:scape-and-run-parasites-348025:5370258"
     }
+
+    compileOnly rfg.deobf("curse.maven:delivery-306540:2774818")
+    if (project.debug_delivery.toBoolean()) {
+        runtimeOnly "curse.maven:delivery-306540:2774818"
+    }
 }

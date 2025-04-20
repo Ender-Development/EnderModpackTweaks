@@ -95,6 +95,10 @@
 
 - fixed a bug where the texture of the world selection screen would break if your window is too large
 
+### [Delivery](https://www.curseforge.com/minecraft/mc-mods/delivery)
+
+- fix the NPE log spam
+
 ### [Dynamics Surroundings: HUDs](https://www.curseforge.com/minecraft/mc-mods/dynamic-surroundings-huds)
 
 - added the options to blacklist potion effects from showing on the potion HUD
