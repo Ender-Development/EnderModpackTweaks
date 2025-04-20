@@ -8,7 +8,7 @@ import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-@Config(modid = Tags.MOD_ID, name = Tags.CFG_FOLDER + Tags.CFG_MINECRAFT, category = Tags.CFG_MINECRAFT)
+@Config(modid = Tags.MOD_ID, name = Tags.CFG_FOLDER + Tags.CFG_MINECRAFT, category = "")
 public class CfgMinecraft {
     @Config.Name("client")
     @Config.LangKey("cfg.endermodpacktweaks.minecraft.client")
