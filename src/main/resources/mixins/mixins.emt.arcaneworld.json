@@ -5,7 +5,8 @@
   "minVersion": "0.8.5",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "DungeonDimensionProviderMixin"
+    "DungeonDimensionProviderMixin",
+    "TileEntityRitualTableMixin"
   ],
   "server": [],
   "client": []
