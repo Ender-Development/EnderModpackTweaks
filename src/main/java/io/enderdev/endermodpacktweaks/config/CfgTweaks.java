@@ -11,6 +11,18 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 @Config(modid = Tags.MOD_ID, name = Tags.CFG_FOLDER + Tags.CFG_TWEAK, category = "")
 public class CfgTweaks {
 
+    @Config.Name("arcane_world")
+    @Config.LangKey("cfg.endermodpacktweaks.tweaks.arcane_world")
+    @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/arcane-world-fixed")
+    public static final ArcaneWorld ARCANE_WORLD = new ArcaneWorld();
+
+    public static class ArcaneWorld {
+        @Config.RequiresMcRestart
+        @Config.Name("[01] Enable Arcane World Tweaks")
+        @Config.Comment("This fixes the lag in the other dimensions.")
+        public boolean enable = true;
+    }
+
     @Config.Name("astral_sorcery")
     @Config.LangKey("cfg.endermodpacktweaks.tweaks.astral_sorcery")
     @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/astral-sorcery")

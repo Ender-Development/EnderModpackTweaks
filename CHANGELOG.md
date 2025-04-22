@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.5.3]
+
+- 🆕 fixed the lag when being in the Arcane World dimensions
+
 ## [0.5.2]
 
 - 🆕 fixed the NPE spam when using the 'delivery' mod (suggested by Sereath)

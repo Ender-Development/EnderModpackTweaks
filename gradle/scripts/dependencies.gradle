@@ -307,4 +307,11 @@ dependencies {
     if (project.debug_delivery.toBoolean()) {
         runtimeOnly "curse.maven:delivery-306540:2774818"
     }
+
+    compileOnly rfg.deobf("curse.maven:lemonlib-306926:2639879")
+    compileOnly rfg.deobf("curse.maven:arcane-world-fixed-865605:4551027")
+    if (project.debug_arcaneworld.toBoolean()) {
+        runtimeOnly "curse.maven:lemonlib-306926:2639879"
+        runtimeOnly "curse.maven:arcane-world-fixed-865605:4551027"
+    }
 }
