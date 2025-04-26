@@ -32,7 +32,7 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import java.util.Objects;
 
 public class CommonProxy implements IProxy {
-    private static final InfoBuilder INFO_BUILDER = new InfoBuilder("Modpack Informations");
+    private static final InfoBuilder INFO_BUILDER = new InfoBuilder("Modpack Information");
     // Player Effects
     private VanillaHandler vanillaHandler;
     private SimpleDifficultyHandler simpleDifficultyHandler;
