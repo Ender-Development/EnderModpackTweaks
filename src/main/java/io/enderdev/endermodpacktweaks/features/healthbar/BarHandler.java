@@ -75,7 +75,7 @@ public class BarHandler {
                 renderHealthBar((EntityLivingBase) focused, partialTicks, cameraEntity);
             }
         } else {
-            for (Entity entity : ((WorldClientAccessor) Minecraft.getMinecraft().world).getEntityList()) {
+            for (Entity entity : ((WorldClientAccessor) mc.world).getEntityList()) {
                 if (entity instanceof EntityLivingBase
                         && entity != mc.player
                         && entity.isInRangeToRender3d(renderingVector.getX(), renderingVector.getY(), renderingVector.getZ())
