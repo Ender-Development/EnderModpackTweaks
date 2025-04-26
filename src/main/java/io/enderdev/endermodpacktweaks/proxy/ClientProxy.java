@@ -111,4 +111,7 @@ public class ClientProxy extends CommonProxy implements IProxy {
             gameSettings.heldItemTooltips = false;
         }
     }
+
+    @Override
+    public void serverStarted(FMLServerStartedEvent event) {}
 }

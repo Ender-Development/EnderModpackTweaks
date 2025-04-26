@@ -9,4 +9,5 @@ public interface IProxy {
     void construct(FMLConstructionEvent event) throws Exception;
     void onLoadComplete(FMLLoadCompleteEvent event);
     void serverStarting(FMLServerStartingEvent event);
+    void serverStarted(FMLServerStartedEvent event);
 }

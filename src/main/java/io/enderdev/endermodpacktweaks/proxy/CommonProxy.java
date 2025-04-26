@@ -39,10 +39,6 @@ public class CommonProxy implements IProxy {
     public void preInit(FMLPreInitializationEvent event) {
         EnderModpackTweaks.network = NetworkRegistry.INSTANCE.newSimpleChannel(Tags.MOD_ID);
 
-        if (CfgModpack.SERVER_MESSAGE.enable) {
-            MinecraftForge.EVENT_BUS.register(new ServerHandler());
-        }
-
         if (CfgFeatures.PLAYER_EFFECTS.enable) {
             vanillaHandler = new VanillaHandler();
             MinecraftForge.EVENT_BUS.register(vanillaHandler);
@@ -137,5 +133,11 @@ public class CommonProxy implements IProxy {
     @Override
     public void serverStarting(FMLServerStartingEvent event) {
 
+    }
+
+    @Override
+    public void serverStarted(FMLServerStartedEvent event) {
+        if(CfgModpack.SERVER_MESSAGE.enable)
+            ServerHandler.serverStarted();
     }
 }
