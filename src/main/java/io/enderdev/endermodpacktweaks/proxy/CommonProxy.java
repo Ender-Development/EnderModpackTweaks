@@ -12,8 +12,6 @@ import io.enderdev.endermodpacktweaks.events.SimpleDifficultyEvents;
 import io.enderdev.endermodpacktweaks.features.compatscreen.CompatModsHandler;
 import io.enderdev.endermodpacktweaks.features.crashinfo.InfoBuilder;
 import io.enderdev.endermodpacktweaks.features.dodgethirst.DodgeHandler;
-import io.enderdev.endermodpacktweaks.features.healthbar.BarHandler;
-import io.enderdev.endermodpacktweaks.features.healthbar.BarRenderer;
 import io.enderdev.endermodpacktweaks.features.instantbonemeal.BoneMealhandler;
 import io.enderdev.endermodpacktweaks.features.materialtweaker.MaterialTweaker;
 import io.enderdev.endermodpacktweaks.features.netherportal.PortalHandler;
@@ -37,9 +35,6 @@ public class CommonProxy implements IProxy {
     private VanillaHandler vanillaHandler;
     private SimpleDifficultyHandler simpleDifficultyHandler;
     private ElenaiDodgeHandler elenaiDodgeHandler;
-
-    // EMT Internal
-    private BarHandler barHandler;
 
     public void preInit(FMLPreInitializationEvent event) {
         EnderModpackTweaks.network = NetworkRegistry.INSTANCE.newSimpleChannel(Tags.MOD_ID);
@@ -102,11 +97,6 @@ public class CommonProxy implements IProxy {
         ) {
             MinecraftForge.EVENT_BUS.register(new SimpleDifficultyEvents());
         }
-
-        if (CfgFeatures.MOB_HEALTH_BAR.enable) {
-            barHandler = new BarHandler();
-            MinecraftForge.EVENT_BUS.register(barHandler);
-        }
     }
 
     public void init(FMLInitializationEvent event) {
@@ -115,11 +105,6 @@ public class CommonProxy implements IProxy {
     public void postInit(FMLPostInitializationEvent event) {
         if (CfgFeatures.MATERIAL_TWEAKER.enable) {
             MaterialTweaker.INSTANCE.load();
-        }
-
-        if (CfgFeatures.MOB_HEALTH_BAR.enable) {
-            barHandler.whitelist.init();
-            BarRenderer.rangeModifiers.init();
         }
 
         if (CfgFeatures.PLAYER_EFFECTS.enable) {

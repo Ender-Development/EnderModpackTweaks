@@ -5,6 +5,8 @@ import io.enderdev.endermodpacktweaks.config.CfgMinecraft;
 import io.enderdev.endermodpacktweaks.config.CfgModpack;
 import io.enderdev.endermodpacktweaks.core.EMTAssetMover;
 import io.enderdev.endermodpacktweaks.features.additionalmastervolume.MasterVolumeHandler;
+import io.enderdev.endermodpacktweaks.features.healthbar.BarHandler;
+import io.enderdev.endermodpacktweaks.features.healthbar.BarRenderer;
 import io.enderdev.endermodpacktweaks.features.keybinds.KeybindHandler;
 import io.enderdev.endermodpacktweaks.features.modpackinfo.ModpackInfoEventHandler;
 import io.enderdev.endermodpacktweaks.features.noautojump.AutoJumpHandler;
@@ -21,6 +23,8 @@ import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.*;
 
 public class ClientProxy extends CommonProxy implements IProxy {
+    // EMT Internal
+    private BarHandler barHandler;
 
     @Override
     public void preInit(FMLPreInitializationEvent event) {
@@ -61,6 +65,11 @@ public class ClientProxy extends CommonProxy implements IProxy {
         if (CfgFeatures.IMPROVED_KEYBINDS.enable) {
             MinecraftForge.EVENT_BUS.register(new KeybindHandler());
         }
+
+        if (CfgFeatures.MOB_HEALTH_BAR.enable) {
+            barHandler = new BarHandler();
+            MinecraftForge.EVENT_BUS.register(barHandler);
+        }
     }
 
     @Override
@@ -73,6 +82,11 @@ public class ClientProxy extends CommonProxy implements IProxy {
         super.postInit(event);
         if (CfgMinecraft.CLIENT.enable && !EmtOptifine.isOptiFineInstalled()) {
             GameSettings.Options.RENDER_DISTANCE.setValueMax(CfgMinecraft.CLIENT.maxRenderDistance);
+        }
+
+        if (CfgFeatures.MOB_HEALTH_BAR.enable) {
+            barHandler.whitelist.init();
+            BarRenderer.rangeModifiers.init();
         }
     }
 
