@@ -137,7 +137,7 @@ public class CommonProxy implements IProxy {
 
     @Override
     public void serverStarted(FMLServerStartedEvent event) {
-        if(CfgModpack.SERVER_MESSAGE.enable)
+        if (CfgModpack.SERVER_MESSAGE.enable)
             ServerHandler.serverStarted();
     }
 }
