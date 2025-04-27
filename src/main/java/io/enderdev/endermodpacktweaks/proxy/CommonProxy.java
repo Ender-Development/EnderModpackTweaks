@@ -12,7 +12,7 @@ import io.enderdev.endermodpacktweaks.events.SimpleDifficultyEvents;
 import io.enderdev.endermodpacktweaks.features.compatscreen.CompatModsHandler;
 import io.enderdev.endermodpacktweaks.features.crashinfo.InfoBuilder;
 import io.enderdev.endermodpacktweaks.features.dodgethirst.DodgeHandler;
-import io.enderdev.endermodpacktweaks.features.instantbonemeal.BoneMealhandler;
+import io.enderdev.endermodpacktweaks.features.instantbonemeal.BoneMealHandler;
 import io.enderdev.endermodpacktweaks.features.materialtweaker.MaterialTweaker;
 import io.enderdev.endermodpacktweaks.features.netherportal.PortalHandler;
 import io.enderdev.endermodpacktweaks.features.playerpotions.ElenaiDodgeHandler;
@@ -57,7 +57,7 @@ public class CommonProxy implements IProxy {
         }
 
         if (CfgFeatures.INSTANT_BONE_MEAL.enable) {
-            MinecraftForge.EVENT_BUS.register(new BoneMealhandler());
+            MinecraftForge.EVENT_BUS.register(new BoneMealHandler());
         }
 
         if (CfgFeatures.SYNC_TIME.enable) {
