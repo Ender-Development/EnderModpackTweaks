@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.5.4]
+
+- 
+
 ## [0.5.3]
 
 - 🆕 added a tweak to simple storage network to disable the auto select of the search bar (thanks to Invader)

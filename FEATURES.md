@@ -61,6 +61,10 @@
     - apply potion effects to the player based on hunger and health
     - similar to the effects of Simple Difficulty
 
+### [Arcane World](https://www.curseforge.com/minecraft/mc-mods/arcane-world-fixed)
+
+- fix the lag when being in the arena or dungeon dimension
+
 ### [Astral Sorcery](https://www.curseforge.com/minecraft/mc-mods/astral-sorcery)
 
 - allow Fake Players to interact with various blocks
@@ -280,6 +284,11 @@
 
 - licensed under ARR
 - rewrote its functionality from scratch
+
+### [Witherproof](https://www.curseforge.com/minecraft/mc-mods/witherproof)
+
+- licensed under LGPLv2.1
+- mimic it's functionality
 
 ## 🔀 Mod Integration
 
