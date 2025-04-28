@@ -22,6 +22,22 @@ public class CfgFeatures {
         public boolean enable = false;
     }
 
+    @Config.Name("boss_proof_blocks")
+    @Config.LangKey("cfg.endermodpacktweaks.features.boss_proof_blocks")
+    @Config.Comment("Define blocks that can't be broken by the Ender Dragon and Wither.")
+    public static final BossProofBlocks BOSS_PROOF_BLOCKS = new BossProofBlocks();
+
+    public static class BossProofBlocks {
+        @Config.RequiresMcRestart
+        @Config.Name("[01] Enable Boss Proof Blocks")
+        @Config.Comment({
+                "Enable tweaks for the Boss Proof Blocks. This can be achieved by adding them to their respective OreDictionary.",
+                "[Ender Dragon] ore:proofEnderDragon",
+                "[Wither] ore:proofWither"
+        })
+        public boolean enable = false;
+    }
+
     @Config.Name("improved_keybinds")
     @Config.LangKey("cfg.endermodpacktweaks.features.improved_keybinds")
     @Config.Comment("Improved keybinds for the game.")
