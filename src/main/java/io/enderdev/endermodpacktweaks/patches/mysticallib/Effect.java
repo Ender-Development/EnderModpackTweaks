@@ -9,6 +9,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.awt.*;
+
 public class Effect {
     public int lifetime = 0;
     public int maxLife = 0;
@@ -49,6 +51,14 @@ public class Effect {
         this.g = g;
         this.b = b;
         this.a = a;
+        return this;
+    }
+
+    public Effect setColor(Color color) {
+        this.r = color.getRed() / 255f;
+        this.g = color.getGreen() / 255f;
+        this.b = color.getBlue() / 255f;
+        this.a = color.getAlpha() / 255f;
         return this;
     }
 
