@@ -69,6 +69,11 @@ public class CfgModpack {
         @Config.Comment("Enable the Options Menu Buttons feature. This adds additional buttons to the options menu.")
         public boolean enable = false;
 
+        @Config.RequiresMcRestart
+        @Config.Name("[02] Custom Main Menu Integration")
+        @Config.Comment("Show the buttons on Custom Main Menu menus.")
+        public boolean cmmIntegration = false;
+
         @Config.Name("changelog_button")
         @Config.LangKey("cfg.endermodpacktweaks.modpack.options_menu_buttons.changelog")
         public final OptionsMenuButton CHANGELOG_BUTTON = new OptionsMenuButton("Changelog", "");
