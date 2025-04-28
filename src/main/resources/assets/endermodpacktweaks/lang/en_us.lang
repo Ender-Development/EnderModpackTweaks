@@ -13,6 +13,8 @@ endermodpacktweaks/tweaks.tooltip=Mod specific tweaks.
 
 cfg.endermodpacktweaks.features.boss_bar=Enhanced Boss Bars
 cfg.endermodpacktweaks.features.boss_bar.tooltip=Replaces the boring default boss bars with something more fancy.
+cfg.endermodpacktweaks.features.boss_proof_blocks=Boss Proof Blocks
+cfg.endermodpacktweaks.features.boss_proof_blocks.tooltip=Make blocks indestructible by the Wither and Ender Dragon.
 cfg.endermodpacktweaks.features.instant_bone_meal=Instant Bone Meal
 cfg.endermodpacktweaks.features.instant_bone_meal.tooltip=Allows you to instantly grow crops and trees using bone meal.
 cfg.endermodpacktweaks.features.improved_keybinds=Improved Keybinds
@@ -136,6 +138,8 @@ cfg.endermodpacktweaks.tweaks.simple_difficulty=Simple Difficulty
 cfg.endermodpacktweaks.tweaks.simple_difficulty.tooltip=Tweaks for the Simple Difficulty mod.
 endermodpacktweaks.tweaks.simple_difficulty.temperaturepotions=Temperature Potions
 endermodpacktweaks.tweaks.simple_difficulty.thirstpotions=Thirst Potions
+cfg.endermodpacktweaks.tweaks.simple_storage_network=Simple Storage Network
+cfg.endermodpacktweaks.tweaks.simple_storage_network.tooltip=Tweaks for the Simple Storage Network mod.
 cfg.endermodpacktweaks.tweaks.tool_progression=Tool Progression
 cfg.endermodpacktweaks.tweaks.tool_progression.tooltip=Tweaks for the Tool Progression mod.
 cfg.endermodpacktweaks.tweaks.waila=Waila / Hwyla
