@@ -85,7 +85,7 @@ public class BarRenderer {
                 if (distance > maxDistance || !passedEntity.canEntityBeSeen(viewPoint) || entity.isInvisible()) {
                     break processing;
                 }
-                if (!CfgFeatures.MOB_HEALTH_BAR.showOnBosses && !boss) {
+                if (!CfgFeatures.MOB_HEALTH_BAR.showOnBosses && boss) {
                     break processing;
                 }
                 if (!CfgFeatures.MOB_HEALTH_BAR.showOnPlayers && entity instanceof EntityPlayer) {
