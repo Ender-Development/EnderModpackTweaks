@@ -335,7 +335,11 @@ public class BarRenderer {
     public static Entity getEntityLookedAt(Entity e) {
         Entity foundEntity = null;
 
-        final double finalDistance = 32;
+        double finalDistance = CfgFeatures.MOB_HEALTH_BAR.maxDistance;
+        if (CfgFeatures.MOB_HEALTH_BAR.distanceMultipliers.length != 0 && rangeModifiers.equipped((EntityPlayer) e)) {
+            EmtConfigParser.ConfigItemWithFloat modifier = (EmtConfigParser.ConfigItemWithFloat) rangeModifiers.getEquipped((EntityPlayer) e);
+            finalDistance *= modifier != null ? modifier.value() : 1F;
+        }
         double distance = finalDistance;
         RayTraceResult pos = raycast(e, finalDistance);
         Vec3d positionVector = e.getPositionVector();
