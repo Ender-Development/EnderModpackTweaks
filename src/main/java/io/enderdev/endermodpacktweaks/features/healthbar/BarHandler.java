@@ -43,6 +43,8 @@ public class BarHandler {
         }
     }
 
+    private final Frustum frustum = new Frustum();
+
     @SubscribeEvent
     public void onRenderWorldLast(RenderWorldLastEvent event) {
         Minecraft mc = Minecraft.getMinecraft();
@@ -61,7 +63,6 @@ public class BarHandler {
             return;
         }
         BlockPos renderingVector = cameraEntity.getPosition();
-        Frustum frustum = new Frustum();
 
         float partialTicks = event.getPartialTicks();
         double viewX = cameraEntity.lastTickPosX + (cameraEntity.posX - cameraEntity.lastTickPosX) * partialTicks;

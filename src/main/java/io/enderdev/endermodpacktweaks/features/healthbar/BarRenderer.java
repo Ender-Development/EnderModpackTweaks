@@ -105,7 +105,7 @@ public class BarRenderer {
                 }
 
                 float percent = (int) ((health / maxHealth) * 100F);
-                RenderManager renderManager = Minecraft.getMinecraft().getRenderManager();
+                RenderManager renderManager = mc.getRenderManager();
 
                 GlStateManager.pushMatrix();
                 GlStateManager.translate((float) (entityX - renderManager.viewerPosX), (float) (entityY - renderManager.viewerPosY + passedEntity.height + CfgFeatures.MOB_HEALTH_BAR.heightAbove), (float) (entityZ - renderManager.viewerPosZ));
@@ -113,8 +113,8 @@ public class BarRenderer {
                 GlStateManager.rotate(-renderManager.playerViewY, 0.0F, 1.0F, 0.0F);
                 GlStateManager.rotate(renderManager.playerViewX, 1.0F, 0.0F, 0.0F);
                 GlStateManager.scale(-scale, -scale, scale);
-                boolean lighting = GL11.glGetBoolean(GL11.GL_LIGHTING);
-                GlStateManager.disableLighting();
+//                boolean lighting = GL11.glGetBoolean(GL11.GL_LIGHTING); lighting is always `false` here when I tested and it takes up a surprising amount of time in Spark ~roz
+//                GlStateManager.disableLighting();
                 GlStateManager.depthMask(false);
                 GlStateManager.disableDepth();
                 GlStateManager.disableTexture2D();
@@ -294,9 +294,9 @@ public class BarRenderer {
                 GlStateManager.disableBlend();
                 GlStateManager.enableDepth();
                 GlStateManager.depthMask(true);
-                if (lighting) {
-                    GlStateManager.enableLighting();
-                }
+//                if (lighting) {
+//                    GlStateManager.enableLighting();
+//                }
                 GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
                 GlStateManager.popMatrix();
 
