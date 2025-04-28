@@ -88,11 +88,11 @@ dependencies {
     runtimeOnly "curse.maven:valkyrie-874067:5891664"
 
     runtimeOnly "curse.maven:geckolib-388172:4020277"
-    runtimeOnly "curse.maven:renderlib-624967:6327296"
+    // runtimeOnly "curse.maven:renderlib-624967:6327296"
 
     implementation "com.cleanroommc:configanytime:3.0"
     implementation rfg.deobf("maven.modrinth:nether-api:1m3gvzYh")
-    implementation("com.cleanroommc:groovyscript:1.2.0-hotfix1") { transitive = false } // so it doesn't installs JEI
+    implementation("com.cleanroommc:groovyscript:1.2.3") { transitive = false } // so it doesn't installs JEI
 
     // Cursed CraftTweaker
     runtimeOnly "CraftTweaker2:CraftTweaker2-API:4.1.20.698"
@@ -100,6 +100,8 @@ dependencies {
     runtimeOnly "CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.1.20.698"
 
     // Mod Compatibility
+
+    implementation rfg.deobf("curse.maven:custom-main-menu-226406:2857869")
 
     implementation rfg.deobf("curse.maven:bookshelf-228525:2836960")
     implementation rfg.deobf("curse.maven:mantle-74924:2713386")
@@ -313,5 +315,10 @@ dependencies {
     if (project.debug_arcaneworld.toBoolean()) {
         runtimeOnly "curse.maven:lemonlib-306926:2639879"
         runtimeOnly "curse.maven:arcane-world-fixed-865605:4551027"
+    }
+
+    compileOnly rfg.deobf("curse.maven:simple-storage-network-268495:5755625")
+    if (project.debug_simplestoragenetwork.toBoolean()) {
+        runtimeOnly "curse.maven:simple-storage-network-268495:5755625"
     }
 }

@@ -2,7 +2,16 @@
 
 ## [0.5.3]
 
+- 🆕 added a tweak to simple storage network to disable the auto select of the search bar (thanks to Invader)
+- 🆕 added a way to blacklist blocks from being destroyed by the Ender Dragon and Wither
+- 🆕 modpack buttons are now compatible with custom main menu
+- 🆕 added a config option for the effect color of the Crissaegrim (thanks to rozbrajaczpoziomow)
 - 🆕 fixed the lag when being in the Arcane World dimensions
+- 🔄 improved Mob Health Bar rendering time again (thanks to rozbrajaczpoziomow)
+- 🔄 improved a few EventHandler (thanks to rozbrajaczpoziomow)
+- 🧰 fixed server crash for mob health bar
+- 🧰 fixed mob health bar boss rendering option
+- 🧰 fixed showOnlyFocused mode not respecting max range
 
 ## [0.5.2]
 

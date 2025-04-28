@@ -12,6 +12,7 @@
 
 - add the most important links to the options and main menu
 - links to the modpack's GitHub, Discord, etc.
+- compatible with [Custom Main Menu](https://www.curseforge.com/minecraft/mc-mods/custom-main-menu)
 
 ### ⏰ TimeSync
 
@@ -84,6 +85,7 @@
 - allow setting the mob it drops from
 - allow setting the drop chance
 - disable the drop
+- change the color of the slash effect
 
 ### [Dark Utilities](https://www.curseforge.com/minecraft/mc-mods/dark-utilities)
 
@@ -191,6 +193,10 @@
 - add potion effects according to the thirst of the player
 - define the amount of thirst the player respawns with
 
+### [Simple Storage Network](https://www.curseforge.com/minecraft/mc-mods/simple-storage-network)
+
+- disable the auto select of the search bar
+
 ### [Tool Progression](https://www.curseforge.com/minecraft/mc-mods/tool-progression)
 
 - restructured the config folder
@@ -262,7 +268,7 @@
 - licensed under MIT
 - instead of one long list, entries are now separated by categories
 
-### [Neat]()
+### [Neat](https://www.curseforge.com/minecraft/mc-mods/neat)
 
 - rewrote parts of it
 - achieved a small performance improvement
