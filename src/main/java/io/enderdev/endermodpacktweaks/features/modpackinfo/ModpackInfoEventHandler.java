@@ -2,9 +2,11 @@ package io.enderdev.endermodpacktweaks.features.modpackinfo;
 
 import io.enderdev.endermodpacktweaks.EnderModpackTweaks;
 import io.enderdev.endermodpacktweaks.config.CfgModpack;
+import lumien.custommainmenu.gui.GuiCustom;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.*;
 import net.minecraftforge.client.event.GuiScreenEvent;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -15,7 +17,7 @@ import java.net.URI;
 public class ModpackInfoEventHandler implements GuiYesNoCallback {
     @SubscribeEvent
     public void onGuiInit(GuiScreenEvent.InitGuiEvent.Post event) {
-        if (!(event.getGui() instanceof GuiMainMenu) && !(event.getGui() instanceof GuiIngameMenu) && !(event.getGui() instanceof GuiOptions)) {
+        if (!guiCheck(event.getGui())) {
             return;
         }
         OptionsButtonHandler optionsButtonHandler = new OptionsButtonHandler(event);
@@ -26,7 +28,7 @@ public class ModpackInfoEventHandler implements GuiYesNoCallback {
 
     @SubscribeEvent
     public void actionPerformed(GuiScreenEvent.ActionPerformedEvent.Post event) {
-        if (!(event.getGui() instanceof GuiMainMenu) && !(event.getGui() instanceof GuiIngameMenu)) {
+        if (!guiCheck(event.getGui())) {
             return;
         }
         if (event.getButton() instanceof SlideButton) {
@@ -73,5 +75,9 @@ public class ModpackInfoEventHandler implements GuiYesNoCallback {
             default:
                 return "";
         }
+    }
+
+    private boolean guiCheck(Gui gui) {
+        return (gui instanceof GuiMainMenu) || (gui instanceof GuiIngameMenu) || (gui instanceof GuiOptions) || (Loader.isModLoaded("custommainmenu") && gui instanceof GuiCustom);
     }
 }

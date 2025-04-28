@@ -2,6 +2,7 @@ package io.enderdev.endermodpacktweaks.core;
 
 import codechicken.enderstorage.EnderStorage;
 import com.google.common.collect.ImmutableMap;
+import io.enderdev.endermodpacktweaks.config.CfgModpack;
 import io.enderdev.endermodpacktweaks.config.CfgTweaks;
 import net.minecraftforge.fml.common.Loader;
 import zone.rong.mixinbooter.ILateMixinLoader;
@@ -47,6 +48,8 @@ public class EMTMixinLoader implements ILateMixinLoader {
             put("mixins/mixins.emt.scalinghealth.json", () -> Loader.isModLoaded("scalinghealth") && CfgTweaks.SCALING_HEALTH.enable);
             put("mixins/mixins.emt.delivery.json", () -> Loader.isModLoaded("delivery") && CfgTweaks.DELIVERY.enable);
             put("mixins/mixins.emt.arcaneworld.json", () -> Loader.isModLoaded("arcaneworld") && CfgTweaks.ARCANE_WORLD.enable);
+            put("mixins/mixins.emt.custommainmenu.json", () -> Loader.isModLoaded("custommainmenu") && CfgModpack.OPTIONS_MENU_BUTTONS.cmmIntegration);
+            put("mixins/mixins.emt.storagenetwork.json", () -> Loader.isModLoaded("storagenetwork") && CfgTweaks.SIMPLE_STORAGE_NETWORK.enable);
         }
     });
 
