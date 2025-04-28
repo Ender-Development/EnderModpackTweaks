@@ -21,24 +21,27 @@ public class EffectManager {
     @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public void onClientTick(ClientTickEvent event) {
-        if (event.phase == TickEvent.Phase.START) {
+        if (event.phase == TickEvent.Phase.START && !effects.isEmpty()) {
             if (Minecraft.getMinecraft().player != null && Minecraft.getMinecraft().world != null) {
+                boolean anyDead = false;
                 for (Effect effect : effects) {
-                    if (!effect.dead) {
+                    if (effect.dead) {
+                        anyDead = true;
+                    } else {
                         effect.update();
                     }
                 }
+                if (anyDead)
+                    effects.removeIf(effect -> effect.dead);
             }
         }
-        if (event.phase == TickEvent.Phase.END) {
-            effects.addAll(toAdd);
-            toAdd.clear();
-            for (int i = 0; i < effects.size(); i++) {
-                if (effects.get(i).dead) {
-                    effects.remove(i);
-                    i = Math.max(0, i - 1);
+        if (event.phase == TickEvent.Phase.END && !toAdd.isEmpty()) {
+            for (Effect effect : toAdd) {
+                if (!effect.dead) {
+                    effects.add(effect);
                 }
             }
+            toAdd.clear();
         }
     }
 

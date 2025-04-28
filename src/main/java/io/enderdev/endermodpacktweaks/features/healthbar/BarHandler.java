@@ -43,6 +43,8 @@ public class BarHandler {
         }
     }
 
+    private final Frustum frustum = new Frustum();
+
     @SubscribeEvent
     public void onRenderWorldLast(RenderWorldLastEvent event) {
         Minecraft mc = Minecraft.getMinecraft();
@@ -61,7 +63,6 @@ public class BarHandler {
             return;
         }
         BlockPos renderingVector = cameraEntity.getPosition();
-        Frustum frustum = new Frustum();
 
         float partialTicks = event.getPartialTicks();
         double viewX = cameraEntity.lastTickPosX + (cameraEntity.posX - cameraEntity.lastTickPosX) * partialTicks;
@@ -75,7 +76,7 @@ public class BarHandler {
                 renderHealthBar((EntityLivingBase) focused, partialTicks, cameraEntity);
             }
         } else {
-            for (Entity entity : ((WorldClientAccessor) Minecraft.getMinecraft().world).getEntityList()) {
+            for (Entity entity : ((WorldClientAccessor) mc.world).getEntityList()) {
                 if (entity instanceof EntityLivingBase
                         && entity != mc.player
                         && entity.isInRangeToRender3d(renderingVector.getX(), renderingVector.getY(), renderingVector.getZ())

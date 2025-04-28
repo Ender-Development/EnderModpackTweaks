@@ -110,6 +110,10 @@ public class CfgTweaks {
         @Config.Comment("The chance that the special mob drops the Crissaegrim.")
         @Config.RangeDouble(min = 0.0, max = 1.0)
         public double specialMobChance = 0.01;
+
+        @Config.Name("[05] Change Color")
+        @Config.Comment("The color of the Crissaegrim slashes and cuts. Format: #RRGGBBAA")
+        public String color = "#5959FFFF";
     }
 
     @Config.Name("dark_utils")

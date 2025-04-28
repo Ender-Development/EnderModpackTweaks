@@ -5,40 +5,37 @@ import io.enderdev.endermodpacktweaks.config.CfgModpack;
 import io.enderdev.endermodpacktweaks.utils.EmtSide;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.event.FMLServerStartedEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 import java.util.Arrays;
 
 public class ServerHandler {
-    boolean flag = false;
-
-    @SubscribeEvent
-    public void onTickEnd(TickEvent.ServerTickEvent event) {
-        if (!CfgModpack.SERVER_MESSAGE.enable || flag || !EmtSide.isDedicatedServer() || event.phase != TickEvent.Phase.END) {
+    public static void serverStarted() {
+        // FMLServerStartedEvent gets called from MinecraftServer, which both IntegratedServer and DedicatedServer extend, so this check is probably necessary
+        if (!EmtSide.isDedicatedServer()) {
             return;
         }
-        flag = true;
-        MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
-        StringBuilder motd = new StringBuilder();
 
-        motd.append("=========================================================\n");
-        motd.append(CfgModpack.SERVER_MESSAGE.serverName).append(" Server Successfully Started!\n");
+        MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
+
+        EnderModpackTweaks.LOGGER.info("=========================================================");
+        EnderModpackTweaks.LOGGER.info("{} Server Successfully Started!", CfgModpack.SERVER_MESSAGE.serverName);
 
         if (!CfgModpack.MODPACK.modpackName.isEmpty()) {
-            motd.append(" - Pack Name: ").append(CfgModpack.MODPACK.modpackName).append("\n");
+            EnderModpackTweaks.LOGGER.info(" - Pack Name: {}", CfgModpack.MODPACK.modpackName);
         }
         if (!CfgModpack.MODPACK.modpackVersion.isEmpty()) {
-            motd.append(" - Pack Version: ").append(CfgModpack.MODPACK.modpackVersion).append("\n");
+            EnderModpackTweaks.LOGGER.info(" - Pack Version: {}", CfgModpack.MODPACK.modpackVersion);
         }
         if (!CfgModpack.MODPACK.modpackAuthor.isEmpty()) {
-            motd.append(" - Pack Author: ").append(CfgModpack.MODPACK.modpackAuthor).append("\n");
+            EnderModpackTweaks.LOGGER.info(" - Pack Author: {}", CfgModpack.MODPACK.modpackAuthor);
         }
 
-        motd.append(" - Port: ").append(server.getServerPort()).append("\n");
-        motd.append("Players Can Now Join!\n");
-        motd.append("=========================================================\n");
-
-        Arrays.stream(motd.toString().split("\n")).forEach(EnderModpackTweaks.LOGGER::info);
+        EnderModpackTweaks.LOGGER.info(" - Port: {}", server.getServerPort());
+        EnderModpackTweaks.LOGGER.info("Players Can Now Join!");
+        EnderModpackTweaks.LOGGER.info("=========================================================");
     }
 }

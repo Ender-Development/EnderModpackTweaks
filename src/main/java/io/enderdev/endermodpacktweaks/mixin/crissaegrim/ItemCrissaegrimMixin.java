@@ -6,6 +6,7 @@ import epicsquid.crissaegrim.RegistryManager;
 import epicsquid.crissaegrim.item.ItemCrissaegrim;
 import epicsquid.mysticallib.network.PacketHandler;
 import epicsquid.mysticallib.util.Util;
+import io.enderdev.endermodpacktweaks.patches.mysticallib.ColorHandler;
 import io.enderdev.endermodpacktweaks.patches.mysticallib.Effect;
 import io.enderdev.endermodpacktweaks.patches.mysticallib.EffectCut;
 import io.enderdev.endermodpacktweaks.patches.mysticallib.MessageEffect;
@@ -25,7 +26,7 @@ public class ItemCrissaegrimMixin {
                 tag.setInteger("durability", Math.max(0, tag.getInteger("durability") - 5));
                 float offX = 0.75F * (float) Math.sin(Math.toRadians(-30.0F - entity.rotationYaw));
                 float offZ = 0.75F * (float)Math.cos(Math.toRadians(-30.0F - entity.rotationYaw));
-                Effect cut = (new EffectCut(world.provider.getDimension())).setSlashProperties(0.0F, 0.0F, 90.0F).setLife(20).setColor(0.35F, 0.35F, 1.0F, 1.0F).setAdditive(true).setPosition(entity.posX + (double)(0.5F * (Util.rand.nextFloat() - 0.5F)) + (double)offX, entity.posY + (double)(0.5F * (Util.rand.nextFloat() - 0.5F)) + (double)(entity.height / 2.0F), entity.posZ + (double)(0.5F * (Util.rand.nextFloat() - 0.5F)) + (double)offZ);
+                Effect cut = (new EffectCut(world.provider.getDimension())).setSlashProperties(0.0F, 0.0F, 90.0F).setLife(20).setColor(ColorHandler.getColor()).setAdditive(true).setPosition(entity.posX + (double)(0.5F * (Util.rand.nextFloat() - 0.5F)) + (double)offX, entity.posY + (double)(0.5F * (Util.rand.nextFloat() - 0.5F)) + (double)(entity.height / 2.0F), entity.posZ + (double)(0.5F * (Util.rand.nextFloat() - 0.5F)) + (double)offZ);
                 PacketHandler.INSTANCE.sendToAll(new MessageEffect(RegistryManager.FX_CUT, cut.write()));
             }
         }

@@ -2,24 +2,20 @@ package io.enderdev.endermodpacktweaks.mixin.crissaegrim;
 
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import epicsquid.crissaegrim.RegistryManager;
 import epicsquid.crissaegrim.entity.EntitySlash;
 import epicsquid.mysticallib.network.PacketHandler;
-import io.enderdev.endermodpacktweaks.patches.mysticallib.Effect;
-import io.enderdev.endermodpacktweaks.patches.mysticallib.EffectSlash;
-import io.enderdev.endermodpacktweaks.patches.mysticallib.EffectCut;
-import io.enderdev.endermodpacktweaks.patches.mysticallib.MessageEffect;
-import io.enderdev.endermodpacktweaks.patches.mysticallib.FXHandler;
+import epicsquid.mysticallib.util.Util;
+import io.enderdev.endermodpacktweaks.patches.mysticallib.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.AxisAlignedBB;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
-import epicsquid.crissaegrim.RegistryManager;
-import epicsquid.mysticallib.util.Util;
-import net.minecraft.util.DamageSource;
 
 @Mixin(value = EntitySlash.class, remap = false)
 public class EntitySlashMixin {
@@ -45,7 +41,7 @@ public class EntitySlashMixin {
             slashEntity.posX = this.player.posX;
             slashEntity.posY = this.player.posY;
             slashEntity.posZ = this.player.posZ;
-            Effect slash = (new EffectSlash(this.player.world.provider.getDimension())).setSlashProperties(this.player.rotationYaw, this.player.rotationPitch, 30.0F + Util.rand.nextFloat() * 120.0F, 2.0F, 1.5F, 120.0F).setPosition(x1, y1, z1).setMotion((x2 - x1) / (double) 5.0F, (y2 - y1) / (double) 5.0F, (z2 - z1) / (double) 5.0F).setLife(5).setAdditive(true).setColor(0.35F, 0.35F, 1.0F, 1.0F);
+            Effect slash = (new EffectSlash(this.player.world.provider.getDimension())).setSlashProperties(this.player.rotationYaw, this.player.rotationPitch, 30.0F + Util.rand.nextFloat() * 120.0F, 2.0F, 1.5F, 120.0F).setPosition(x1, y1, z1).setMotion((x2 - x1) / (double) 5.0F, (y2 - y1) / (double) 5.0F, (z2 - z1) / (double) 5.0F).setLife(5).setAdditive(true).setColor(ColorHandler.getColor());
             PacketHandler.INSTANCE.sendToAll(new MessageEffect(FXHandler.FX_SLASH, slash.write()));
             double lx = this.player.posX + this.player.getLookVec().x * (double) 2.0F;
             double ly = this.player.posY + (double) this.player.getEyeHeight() + this.player.getLookVec().y * (double) 2.0F;
@@ -56,7 +52,7 @@ public class EntitySlashMixin {
                     e.hurtResistantTime = 0;
                     e.setRevengeTarget(this.player);
                     if (e.getHealth() > 0.0F) {
-                        Effect cut = (new EffectCut(slashEntity.world.provider.getDimension())).setSlashProperties(this.player.rotationYaw, this.player.rotationPitch, Util.rand.nextFloat() * 360.0F).setColor(0.35F, 0.35F, 1.0F, 1.0F).setPosition(e.posX, e.posY + (double) (e.height / 2.0F), e.posZ).setAdditive(true).setLife(10);
+                        Effect cut = (new EffectCut(slashEntity.world.provider.getDimension())).setSlashProperties(this.player.rotationYaw, this.player.rotationPitch, Util.rand.nextFloat() * 360.0F).setColor(ColorHandler.getColor()).setPosition(e.posX, e.posY + (double) (e.height / 2.0F), e.posZ).setAdditive(true).setLife(10);
                         PacketHandler.INSTANCE.sendToAll(new MessageEffect(RegistryManager.FX_CUT, cut.write()));
                     }
 

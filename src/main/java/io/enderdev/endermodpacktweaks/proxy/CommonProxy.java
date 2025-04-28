@@ -12,9 +12,7 @@ import io.enderdev.endermodpacktweaks.events.SimpleDifficultyEvents;
 import io.enderdev.endermodpacktweaks.features.compatscreen.CompatModsHandler;
 import io.enderdev.endermodpacktweaks.features.crashinfo.InfoBuilder;
 import io.enderdev.endermodpacktweaks.features.dodgethirst.DodgeHandler;
-import io.enderdev.endermodpacktweaks.features.healthbar.BarHandler;
-import io.enderdev.endermodpacktweaks.features.healthbar.BarRenderer;
-import io.enderdev.endermodpacktweaks.features.instantbonemeal.BoneMealhandler;
+import io.enderdev.endermodpacktweaks.features.instantbonemeal.BoneMealHandler;
 import io.enderdev.endermodpacktweaks.features.materialtweaker.MaterialTweaker;
 import io.enderdev.endermodpacktweaks.features.netherportal.PortalHandler;
 import io.enderdev.endermodpacktweaks.features.playerpotions.ElenaiDodgeHandler;
@@ -32,21 +30,14 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import java.util.Objects;
 
 public class CommonProxy implements IProxy {
-    private static final InfoBuilder INFO_BUILDER = new InfoBuilder("Modpack Informations");
+    private static final InfoBuilder INFO_BUILDER = new InfoBuilder("Modpack Information");
     // Player Effects
     private VanillaHandler vanillaHandler;
     private SimpleDifficultyHandler simpleDifficultyHandler;
     private ElenaiDodgeHandler elenaiDodgeHandler;
 
-    // EMT Internal
-    private BarHandler barHandler;
-
     public void preInit(FMLPreInitializationEvent event) {
         EnderModpackTweaks.network = NetworkRegistry.INSTANCE.newSimpleChannel(Tags.MOD_ID);
-
-        if (CfgModpack.SERVER_MESSAGE.enable) {
-            MinecraftForge.EVENT_BUS.register(new ServerHandler());
-        }
 
         if (CfgFeatures.PLAYER_EFFECTS.enable) {
             vanillaHandler = new VanillaHandler();
@@ -66,7 +57,7 @@ public class CommonProxy implements IProxy {
         }
 
         if (CfgFeatures.INSTANT_BONE_MEAL.enable) {
-            MinecraftForge.EVENT_BUS.register(new BoneMealhandler());
+            MinecraftForge.EVENT_BUS.register(new BoneMealHandler());
         }
 
         if (CfgFeatures.SYNC_TIME.enable) {
@@ -102,11 +93,6 @@ public class CommonProxy implements IProxy {
         ) {
             MinecraftForge.EVENT_BUS.register(new SimpleDifficultyEvents());
         }
-
-        if (CfgFeatures.MOB_HEALTH_BAR.enable) {
-            barHandler = new BarHandler();
-            MinecraftForge.EVENT_BUS.register(barHandler);
-        }
     }
 
     public void init(FMLInitializationEvent event) {
@@ -115,11 +101,6 @@ public class CommonProxy implements IProxy {
     public void postInit(FMLPostInitializationEvent event) {
         if (CfgFeatures.MATERIAL_TWEAKER.enable) {
             MaterialTweaker.INSTANCE.load();
-        }
-
-        if (CfgFeatures.MOB_HEALTH_BAR.enable) {
-            barHandler.whitelist.init();
-            BarRenderer.rangeModifiers.init();
         }
 
         if (CfgFeatures.PLAYER_EFFECTS.enable) {
@@ -152,5 +133,11 @@ public class CommonProxy implements IProxy {
     @Override
     public void serverStarting(FMLServerStartingEvent event) {
 
+    }
+
+    @Override
+    public void serverStarted(FMLServerStartedEvent event) {
+        if (CfgModpack.SERVER_MESSAGE.enable)
+            ServerHandler.serverStarted();
     }
 }

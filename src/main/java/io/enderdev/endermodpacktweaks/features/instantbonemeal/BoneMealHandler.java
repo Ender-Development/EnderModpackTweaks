@@ -8,8 +8,8 @@ import net.minecraftforge.event.entity.player.BonemealEvent;
 import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-public class BoneMealhandler {
-     @SubscribeEvent
+public class BoneMealHandler {
+    @SubscribeEvent
     public void onBoneMealUse(BonemealEvent event) {
         if (event.getWorld().isRemote) {
             return;

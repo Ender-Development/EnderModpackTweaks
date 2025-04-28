@@ -81,4 +81,9 @@ public class EnderModpackTweaks {
     public void serverStarting(FMLServerStartingEvent event) {
         proxy.serverStarting(event);
     }
+
+    @Mod.EventHandler
+    public void serverStarted(FMLServerStartedEvent event) {
+        proxy.serverStarted(event);
+    }
 }
