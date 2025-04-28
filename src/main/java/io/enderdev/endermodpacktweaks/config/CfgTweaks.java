@@ -804,6 +804,23 @@ public class CfgTweaks {
         public int heatResistanceLowerLimit = 13;
     }
 
+    @Config.Name("simple_storage_network")
+    @Config.LangKey("cfg.endermodpacktweaks.tweaks.simple_storage_network")
+    @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/simple-storage-network")
+    public static final SimpleStorageNetwork SIMPLE_STORAGE_NETWORK = new SimpleStorageNetwork();
+
+    public static class SimpleStorageNetwork {
+        @Config.RequiresMcRestart
+        @Config.Name("[01] Enable Simple Storage Network Tweaks")
+        @Config.Comment("Enable tweaks for the Simple Storage Network mod.")
+        public boolean enable = false;
+
+        @Config.RequiresMcRestart
+        @Config.Name("[02] Auto Select Search Bar")
+        @Config.Comment("If the search bar should be auto selected on opening the GUI.")
+        public boolean autoSelect = false;
+    }
+
     @Config.Name("tool_progression")
     @Config.LangKey("cfg.endermodpacktweaks.tweaks.tool_progression")
     @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/tool-progression")
