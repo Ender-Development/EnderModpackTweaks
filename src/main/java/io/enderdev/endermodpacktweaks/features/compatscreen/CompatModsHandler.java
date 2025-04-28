@@ -33,6 +33,7 @@ public class CompatModsHandler {
             put("neat", () -> CfgFeatures.MOB_HEALTH_BAR.enable);
             put("bonemealmod", () -> CfgFeatures.INSTANT_BONE_MEAL.enable);
             put("controlling", () -> CfgFeatures.IMPROVED_KEYBINDS.enable);
+            put("witherproof", () -> CfgFeatures.BOSS_PROOF_BLOCKS.enable);
         }
     });
 
