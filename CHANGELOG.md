@@ -2,7 +2,7 @@
 
 ## [0.5.4]
 
-- 
+- 🧰 fix broken end related mixins
 
 ## [0.5.3]
 
