@@ -4,10 +4,10 @@
     "target": "@env(DEFAULT)",
     "minVersion": "0.8.5",
     "compatibilityLevel": "JAVA_8",
-    "mixins": [],
-    "server": [
+    "mixins": [
       "BlockMixin",
       "EntityMixin"
     ],
+    "server": [],
     "client": []
 }
