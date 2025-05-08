@@ -167,6 +167,7 @@ public final class EmtRender {
     }
 
     //<editor-fold desc="gl version">
+    // <https://github.com/tttsaurus/Ingame-Info-Reborn/blob/master/src/main/java/com/tttsaurus/ingameinfo/common/core/render/RenderHints.java>
     private static boolean glVersionParsed = false;
     private static int majorGlVersion = -1;
     private static int minorGlVersion = -1;
