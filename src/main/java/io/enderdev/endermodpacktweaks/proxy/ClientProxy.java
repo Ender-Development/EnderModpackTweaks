@@ -16,6 +16,7 @@ import io.enderdev.endermodpacktweaks.features.nonametags.NameTagHandler;
 import io.enderdev.endermodpacktweaks.features.nooverlay.OverlayHandler;
 import io.enderdev.endermodpacktweaks.patches.mysticallib.EffectManager;
 import io.enderdev.endermodpacktweaks.utils.EmtOptifine;
+import io.enderdev.endermodpacktweaks.utils.EmtRender;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraftforge.common.MinecraftForge;
@@ -70,6 +71,10 @@ public class ClientProxy extends CommonProxy implements IProxy {
             barHandler = new BarHandler();
             MinecraftForge.EVENT_BUS.register(barHandler);
         }
+
+        EmtRender.getModelViewMatrix();
+        EmtRender.getPartialTick();
+        int majorGlVersion = EmtRender.getMajorGlVersion();
     }
 
     @Override
