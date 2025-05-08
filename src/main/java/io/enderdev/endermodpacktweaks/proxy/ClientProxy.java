@@ -1,5 +1,6 @@
 package io.enderdev.endermodpacktweaks.proxy;
 
+import io.enderdev.endermodpacktweaks.Test;
 import io.enderdev.endermodpacktweaks.config.CfgFeatures;
 import io.enderdev.endermodpacktweaks.config.CfgMinecraft;
 import io.enderdev.endermodpacktweaks.config.CfgModpack;
@@ -75,6 +76,8 @@ public class ClientProxy extends CommonProxy implements IProxy {
         EmtRender.getModelViewMatrix();
         EmtRender.getPartialTick();
         int majorGlVersion = EmtRender.getMajorGlVersion();
+
+        //MinecraftForge.EVENT_BUS.register(Test.class);
     }
 
     @Override
