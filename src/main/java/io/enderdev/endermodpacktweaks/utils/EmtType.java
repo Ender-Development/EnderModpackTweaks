@@ -1,5 +1,6 @@
 package io.enderdev.endermodpacktweaks.utils;
 
+// <https://github.com/tttsaurus/Ingame-Info-Reborn/blob/master/src/main/java/com/tttsaurus/ingameinfo/common/core/reflection/TypeUtils.java>
 public final class EmtType {
     public static boolean looseTypeCheck(Class<?> clazz1, Class<?> clazz2) {
         if (clazz1.getName().equals(clazz2.getName()))
