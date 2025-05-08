@@ -12,8 +12,8 @@ import java.nio.FloatBuffer;
 public class Mesh2DRenderer extends MeshRenderer {
     public Mesh2DRenderer(Mesh mesh) {
         super(mesh, null);
-        Shader frag = ShaderLoadingUtils.load("ingameinfo:shaders/mesh2d_frag.glsl", Shader.ShaderType.FRAGMENT);
-        Shader vertex = ShaderLoadingUtils.load("ingameinfo:shaders/mesh2d_vertex.glsl", Shader.ShaderType.VERTEX);
+        Shader frag = ShaderLoadingUtils.load("endermodpacktweaks:shaders/mesh2d_frag.glsl", Shader.ShaderType.FRAGMENT);
+        Shader vertex = ShaderLoadingUtils.load("endermodpacktweaks:shaders/mesh2d_vertex.glsl", Shader.ShaderType.VERTEX);
         ShaderProgram program = new ShaderProgram(frag, vertex);
         program.setup();
         shaderProgram = program;
