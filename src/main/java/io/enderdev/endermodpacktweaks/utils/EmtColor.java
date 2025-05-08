@@ -2,7 +2,7 @@ package io.enderdev.endermodpacktweaks.utils;
 
 import java.awt.*;
 
-public class EmtColor {
+public final class EmtColor {
     /**
      * Parses a {@link java.awt.Color Color} from a {@link java.lang.String String} in the format {@code #RRGGBBAA}
      * @param colorStr the color string to parse

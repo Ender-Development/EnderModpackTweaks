@@ -10,7 +10,7 @@ import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
 
-public class EmtRender {
+public final class EmtRender {
     private static final Tessellator TESSELLATOR = Tessellator.getInstance();
     private static final BufferBuilder BUFFER_BUILDER = TESSELLATOR.getBuffer();
     private static final FontRenderer FONT_RENDERER = Minecraft.getMinecraft().fontRenderer;
