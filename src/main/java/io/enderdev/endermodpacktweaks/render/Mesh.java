@@ -10,8 +10,7 @@ import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 
-public class Mesh
-{
+public class Mesh {
     private float[] vertices;
     private int[] indices;
 
@@ -27,17 +26,39 @@ public class Mesh
     private int vbo;
     private int ebo;
 
-    public int getVerticesLength() { return verticesLength; }
-    public int getIndicesLength() { return indicesLength; }
-    public int getVao() { return vao; }
-    public int getVbo() { return vbo; }
-    public int getEbo() { return ebo; }
-    public boolean getSetup() { return setup; }
-    protected int getEboIndexOffset() { return eboIndexOffset; }
-    protected void setEboIndexOffset(int offset) { eboIndexOffset = offset; }
+    public int getVerticesLength() {
+        return verticesLength;
+    }
 
-    public Mesh(float[] vertices, int[] indices)
-    {
+    public int getIndicesLength() {
+        return indicesLength;
+    }
+
+    public int getVao() {
+        return vao;
+    }
+
+    public int getVbo() {
+        return vbo;
+    }
+
+    public int getEbo() {
+        return ebo;
+    }
+
+    public boolean getSetup() {
+        return setup;
+    }
+
+    protected int getEboIndexOffset() {
+        return eboIndexOffset;
+    }
+
+    protected void setEboIndexOffset(int offset) {
+        eboIndexOffset = offset;
+    }
+
+    public Mesh(float[] vertices, int[] indices) {
         this.vertices = vertices;
         this.indices = indices;
         verticesLength = vertices.length;
@@ -46,8 +67,7 @@ public class Mesh
         eboIndexOffset = 0;
     }
 
-    public void setup()
-    {
+    public void setup() {
         if (setup) return;
 
         int prevVao = GL11.glGetInteger(GL30.GL_VERTEX_ARRAY_BINDING);
@@ -90,8 +110,7 @@ public class Mesh
         setup = true;
     }
 
-    public void updateVerticesByMappedBuffer(float[] newVertices)
-    {
+    public void updateVerticesByMappedBuffer(float[] newVertices) {
         if (!setup)
             throw new IllegalArgumentException("This mesh isn't set up so you can't update");
         if (newVertices.length != verticesLength)
@@ -102,18 +121,16 @@ public class Mesh
 
         ByteBuffer mappedBuffer = GL30.glMapBufferRange(GL15.GL_ARRAY_BUFFER, 0, (long) verticesLength * Float.BYTES, GL30.GL_MAP_WRITE_BIT | GL30.GL_MAP_UNSYNCHRONIZED_BIT, vertexBuffer);
 
-        if (mappedBuffer != null)
-        {
+        if (mappedBuffer != null) {
             mappedBuffer.order(ByteOrder.nativeOrder()).asFloatBuffer().put(newVertices);
             GL15.glUnmapBuffer(GL15.GL_ARRAY_BUFFER);
-        }
-        else
+        } else
             throw new RuntimeException("Failed to map buffer");
 
         GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, prevVbo);
     }
-    public void updateVerticesByBufferSubData(float[] newVertices)
-    {
+
+    public void updateVerticesByBufferSubData(float[] newVertices) {
         if (!setup)
             throw new IllegalArgumentException("This mesh isn't set up so you can't update");
         if (newVertices.length != verticesLength)
@@ -128,8 +145,8 @@ public class Mesh
         GL15.glBufferSubData(GL15.GL_ARRAY_BUFFER, 0, vertexBuffer);
         GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, prevVbo);
     }
-    public void updateIndicesByMappedBuffer(int[] newIndices)
-    {
+
+    public void updateIndicesByMappedBuffer(int[] newIndices) {
         if (!setup)
             throw new IllegalArgumentException("This mesh isn't set up so you can't update");
         if (newIndices.length != indicesLength)
@@ -140,18 +157,16 @@ public class Mesh
 
         ByteBuffer mappedBuffer = GL30.glMapBufferRange(GL15.GL_ELEMENT_ARRAY_BUFFER, 0, (long) indicesLength * Integer.BYTES, GL30.GL_MAP_WRITE_BIT | GL30.GL_MAP_UNSYNCHRONIZED_BIT, indexBuffer);
 
-        if (mappedBuffer != null)
-        {
+        if (mappedBuffer != null) {
             mappedBuffer.order(ByteOrder.nativeOrder()).asIntBuffer().put(newIndices);
             GL15.glUnmapBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER);
-        }
-        else
+        } else
             throw new RuntimeException("Failed to map buffer");
 
         GL15.glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, prevEbo);
     }
-    public void updateIndicesByBufferSubData(int[] newIndices)
-    {
+
+    public void updateIndicesByBufferSubData(int[] newIndices) {
         if (!setup)
             throw new IllegalArgumentException("This mesh isn't set up so you can't update");
         if (newIndices.length != indicesLength)
@@ -167,8 +182,7 @@ public class Mesh
         GL15.glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, prevEbo);
     }
 
-    public void render()
-    {
+    public void render() {
         if (!setup) return;
 
         int prevVao = GL11.glGetInteger(GL30.GL_VERTEX_ARRAY_BINDING);
@@ -183,8 +197,7 @@ public class Mesh
         GL30.glBindVertexArray(prevVao);
     }
 
-    public void dispose()
-    {
+    public void dispose() {
         GL30.glDeleteVertexArrays(vao);
         GL15.glDeleteBuffers(vbo);
         GL15.glDeleteBuffers(ebo);
