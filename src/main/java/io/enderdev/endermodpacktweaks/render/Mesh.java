@@ -1,9 +1,6 @@
 package io.enderdev.endermodpacktweaks.render;
 
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL15;
-import org.lwjgl.opengl.GL20;
-import org.lwjgl.opengl.GL30;
+import org.lwjgl.opengl.*;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -13,18 +10,53 @@ import java.nio.IntBuffer;
 public class Mesh {
     private float[] vertices;
     private int[] indices;
+    private float[] instanceData;
 
     private ByteBuffer vertexBuffer;
     private ByteBuffer indexBuffer;
+    private ByteBuffer instanceDataBuffer;
 
     private boolean setup;
     private int eboIndexOffset;
 
     private final int verticesLength;
     private final int indicesLength;
+    private int instanceDataLength;
     private int vao;
     private int vbo;
     private int ebo;
+
+    private boolean instancing;
+    private int instancingVbo;
+    private int instanceDataUnitSize;
+    private int instancePrimCount;
+
+    public void enableInstancing() {
+        if (setup)
+            throw new IllegalStateException("Only call this method before setup");
+        instancing = true;
+    }
+
+    public void setInstanceData(float[] instanceData) {
+        if (setup)
+            throw new IllegalStateException("Only call this method before setup");
+        this.instanceData = instanceData;
+        instanceDataLength = instanceData.length;
+    }
+
+    public void setInstanceDataUnitSize(int size) {
+        if (setup)
+            throw new IllegalStateException("Only call this method before setup");
+        instanceDataUnitSize = size;
+    }
+
+    public void setInstancePrimCount(int count) {
+        instancePrimCount = count;
+    }
+
+    public int getInstancingVbo() {
+        return instancingVbo;
+    }
 
     public int getVerticesLength() {
         return verticesLength;
@@ -100,6 +132,21 @@ public class Mesh {
         GL20.glVertexAttribPointer(2, 3, GL11.GL_FLOAT, false, 8 * Float.BYTES, 5 * Float.BYTES);  // Last 3 floats for normal
         GL20.glEnableVertexAttribArray(2);
 
+        if (instancing) {
+            instanceDataBuffer = ByteBuffer.allocateDirect(instanceData.length * Float.BYTES).order(ByteOrder.nativeOrder());
+            instanceDataBuffer.asFloatBuffer().put(instanceData).flip();
+
+            instancingVbo = GL15.glGenBuffers();
+            GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, instancingVbo);
+            GL15.glBufferData(GL15.GL_ARRAY_BUFFER, instanceDataBuffer, GL15.GL_STATIC_DRAW);
+
+            GL20.glVertexAttribPointer(3, instanceDataUnitSize, GL11.GL_FLOAT, false, instanceDataUnitSize * Float.BYTES, 0);
+            GL20.glEnableVertexAttribArray(3);
+            GL33.glVertexAttribDivisor(3, 1);
+
+            instanceData = null;
+        }
+
         GL30.glBindVertexArray(prevVao);
         GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, prevVbo);
         GL15.glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, prevEbo);
@@ -114,7 +161,7 @@ public class Mesh {
         if (!setup)
             throw new IllegalArgumentException("This mesh isn't set up so you can't update");
         if (newVertices.length != verticesLength)
-            throw new IllegalArgumentException("New vertex array length must match existing length");
+            throw new IllegalArgumentException("New vertex array length must matches existing length");
 
         int prevVbo = GL11.glGetInteger(GL15.GL_ARRAY_BUFFER_BINDING);
         GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, vbo);
@@ -134,7 +181,7 @@ public class Mesh {
         if (!setup)
             throw new IllegalArgumentException("This mesh isn't set up so you can't update");
         if (newVertices.length != verticesLength)
-            throw new IllegalArgumentException("New vertex array length must match existing length");
+            throw new IllegalArgumentException("New vertex array length must matches existing length");
 
         FloatBuffer vertexBuffer = ByteBuffer.allocateDirect(newVertices.length * Float.BYTES)
                 .order(ByteOrder.nativeOrder()).asFloatBuffer();
@@ -150,7 +197,7 @@ public class Mesh {
         if (!setup)
             throw new IllegalArgumentException("This mesh isn't set up so you can't update");
         if (newIndices.length != indicesLength)
-            throw new IllegalArgumentException("New index array length must match existing length");
+            throw new IllegalArgumentException("New index array length must matches existing length");
 
         int prevEbo = GL11.glGetInteger(GL15.GL_ELEMENT_ARRAY_BUFFER_BINDING);
         GL15.glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, ebo);
@@ -170,7 +217,7 @@ public class Mesh {
         if (!setup)
             throw new IllegalArgumentException("This mesh isn't set up so you can't update");
         if (newIndices.length != indicesLength)
-            throw new IllegalArgumentException("New index array length must match existing length");
+            throw new IllegalArgumentException("New index array length must matches existing length");
 
         IntBuffer indexBuffer = ByteBuffer.allocateDirect(newIndices.length * Integer.BYTES)
                 .order(ByteOrder.nativeOrder()).asIntBuffer();
@@ -182,6 +229,46 @@ public class Mesh {
         GL15.glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, prevEbo);
     }
 
+    public void updateInstanceDataByMappedBuffer(float[] newInstanceData) {
+        if (!instancing)
+            throw new IllegalArgumentException("This mesh doesn't support instancing");
+        if (!setup)
+            throw new IllegalArgumentException("This mesh isn't set up so you can't update");
+        if (newInstanceData.length != instanceDataLength)
+            throw new IllegalArgumentException("New instance data length must matches existing length");
+
+        int prevVbo = GL11.glGetInteger(GL15.GL_ARRAY_BUFFER_BINDING);
+        GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, instancingVbo);
+
+        ByteBuffer mappedBuffer = GL30.glMapBufferRange(GL15.GL_ARRAY_BUFFER, 0, (long) instanceDataLength * Float.BYTES, GL30.GL_MAP_WRITE_BIT | GL30.GL_MAP_UNSYNCHRONIZED_BIT, instanceDataBuffer);
+
+        if (mappedBuffer != null) {
+            mappedBuffer.order(ByteOrder.nativeOrder()).asFloatBuffer().put(newInstanceData);
+            GL15.glUnmapBuffer(GL15.GL_ARRAY_BUFFER);
+        } else
+            throw new RuntimeException("Failed to map buffer");
+
+        GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, prevVbo);
+    }
+
+    public void updateInstanceDataByBufferSubData(float[] newInstanceData) {
+        if (!instancing)
+            throw new IllegalArgumentException("This mesh doesn't support instancing");
+        if (!setup)
+            throw new IllegalArgumentException("This mesh isn't set up so you can't update");
+        if (newInstanceData.length != instanceDataLength)
+            throw new IllegalArgumentException("New instance data length must matches existing length");
+
+        FloatBuffer instanceDataBuffer = ByteBuffer.allocateDirect(newInstanceData.length * Float.BYTES)
+                .order(ByteOrder.nativeOrder()).asFloatBuffer();
+        instanceDataBuffer.put(newInstanceData).flip();
+
+        int prevVbo = GL11.glGetInteger(GL15.GL_ARRAY_BUFFER_BINDING);
+        GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, instancingVbo);
+        GL15.glBufferSubData(GL15.GL_ARRAY_BUFFER, 0, instanceDataBuffer);
+        GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, prevVbo);
+    }
+
     public void render() {
         if (!setup) return;
 
@@ -191,7 +278,10 @@ public class Mesh {
         GL30.glBindVertexArray(vao);
         GL15.glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, ebo);
 
-        GL11.glDrawElements(GL11.GL_TRIANGLES, indicesLength, GL11.GL_UNSIGNED_INT, (long) eboIndexOffset * Integer.BYTES);
+        if (instancing)
+            GL31.glDrawElementsInstanced(GL11.GL_TRIANGLES, indicesLength, GL11.GL_UNSIGNED_INT, (long) eboIndexOffset * Integer.BYTES, instancePrimCount);
+        else
+            GL11.glDrawElements(GL11.GL_TRIANGLES, indicesLength, GL11.GL_UNSIGNED_INT, (long) eboIndexOffset * Integer.BYTES);
 
         GL15.glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, prevEbo);
         GL30.glBindVertexArray(prevVao);
@@ -201,8 +291,10 @@ public class Mesh {
         GL30.glDeleteVertexArrays(vao);
         GL15.glDeleteBuffers(vbo);
         GL15.glDeleteBuffers(ebo);
+        if (instancing) GL15.glDeleteBuffers(instancingVbo);
         vertexBuffer = null;
         indexBuffer = null;
+        instanceDataBuffer = null;
         setup = false;
     }
 }
