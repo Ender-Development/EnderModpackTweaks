@@ -3,6 +3,7 @@
 layout (location = 0) in vec3 ndcPos;
 layout (location = 1) in vec2 texCoord;
 layout (location = 2) in vec3 normal;
+layout (location = 3) in vec3 posOffset;
 
 // ------ In World Rendering Parameters ------
 
@@ -39,7 +40,7 @@ void main()
             vec4 transformed = transformation * vec4(worldPos.xyz - anchorPos.xyz, 1);
             transformed /= transformed.w;
 
-            gl_Position = projection * modelView * vec4(targetWorldPos - camPos + transformed.xyz, 1);
+            gl_Position = projection * modelView * vec4(targetWorldPos - camPos + transformed.xyz + posOffset, 1);
         }
         else
         {
@@ -47,7 +48,7 @@ void main()
             vec4 transformed = transformation * vec4(adjustedNdc, 1);
             transformed /= transformed.w;
 
-            gl_Position = projection * modelView * vec4(targetWorldPos - camPos + transformed.xyz, 1);
+            gl_Position = projection * modelView * vec4(targetWorldPos - camPos + transformed.xyz + posOffset, 1);
         }
     }
     else

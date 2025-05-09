@@ -22,12 +22,17 @@ public final class Test {
     public static void onRenderWorldLast(RenderWorldLastEvent event) {
         if (meshRenderer == null) {
             RoundedRectMesh mesh = new RoundedRectMesh(3);
+            mesh.enableInstancing();
+            mesh.setInstanceData(new float[]{0, 0, 0, 0, 1, 0});
+            mesh.setInstanceDataUnitSize(3);
+            mesh.setInstancePrimCount(2);
             mesh.setup();
+
             ScaledResolution resolution = new ScaledResolution(Minecraft.getMinecraft());
             mesh.setCornerRadius(5f).setRect((resolution.getScaledWidth() - 30) / 2f, (resolution.getScaledHeight() - 30) / 2f, 30, 30).update();
 
             Shader frag = ShaderLoadingUtils.load("endermodpacktweaks:shaders/mesh2d_frag.glsl", Shader.ShaderType.FRAGMENT);
-            Shader vertex = ShaderLoadingUtils.load("endermodpacktweaks:shaders/mesh2d_vertex.glsl", Shader.ShaderType.VERTEX);
+            Shader vertex = ShaderLoadingUtils.load("endermodpacktweaks:shaders/mesh2d_instancing_vertex.glsl", Shader.ShaderType.VERTEX);
             ShaderProgram program = new ShaderProgram(frag, vertex);
             program.setup();
 
