@@ -6,8 +6,8 @@ import io.enderdev.endermodpacktweaks.config.CfgMinecraft;
 import io.enderdev.endermodpacktweaks.config.CfgModpack;
 import io.enderdev.endermodpacktweaks.core.EMTAssetMover;
 import io.enderdev.endermodpacktweaks.features.additionalmastervolume.MasterVolumeHandler;
-import io.enderdev.endermodpacktweaks.features.healthbar.BarHandler;
-import io.enderdev.endermodpacktweaks.features.healthbar.BarRenderer;
+import io.enderdev.endermodpacktweaks.features.healthbar.HealthBarHandler;
+import io.enderdev.endermodpacktweaks.features.healthbar.HealthBarRenderHelper;
 import io.enderdev.endermodpacktweaks.features.keybinds.KeybindHandler;
 import io.enderdev.endermodpacktweaks.features.modpackinfo.ModpackInfoEventHandler;
 import io.enderdev.endermodpacktweaks.features.noautojump.AutoJumpHandler;
@@ -26,7 +26,7 @@ import net.minecraftforge.fml.common.event.*;
 
 public class ClientProxy extends CommonProxy implements IProxy {
     // EMT Internal
-    private BarHandler barHandler;
+    private HealthBarHandler healthBarHandler;
 
     @Override
     public void preInit(FMLPreInitializationEvent event) {
@@ -69,15 +69,18 @@ public class ClientProxy extends CommonProxy implements IProxy {
         }
 
         if (CfgFeatures.MOB_HEALTH_BAR.enable) {
-            barHandler = new BarHandler();
-            MinecraftForge.EVENT_BUS.register(barHandler);
+            healthBarHandler = new HealthBarHandler();
+            MinecraftForge.EVENT_BUS.register(healthBarHandler);
+
+            int majorGlVersion = EmtRender.getMajorGlVersion();
+            int minorGlVersion = EmtRender.getMinorGlVersion();
+            // requires gl version 3.3 or above
+            if (majorGlVersion > 3 || (majorGlVersion == 3 && minorGlVersion >= 3))
+                HealthBarHandler.ENABLE_INSTANCING = true;
         }
 
         EmtRender.getModelViewMatrix();
         EmtRender.getPartialTick();
-        int majorGlVersion = EmtRender.getMajorGlVersion();
-
-        MinecraftForge.EVENT_BUS.register(Test.class);
     }
 
     @Override
@@ -93,8 +96,8 @@ public class ClientProxy extends CommonProxy implements IProxy {
         }
 
         if (CfgFeatures.MOB_HEALTH_BAR.enable) {
-            barHandler.whitelist.init();
-            BarRenderer.rangeModifiers.init();
+            healthBarHandler.whitelist.init();
+            healthBarHandler.rangeModifiers.init();
         }
     }
 
@@ -121,5 +124,6 @@ public class ClientProxy extends CommonProxy implements IProxy {
     }
 
     @Override
-    public void serverStarted(FMLServerStartedEvent event) {}
+    public void serverStarted(FMLServerStartedEvent event) {
+    }
 }
