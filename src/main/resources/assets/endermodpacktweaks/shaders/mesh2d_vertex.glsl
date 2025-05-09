@@ -8,17 +8,18 @@ layout (location = 2) in vec3 normal;
 
 uniform bool inWorld;
 
+// required when inWorld
 uniform mat4 modelView;
 uniform mat4 projection;
+
+uniform bool unprojectToWorld;
+// required when not unprojecting to the world
+uniform float screenWidthHeightRatio;
 
 // in world local transformation
 uniform mat4 transformation;
 uniform vec3 camPos;
 uniform vec3 targetWorldPos;
-
-uniform bool unprojectToWorld;
-// required when not unprojecting to the world
-uniform float screenWidthHeightRatio;
 
 // -------------------------------------------
 

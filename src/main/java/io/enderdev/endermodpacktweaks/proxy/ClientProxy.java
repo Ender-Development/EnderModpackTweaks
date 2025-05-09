@@ -77,7 +77,7 @@ public class ClientProxy extends CommonProxy implements IProxy {
         EmtRender.getPartialTick();
         int majorGlVersion = EmtRender.getMajorGlVersion();
 
-        //MinecraftForge.EVENT_BUS.register(Test.class);
+        MinecraftForge.EVENT_BUS.register(Test.class);
     }
 
     @Override
