@@ -84,71 +84,69 @@ public class HealthBarHandler {
 
     // should have the same visual behavior as HealthBarRenderHelper.renderHealthBar()
     private void healthBarRectBackgroundInstancing(List<EntityLivingBase> entities, float partialTicks, Vector3f cameraPos, Vector2f cameraRot) {
-        if (rectBackgroundRenderer != null) {
-            int entityListLength = Math.min(rectBackgroundRenderer.getMaxInstance(), entities.size());
-            float[] instanceData = new float[rectBackgroundRenderer.getInstanceDataLength()];
+        int entityListLength = Math.min(rectBackgroundRenderer.getMaxInstance(), entities.size());
+        float[] instanceData = new float[rectBackgroundRenderer.getInstanceDataLength()];
 
-            for (int i = 0; i < entityListLength; i++) {
-                Entity entity = entities.get(i);
+        for (int i = 0; i < entityListLength; i++) {
+            Entity entity = entities.get(i);
 
-                float size = CfgFeatures.MOB_HEALTH_BAR.plateSize;
+            float size = CfgFeatures.MOB_HEALTH_BAR.plateSize;
 
-                float s = 0.5F;
-                String name = I18n.format(entity.getDisplayName().getFormattedText());
+            float s = 0.5F;
+            String name = I18n.format(entity.getDisplayName().getFormattedText());
 
-                if (entity instanceof EntityLiving && entity.hasCustomName()) {
-                    name = TextFormatting.ITALIC + entity.getCustomNameTag();
-                } else if (entity instanceof EntityVillager) {
-                    name = I18n.format("entity.Villager.name");
-                }
-
-                float namel = MINECRAFT.fontRenderer.getStringWidth(name) * s;
-                if (namel + 20 > size * 2) {
-                    size = namel / 2F + 10F;
-                }
-
-                float width = size * 2 + CfgFeatures.MOB_HEALTH_BAR.backgroundPadding * 2;
-                float height = CfgFeatures.MOB_HEALTH_BAR.backgroundHeight * 2 + CfgFeatures.MOB_HEALTH_BAR.backgroundPadding;
-
-                // xyz pos offset
-                instanceData[i * 6] = (float) (entity.lastTickPosX + (entity.posX - entity.lastTickPosX) * partialTicks);
-                instanceData[i * 6 + 1] = (float) (entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * partialTicks) + entity.height + (float) CfgFeatures.MOB_HEALTH_BAR.heightAbove;
-                instanceData[i * 6 + 2] = (float) (entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) * partialTicks);
-                // scale
-                instanceData[i * 6 + 3] = width / RectInstancingRenderer.SIDE_LENGTH * 1.15f;
-                instanceData[i * 6 + 4] = height / RectInstancingRenderer.SIDE_LENGTH * 1.08f;
+            if (entity instanceof EntityLiving && entity.hasCustomName()) {
+                name = TextFormatting.ITALIC + entity.getCustomNameTag();
+            } else if (entity instanceof EntityVillager) {
+                name = I18n.format("entity.Villager.name");
             }
 
-            rectBackgroundRenderer.getMesh().setInstancePrimCount(entityListLength);
-            rectBackgroundRenderer.getMesh().updateInstanceDataByBufferSubData(instanceData);
+            float namel = MINECRAFT.fontRenderer.getStringWidth(name) * s;
+            if (namel + 20 > size * 2) {
+                size = namel / 2F + 10F;
+            }
 
-            GlStateManager.enableBlend();
+            float width = size * 2 + CfgFeatures.MOB_HEALTH_BAR.backgroundPadding * 2;
+            float height = CfgFeatures.MOB_HEALTH_BAR.backgroundHeight * 2 + CfgFeatures.MOB_HEALTH_BAR.backgroundPadding;
 
-            Matrix4f matrix4f = new Matrix4f();
-            matrix4f.setIdentity();
-            matrix4f.scale(new Vector3f(5, 5, 5));
-            // plus PI to not trigger culling
-            matrix4f.rotate(-cameraRot.x + (float) Math.PI, new Vector3f(0, 1, 0));
-            matrix4f.rotate(-cameraRot.y, new Vector3f(1, 0, 0));
-            floatBuffer16.clear();
-            matrix4f.store(floatBuffer16);
-            floatBuffer16.flip();
-
-            Color bgColor = EmtColor.parseColorFromHexString(CfgFeatures.MOB_HEALTH_BAR.backgroundColor);
-
-            ScaledResolution resolution = new ScaledResolution(MINECRAFT);
-
-            rectBackgroundRenderer.getShaderProgram().use();
-            rectBackgroundRenderer.getShaderProgram().setUniform("modelView", EmtRender.getModelViewMatrix());
-            rectBackgroundRenderer.getShaderProgram().setUniform("projection", EmtRender.getProjectionMatrix());
-            rectBackgroundRenderer.getShaderProgram().setUniform("camPos", cameraPos.x, cameraPos.y, cameraPos.z);
-            rectBackgroundRenderer.getShaderProgram().setUniform("screenWidthHeightRatio", resolution.getScaledWidth_double() / resolution.getScaledHeight_double());
-            rectBackgroundRenderer.getShaderProgram().setUniform("transformation", floatBuffer16);
-            rectBackgroundRenderer.getShaderProgram().setUniform("color", bgColor.getRed() / 255F, bgColor.getGreen() / 255F, bgColor.getBlue() / 255F, bgColor.getAlpha() / 255F);
-            rectBackgroundRenderer.getShaderProgram().unuse();
-
-            rectBackgroundRenderer.render();
+            // xyz pos offset
+            instanceData[i * 6] = (float) (entity.lastTickPosX + (entity.posX - entity.lastTickPosX) * partialTicks);
+            instanceData[i * 6 + 1] = (float) (entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * partialTicks) + entity.height + (float) CfgFeatures.MOB_HEALTH_BAR.heightAbove;
+            instanceData[i * 6 + 2] = (float) (entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) * partialTicks);
+            // scale
+            instanceData[i * 6 + 3] = width / RectInstancingRenderer.SIDE_LENGTH * 1.15f;
+            instanceData[i * 6 + 4] = height / RectInstancingRenderer.SIDE_LENGTH * 1.08f;
         }
+
+        rectBackgroundRenderer.getMesh().setInstancePrimCount(entityListLength);
+        rectBackgroundRenderer.getMesh().updateInstanceDataByBufferSubData(instanceData);
+
+        GlStateManager.enableBlend();
+
+        Matrix4f matrix4f = new Matrix4f();
+        matrix4f.setIdentity();
+        matrix4f.scale(new Vector3f(5, 5, 5));
+        // plus PI to not trigger culling
+        matrix4f.rotate(-cameraRot.x + (float) Math.PI, new Vector3f(0, 1, 0));
+        matrix4f.rotate(-cameraRot.y, new Vector3f(1, 0, 0));
+        floatBuffer16.clear();
+        matrix4f.store(floatBuffer16);
+        floatBuffer16.flip();
+
+        Color bgColor = EmtColor.parseColorFromHexString(CfgFeatures.MOB_HEALTH_BAR.backgroundColor);
+
+        ScaledResolution resolution = new ScaledResolution(MINECRAFT);
+
+        rectBackgroundRenderer.getShaderProgram().use();
+        rectBackgroundRenderer.getShaderProgram().setUniform("modelView", EmtRender.getModelViewMatrix());
+        rectBackgroundRenderer.getShaderProgram().setUniform("projection", EmtRender.getProjectionMatrix());
+        rectBackgroundRenderer.getShaderProgram().setUniform("camPos", cameraPos.x, cameraPos.y, cameraPos.z);
+        rectBackgroundRenderer.getShaderProgram().setUniform("screenWidthHeightRatio", resolution.getScaledWidth_double() / resolution.getScaledHeight_double());
+        rectBackgroundRenderer.getShaderProgram().setUniform("transformation", floatBuffer16);
+        rectBackgroundRenderer.getShaderProgram().setUniform("color", bgColor.getRed() / 255F, bgColor.getGreen() / 255F, bgColor.getBlue() / 255F, bgColor.getAlpha() / 255F);
+        rectBackgroundRenderer.getShaderProgram().unuse();
+
+        rectBackgroundRenderer.render();
     }
     //</editor-fold>
 

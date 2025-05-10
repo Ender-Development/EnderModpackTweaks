@@ -55,7 +55,6 @@ public class RectInstancingRenderer extends MeshRenderer {
             buffer.flip();
 
             program.use();
-            program.setUniform("inWorld", true);
             program.setUniform("transformation", buffer);
             program.setUniform("targetWorldPos", 0, 0, 0);
             program.unuse();
