@@ -30,6 +30,9 @@ import org.lwjgl.util.vector.Vector3f;
 import java.util.*;
 
 public class HealthBarHandler {
+    private static final Minecraft MINECRAFT = Minecraft.getMinecraft();
+
+    //<editor-fold desc="config">
     public final EmtConfigHandler<EmtConfigParser.ConfigItem> whitelist = new EmtConfigHandler<>(
             CfgFeatures.MOB_HEALTH_BAR.onlyRenderWithEquipment,
             EmtConfigParser.ConfigItem::new
@@ -38,11 +41,15 @@ public class HealthBarHandler {
             CfgFeatures.MOB_HEALTH_BAR.distanceMultipliers,
             EmtConfigParser.ConfigItemWithFloat::new
     );
+    //</editor-fold>
 
+    //<editor-fold desc="instancing">
     public boolean instancing = false;
     private ScaledResolution resolution = null;
     private BarInstancingRenderer backgroundRenderer = null;
+    //</editor-fold>
 
+    //<editor-fold desc="key bind">
     private final KeyBinding key;
     private boolean down;
     private boolean shouldRender = true;
@@ -61,72 +68,34 @@ public class HealthBarHandler {
             shouldRender = !shouldRender;
         }
     }
+    //</editor-fold>
 
-    private final Frustum frustum = new Frustum();
-
-    @SubscribeEvent
-    public void onRenderWorldLast(RenderWorldLastEvent event) {
-        // early escape
-        Minecraft mc = Minecraft.getMinecraft();
-        if ((!CfgFeatures.MOB_HEALTH_BAR.renderInF1 && !Minecraft.isGuiEnabled()) || !shouldRender) return;
-        if (CfgFeatures.MOB_HEALTH_BAR.onlyRenderWithEquipment.length != 0 && !whitelist.equipped(mc.player)) return;
-        Entity cameraEntity = mc.getRenderViewEntity();
-        if (cameraEntity == null || !cameraEntity.isEntityAlive()) return;
-
-        BlockPos cameraBlockPos = cameraEntity.getPosition();
-        Vector3f cameraPos = EmtRender.getCameraPos();
-        float partialTicks = (float) EmtRender.getPartialTick();
-
-        frustum.setPosition(cameraPos.x, cameraPos.y, cameraPos.z);
-
-        // init and update instancing renderer
-        if (instancing) {
-            if (backgroundRenderer == null) {
-                backgroundRenderer = (new BarInstancingRenderer(100)).init();
-                backgroundRenderer.setBarType(BarInstancingRenderer.BarType.ROUNDED_RECT);
-            }
-
-            ScaledResolution newRes = new ScaledResolution(mc);
-            if (resolution == null) {
-                resolution = newRes;
-            } else if (resolution.getScaledWidth() != newRes.getScaledWidth() ||
-                    resolution.getScaledHeight() != newRes.getScaledHeight() ||
-                    resolution.getScaleFactor() != newRes.getScaleFactor()) {
-
-                // update mesh
-                if (backgroundRenderer.getBarType() == BarInstancingRenderer.BarType.RECT) {
-                    ((RectMesh) backgroundRenderer.getMesh()).update();
-                } else if (backgroundRenderer.getBarType() == BarInstancingRenderer.BarType.ROUNDED_RECT) {
-                    ((RoundedRectMesh) backgroundRenderer.getMesh()).update();
-                }
-
-                resolution = newRes;
-            }
+    //<editor-fold desc="instancing methods">
+    private void initAndUpdateInstancingRenderer() {
+        if (backgroundRenderer == null) {
+            backgroundRenderer = (new BarInstancingRenderer(100)).init();
+            backgroundRenderer.setBarType(BarInstancingRenderer.BarType.ROUNDED_RECT);
         }
 
-        // render health bar for these entities
-        List<EntityLivingBase> entities = new ArrayList<>();
+        ScaledResolution newRes = new ScaledResolution(MINECRAFT);
+        if (resolution == null) {
+            resolution = newRes;
+        } else if (resolution.getScaledWidth() != newRes.getScaledWidth() ||
+                resolution.getScaledHeight() != newRes.getScaledHeight() ||
+                resolution.getScaleFactor() != newRes.getScaleFactor()) {
 
-        // collect entities
-        if (CfgFeatures.MOB_HEALTH_BAR.showOnlyFocused) {
-            Entity focused = getEntityLookedAt(mc.player);
-            if (focused instanceof EntityLivingBase && focused.isEntityAlive()) {
-                collectHealthBarEntities(entities, (EntityLivingBase) focused, cameraEntity);
+            // update mesh
+            if (backgroundRenderer.getBarType() == BarInstancingRenderer.BarType.RECT) {
+                ((RectMesh) backgroundRenderer.getMesh()).update();
+            } else if (backgroundRenderer.getBarType() == BarInstancingRenderer.BarType.ROUNDED_RECT) {
+                ((RoundedRectMesh) backgroundRenderer.getMesh()).update();
             }
-        } else {
-            for (Entity entity : ((WorldClientAccessor) mc.world).getEntityList()) {
-                if (entity instanceof EntityLivingBase
-                        && entity != mc.player
-                        && entity.isInRangeToRender3d(cameraBlockPos.getX(), cameraBlockPos.getY(), cameraBlockPos.getZ())
-                        && (entity.ignoreFrustumCheck || frustum.isBoundingBoxInFrustum(entity.getEntityBoundingBox()))
-                        && entity.isEntityAlive()
-                        && entity.getRecursivePassengers().isEmpty()) {
-                    collectHealthBarEntities(entities, (EntityLivingBase) entity, cameraEntity);
-                }
-            }
+
+            resolution = newRes;
         }
+    }
 
-        // health bar background instancing
+    private void healthBarBackgroundInstancing(List<EntityLivingBase> entities, float partialTicks, Vector3f cameraPos) {
         if (backgroundRenderer != null) {
             int entityListLength = Math.min(backgroundRenderer.getMaxInstance(), entities.size());
             float[] instanceData = new float[backgroundRenderer.getMaxInstance() * 3];
@@ -150,6 +119,52 @@ public class HealthBarHandler {
 
             backgroundRenderer.render();
         }
+    }
+    //</editor-fold>
+
+    private final Frustum frustum = new Frustum();
+
+    @SubscribeEvent
+    public void onRenderWorldLast(RenderWorldLastEvent event) {
+        // early escape
+        if (MINECRAFT.player == null) return;
+        if ((!CfgFeatures.MOB_HEALTH_BAR.renderInF1 && !Minecraft.isGuiEnabled()) || !shouldRender) return;
+        if (CfgFeatures.MOB_HEALTH_BAR.onlyRenderWithEquipment.length != 0 && !whitelist.equipped(MINECRAFT.player)) return;
+        Entity cameraEntity = MINECRAFT.getRenderViewEntity();
+        if (cameraEntity == null || !cameraEntity.isEntityAlive()) return;
+
+        BlockPos cameraBlockPos = cameraEntity.getPosition();
+        Vector3f cameraPos = EmtRender.getCameraPos();
+        float partialTicks = (float) EmtRender.getPartialTick();
+
+        // render health bar for these entities
+        List<EntityLivingBase> entities = new ArrayList<>();
+
+        // collect entities
+        if (CfgFeatures.MOB_HEALTH_BAR.showOnlyFocused) {
+            Entity focused = getEntityLookedAt(MINECRAFT.player);
+            if (focused instanceof EntityLivingBase && focused.isEntityAlive()) {
+                collectHealthBarEntities(entities, (EntityLivingBase) focused, cameraEntity);
+            }
+        } else {
+            frustum.setPosition(cameraPos.x, cameraPos.y, cameraPos.z);
+            for (Entity entity : ((WorldClientAccessor) MINECRAFT.world).getEntityList()) {
+                if (entity instanceof EntityLivingBase
+                        && entity != MINECRAFT.player
+                        && entity.isInRangeToRender3d(cameraBlockPos.getX(), cameraBlockPos.getY(), cameraBlockPos.getZ())
+                        && (entity.ignoreFrustumCheck || frustum.isBoundingBoxInFrustum(entity.getEntityBoundingBox()))
+                        && entity.isEntityAlive()
+                        && entity.getRecursivePassengers().isEmpty()) {
+                    collectHealthBarEntities(entities, (EntityLivingBase) entity, cameraEntity);
+                }
+            }
+        }
+
+        if (instancing) {
+            initAndUpdateInstancingRenderer();
+            // render background
+            healthBarBackgroundInstancing(entities, partialTicks, cameraPos);
+        }
 
         // optifine compat: disable shader program
         int oldProgram = GL11.glGetInteger(GL20.GL_CURRENT_PROGRAM);
@@ -161,6 +176,7 @@ public class HealthBarHandler {
         if (oldProgram != 0) GL20.glUseProgram(oldProgram);
     }
 
+    //<editor-fold desc="helpers">
     private void collectHealthBarEntities(List<EntityLivingBase> entities, EntityLivingBase entity, Entity viewPoint) {
         Stack<EntityLivingBase> ridingStack = new Stack<>();
         ridingStack.push(entity);
@@ -277,4 +293,5 @@ public class HealthBarHandler {
         Vec3d end = origin.add(ray.normalize().scale(len));
         return world.rayTraceBlocks(origin, end);
     }
+    //</editor-fold>
 }

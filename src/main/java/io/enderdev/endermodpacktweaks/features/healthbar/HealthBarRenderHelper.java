@@ -25,6 +25,7 @@ import org.lwjgl.opengl.GL11;
 import java.awt.*;
 
 public final class HealthBarRenderHelper {
+    private static final Minecraft MINECRAFT = Minecraft.getMinecraft();
     // Armor
     private static final ItemStack IRON_CHESTPLATE = new ItemStack(Items.IRON_CHESTPLATE);
     private static final ItemStack DIAMOND_CHESTPLATE = new ItemStack(Items.DIAMOND_CHESTPLATE);
@@ -37,8 +38,6 @@ public final class HealthBarRenderHelper {
     private static final ItemStack BOSS_SKULL = new ItemStack(Items.SKULL);
 
     public static void renderHealthBar(EntityLivingBase entity, float partialTicks, boolean instancing) {
-        Minecraft mc = Minecraft.getMinecraft();
-
         String entityID = EntityList.getEntityString(entity);
         boolean boss = !entity.isNonBoss();
 
@@ -51,7 +50,7 @@ public final class HealthBarRenderHelper {
         float health = Math.min(maxHealth, entity.getHealth());
 
         float percent = (int) ((health / maxHealth) * 100F);
-        RenderManager renderManager = mc.getRenderManager();
+        RenderManager renderManager = MINECRAFT.getRenderManager();
 
         GlStateManager.pushMatrix();
         GlStateManager.translate((float) (entityX - renderManager.viewerPosX), (float) (entityY - renderManager.viewerPosY + entity.height + CfgFeatures.MOB_HEALTH_BAR.heightAbove), (float) (entityZ - renderManager.viewerPosZ));
@@ -121,7 +120,7 @@ public final class HealthBarRenderHelper {
             name = I18n.format("entity.Villager.name");
         }
 
-        float namel = mc.fontRenderer.getStringWidth(name) * s;
+        float namel = MINECRAFT.fontRenderer.getStringWidth(name) * s;
         if (namel + 20 > size * 2) {
             size = namel / 2F + 10F;
         }
@@ -167,7 +166,7 @@ public final class HealthBarRenderHelper {
         GlStateManager.scale(s, s, s);
 
         if (CfgFeatures.MOB_HEALTH_BAR.showName) {
-            mc.fontRenderer.drawString(name, 0, 0, 0xFFFFFF);
+            MINECRAFT.fontRenderer.drawString(name, 0, 0, 0xFFFFFF);
         }
 
         GlStateManager.pushMatrix();
@@ -187,16 +186,16 @@ public final class HealthBarRenderHelper {
         }
 
         if (CfgFeatures.MOB_HEALTH_BAR.showCurrentHP) {
-            mc.fontRenderer.drawString(hpStr, 2, h, 0xFFFFFF);
+            MINECRAFT.fontRenderer.drawString(hpStr, 2, h, 0xFFFFFF);
         }
         if (CfgFeatures.MOB_HEALTH_BAR.showMaxHP) {
-            mc.fontRenderer.drawString(maxHpStr, (int) (size / (s * s1) * 2) - 2 - mc.fontRenderer.getStringWidth(maxHpStr), h, 0xFFFFFF);
+            MINECRAFT.fontRenderer.drawString(maxHpStr, (int) (size / (s * s1) * 2) - 2 - MINECRAFT.fontRenderer.getStringWidth(maxHpStr), h, 0xFFFFFF);
         }
         if (CfgFeatures.MOB_HEALTH_BAR.showPercentage) {
-            mc.fontRenderer.drawString(percStr, (int) (size / (s * s1)) - mc.fontRenderer.getStringWidth(percStr) / 2, h, 0xFFFFFFFF);
+            MINECRAFT.fontRenderer.drawString(percStr, (int) (size / (s * s1)) - MINECRAFT.fontRenderer.getStringWidth(percStr) / 2, h, 0xFFFFFFFF);
         }
-        if (CfgFeatures.MOB_HEALTH_BAR.enableDebugInfo && mc.gameSettings.showDebugInfo) {
-            mc.fontRenderer.drawString("ID: \"" + entityID + "\"", 0, h + 16, 0xFFFFFFFF);
+        if (CfgFeatures.MOB_HEALTH_BAR.enableDebugInfo && MINECRAFT.gameSettings.showDebugInfo) {
+            MINECRAFT.fontRenderer.drawString("ID: \"" + entityID + "\"", 0, h + 16, 0xFFFFFFFF);
         }
         GlStateManager.popMatrix();
 
@@ -206,7 +205,7 @@ public final class HealthBarRenderHelper {
         s1 = 0.5F;
         GlStateManager.scale(s1, s1, s1);
         GlStateManager.translate(size / (s * s1) * 2 - 16, 0F, 0F);
-        mc.renderEngine.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
+        MINECRAFT.renderEngine.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
         if (stack != null && CfgFeatures.MOB_HEALTH_BAR.showAttributes) {
             renderIcon(off, 0, stack, 16, 16);
             off -= 16;

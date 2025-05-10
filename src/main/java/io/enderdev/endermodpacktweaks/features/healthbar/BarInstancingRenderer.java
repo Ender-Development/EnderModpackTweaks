@@ -60,26 +60,28 @@ public class BarInstancingRenderer extends MeshRenderer {
             Shader vertex = ShaderLoadingUtils.load("endermodpacktweaks:shaders/mesh2d_instancing_vertex.glsl", Shader.ShaderType.VERTEX);
             ShaderProgram program = new ShaderProgram(frag, vertex);
             program.setup();
+
+            Matrix4f matrix4f = new Matrix4f();
+            matrix4f.setIdentity();
+            matrix4f.scale(new Vector3f(50, 50, 0));
+            FloatBuffer buffer = BufferUtils.createFloatBuffer(16);
+            matrix4f.store(buffer);
+            buffer.flip();
+
+            program.use();
+            program.setUniform("inWorld", true);
+            program.setUniform("unprojectToWorld", true);
+            program.setUniform("transformation", buffer);
+            program.setUniform("targetWorldPos", 0, 0, 0);
+            program.unuse();
+
             EnderModpackTweaks.LOGGER.info("Loading shaders for health bar instancing.");
             EnderModpackTweaks.LOGGER.info(program.getSetupDebugReport());
+
             sharedShaderProgram = program;
         }
 
         shaderProgram = sharedShaderProgram;
-
-        Matrix4f matrix4f = new Matrix4f();
-        matrix4f.setIdentity();
-        matrix4f.scale(new Vector3f(50, 50, 0));
-        FloatBuffer buffer = BufferUtils.createFloatBuffer(16);
-        matrix4f.store(buffer);
-        buffer.flip();
-
-        shaderProgram.use();
-        shaderProgram.setUniform("inWorld", true);
-        shaderProgram.setUniform("unprojectToWorld", true);
-        shaderProgram.setUniform("transformation", buffer);
-        shaderProgram.setUniform("targetWorldPos", 0, 0, 0);
-        shaderProgram.unuse();
 
         RoundedRectMesh roundedRectMesh = new RoundedRectMesh(3);
         roundedRectMesh.enableInstancing();
