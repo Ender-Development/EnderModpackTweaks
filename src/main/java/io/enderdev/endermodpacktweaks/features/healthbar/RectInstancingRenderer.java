@@ -2,7 +2,6 @@ package io.enderdev.endermodpacktweaks.features.healthbar;
 
 import io.enderdev.endermodpacktweaks.EnderModpackTweaks;
 import io.enderdev.endermodpacktweaks.render.mesh2d.RectMesh;
-import io.enderdev.endermodpacktweaks.render.mesh2d.RoundedRectMesh;
 import io.enderdev.endermodpacktweaks.render.renderer.MeshRenderer;
 import io.enderdev.endermodpacktweaks.render.shader.Shader;
 import io.enderdev.endermodpacktweaks.render.shader.ShaderLoadingUtils;
@@ -11,11 +10,12 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.util.vector.Matrix4f;
-import org.lwjgl.util.vector.Vector3f;
 
 import java.nio.FloatBuffer;
 
-public class BarInstancingRenderer extends MeshRenderer {
+public class RectInstancingRenderer extends MeshRenderer {
+    public static final float SIDE_LENGTH = 10f;
+
     private static ShaderProgram sharedShaderProgram = null;
 
     private final int maxInstance;
@@ -24,35 +24,13 @@ public class BarInstancingRenderer extends MeshRenderer {
         return maxInstance;
     }
 
-    public BarInstancingRenderer(int maxInstance) {
+    public RectInstancingRenderer(int maxInstance) {
         super(null, null);
         this.maxInstance = maxInstance;
     }
 
-    public enum BarType {
-        RECT,
-        ROUNDED_RECT
-    }
-
-    private BarType barType = BarType.RECT;
-
-    public BarType getBarType() {
-        return barType;
-    }
-    public void setBarType(BarType barType) {
-        this.barType = barType;
-        if (barType == BarType.RECT) {
-            mesh = rectMesh;
-        } else if (barType == BarType.ROUNDED_RECT) {
-            mesh = roundedRectMesh;
-        }
-    }
-
-    private RoundedRectMesh roundedRectMesh;
-    private RectMesh rectMesh;
-
     private boolean init = false;
-    public BarInstancingRenderer init() {
+    public RectInstancingRenderer init() {
         if (init) return this;
 
         if (sharedShaderProgram == null) {
@@ -63,19 +41,17 @@ public class BarInstancingRenderer extends MeshRenderer {
 
             Matrix4f matrix4f = new Matrix4f();
             matrix4f.setIdentity();
-            matrix4f.scale(new Vector3f(50, 50, 0));
             FloatBuffer buffer = BufferUtils.createFloatBuffer(16);
             matrix4f.store(buffer);
             buffer.flip();
 
             program.use();
             program.setUniform("inWorld", true);
-            program.setUniform("unprojectToWorld", true);
             program.setUniform("transformation", buffer);
             program.setUniform("targetWorldPos", 0, 0, 0);
             program.unuse();
 
-            EnderModpackTweaks.LOGGER.info("Loading shaders for health bar instancing.");
+            EnderModpackTweaks.LOGGER.info("Loading shaders for rect instancing.");
             EnderModpackTweaks.LOGGER.info(program.getSetupDebugReport());
 
             sharedShaderProgram = program;
@@ -83,28 +59,17 @@ public class BarInstancingRenderer extends MeshRenderer {
 
         shaderProgram = sharedShaderProgram;
 
-        RoundedRectMesh roundedRectMesh = new RoundedRectMesh(3);
-        roundedRectMesh.enableInstancing();
-        roundedRectMesh.setInstanceData(new float[3 * maxInstance]);
-        roundedRectMesh.setInstanceDataUnitSize(3);
-        roundedRectMesh.setInstancePrimCount(0);
-        roundedRectMesh.setup();
-        this.roundedRectMesh = roundedRectMesh;
-
         RectMesh rectMesh = new RectMesh();
         rectMesh.enableInstancing();
         rectMesh.setInstanceData(new float[3 * maxInstance]);
         rectMesh.setInstanceDataUnitSize(3);
         rectMesh.setInstancePrimCount(0);
         rectMesh.setup();
-        this.rectMesh = rectMesh;
 
         mesh = rectMesh;
 
-        // test
         ScaledResolution resolution = new ScaledResolution(Minecraft.getMinecraft());
-        roundedRectMesh.setCornerRadius(5f).setRect((resolution.getScaledWidth() - 30) / 2f, (resolution.getScaledHeight() - 30) / 2f, 30, 30).update();
-        rectMesh.setRect((resolution.getScaledWidth() - 30) / 2f, (resolution.getScaledHeight() - 30) / 2f, 30, 30).update();
+        rectMesh.setRect((resolution.getScaledWidth() - SIDE_LENGTH) / 2f, (resolution.getScaledHeight() - SIDE_LENGTH) / 2f, SIDE_LENGTH, SIDE_LENGTH).update();
 
         init = true;
         return this;

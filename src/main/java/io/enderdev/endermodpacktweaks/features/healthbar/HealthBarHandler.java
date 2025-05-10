@@ -3,7 +3,6 @@ package io.enderdev.endermodpacktweaks.features.healthbar;
 import io.enderdev.endermodpacktweaks.config.CfgFeatures;
 import io.enderdev.endermodpacktweaks.mixin.minecraft.WorldClientAccessor;
 import io.enderdev.endermodpacktweaks.render.mesh2d.RectMesh;
-import io.enderdev.endermodpacktweaks.render.mesh2d.RoundedRectMesh;
 import io.enderdev.endermodpacktweaks.utils.EmtConfigHandler;
 import io.enderdev.endermodpacktweaks.utils.EmtConfigParser;
 import io.enderdev.endermodpacktweaks.utils.EmtRender;
@@ -25,8 +24,13 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
+import org.lwjgl.util.vector.Matrix4f;
+import org.lwjgl.util.vector.Vector2f;
 import org.lwjgl.util.vector.Vector3f;
 
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.nio.FloatBuffer;
 import java.util.*;
 
 public class HealthBarHandler {
@@ -46,7 +50,7 @@ public class HealthBarHandler {
     //<editor-fold desc="instancing">
     public boolean instancing = false;
     private ScaledResolution resolution = null;
-    private BarInstancingRenderer backgroundRenderer = null;
+    private RectInstancingRenderer rectBackgroundRenderer = null;
     //</editor-fold>
 
     //<editor-fold desc="key bind">
@@ -72,9 +76,8 @@ public class HealthBarHandler {
 
     //<editor-fold desc="instancing methods">
     private void initAndUpdateInstancingRenderer() {
-        if (backgroundRenderer == null) {
-            backgroundRenderer = (new BarInstancingRenderer(100)).init();
-            backgroundRenderer.setBarType(BarInstancingRenderer.BarType.ROUNDED_RECT);
+        if (rectBackgroundRenderer == null) {
+            rectBackgroundRenderer = (new RectInstancingRenderer(100)).init();
         }
 
         ScaledResolution newRes = new ScaledResolution(MINECRAFT);
@@ -83,41 +86,51 @@ public class HealthBarHandler {
         } else if (resolution.getScaledWidth() != newRes.getScaledWidth() ||
                 resolution.getScaledHeight() != newRes.getScaledHeight() ||
                 resolution.getScaleFactor() != newRes.getScaleFactor()) {
+            resolution = newRes;
 
             // update mesh
-            if (backgroundRenderer.getBarType() == BarInstancingRenderer.BarType.RECT) {
-                ((RectMesh) backgroundRenderer.getMesh()).update();
-            } else if (backgroundRenderer.getBarType() == BarInstancingRenderer.BarType.ROUNDED_RECT) {
-                ((RoundedRectMesh) backgroundRenderer.getMesh()).update();
-            }
-
-            resolution = newRes;
+            RectMesh mesh = ((RectMesh) rectBackgroundRenderer.getMesh());
+            mesh.setRect((resolution.getScaledWidth() - RectInstancingRenderer.SIDE_LENGTH) / 2f, (resolution.getScaledHeight() - RectInstancingRenderer.SIDE_LENGTH) / 2f, RectInstancingRenderer.SIDE_LENGTH, RectInstancingRenderer.SIDE_LENGTH).update();
         }
     }
 
-    private void healthBarBackgroundInstancing(List<EntityLivingBase> entities, float partialTicks, Vector3f cameraPos) {
-        if (backgroundRenderer != null) {
-            int entityListLength = Math.min(backgroundRenderer.getMaxInstance(), entities.size());
-            float[] instanceData = new float[backgroundRenderer.getMaxInstance() * 3];
+    private final FloatBuffer floatBuffer16 = ByteBuffer.allocateDirect(16 << 2).order(ByteOrder.nativeOrder()).asFloatBuffer();
+    // having the same visual behavior as HealthBarRenderHelper.renderHealthBar()
+    private void healthBarRectBackgroundInstancing(List<EntityLivingBase> entities, float partialTicks, Vector3f cameraPos, Vector2f cameraRot) {
+        if (rectBackgroundRenderer != null) {
+            int entityListLength = Math.min(rectBackgroundRenderer.getMaxInstance(), entities.size());
+            float[] instanceData = new float[rectBackgroundRenderer.getMaxInstance() * 3];
             for (int i = 0; i < entityListLength; i++) {
                 Entity entity = entities.get(i);
                 instanceData[i * 3] = (float) (entity.lastTickPosX + (entity.posX - entity.lastTickPosX) * partialTicks);
-                instanceData[i * 3 + 1] = (float) (entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * partialTicks) + 1.6f;
+                instanceData[i * 3 + 1] = (float) (entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * partialTicks) + entity.height + (float) CfgFeatures.MOB_HEALTH_BAR.heightAbove;
                 instanceData[i * 3 + 2] = (float) (entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) * partialTicks);
             }
 
-            backgroundRenderer.getMesh().setInstancePrimCount(entityListLength);
-            backgroundRenderer.getMesh().updateInstanceDataByBufferSubData(instanceData);
+            rectBackgroundRenderer.getMesh().setInstancePrimCount(entityListLength);
+            rectBackgroundRenderer.getMesh().updateInstanceDataByBufferSubData(instanceData);
 
             GlStateManager.enableBlend();
 
-            backgroundRenderer.getShaderProgram().use();
-            backgroundRenderer.getShaderProgram().setUniform("modelView", EmtRender.getModelViewMatrix());
-            backgroundRenderer.getShaderProgram().setUniform("projection", EmtRender.getProjectionMatrix());
-            backgroundRenderer.getShaderProgram().setUniform("camPos", cameraPos.x, cameraPos.y, cameraPos.z);
-            backgroundRenderer.getShaderProgram().unuse();
+            Matrix4f matrix4f = new Matrix4f();
+            matrix4f.setIdentity();
+            matrix4f.scale(new Vector3f(5, 5, 5));
+            // plus PI to not trigger culling
+            matrix4f.rotate(-cameraRot.x + (float) Math.PI, new Vector3f(0, 1, 0));
+            matrix4f.rotate(-cameraRot.y, new Vector3f(1, 0, 0));
+            floatBuffer16.clear();
+            matrix4f.store(floatBuffer16);
+            floatBuffer16.flip();
 
-            backgroundRenderer.render();
+            rectBackgroundRenderer.getShaderProgram().use();
+            rectBackgroundRenderer.getShaderProgram().setUniform("modelView", EmtRender.getModelViewMatrix());
+            rectBackgroundRenderer.getShaderProgram().setUniform("projection", EmtRender.getProjectionMatrix());
+            rectBackgroundRenderer.getShaderProgram().setUniform("camPos", cameraPos.x, cameraPos.y, cameraPos.z);
+            rectBackgroundRenderer.getShaderProgram().setUniform("screenWidthHeightRatio", resolution.getScaledWidth_double() / resolution.getScaledHeight_double());
+            rectBackgroundRenderer.getShaderProgram().setUniform("transformation", floatBuffer16);
+            rectBackgroundRenderer.getShaderProgram().unuse();
+
+            rectBackgroundRenderer.render();
         }
     }
     //</editor-fold>
@@ -162,8 +175,8 @@ public class HealthBarHandler {
 
         if (instancing) {
             initAndUpdateInstancingRenderer();
-            // render background
-            healthBarBackgroundInstancing(entities, partialTicks, cameraPos);
+            // render rect background for all health bars
+            healthBarRectBackgroundInstancing(entities, partialTicks, cameraPos, EmtRender.getCameraRotationInRadian());
         }
 
         // optifine compat: disable shader program
