@@ -30,6 +30,17 @@ public class Mesh {
     private int instancingVbo;
     private int instanceDataUnitSize;
     private int instancePrimCount;
+    private IManageInstancingLayout customInstancingLayout = null;
+
+    public interface IManageInstancingLayout {
+        void manage();
+    }
+
+    public void setCustomInstancingLayout(IManageInstancingLayout customInstancingLayout) {
+        if (setup)
+            throw new IllegalStateException("Only call this method before setup");
+        this.customInstancingLayout = customInstancingLayout;
+    }
 
     public void enableInstancing() {
         if (setup)
@@ -140,9 +151,13 @@ public class Mesh {
             GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, instancingVbo);
             GL15.glBufferData(GL15.GL_ARRAY_BUFFER, instanceDataBuffer, GL15.GL_STATIC_DRAW);
 
-            GL20.glVertexAttribPointer(3, instanceDataUnitSize, GL11.GL_FLOAT, false, instanceDataUnitSize * Float.BYTES, 0);
-            GL20.glEnableVertexAttribArray(3);
-            GL33.glVertexAttribDivisor(3, 1);
+            if (customInstancingLayout == null) {
+                GL20.glVertexAttribPointer(3, instanceDataUnitSize, GL11.GL_FLOAT, false, instanceDataUnitSize * Float.BYTES, 0);
+                GL20.glEnableVertexAttribArray(3);
+                GL33.glVertexAttribDivisor(3, 1);
+            } else {
+                customInstancingLayout.manage();
+            }
 
             instanceData = null;
         }

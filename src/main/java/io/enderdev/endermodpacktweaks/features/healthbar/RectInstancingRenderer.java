@@ -1,6 +1,7 @@
 package io.enderdev.endermodpacktweaks.features.healthbar;
 
 import io.enderdev.endermodpacktweaks.EnderModpackTweaks;
+import io.enderdev.endermodpacktweaks.render.Mesh;
 import io.enderdev.endermodpacktweaks.render.mesh2d.RectMesh;
 import io.enderdev.endermodpacktweaks.render.renderer.MeshRenderer;
 import io.enderdev.endermodpacktweaks.render.shader.Shader;
@@ -9,12 +10,16 @@ import io.enderdev.endermodpacktweaks.render.shader.ShaderProgram;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import org.lwjgl.BufferUtils;
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL20;
+import org.lwjgl.opengl.GL33;
 import org.lwjgl.util.vector.Matrix4f;
 
 import java.nio.FloatBuffer;
 
 public class RectInstancingRenderer extends MeshRenderer {
     public static final float SIDE_LENGTH = 10f;
+    public static final int INSTANCE_DATA_UNIT_SIZE = 6;
 
     private static ShaderProgram sharedShaderProgram = null;
 
@@ -22,6 +27,10 @@ public class RectInstancingRenderer extends MeshRenderer {
 
     public int getMaxInstance() {
         return maxInstance;
+    }
+
+    public int getInstanceDataLength() {
+        return maxInstance * INSTANCE_DATA_UNIT_SIZE;
     }
 
     public RectInstancingRenderer(int maxInstance) {
@@ -61,9 +70,21 @@ public class RectInstancingRenderer extends MeshRenderer {
 
         RectMesh rectMesh = new RectMesh();
         rectMesh.enableInstancing();
-        rectMesh.setInstanceData(new float[3 * maxInstance]);
-        rectMesh.setInstanceDataUnitSize(3);
+        rectMesh.setInstanceData(new float[getInstanceDataLength()]);
+        rectMesh.setInstanceDataUnitSize(INSTANCE_DATA_UNIT_SIZE);
         rectMesh.setInstancePrimCount(0);
+        rectMesh.setCustomInstancingLayout(new Mesh.IManageInstancingLayout() {
+            @Override
+            public void manage() {
+                GL20.glVertexAttribPointer(3, 3, GL11.GL_FLOAT, false, INSTANCE_DATA_UNIT_SIZE * Float.BYTES, 0);
+                GL20.glEnableVertexAttribArray(3);
+                GL33.glVertexAttribDivisor(3, 1);
+
+                GL20.glVertexAttribPointer(4, 3, GL11.GL_FLOAT, false, INSTANCE_DATA_UNIT_SIZE * Float.BYTES, 3 * Float.BYTES);
+                GL20.glEnableVertexAttribArray(4);
+                GL33.glVertexAttribDivisor(4, 1);
+            }
+        });
         rectMesh.setup();
 
         mesh = rectMesh;

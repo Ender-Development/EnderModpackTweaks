@@ -3,7 +3,10 @@
 layout (location = 0) in vec3 ndcPos;
 layout (location = 1) in vec2 texCoord;
 layout (location = 2) in vec3 normal;
+
+// instance data
 layout (location = 3) in vec3 posOffset;
+layout (location = 4) in vec3 scale;
 
 // ------ In World Rendering Parameters ------
 

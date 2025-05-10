@@ -99,12 +99,12 @@ public class HealthBarHandler {
     private void healthBarRectBackgroundInstancing(List<EntityLivingBase> entities, float partialTicks, Vector3f cameraPos, Vector2f cameraRot) {
         if (rectBackgroundRenderer != null) {
             int entityListLength = Math.min(rectBackgroundRenderer.getMaxInstance(), entities.size());
-            float[] instanceData = new float[rectBackgroundRenderer.getMaxInstance() * 3];
+            float[] instanceData = new float[rectBackgroundRenderer.getInstanceDataLength()];
             for (int i = 0; i < entityListLength; i++) {
                 Entity entity = entities.get(i);
-                instanceData[i * 3] = (float) (entity.lastTickPosX + (entity.posX - entity.lastTickPosX) * partialTicks);
-                instanceData[i * 3 + 1] = (float) (entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * partialTicks) + entity.height + (float) CfgFeatures.MOB_HEALTH_BAR.heightAbove;
-                instanceData[i * 3 + 2] = (float) (entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) * partialTicks);
+                instanceData[i * 6] = (float) (entity.lastTickPosX + (entity.posX - entity.lastTickPosX) * partialTicks);
+                instanceData[i * 6 + 1] = (float) (entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * partialTicks) + entity.height + (float) CfgFeatures.MOB_HEALTH_BAR.heightAbove;
+                instanceData[i * 6 + 2] = (float) (entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) * partialTicks);
             }
 
             rectBackgroundRenderer.getMesh().setInstancePrimCount(entityListLength);

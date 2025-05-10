@@ -9,16 +9,8 @@ public class MeshRenderer implements IRenderer {
         return mesh;
     }
 
-    public void setMesh(Mesh mesh) {
-        this.mesh = mesh;
-    }
-
     public ShaderProgram getShaderProgram() {
         return shaderProgram;
-    }
-
-    public void setShaderProgram(ShaderProgram shaderProgram) {
-        this.shaderProgram = shaderProgram;
     }
 
     protected Mesh mesh;
