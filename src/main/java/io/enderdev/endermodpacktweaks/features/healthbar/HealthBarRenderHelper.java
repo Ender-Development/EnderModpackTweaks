@@ -127,9 +127,9 @@ public final class HealthBarRenderHelper {
         float healthSize = size * (health / maxHealth);
 
         // Background
-        if (CfgFeatures.MOB_HEALTH_BAR.drawBackground && !instancing) {
+        if (CfgFeatures.MOB_HEALTH_BAR.drawBackground) {
             Color bgColor = EmtColor.parseColorFromHexString(CfgFeatures.MOB_HEALTH_BAR.backgroundColor);
-            if (CfgFeatures.MOB_HEALTH_BAR.shapeBackground == EnumShapeType.STRAIGHT) {
+            if (CfgFeatures.MOB_HEALTH_BAR.shapeBackground == EnumShapeType.STRAIGHT && !instancing) {
                 EmtRender.renderRect(-size - padding, -bgHeight, size * 2 + padding * 2, bgHeight * 2 + padding, bgColor);
             }
             if (CfgFeatures.MOB_HEALTH_BAR.shapeBackground == EnumShapeType.ROUND) {

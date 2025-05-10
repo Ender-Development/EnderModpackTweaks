@@ -1,8 +1,9 @@
 package io.enderdev.endermodpacktweaks.features.healthbar;
 
 import io.enderdev.endermodpacktweaks.config.CfgFeatures;
+import io.enderdev.endermodpacktweaks.config.EnumShapeType;
 import io.enderdev.endermodpacktweaks.mixin.minecraft.WorldClientAccessor;
-import io.enderdev.endermodpacktweaks.render.mesh2d.RectMesh;
+import io.enderdev.endermodpacktweaks.utils.EmtColor;
 import io.enderdev.endermodpacktweaks.utils.EmtConfigHandler;
 import io.enderdev.endermodpacktweaks.utils.EmtConfigParser;
 import io.enderdev.endermodpacktweaks.utils.EmtRender;
@@ -10,13 +11,16 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.culling.Frustum;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.*;
+import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
@@ -28,10 +32,12 @@ import org.lwjgl.util.vector.Matrix4f;
 import org.lwjgl.util.vector.Vector2f;
 import org.lwjgl.util.vector.Vector3f;
 
+import java.awt.*;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 import java.util.*;
+import java.util.List;
 
 public class HealthBarHandler {
     private static final Minecraft MINECRAFT = Minecraft.getMinecraft();
@@ -45,12 +51,6 @@ public class HealthBarHandler {
             CfgFeatures.MOB_HEALTH_BAR.distanceMultipliers,
             EmtConfigParser.ConfigItemWithFloat::new
     );
-    //</editor-fold>
-
-    //<editor-fold desc="instancing">
-    public boolean instancing = false;
-    private ScaledResolution resolution = null;
-    private RectInstancingRenderer rectBackgroundRenderer = null;
     //</editor-fold>
 
     //<editor-fold desc="key bind">
@@ -74,37 +74,49 @@ public class HealthBarHandler {
     }
     //</editor-fold>
 
-    //<editor-fold desc="instancing methods">
-    private void initAndUpdateInstancingRenderer() {
-        if (rectBackgroundRenderer == null) {
-            rectBackgroundRenderer = (new RectInstancingRenderer(100)).init();
-        }
+    //<editor-fold desc="instancing">
+    public boolean instancing = false;
+    private RectInstancingRenderer rectBackgroundRenderer = null;
+    //</editor-fold>
 
-        ScaledResolution newRes = new ScaledResolution(MINECRAFT);
-        if (resolution == null) {
-            resolution = newRes;
-        } else if (resolution.getScaledWidth() != newRes.getScaledWidth() ||
-                resolution.getScaledHeight() != newRes.getScaledHeight() ||
-                resolution.getScaleFactor() != newRes.getScaleFactor()) {
-            resolution = newRes;
-
-            // update mesh
-            RectMesh mesh = ((RectMesh) rectBackgroundRenderer.getMesh());
-            mesh.setRect((resolution.getScaledWidth() - RectInstancingRenderer.SIDE_LENGTH) / 2f, (resolution.getScaledHeight() - RectInstancingRenderer.SIDE_LENGTH) / 2f, RectInstancingRenderer.SIDE_LENGTH, RectInstancingRenderer.SIDE_LENGTH).update();
-        }
-    }
-
+    //<editor-fold desc="render background by instancing">
     private final FloatBuffer floatBuffer16 = ByteBuffer.allocateDirect(16 << 2).order(ByteOrder.nativeOrder()).asFloatBuffer();
-    // having the same visual behavior as HealthBarRenderHelper.renderHealthBar()
+
+    // should have the same visual behavior as HealthBarRenderHelper.renderHealthBar()
     private void healthBarRectBackgroundInstancing(List<EntityLivingBase> entities, float partialTicks, Vector3f cameraPos, Vector2f cameraRot) {
         if (rectBackgroundRenderer != null) {
             int entityListLength = Math.min(rectBackgroundRenderer.getMaxInstance(), entities.size());
             float[] instanceData = new float[rectBackgroundRenderer.getInstanceDataLength()];
+
             for (int i = 0; i < entityListLength; i++) {
                 Entity entity = entities.get(i);
+
+                float size = CfgFeatures.MOB_HEALTH_BAR.plateSize;
+
+                float s = 0.5F;
+                String name = I18n.format(entity.getDisplayName().getFormattedText());
+
+                if (entity instanceof EntityLiving && entity.hasCustomName()) {
+                    name = TextFormatting.ITALIC + entity.getCustomNameTag();
+                } else if (entity instanceof EntityVillager) {
+                    name = I18n.format("entity.Villager.name");
+                }
+
+                float namel = MINECRAFT.fontRenderer.getStringWidth(name) * s;
+                if (namel + 20 > size * 2) {
+                    size = namel / 2F + 10F;
+                }
+
+                float width = size * 2 + CfgFeatures.MOB_HEALTH_BAR.backgroundPadding * 2;
+                float height = CfgFeatures.MOB_HEALTH_BAR.backgroundHeight * 2 + CfgFeatures.MOB_HEALTH_BAR.backgroundPadding;
+
+                // xyz pos offset
                 instanceData[i * 6] = (float) (entity.lastTickPosX + (entity.posX - entity.lastTickPosX) * partialTicks);
                 instanceData[i * 6 + 1] = (float) (entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * partialTicks) + entity.height + (float) CfgFeatures.MOB_HEALTH_BAR.heightAbove;
                 instanceData[i * 6 + 2] = (float) (entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) * partialTicks);
+                // scale
+                instanceData[i * 6 + 3] = width / RectInstancingRenderer.SIDE_LENGTH * 1.15f;
+                instanceData[i * 6 + 4] = height / RectInstancingRenderer.SIDE_LENGTH * 1.08f;
             }
 
             rectBackgroundRenderer.getMesh().setInstancePrimCount(entityListLength);
@@ -122,12 +134,17 @@ public class HealthBarHandler {
             matrix4f.store(floatBuffer16);
             floatBuffer16.flip();
 
+            Color bgColor = EmtColor.parseColorFromHexString(CfgFeatures.MOB_HEALTH_BAR.backgroundColor);
+
+            ScaledResolution resolution = new ScaledResolution(MINECRAFT);
+
             rectBackgroundRenderer.getShaderProgram().use();
             rectBackgroundRenderer.getShaderProgram().setUniform("modelView", EmtRender.getModelViewMatrix());
             rectBackgroundRenderer.getShaderProgram().setUniform("projection", EmtRender.getProjectionMatrix());
             rectBackgroundRenderer.getShaderProgram().setUniform("camPos", cameraPos.x, cameraPos.y, cameraPos.z);
             rectBackgroundRenderer.getShaderProgram().setUniform("screenWidthHeightRatio", resolution.getScaledWidth_double() / resolution.getScaledHeight_double());
             rectBackgroundRenderer.getShaderProgram().setUniform("transformation", floatBuffer16);
+            rectBackgroundRenderer.getShaderProgram().setUniform("color", bgColor.getRed() / 255F, bgColor.getGreen() / 255F, bgColor.getBlue() / 255F, bgColor.getAlpha() / 255F);
             rectBackgroundRenderer.getShaderProgram().unuse();
 
             rectBackgroundRenderer.render();
@@ -174,9 +191,13 @@ public class HealthBarHandler {
         }
 
         if (instancing) {
-            initAndUpdateInstancingRenderer();
             // render rect background for all health bars
-            healthBarRectBackgroundInstancing(entities, partialTicks, cameraPos, EmtRender.getCameraRotationInRadian());
+            if (CfgFeatures.MOB_HEALTH_BAR.shapeBackground == EnumShapeType.STRAIGHT) {
+                if (rectBackgroundRenderer == null) {
+                    rectBackgroundRenderer = (new RectInstancingRenderer(100)).init();
+                }
+                healthBarRectBackgroundInstancing(entities, partialTicks, cameraPos, EmtRender.getCameraRotationInRadian());
+            }
         }
 
         // optifine compat: disable shader program
@@ -184,7 +205,7 @@ public class HealthBarHandler {
         if (oldProgram != 0) GL20.glUseProgram(0);
         for (EntityLivingBase entity : entities) {
             // fixed-func health bar rendering
-            HealthBarRenderHelper.renderHealthBar(entity, partialTicks, false);
+            HealthBarRenderHelper.renderHealthBar(entity, partialTicks, instancing);
         }
         if (oldProgram != 0) GL20.glUseProgram(oldProgram);
     }
