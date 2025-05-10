@@ -2,7 +2,7 @@ package io.enderdev.endermodpacktweaks.utils;
 
 import net.minecraftforge.fml.common.FMLCommonHandler;
 
-public class EmtSide {
+public final class EmtSide {
     public static boolean isClient() {
         return FMLCommonHandler.instance().getEffectiveSide().isClient();
     }

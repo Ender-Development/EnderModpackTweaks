@@ -2,7 +2,7 @@ package io.enderdev.endermodpacktweaks.utils;
 
 import net.minecraft.client.Minecraft;
 
-public class EmtTime {
+public final class EmtTime {
     private final double waitTime;
     private double deltaTime;
     private long lastTime;

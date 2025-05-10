@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
-public class EmtConfigHandler<T extends EmtConfigParser.ConfigItem> {
+public final class EmtConfigHandler<T extends EmtConfigParser.ConfigItem> {
     private final List<T> configItems = new ArrayList<>();
     private final String[] configData;
     private final Function<String, T> parser;

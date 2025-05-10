@@ -4,7 +4,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
-public class EmtOreDict {
+public final class EmtOreDict {
     public static final String PROOF_ENDER_DRAGON = "proofEnderDragon";
     public static final String PROOF_WITHER = "proofWither";
 
