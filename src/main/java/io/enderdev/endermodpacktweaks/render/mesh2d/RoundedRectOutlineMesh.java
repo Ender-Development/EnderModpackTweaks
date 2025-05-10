@@ -1,5 +1,6 @@
 package io.enderdev.endermodpacktweaks.render.mesh2d;
 
+// under minecraft's scaled resolution coordinate system
 public class RoundedRectOutlineMesh extends LineMesh {
     private final int maxCornerSegment;
     private int cornerSegment;

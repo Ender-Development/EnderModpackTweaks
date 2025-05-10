@@ -3,15 +3,28 @@ package io.enderdev.endermodpacktweaks.render.mesh2d;
 import io.enderdev.endermodpacktweaks.render.Mesh;
 import io.enderdev.endermodpacktweaks.render.ScaledRes2NdcUtils;
 
+// under minecraft's scaled resolution coordinate system
 public class RectMesh extends Mesh
 {
+    private float x;
+    private float y;
+    private float width;
+    private float height;
+
     public RectMesh()
     {
         super(new float[8 * 4], new int[6]);
     }
 
-    // under minecraft's scaled resolution coordinate system
-    public void update(float x, float y, float width, float height)
+    public RectMesh setRect(float x, float y, float width, float height) {
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+        return this;
+    }
+
+    public void update()
     {
         float[] vertices = new float[]
         {

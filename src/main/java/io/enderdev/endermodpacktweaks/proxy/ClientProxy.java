@@ -1,13 +1,11 @@
 package io.enderdev.endermodpacktweaks.proxy;
 
-import io.enderdev.endermodpacktweaks.Test;
 import io.enderdev.endermodpacktweaks.config.CfgFeatures;
 import io.enderdev.endermodpacktweaks.config.CfgMinecraft;
 import io.enderdev.endermodpacktweaks.config.CfgModpack;
 import io.enderdev.endermodpacktweaks.core.EMTAssetMover;
 import io.enderdev.endermodpacktweaks.features.additionalmastervolume.MasterVolumeHandler;
 import io.enderdev.endermodpacktweaks.features.healthbar.HealthBarHandler;
-import io.enderdev.endermodpacktweaks.features.healthbar.HealthBarRenderHelper;
 import io.enderdev.endermodpacktweaks.features.keybinds.KeybindHandler;
 import io.enderdev.endermodpacktweaks.features.modpackinfo.ModpackInfoEventHandler;
 import io.enderdev.endermodpacktweaks.features.noautojump.AutoJumpHandler;
@@ -76,9 +74,10 @@ public class ClientProxy extends CommonProxy implements IProxy {
             int minorGlVersion = EmtRender.getMinorGlVersion();
             // requires gl version 3.3 or above
             if (majorGlVersion > 3 || (majorGlVersion == 3 && minorGlVersion >= 3))
-                HealthBarHandler.ENABLE_INSTANCING = true;
+                healthBarHandler.instancing = true;
         }
 
+        // init getters
         EmtRender.getModelViewMatrix();
         EmtRender.getPartialTick();
     }

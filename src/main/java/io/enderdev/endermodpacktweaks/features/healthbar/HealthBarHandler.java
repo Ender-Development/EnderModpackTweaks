@@ -2,10 +2,14 @@ package io.enderdev.endermodpacktweaks.features.healthbar;
 
 import io.enderdev.endermodpacktweaks.config.CfgFeatures;
 import io.enderdev.endermodpacktweaks.mixin.minecraft.WorldClientAccessor;
+import io.enderdev.endermodpacktweaks.render.mesh2d.RectMesh;
+import io.enderdev.endermodpacktweaks.render.mesh2d.RoundedRectMesh;
 import io.enderdev.endermodpacktweaks.utils.EmtConfigHandler;
 import io.enderdev.endermodpacktweaks.utils.EmtConfigParser;
 import io.enderdev.endermodpacktweaks.utils.EmtRender;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.culling.Frustum;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.*;
@@ -23,28 +27,24 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.util.vector.Vector3f;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 public class HealthBarHandler {
-    public static boolean ENABLE_INSTANCING = false;
-    private BarInstancingRenderer backgroundRenderer = null;
-
     public final EmtConfigHandler<EmtConfigParser.ConfigItem> whitelist = new EmtConfigHandler<>(
             CfgFeatures.MOB_HEALTH_BAR.onlyRenderWithEquipment,
             EmtConfigParser.ConfigItem::new
     );
-
     public final EmtConfigHandler<EmtConfigParser.ConfigItemWithFloat> rangeModifiers = new EmtConfigHandler<>(
             CfgFeatures.MOB_HEALTH_BAR.distanceMultipliers,
             EmtConfigParser.ConfigItemWithFloat::new
     );
 
+    public boolean instancing = false;
+    private ScaledResolution resolution = null;
+    private BarInstancingRenderer backgroundRenderer = null;
+
     private final KeyBinding key;
     private boolean down;
-
     private boolean shouldRender = true;
 
     public HealthBarHandler() {
@@ -66,7 +66,6 @@ public class HealthBarHandler {
 
     @SubscribeEvent
     public void onRenderWorldLast(RenderWorldLastEvent event) {
-
         // early escape
         Minecraft mc = Minecraft.getMinecraft();
         if ((!CfgFeatures.MOB_HEALTH_BAR.renderInF1 && !Minecraft.isGuiEnabled()) || !shouldRender) return;
@@ -80,10 +79,29 @@ public class HealthBarHandler {
 
         frustum.setPosition(cameraPos.x, cameraPos.y, cameraPos.z);
 
-        // init instancing renderer
-        if (ENABLE_INSTANCING) {
-            if (backgroundRenderer == null)
+        // init and update instancing renderer
+        if (instancing) {
+            if (backgroundRenderer == null) {
                 backgroundRenderer = (new BarInstancingRenderer(100)).init();
+                backgroundRenderer.setBarType(BarInstancingRenderer.BarType.ROUNDED_RECT);
+            }
+
+            ScaledResolution newRes = new ScaledResolution(mc);
+            if (resolution == null) {
+                resolution = newRes;
+            } else if (resolution.getScaledWidth() != newRes.getScaledWidth() ||
+                    resolution.getScaledHeight() != newRes.getScaledHeight() ||
+                    resolution.getScaleFactor() != newRes.getScaleFactor()) {
+
+                // update mesh
+                if (backgroundRenderer.getBarType() == BarInstancingRenderer.BarType.RECT) {
+                    ((RectMesh) backgroundRenderer.getMesh()).update();
+                } else if (backgroundRenderer.getBarType() == BarInstancingRenderer.BarType.ROUNDED_RECT) {
+                    ((RoundedRectMesh) backgroundRenderer.getMesh()).update();
+                }
+
+                resolution = newRes;
+            }
         }
 
         // render health bar for these entities
@@ -96,7 +114,6 @@ public class HealthBarHandler {
                 collectHealthBarEntities(entities, (EntityLivingBase) focused, cameraEntity);
             }
         } else {
-            List<Entity> filteredEntities = new ArrayList<>();
             for (Entity entity : ((WorldClientAccessor) mc.world).getEntityList()) {
                 if (entity instanceof EntityLivingBase
                         && entity != mc.player
@@ -109,37 +126,39 @@ public class HealthBarHandler {
             }
         }
 
+        // health bar background instancing
+        if (backgroundRenderer != null) {
+            int entityListLength = Math.min(backgroundRenderer.getMaxInstance(), entities.size());
+            float[] instanceData = new float[backgroundRenderer.getMaxInstance() * 3];
+            for (int i = 0; i < entityListLength; i++) {
+                Entity entity = entities.get(i);
+                instanceData[i * 3] = (float) (entity.lastTickPosX + (entity.posX - entity.lastTickPosX) * partialTicks);
+                instanceData[i * 3 + 1] = (float) (entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * partialTicks) + 1.6f;
+                instanceData[i * 3 + 2] = (float) (entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) * partialTicks);
+            }
+
+            backgroundRenderer.getMesh().setInstancePrimCount(entityListLength);
+            backgroundRenderer.getMesh().updateInstanceDataByBufferSubData(instanceData);
+
+            GlStateManager.enableBlend();
+
+            backgroundRenderer.getShaderProgram().use();
+            backgroundRenderer.getShaderProgram().setUniform("modelView", EmtRender.getModelViewMatrix());
+            backgroundRenderer.getShaderProgram().setUniform("projection", EmtRender.getProjectionMatrix());
+            backgroundRenderer.getShaderProgram().setUniform("camPos", cameraPos.x, cameraPos.y, cameraPos.z);
+            backgroundRenderer.getShaderProgram().unuse();
+
+            backgroundRenderer.render();
+        }
+
         // optifine compat: disable shader program
         int oldProgram = GL11.glGetInteger(GL20.GL_CURRENT_PROGRAM);
         if (oldProgram != 0) GL20.glUseProgram(0);
         for (EntityLivingBase entity : entities) {
+            // fixed-func health bar rendering
             HealthBarRenderHelper.renderHealthBar(entity, partialTicks, false);
         }
         if (oldProgram != 0) GL20.glUseProgram(oldProgram);
-
-//        if (backgroundRenderer != null) {
-//            int entityListLength = Math.min(backgroundRenderer.getMaxInstance(), filteredEntities.size());
-//            float[] instanceData = new float[backgroundRenderer.getMaxInstance() * 3];
-//            for (int i = 0; i < entityListLength; i++) {
-//                Entity entity = filteredEntities.get(i);
-//                instanceData[i * 3] = (float) (entity.lastTickPosX + (entity.posX - entity.lastTickPosX) * partialTicks);
-//                instanceData[i * 3 + 1] = (float) (entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * partialTicks) + 1.6f;
-//                instanceData[i * 3 + 2] = (float) (entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) * partialTicks);
-//            }
-//
-//            backgroundRenderer.getMesh().setInstancePrimCount(entityListLength);
-//            backgroundRenderer.getMesh().updateInstanceDataByBufferSubData(instanceData);
-//
-//            GlStateManager.enableBlend();
-//
-//            backgroundRenderer.getShaderProgram().use();
-//            backgroundRenderer.getShaderProgram().setUniform("modelView", EmtRender.getModelViewMatrix());
-//            backgroundRenderer.getShaderProgram().setUniform("projection", EmtRender.getProjectionMatrix());
-//            backgroundRenderer.getShaderProgram().setUniform("camPos", cameraPos.x, cameraPos.y, cameraPos.z);
-//            backgroundRenderer.getShaderProgram().unuse();
-//
-//            backgroundRenderer.render();
-//        }
     }
 
     private void collectHealthBarEntities(List<EntityLivingBase> entities, EntityLivingBase entity, Entity viewPoint) {

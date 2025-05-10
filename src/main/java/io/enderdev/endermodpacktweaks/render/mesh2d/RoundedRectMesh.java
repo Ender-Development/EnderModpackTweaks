@@ -4,6 +4,7 @@ import io.enderdev.endermodpacktweaks.render.Mesh;
 import io.enderdev.endermodpacktweaks.render.ScaledRes2NdcUtils;
 import io.enderdev.endermodpacktweaks.render.VertexIndexUtils;
 
+// under minecraft's scaled resolution coordinate system
 public class RoundedRectMesh extends Mesh {
     private final int maxCornerSegment;
     private int cornerSegment;
