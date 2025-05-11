@@ -114,8 +114,10 @@ public class HealthBarHandler {
             instanceData[i * 6 + 1] = (float) (entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * partialTicks) + entity.height + (float) CfgFeatures.MOB_HEALTH_BAR.heightAbove;
             instanceData[i * 6 + 2] = (float) (entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) * partialTicks);
             // scale
-            instanceData[i * 6 + 3] = width / RectInstancingRenderer.SIDE_LENGTH * 1.15f;
-            instanceData[i * 6 + 4] = height / RectInstancingRenderer.SIDE_LENGTH * 1.08f;
+            instanceData[i * 6 + 3] = width * HealthBarRenderHelper.HUD_SCALE / RectInstancingRenderer.SIDE_LENGTH;
+            instanceData[i * 6 + 4] = height * HealthBarRenderHelper.HUD_SCALE / RectInstancingRenderer.SIDE_LENGTH;
+            // height
+            instanceData[i * 6 + 5] = -0.025f;
         }
 
         rectBackgroundRenderer.getMesh().setInstancePrimCount(entityListLength);
@@ -125,25 +127,20 @@ public class HealthBarHandler {
 
         Matrix4f matrix4f = new Matrix4f();
         matrix4f.setIdentity();
-        matrix4f.scale(new Vector3f(5, 5, 5));
-        // plus PI to not trigger culling
-        matrix4f.rotate(-cameraRot.x + (float) Math.PI, new Vector3f(0, 1, 0));
-        matrix4f.rotate(-cameraRot.y, new Vector3f(1, 0, 0));
+        matrix4f.rotate(-cameraRot.x, new Vector3f(0, 1, 0));
+        matrix4f.rotate(cameraRot.y, new Vector3f(1, 0, 0));
         floatBuffer16.clear();
         matrix4f.store(floatBuffer16);
         floatBuffer16.flip();
 
         Color bgColor = EmtColor.parseColorFromHexString(CfgFeatures.MOB_HEALTH_BAR.backgroundColor);
 
-        ScaledResolution resolution = new ScaledResolution(MINECRAFT);
-
         rectBackgroundRenderer.getShaderProgram().use();
         rectBackgroundRenderer.getShaderProgram().setUniform("modelView", EmtRender.getModelViewMatrix());
         rectBackgroundRenderer.getShaderProgram().setUniform("projection", EmtRender.getProjectionMatrix());
         rectBackgroundRenderer.getShaderProgram().setUniform("camPos", cameraPos.x, cameraPos.y, cameraPos.z);
-        rectBackgroundRenderer.getShaderProgram().setUniform("screenWidthHeightRatio", resolution.getScaledWidth_double() / resolution.getScaledHeight_double());
         rectBackgroundRenderer.getShaderProgram().setUniform("transformation", floatBuffer16);
-        rectBackgroundRenderer.getShaderProgram().setUniform("color", bgColor.getRed() / 255F, bgColor.getGreen() / 255F, bgColor.getBlue() / 255F, bgColor.getAlpha() / 255F);
+        rectBackgroundRenderer.getShaderProgram().setUniform("color", bgColor.getRed() / 255F, bgColor.getGreen() / 255f, bgColor.getBlue() / 255f, bgColor.getAlpha() / 255f);
         rectBackgroundRenderer.getShaderProgram().unuse();
 
         rectBackgroundRenderer.render();

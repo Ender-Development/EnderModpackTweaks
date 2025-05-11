@@ -37,6 +37,8 @@ public final class HealthBarRenderHelper {
     // Boss
     private static final ItemStack BOSS_SKULL = new ItemStack(Items.SKULL);
 
+    public static final float HUD_SCALE = 0.026666672F;
+
     public static void renderHealthBar(EntityLivingBase entity, float partialTicks, boolean instancing) {
         String entityID = EntityList.getEntityString(entity);
         boolean boss = !entity.isNonBoss();
@@ -45,7 +47,6 @@ public final class HealthBarRenderHelper {
         double entityY = entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * partialTicks;
         double entityZ = entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) * partialTicks;
 
-        float scale = 0.026666672F;
         float maxHealth = entity.getMaxHealth();
         float health = Math.min(maxHealth, entity.getHealth());
 
@@ -57,7 +58,7 @@ public final class HealthBarRenderHelper {
         GL11.glNormal3f(0.0F, 1.0F, 0.0F);
         GlStateManager.rotate(-renderManager.playerViewY, 0.0F, 1.0F, 0.0F);
         GlStateManager.rotate(renderManager.playerViewX, 1.0F, 0.0F, 0.0F);
-        GlStateManager.scale(-scale, -scale, scale);
+        GlStateManager.scale(-HUD_SCALE, -HUD_SCALE, HUD_SCALE);
         GlStateManager.depthMask(false);
         GlStateManager.disableDepth();
         GlStateManager.disableTexture2D();

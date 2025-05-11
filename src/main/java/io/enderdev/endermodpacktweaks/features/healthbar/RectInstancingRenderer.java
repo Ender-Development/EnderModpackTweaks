@@ -2,13 +2,10 @@ package io.enderdev.endermodpacktweaks.features.healthbar;
 
 import io.enderdev.endermodpacktweaks.EnderModpackTweaks;
 import io.enderdev.endermodpacktweaks.render.Mesh;
-import io.enderdev.endermodpacktweaks.render.mesh2d.RectMesh;
 import io.enderdev.endermodpacktweaks.render.renderer.MeshRenderer;
 import io.enderdev.endermodpacktweaks.render.shader.Shader;
 import io.enderdev.endermodpacktweaks.render.shader.ShaderLoadingUtils;
 import io.enderdev.endermodpacktweaks.render.shader.ShaderProgram;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.ScaledResolution;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
@@ -18,7 +15,7 @@ import org.lwjgl.util.vector.Matrix4f;
 import java.nio.FloatBuffer;
 
 public class RectInstancingRenderer extends MeshRenderer {
-    public static final float SIDE_LENGTH = 10f;
+    public static final float SIDE_LENGTH = 1f;
     public static final int INSTANCE_DATA_UNIT_SIZE = 6;
 
     private static ShaderProgram sharedShaderProgram = null;
@@ -67,12 +64,28 @@ public class RectInstancingRenderer extends MeshRenderer {
 
         shaderProgram = sharedShaderProgram;
 
-        RectMesh rectMesh = new RectMesh();
-        rectMesh.enableInstancing();
-        rectMesh.setInstanceData(new float[getInstanceDataLength()]);
-        rectMesh.setInstanceDataUnitSize(INSTANCE_DATA_UNIT_SIZE);
-        rectMesh.setInstancePrimCount(0);
-        rectMesh.setCustomInstancingLayout(new Mesh.IManageInstancingLayout() {
+        float x = -SIDE_LENGTH / 2f;
+        float y = -SIDE_LENGTH / 2f;
+        float width = SIDE_LENGTH;
+        float height = SIDE_LENGTH;
+
+        float[] vertices = new float[] {
+                x, y, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f,
+                x + width, y, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f,
+                x + width, y + height, 0.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f,
+                x, y + height, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f
+        };
+        int[] indices = new int[] {
+                0, 2, 1,
+                0, 3, 2
+        };
+
+        mesh = new Mesh(vertices, indices);
+        mesh.enableInstancing();
+        mesh.setInstanceData(new float[getInstanceDataLength()]);
+        mesh.setInstanceDataUnitSize(INSTANCE_DATA_UNIT_SIZE);
+        mesh.setInstancePrimCount(0);
+        mesh.setCustomInstancingLayout(new Mesh.IManageInstancingLayout() {
             @Override
             public void manage() {
                 GL20.glVertexAttribPointer(3, 3, GL11.GL_FLOAT, false, INSTANCE_DATA_UNIT_SIZE * Float.BYTES, 0);
@@ -84,12 +97,7 @@ public class RectInstancingRenderer extends MeshRenderer {
                 GL33.glVertexAttribDivisor(4, 1);
             }
         });
-        rectMesh.setup();
-
-        mesh = rectMesh;
-
-        ScaledResolution resolution = new ScaledResolution(Minecraft.getMinecraft());
-        rectMesh.setRect((resolution.getScaledWidth() - SIDE_LENGTH) / 2f, (resolution.getScaledHeight() - SIDE_LENGTH) / 2f, SIDE_LENGTH, SIDE_LENGTH).update();
+        mesh.setup();
 
         init = true;
         return this;
