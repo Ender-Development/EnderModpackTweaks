@@ -3,12 +3,12 @@ package io.enderdev.endermodpacktweaks.features.healthbar;
 import io.enderdev.endermodpacktweaks.config.CfgFeatures;
 import io.enderdev.endermodpacktweaks.config.EnumShapeType;
 import io.enderdev.endermodpacktweaks.mixin.minecraft.WorldClientAccessor;
+import io.enderdev.endermodpacktweaks.render.shader.ShaderProgram;
 import io.enderdev.endermodpacktweaks.utils.EmtColor;
 import io.enderdev.endermodpacktweaks.utils.EmtConfigHandler;
 import io.enderdev.endermodpacktweaks.utils.EmtConfigParser;
 import io.enderdev.endermodpacktweaks.utils.EmtRender;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.culling.Frustum;
 import net.minecraft.client.resources.I18n;
@@ -77,15 +77,18 @@ public class HealthBarHandler {
     //<editor-fold desc="instancing">
     public boolean instancing = false;
     private RectInstancingRenderer rectBackgroundRenderer = null;
+    private RectInstancingRenderer rectGraySpaceRenderer = null;
     //</editor-fold>
 
     //<editor-fold desc="render background by instancing">
     private final FloatBuffer floatBuffer16 = ByteBuffer.allocateDirect(16 << 2).order(ByteOrder.nativeOrder()).asFloatBuffer();
 
     // should have the same visual behavior as HealthBarRenderHelper.renderHealthBar()
-    private void healthBarRectBackgroundInstancing(List<EntityLivingBase> entities, float partialTicks, Vector3f cameraPos, Vector2f cameraRot) {
-        int entityListLength = Math.min(rectBackgroundRenderer.getMaxInstance(), entities.size());
-        float[] instanceData = new float[rectBackgroundRenderer.getInstanceDataLength()];
+    private void rectHealthBarInstancing(List<EntityLivingBase> entities, float partialTicks, Vector3f cameraPos, Vector2f cameraRot) {
+        int entityListLength = Math.min(rectGraySpaceRenderer.getMaxInstance(), Math.min(rectBackgroundRenderer.getMaxInstance(), entities.size()));
+
+        float[] backgroundInstanceData = new float[rectBackgroundRenderer.getInstanceDataLength()];
+        float[] graySpaceInstanceData = new float[rectGraySpaceRenderer.getInstanceDataLength()];
 
         for (int i = 0; i < entityListLength; i++) {
             Entity entity = entities.get(i);
@@ -106,24 +109,43 @@ public class HealthBarHandler {
                 size = namel / 2F + 10F;
             }
 
-            float width = size * 2 + CfgFeatures.MOB_HEALTH_BAR.backgroundPadding * 2;
-            float height = CfgFeatures.MOB_HEALTH_BAR.backgroundHeight * 2 + CfgFeatures.MOB_HEALTH_BAR.backgroundPadding;
+            float ratio = HealthBarRenderHelper.HUD_SCALE / RectInstancingRenderer.SIDE_LENGTH;
+
+            float backgroundWidth = size * 2 + CfgFeatures.MOB_HEALTH_BAR.backgroundPadding * 2;
+            float backgroundHeight = CfgFeatures.MOB_HEALTH_BAR.backgroundHeight * 2 + CfgFeatures.MOB_HEALTH_BAR.backgroundPadding;
 
             // xyz pos offset
-            instanceData[i * 6] = (float) (entity.lastTickPosX + (entity.posX - entity.lastTickPosX) * partialTicks);
-            instanceData[i * 6 + 1] = (float) (entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * partialTicks) + entity.height + (float) CfgFeatures.MOB_HEALTH_BAR.heightAbove;
-            instanceData[i * 6 + 2] = (float) (entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) * partialTicks);
+            backgroundInstanceData[i * 6] = (float) (entity.lastTickPosX + (entity.posX - entity.lastTickPosX) * partialTicks);
+            backgroundInstanceData[i * 6 + 1] = (float) (entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * partialTicks) + entity.height + (float) CfgFeatures.MOB_HEALTH_BAR.heightAbove;
+            backgroundInstanceData[i * 6 + 2] = (float) (entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) * partialTicks);
             // scale
-            instanceData[i * 6 + 3] = width * HealthBarRenderHelper.HUD_SCALE / RectInstancingRenderer.SIDE_LENGTH;
-            instanceData[i * 6 + 4] = height * HealthBarRenderHelper.HUD_SCALE / RectInstancingRenderer.SIDE_LENGTH;
+            backgroundInstanceData[i * 6 + 3] = backgroundWidth * ratio;
+            backgroundInstanceData[i * 6 + 4] = backgroundHeight * ratio;
             // height
-            instanceData[i * 6 + 5] = -0.025f;
+            backgroundInstanceData[i * 6 + 5] = -HealthBarRenderHelper.HUD_SCALE;
+
+            float graySpaceWidth = size * 2;
+            float graySpaceHeight = CfgFeatures.MOB_HEALTH_BAR.barHeight;
+
+            // xyz pos offset
+            graySpaceInstanceData[i * 6] = backgroundInstanceData[i * 6];
+            graySpaceInstanceData[i * 6 + 1] = backgroundInstanceData[i * 6 + 1];
+            graySpaceInstanceData[i * 6 + 2] = backgroundInstanceData[i * 6 + 2];
+            // scale
+            graySpaceInstanceData[i * 6 + 3] = graySpaceWidth * ratio;
+            graySpaceInstanceData[i * 6 + 4] = graySpaceHeight * ratio;
+            // height
+            graySpaceInstanceData[i * 6 + 5] = -HealthBarRenderHelper.HUD_SCALE * 2;
         }
 
         rectBackgroundRenderer.getMesh().setInstancePrimCount(entityListLength);
-        rectBackgroundRenderer.getMesh().updateInstanceDataByBufferSubData(instanceData);
+        rectBackgroundRenderer.getMesh().updateInstanceDataByBufferSubData(backgroundInstanceData);
 
-        GlStateManager.enableBlend();
+        rectGraySpaceRenderer.getMesh().setInstancePrimCount(entityListLength);
+        rectGraySpaceRenderer.getMesh().updateInstanceDataByBufferSubData(graySpaceInstanceData);
+
+        // shader program is shared
+        ShaderProgram program = rectBackgroundRenderer.getShaderProgram();
 
         Matrix4f matrix4f = new Matrix4f();
         matrix4f.setIdentity();
@@ -135,15 +157,26 @@ public class HealthBarHandler {
 
         Color bgColor = EmtColor.parseColorFromHexString(CfgFeatures.MOB_HEALTH_BAR.backgroundColor);
 
-        rectBackgroundRenderer.getShaderProgram().use();
-        rectBackgroundRenderer.getShaderProgram().setUniform("modelView", EmtRender.getModelViewMatrix());
-        rectBackgroundRenderer.getShaderProgram().setUniform("projection", EmtRender.getProjectionMatrix());
-        rectBackgroundRenderer.getShaderProgram().setUniform("camPos", cameraPos.x, cameraPos.y, cameraPos.z);
-        rectBackgroundRenderer.getShaderProgram().setUniform("transformation", floatBuffer16);
-        rectBackgroundRenderer.getShaderProgram().setUniform("color", bgColor.getRed() / 255F, bgColor.getGreen() / 255f, bgColor.getBlue() / 255f, bgColor.getAlpha() / 255f);
-        rectBackgroundRenderer.getShaderProgram().unuse();
+        program.use();
+        program.setUniform("modelView", EmtRender.getModelViewMatrix());
+        program.setUniform("projection", EmtRender.getProjectionMatrix());
+        program.setUniform("camPos", cameraPos.x, cameraPos.y, cameraPos.z);
+        program.setUniform("transformation", floatBuffer16);
+        program.setUniform("color", bgColor.getRed() / 255f, bgColor.getGreen() / 255f, bgColor.getBlue() / 255f, bgColor.getAlpha() / 255f);
+        program.unuse();
+
+        GlStateManager.enableBlend();
+        GlStateManager.disableDepth();
 
         rectBackgroundRenderer.render();
+
+        Color grayColor = EmtColor.parseColorFromHexString(CfgFeatures.MOB_HEALTH_BAR.graySpaceColor);
+
+        program.use();
+        program.setUniform("color", grayColor.getRed() / 255f, grayColor.getGreen() / 255f, grayColor.getBlue() / 255f, grayColor.getAlpha() / 255f);
+        program.unuse();
+
+        rectGraySpaceRenderer.render();
     }
     //</editor-fold>
 
@@ -186,12 +219,15 @@ public class HealthBarHandler {
         }
 
         if (instancing) {
-            // render rect background for all health bars
+            // instancing health bars
             if (CfgFeatures.MOB_HEALTH_BAR.shapeBackground == EnumShapeType.STRAIGHT) {
                 if (rectBackgroundRenderer == null) {
                     rectBackgroundRenderer = (new RectInstancingRenderer(100)).init();
                 }
-                healthBarRectBackgroundInstancing(entities, partialTicks, cameraPos, EmtRender.getCameraRotationInRadian());
+                if (rectGraySpaceRenderer == null) {
+                    rectGraySpaceRenderer = (new RectInstancingRenderer(100)).init();
+                }
+                rectHealthBarInstancing(entities, partialTicks, cameraPos, EmtRender.getCameraRotationInRadian());
             }
         }
 

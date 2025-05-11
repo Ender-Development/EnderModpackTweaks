@@ -141,7 +141,7 @@ public final class HealthBarRenderHelper {
         // Gray Space
         if (CfgFeatures.MOB_HEALTH_BAR.drawGraySpace) {
             Color grayColor = EmtColor.parseColorFromHexString(CfgFeatures.MOB_HEALTH_BAR.graySpaceColor);
-            if (CfgFeatures.MOB_HEALTH_BAR.shapeBar == EnumShapeType.STRAIGHT) {
+            if (CfgFeatures.MOB_HEALTH_BAR.shapeBar == EnumShapeType.STRAIGHT && !instancing) {
                 EmtRender.renderRect(-size, 0, size * 2, barHeight, grayColor);
             }
             if (CfgFeatures.MOB_HEALTH_BAR.shapeBar == EnumShapeType.ROUND) {
