@@ -8,18 +8,22 @@ import io.enderdev.endermodpacktweaks.utils.EmtConfigParser;
 import io.enderdev.endermodpacktweaks.utils.EmtRender;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.culling.Frustum;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.*;
+import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
+import org.apache.commons.lang3.time.StopWatch;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.util.vector.Vector3f;
@@ -66,8 +70,12 @@ public class HealthBarHandler {
     public boolean instancing = false;
     //</editor-fold>
 
+    //<editor-fold desc="entity collection">
     // render health bar for these entities
-    private final List<EntityLivingBase> entities = new ArrayList<>();
+    private final Map<EntityLivingBase, HealthBarData> entities = new HashMap<>();
+    private final StopWatch entityCollectionStopWatch = new StopWatch();
+    public double entityCollectionInterval = 0.025d;
+    //</editor-fold>
 
     private final Frustum frustum = new Frustum();
 
@@ -84,37 +92,46 @@ public class HealthBarHandler {
         Vector3f cameraPos = EmtRender.getCameraPos();
         float partialTicks = (float) EmtRender.getPartialTick();
 
-        // collect entities
-        if (CfgFeatures.MOB_HEALTH_BAR.showOnlyFocused) {
-            Entity focused = getEntityLookedAt(MINECRAFT.player);
-            if (focused instanceof EntityLivingBase && focused.isEntityAlive()) {
-                collectHealthBarEntities(entities, (EntityLivingBase) focused, cameraEntity);
-            }
-        } else {
-            frustum.setPosition(cameraPos.x, cameraPos.y, cameraPos.z);
-            for (Entity entity : ((WorldClientAccessor) MINECRAFT.world).getEntityList()) {
-                if (entity instanceof EntityLivingBase
-                        && entity != MINECRAFT.player
-                        && entity.isInRangeToRender3d(cameraBlockPos.getX(), cameraBlockPos.getY(), cameraBlockPos.getZ())
-                        && (entity.ignoreFrustumCheck || frustum.isBoundingBoxInFrustum(entity.getEntityBoundingBox()))
-                        && entity.isEntityAlive()
-                        && entity.getRecursivePassengers().isEmpty()) {
-                    collectHealthBarEntities(entities, (EntityLivingBase) entity, cameraEntity);
+        if (!entityCollectionStopWatch.isStarted()) {
+            entityCollectionStopWatch.start();
+        }
+        if (entityCollectionStopWatch.getNanoTime() / 1e9d >= entityCollectionInterval) {
+            entityCollectionStopWatch.stop();
+            entityCollectionStopWatch.reset();
+
+            // collect entities
+            entities.clear();
+            if (CfgFeatures.MOB_HEALTH_BAR.showOnlyFocused) {
+                Entity focused = getEntityLookedAt(MINECRAFT.player);
+                if (focused instanceof EntityLivingBase && focused.isEntityAlive()) {
+                    collectHealthBarEntities(entities, (EntityLivingBase) focused, cameraEntity);
+                }
+            } else {
+                frustum.setPosition(cameraPos.x, cameraPos.y, cameraPos.z);
+                for (Entity entity : ((WorldClientAccessor) MINECRAFT.world).getEntityList()) {
+                    if (entity instanceof EntityLivingBase
+                            && entity != MINECRAFT.player
+                            && entity.isInRangeToRender3d(cameraBlockPos.getX(), cameraBlockPos.getY(), cameraBlockPos.getZ())
+                            && (entity.ignoreFrustumCheck || frustum.isBoundingBoxInFrustum(entity.getEntityBoundingBox()))
+                            && entity.isEntityAlive()
+                            && entity.getRecursivePassengers().isEmpty()) {
+                        collectHealthBarEntities(entities, (EntityLivingBase) entity, cameraEntity);
+                    }
                 }
             }
+
+            entityCollectionStopWatch.start();
         }
 
-        if (instancing) {
-            // instancing rect health bars
-            if (CfgFeatures.MOB_HEALTH_BAR.shapeBackground == EnumShapeType.STRAIGHT) {
-                if (HealthBarInstancingHelper.rectBackgroundRenderer == null) {
-                    HealthBarInstancingHelper.rectBackgroundRenderer = (new RectInstancingRenderer(100)).init();
-                }
-                if (HealthBarInstancingHelper.rectGraySpaceRenderer == null) {
-                    HealthBarInstancingHelper.rectGraySpaceRenderer = (new RectInstancingRenderer(100)).init();
-                }
-                HealthBarInstancingHelper.renderRectHealthBars(entities, partialTicks, cameraPos, EmtRender.getCameraRotationInRadian());
+        // instancing rect health bars
+        if (instancing && CfgFeatures.MOB_HEALTH_BAR.shapeBackground == EnumShapeType.STRAIGHT) {
+            if (HealthBarInstancingHelper.rectBackgroundRenderer == null) {
+                HealthBarInstancingHelper.rectBackgroundRenderer = (new RectInstancingRenderer(100)).init();
             }
+            if (HealthBarInstancingHelper.rectGraySpaceRenderer == null) {
+                HealthBarInstancingHelper.rectGraySpaceRenderer = (new RectInstancingRenderer(100)).init();
+            }
+            HealthBarInstancingHelper.renderRectHealthBars(entities, partialTicks, cameraPos, EmtRender.getCameraRotationInRadian());
         } else {
 //            // optifine compat: disable shader program
 //            int oldProgram = GL11.glGetInteger(GL20.GL_CURRENT_PROGRAM);
@@ -126,18 +143,18 @@ public class HealthBarHandler {
 //            if (oldProgram != 0) GL20.glUseProgram(oldProgram);
         }
 
-        // optifine compat: disable shader program
-        int oldProgram = GL11.glGetInteger(GL20.GL_CURRENT_PROGRAM);
-        if (oldProgram != 0) GL20.glUseProgram(0);
-        for (EntityLivingBase entity : entities) {
-            // fixed-func health bar rendering
-            HealthBarDirectRenderHelper.renderHealthBar(entity, partialTicks, instancing);
-        }
-        if (oldProgram != 0) GL20.glUseProgram(oldProgram);
+//        // optifine compat: disable shader program
+//        int oldProgram = GL11.glGetInteger(GL20.GL_CURRENT_PROGRAM);
+//        if (oldProgram != 0) GL20.glUseProgram(0);
+//        for (Map.Entry<EntityLivingBase, HealthBarData> entry : entities.entrySet()) {
+//            // fixed-func health bar rendering
+//            HealthBarDirectRenderHelper.renderHealthBar(entry.getKey(), entry.getValue(), partialTicks, instancing);
+//        }
+//        if (oldProgram != 0) GL20.glUseProgram(oldProgram);
     }
 
     //<editor-fold desc="helpers">
-    private void collectHealthBarEntities(List<EntityLivingBase> entities, EntityLivingBase entity, Entity viewPoint) {
+    private void collectHealthBarEntities(Map<EntityLivingBase, HealthBarData> entities, EntityLivingBase entity, Entity viewPoint) {
         Stack<EntityLivingBase> ridingStack = new Stack<>();
         ridingStack.push(entity);
 
@@ -148,6 +165,7 @@ public class HealthBarHandler {
 
         Minecraft mc = Minecraft.getMinecraft();
 
+        int index = 0;
         while (!ridingStack.isEmpty()) {
             entity = ridingStack.pop();
             boolean boss = !entity.isNonBoss();
@@ -174,12 +192,18 @@ public class HealthBarHandler {
                 if (!CfgFeatures.MOB_HEALTH_BAR.showOnPlayers && entity instanceof EntityPlayer) {
                     break processing;
                 }
-
                 if (entity.getMaxHealth() <= 0) {
                     break processing;
                 }
 
-                entities.add(entity);
+                String name = I18n.format(entity.getDisplayName().getFormattedText());
+                if (entity instanceof EntityLiving && entity.hasCustomName()) {
+                    name = TextFormatting.ITALIC + entity.getCustomNameTag();
+                } else if (entity instanceof EntityVillager) {
+                    name = I18n.format("entity.Villager.name");
+                }
+
+                entities.put(entity, new HealthBarData(name, index++));
             }
         }
     }

@@ -6,12 +6,8 @@ import io.enderdev.endermodpacktweaks.utils.EmtColor;
 import io.enderdev.endermodpacktweaks.utils.EmtRender;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.passive.EntityVillager;
-import net.minecraft.util.text.TextFormatting;
 import org.lwjgl.util.vector.Matrix4f;
 import org.lwjgl.util.vector.Vector2f;
 import org.lwjgl.util.vector.Vector3f;
@@ -20,51 +16,59 @@ import java.awt.*;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
-import java.util.List;
+import java.util.Iterator;
+import java.util.Map;
 
 public final class HealthBarInstancingHelper {
     private static final Minecraft MINECRAFT = Minecraft.getMinecraft();
+    private static final FloatBuffer FLOAT_BUFFER_16 = ByteBuffer.allocateDirect(16 << 2).order(ByteOrder.nativeOrder()).asFloatBuffer();
 
     protected static RectInstancingRenderer rectBackgroundRenderer = null;
     protected static RectInstancingRenderer rectGraySpaceRenderer = null;
 
-    private static final FloatBuffer floatBuffer16 = ByteBuffer.allocateDirect(16 << 2).order(ByteOrder.nativeOrder()).asFloatBuffer();
-
     // should have the same visual behavior as HealthBarRenderHelper.renderHealthBar()
-    public static void renderRectHealthBars(List<EntityLivingBase> entities, float partialTicks, Vector3f cameraPos, Vector2f cameraRot) {
+    public static void renderRectHealthBars(Map<EntityLivingBase, HealthBarData> entities, float partialTicks, Vector3f cameraPos, Vector2f cameraRot) {
         int entityListLength = Math.min(rectGraySpaceRenderer.getMaxInstance(), Math.min(rectBackgroundRenderer.getMaxInstance(), entities.size()));
 
         float[] backgroundInstanceData = new float[rectBackgroundRenderer.getInstanceDataLength()];
         float[] graySpaceInstanceData = new float[rectGraySpaceRenderer.getInstanceDataLength()];
 
-        for (int i = 0; i < entityListLength; i++) {
-            Entity entity = entities.get(i);
+        Iterator<Map.Entry<EntityLivingBase, HealthBarData>> iterator = entities.entrySet().iterator();
 
+        int i = 0;
+        while (iterator.hasNext() && i < entityListLength) {
+            Map.Entry<EntityLivingBase, HealthBarData> entry = iterator.next();
+
+            Entity entity = entry.getKey();
+            HealthBarData healthBarData = entry.getValue();
+
+            float padding = CfgFeatures.MOB_HEALTH_BAR.backgroundPadding;
+            int bgHeight = CfgFeatures.MOB_HEALTH_BAR.backgroundHeight;
+            int barHeight = CfgFeatures.MOB_HEALTH_BAR.barHeight;
             float size = CfgFeatures.MOB_HEALTH_BAR.plateSize;
 
             float s = 0.5F;
-            String name = I18n.format(entity.getDisplayName().getFormattedText());
-
-            if (entity instanceof EntityLiving && entity.hasCustomName()) {
-                name = TextFormatting.ITALIC + entity.getCustomNameTag();
-            } else if (entity instanceof EntityVillager) {
-                name = I18n.format("entity.Villager.name");
-            }
-
-            float namel = MINECRAFT.fontRenderer.getStringWidth(name) * s;
+            float namel = MINECRAFT.fontRenderer.getStringWidth(healthBarData.name) * s;
             if (namel + 20 > size * 2) {
                 size = namel / 2F + 10F;
             }
 
+            float x = (float) (entity.lastTickPosX + (entity.posX - entity.lastTickPosX) * partialTicks);
+            float y = (float) (entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * partialTicks);
+            float z = (float) (entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) * partialTicks);
+
             float ratio = HealthBarDirectRenderHelper.HUD_SCALE / RectInstancingRenderer.SIDE_LENGTH;
 
-            float backgroundWidth = size * 2 + CfgFeatures.MOB_HEALTH_BAR.backgroundPadding * 2;
-            float backgroundHeight = CfgFeatures.MOB_HEALTH_BAR.backgroundHeight * 2 + CfgFeatures.MOB_HEALTH_BAR.backgroundPadding;
+            float backgroundWidth = size * 2 + padding * 2;
+            float backgroundHeight = bgHeight * 2 + padding;
+
+            y += entity.height + (float) CfgFeatures.MOB_HEALTH_BAR.heightAbove;
+            y -= (float) healthBarData.ridingStackPos * (bgHeight + barHeight + padding);
 
             // xyz pos offset
-            backgroundInstanceData[i * 6] = (float) (entity.lastTickPosX + (entity.posX - entity.lastTickPosX) * partialTicks);
-            backgroundInstanceData[i * 6 + 1] = (float) (entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * partialTicks) + entity.height + (float) CfgFeatures.MOB_HEALTH_BAR.heightAbove;
-            backgroundInstanceData[i * 6 + 2] = (float) (entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) * partialTicks);
+            backgroundInstanceData[i * 6] = x;
+            backgroundInstanceData[i * 6 + 1] = y;
+            backgroundInstanceData[i * 6 + 2] = z;
             // scale
             backgroundInstanceData[i * 6 + 3] = backgroundWidth * ratio;
             backgroundInstanceData[i * 6 + 4] = backgroundHeight * ratio;
@@ -72,17 +76,19 @@ public final class HealthBarInstancingHelper {
             backgroundInstanceData[i * 6 + 5] = -HealthBarDirectRenderHelper.HUD_SCALE;
 
             float graySpaceWidth = size * 2;
-            float graySpaceHeight = CfgFeatures.MOB_HEALTH_BAR.barHeight;
+            float graySpaceHeight = barHeight;
 
             // xyz pos offset
-            graySpaceInstanceData[i * 6] = backgroundInstanceData[i * 6];
-            graySpaceInstanceData[i * 6 + 1] = backgroundInstanceData[i * 6 + 1];
-            graySpaceInstanceData[i * 6 + 2] = backgroundInstanceData[i * 6 + 2];
+            graySpaceInstanceData[i * 6] = x;
+            graySpaceInstanceData[i * 6 + 1] = y;
+            graySpaceInstanceData[i * 6 + 2] = z;
             // scale
             graySpaceInstanceData[i * 6 + 3] = graySpaceWidth * ratio;
             graySpaceInstanceData[i * 6 + 4] = graySpaceHeight * ratio;
             // height
             graySpaceInstanceData[i * 6 + 5] = -HealthBarDirectRenderHelper.HUD_SCALE * 2;
+
+            i++;
         }
 
         rectBackgroundRenderer.getMesh().setInstancePrimCount(entityListLength);
@@ -98,9 +104,9 @@ public final class HealthBarInstancingHelper {
         matrix4f.setIdentity();
         matrix4f.rotate(-cameraRot.x, new Vector3f(0, 1, 0));
         matrix4f.rotate(cameraRot.y, new Vector3f(1, 0, 0));
-        floatBuffer16.clear();
-        matrix4f.store(floatBuffer16);
-        floatBuffer16.flip();
+        FLOAT_BUFFER_16.clear();
+        matrix4f.store(FLOAT_BUFFER_16);
+        FLOAT_BUFFER_16.flip();
 
         Color bgColor = EmtColor.parseColorFromHexString(CfgFeatures.MOB_HEALTH_BAR.backgroundColor);
 
@@ -108,7 +114,7 @@ public final class HealthBarInstancingHelper {
         program.setUniform("modelView", EmtRender.getModelViewMatrix());
         program.setUniform("projection", EmtRender.getProjectionMatrix());
         program.setUniform("camPos", cameraPos.x, cameraPos.y, cameraPos.z);
-        program.setUniform("transformation", floatBuffer16);
+        program.setUniform("transformation", FLOAT_BUFFER_16);
         program.setUniform("color", bgColor.getRed() / 255f, bgColor.getGreen() / 255f, bgColor.getBlue() / 255f, bgColor.getAlpha() / 255f);
         program.unuse();
 

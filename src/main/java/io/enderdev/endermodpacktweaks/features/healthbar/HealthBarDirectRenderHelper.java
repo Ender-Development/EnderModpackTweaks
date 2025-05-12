@@ -13,10 +13,8 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.*;
 import net.minecraft.entity.monster.IMob;
-import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
@@ -39,7 +37,7 @@ public final class HealthBarDirectRenderHelper {
 
     public static final float HUD_SCALE = 0.026666672F;
 
-    public static void renderHealthBar(EntityLivingBase entity, float partialTicks, boolean instancing) {
+    public static void renderHealthBar(EntityLivingBase entity, HealthBarData healthBarData, float partialTicks, boolean instancing) {
         String entityID = EntityList.getEntityString(entity);
         boolean boss = !entity.isNonBoss();
 
@@ -112,16 +110,10 @@ public final class HealthBarDirectRenderHelper {
             b = color.getBlue();
         }
 
+        GlStateManager.translate(0F, - (float) healthBarData.ridingStackPos * (bgHeight + barHeight + padding), 0F);
+
         float s = 0.5F;
-        String name = I18n.format(entity.getDisplayName().getFormattedText());
-
-        if (entity instanceof EntityLiving && entity.hasCustomName()) {
-            name = TextFormatting.ITALIC + entity.getCustomNameTag();
-        } else if (entity instanceof EntityVillager) {
-            name = I18n.format("entity.Villager.name");
-        }
-
-        float namel = MINECRAFT.fontRenderer.getStringWidth(name) * s;
+        float namel = MINECRAFT.fontRenderer.getStringWidth(healthBarData.name) * s;
         if (namel + 20 > size * 2) {
             size = namel / 2F + 10F;
         }
@@ -167,7 +159,7 @@ public final class HealthBarDirectRenderHelper {
         GlStateManager.scale(s, s, s);
 
         if (CfgFeatures.MOB_HEALTH_BAR.showName) {
-            MINECRAFT.fontRenderer.drawString(name, 0, 0, 0xFFFFFF);
+            MINECRAFT.fontRenderer.drawString(healthBarData.name, 0, 0, 0xFFFFFF);
         }
 
         GlStateManager.pushMatrix();
