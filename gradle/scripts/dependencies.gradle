@@ -90,6 +90,8 @@ dependencies {
     runtimeOnly "curse.maven:geckolib-388172:4020277"
     // runtimeOnly "curse.maven:renderlib-624967:6327296"
 
+    runtimeOnly rfg.deobf("maven.modrinth:flare:WQfh8odD")
+
     implementation "com.cleanroommc:configanytime:3.0"
     implementation rfg.deobf("maven.modrinth:nether-api:1m3gvzYh")
     implementation("com.cleanroommc:groovyscript:1.2.3") { transitive = false } // so it doesn't installs JEI
