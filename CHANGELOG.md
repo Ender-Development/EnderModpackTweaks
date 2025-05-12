@@ -2,7 +2,9 @@
 
 ## [0.5.4]
 
+- 🔄 improved Mob Health Bar rendering time again (thanks to tttsaurus)
 - 🧰 fix broken end related mixins
+- 🧰 fix broken boss proof blocks mixins
 
 ## [0.5.3]
 
@@ -105,8 +107,4 @@
 ## [0.2.0]
 
 - 🆕 moved all features to a separate file to make it easier to maintain [FEATURES](https://github.com/Ender-Development/EnderModpackTweaks/FEATURES.md)
-- ⚙ added [AssetMover](https://www.curseforge.com/minecraft/mc-mods/assetmover) as dependency, this way minecraft yells if it is missing
-
-## [0.1.0]
-
-- Initial release
+- ⚙ added [AssetMover](https://www.curseforge.com/minecraft/mc-mods/assetmover) as depe
