@@ -10,7 +10,7 @@ public class ColorHandler {
 	private static Color color;
 
 	public static Color getColor() {
-		if(!CfgTweaks.CRISSAEGRIM.color.equals(colorStr)) {
+		if (!CfgTweaks.CRISSAEGRIM.color.equals(colorStr)) {
 			colorStr = CfgTweaks.CRISSAEGRIM.color;
 			color = EmtColor.parseColorFromHexString(colorStr);
 		}

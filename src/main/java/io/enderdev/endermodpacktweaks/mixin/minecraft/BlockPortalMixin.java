@@ -20,8 +20,7 @@ public class BlockPortalMixin {
         if (CfgMinecraft.NETHER_PORTAL.disallowTraverse) {
             return;
         }
-        if (!entityIn.isRiding() && !entityIn.isBeingRidden() && entityIn.isNonBoss())
-        {
+        if (!entityIn.isRiding() && !entityIn.isBeingRidden() && entityIn.isNonBoss()) {
             entityIn.setPortal(pos);
         }
     }

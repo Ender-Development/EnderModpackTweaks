@@ -92,9 +92,8 @@ public class EMTLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader {
         return configs;
     }
 
-     @Override
-    public boolean shouldMixinConfigQueue(String mixinConfig)
-    {
+    @Override
+    public boolean shouldMixinConfigQueue(String mixinConfig) {
         BooleanSupplier sidedSupplier = EMTLoadingPlugin.isClient ? clientsideMixinConfigs.get(mixinConfig) : null;
         BooleanSupplier commonSupplier = commonMixinConfigs.get(mixinConfig);
         return sidedSupplier != null ? sidedSupplier.getAsBoolean() : commonSupplier == null || commonSupplier.getAsBoolean();
