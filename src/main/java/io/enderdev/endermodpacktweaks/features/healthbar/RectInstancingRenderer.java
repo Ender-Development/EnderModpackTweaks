@@ -16,7 +16,7 @@ import java.nio.FloatBuffer;
 
 public class RectInstancingRenderer extends MeshRenderer {
     public static final float SIDE_LENGTH = 1f;
-    public static final int INSTANCE_DATA_UNIT_SIZE = 6;
+    public static final int INSTANCE_DATA_UNIT_SIZE = 8;
 
     private static ShaderProgram sharedShaderProgram = null;
 
@@ -88,13 +88,25 @@ public class RectInstancingRenderer extends MeshRenderer {
         mesh.setCustomInstancingLayout(new Mesh.IManageInstancingLayout() {
             @Override
             public void manage() {
+                // pos offset
                 GL20.glVertexAttribPointer(3, 3, GL11.GL_FLOAT, false, INSTANCE_DATA_UNIT_SIZE * Float.BYTES, 0);
                 GL20.glEnableVertexAttribArray(3);
                 GL33.glVertexAttribDivisor(3, 1);
 
-                GL20.glVertexAttribPointer(4, 3, GL11.GL_FLOAT, false, INSTANCE_DATA_UNIT_SIZE * Float.BYTES, 3 * Float.BYTES);
+                // hud scale
+                GL20.glVertexAttribPointer(4, 2, GL11.GL_FLOAT, false, INSTANCE_DATA_UNIT_SIZE * Float.BYTES, 3 * Float.BYTES);
                 GL20.glEnableVertexAttribArray(4);
                 GL33.glVertexAttribDivisor(4, 1);
+
+                // hud pos offset
+                GL20.glVertexAttribPointer(5, 2, GL11.GL_FLOAT, false, INSTANCE_DATA_UNIT_SIZE * Float.BYTES, 5 * Float.BYTES);
+                GL20.glEnableVertexAttribArray(5);
+                GL33.glVertexAttribDivisor(5, 1);
+
+                // hud color
+                GL20.glVertexAttribPointer(6, 1, GL11.GL_FLOAT, false, INSTANCE_DATA_UNIT_SIZE * Float.BYTES, 7 * Float.BYTES);
+                GL20.glEnableVertexAttribArray(6);
+                GL33.glVertexAttribDivisor(6, 1);
             }
         });
         mesh.setup();

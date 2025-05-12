@@ -26,6 +26,7 @@ import net.minecraftforge.fml.common.gameevent.InputEvent;
 import org.apache.commons.lang3.time.StopWatch;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
+import org.lwjgl.util.vector.Vector2f;
 import org.lwjgl.util.vector.Vector3f;
 
 import java.util.*;
@@ -33,6 +34,7 @@ import java.util.List;
 
 public class HealthBarHandler {
     private static final Minecraft MINECRAFT = Minecraft.getMinecraft();
+    public static final float HEALTH_BAR_HUD_SCALE = 0.026666672f;
 
     //<editor-fold desc="config">
     public final EmtConfigHandler<EmtConfigParser.ConfigItem> whitelist = new EmtConfigHandler<>(
@@ -90,6 +92,7 @@ public class HealthBarHandler {
 
         BlockPos cameraBlockPos = cameraEntity.getPosition();
         Vector3f cameraPos = EmtRender.getCameraPos();
+        Vector2f cameraRot = EmtRender.getCameraRotationInRadian();
         float partialTicks = (float) EmtRender.getPartialTick();
 
         if (!entityCollectionStopWatch.isStarted()) {
@@ -131,26 +134,20 @@ public class HealthBarHandler {
             if (HealthBarInstancingHelper.rectGraySpaceRenderer == null) {
                 HealthBarInstancingHelper.rectGraySpaceRenderer = (new RectInstancingRenderer(100)).init();
             }
-            HealthBarInstancingHelper.renderRectHealthBars(entities, partialTicks, cameraPos, EmtRender.getCameraRotationInRadian());
+            if (HealthBarInstancingHelper.rectHealthBarRenderer == null) {
+                HealthBarInstancingHelper.rectHealthBarRenderer = (new RectInstancingRenderer(100)).init();
+            }
+            HealthBarInstancingHelper.renderRectHealthBars(entities, partialTicks, cameraPos, cameraRot);
         } else {
-//            // optifine compat: disable shader program
-//            int oldProgram = GL11.glGetInteger(GL20.GL_CURRENT_PROGRAM);
-//            if (oldProgram != 0) GL20.glUseProgram(0);
-//            for (EntityLivingBase entity : entities) {
-//                // fixed-func health bar rendering
-//                HealthBarDirectRenderHelper.renderHealthBar(entity, partialTicks, instancing);
-//            }
-//            if (oldProgram != 0) GL20.glUseProgram(oldProgram);
+            // optifine compat: disable shader program
+            int oldProgram = GL11.glGetInteger(GL20.GL_CURRENT_PROGRAM);
+            if (oldProgram != 0) GL20.glUseProgram(0);
+            for (Map.Entry<EntityLivingBase, HealthBarData> entry : entities.entrySet()) {
+                // fixed-func health bar rendering
+                HealthBarDirectRenderHelper.renderHealthBar(entry.getKey(), entry.getValue(), partialTicks, cameraPos, cameraRot);
+            }
+            if (oldProgram != 0) GL20.glUseProgram(oldProgram);
         }
-
-//        // optifine compat: disable shader program
-//        int oldProgram = GL11.glGetInteger(GL20.GL_CURRENT_PROGRAM);
-//        if (oldProgram != 0) GL20.glUseProgram(0);
-//        for (Map.Entry<EntityLivingBase, HealthBarData> entry : entities.entrySet()) {
-//            // fixed-func health bar rendering
-//            HealthBarDirectRenderHelper.renderHealthBar(entry.getKey(), entry.getValue(), partialTicks, instancing);
-//        }
-//        if (oldProgram != 0) GL20.glUseProgram(oldProgram);
     }
 
     //<editor-fold desc="helpers">

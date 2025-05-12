@@ -9,7 +9,6 @@ import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.block.model.IBakedModel;
-import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
@@ -19,6 +18,8 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.util.vector.Vector2f;
+import org.lwjgl.util.vector.Vector3f;
 
 import java.awt.*;
 
@@ -35,28 +36,24 @@ public final class HealthBarDirectRenderHelper {
     // Boss
     private static final ItemStack BOSS_SKULL = new ItemStack(Items.SKULL);
 
-    public static final float HUD_SCALE = 0.026666672F;
-
-    public static void renderHealthBar(EntityLivingBase entity, HealthBarData healthBarData, float partialTicks, boolean instancing) {
+    public static void renderHealthBar(EntityLivingBase entity, HealthBarData healthBarData, float partialTicks, Vector3f cameraPos, Vector2f cameraRot) {
         String entityID = EntityList.getEntityString(entity);
         boolean boss = !entity.isNonBoss();
 
-        double entityX = entity.lastTickPosX + (entity.posX - entity.lastTickPosX) * partialTicks;
-        double entityY = entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * partialTicks;
-        double entityZ = entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) * partialTicks;
+        float entityX = (float) (entity.lastTickPosX + (entity.posX - entity.lastTickPosX) * partialTicks);
+        float entityY = (float) (entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * partialTicks);
+        float entityZ = (float) (entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) * partialTicks);
 
         float maxHealth = entity.getMaxHealth();
         float health = Math.min(maxHealth, entity.getHealth());
-
         float percent = (int) ((health / maxHealth) * 100F);
-        RenderManager renderManager = MINECRAFT.getRenderManager();
 
         GlStateManager.pushMatrix();
-        GlStateManager.translate((float) (entityX - renderManager.viewerPosX), (float) (entityY - renderManager.viewerPosY + entity.height + CfgFeatures.MOB_HEALTH_BAR.heightAbove), (float) (entityZ - renderManager.viewerPosZ));
+        GlStateManager.translate(entityX - cameraPos.x,  entityY - cameraPos.y + entity.height + (float) CfgFeatures.MOB_HEALTH_BAR.heightAbove, entityZ - cameraPos.z);
         GL11.glNormal3f(0.0F, 1.0F, 0.0F);
-        GlStateManager.rotate(-renderManager.playerViewY, 0.0F, 1.0F, 0.0F);
-        GlStateManager.rotate(renderManager.playerViewX, 1.0F, 0.0F, 0.0F);
-        GlStateManager.scale(-HUD_SCALE, -HUD_SCALE, HUD_SCALE);
+        GlStateManager.rotate(- (float) Math.toDegrees(cameraRot.x), 0.0F, 1.0F, 0.0F);
+        GlStateManager.rotate((float) Math.toDegrees(cameraRot.y), 1.0F, 0.0F, 0.0F);
+        GlStateManager.scale(-HealthBarHandler.HEALTH_BAR_HUD_SCALE, -HealthBarHandler.HEALTH_BAR_HUD_SCALE, HealthBarHandler.HEALTH_BAR_HUD_SCALE);
         GlStateManager.depthMask(false);
         GlStateManager.disableDepth();
         GlStateManager.disableTexture2D();
@@ -122,7 +119,7 @@ public final class HealthBarDirectRenderHelper {
         // Background
         if (CfgFeatures.MOB_HEALTH_BAR.drawBackground) {
             Color bgColor = EmtColor.parseColorFromHexString(CfgFeatures.MOB_HEALTH_BAR.backgroundColor);
-            if (CfgFeatures.MOB_HEALTH_BAR.shapeBackground == EnumShapeType.STRAIGHT && !instancing) {
+            if (CfgFeatures.MOB_HEALTH_BAR.shapeBackground == EnumShapeType.STRAIGHT) {
                 EmtRender.renderRect(-size - padding, -bgHeight, size * 2 + padding * 2, bgHeight * 2 + padding, bgColor);
             }
             if (CfgFeatures.MOB_HEALTH_BAR.shapeBackground == EnumShapeType.ROUND) {
@@ -133,7 +130,7 @@ public final class HealthBarDirectRenderHelper {
         // Gray Space
         if (CfgFeatures.MOB_HEALTH_BAR.drawGraySpace) {
             Color grayColor = EmtColor.parseColorFromHexString(CfgFeatures.MOB_HEALTH_BAR.graySpaceColor);
-            if (CfgFeatures.MOB_HEALTH_BAR.shapeBar == EnumShapeType.STRAIGHT && !instancing) {
+            if (CfgFeatures.MOB_HEALTH_BAR.shapeBar == EnumShapeType.STRAIGHT) {
                 EmtRender.renderRect(-size, 0, size * 2, barHeight, grayColor);
             }
             if (CfgFeatures.MOB_HEALTH_BAR.shapeBar == EnumShapeType.ROUND) {
@@ -234,7 +231,7 @@ public final class HealthBarDirectRenderHelper {
 
     // Everything in this method randomly becomes null, pls ignore!
     @SuppressWarnings("all")
-    private static void renderIcon(int vertexX, int vertexY, ItemStack stack, int intU, int intV) {
+    public static void renderIcon(int vertexX, int vertexY, ItemStack stack, int intU, int intV) {
         if (stack == null || stack.isEmpty()) {
             return;
         }
