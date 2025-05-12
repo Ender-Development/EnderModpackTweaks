@@ -29,7 +29,7 @@ public class CMMEventHandlerMixin {
             HashMap<Integer, GuiButton> removedButtons = new HashMap<>();
             Iterator<GuiButton> iterator = event.getButtonList().iterator();
 
-            while(iterator.hasNext()) {
+            while (iterator.hasNext()) {
                 GuiButton o = iterator.next();
                 if (!(o instanceof GuiCustomButton)) {
                     iterator.remove();
@@ -44,7 +44,7 @@ public class CMMEventHandlerMixin {
                 }
             }
 
-            for(GuiButton o : actualGui.getButtonList()) {
+            for (GuiButton o : actualGui.getButtonList()) {
                 if (o instanceof GuiCustomWrappedButton) {
                     GuiCustomWrappedButton b = (GuiCustomWrappedButton)o;
                     EnderModpackTweaks.LOGGER.debug("Initiating Wrapped Button {} with {}", b.wrappedButtonID, removedButtons.get(b.wrappedButtonID));

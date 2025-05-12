@@ -65,11 +65,9 @@ public class ThirstGuiMixin {
 
             RenderUtil.drawTexturedModalRect(x, y, texturepos_X + bgXOffset, texturepos_Y, textureWidth, textureHeight);
 
-            if (halfIcon < thirst) //Full
-            {
+            if (halfIcon < thirst) { //Full
                 RenderUtil.drawTexturedModalRect(x, y, texturepos_X + xOffset + (textureWidth * 4), texturepos_Y, textureWidth, textureHeight);
-            } else if (halfIcon == thirst) //Half
-            {
+            } else if (halfIcon == thirst) { //Half
                 RenderUtil.drawTexturedModalRect(x, y, texturepos_X + xOffset + (textureWidth * 5), texturepos_Y, textureWidth, textureHeight);
             }
         }
@@ -93,5 +91,4 @@ public class ThirstGuiMixin {
         }
         GlStateManager.disableBlend();
     }
-
 }
