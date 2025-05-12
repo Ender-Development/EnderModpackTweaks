@@ -24,7 +24,7 @@ import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
 
-public final class HealthBarRenderHelper {
+public final class HealthBarDirectRenderHelper {
     private static final Minecraft MINECRAFT = Minecraft.getMinecraft();
     // Armor
     private static final ItemStack IRON_CHESTPLATE = new ItemStack(Items.IRON_CHESTPLATE);
