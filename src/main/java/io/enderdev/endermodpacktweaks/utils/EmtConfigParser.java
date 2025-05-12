@@ -7,7 +7,7 @@ import net.minecraftforge.fml.common.Loader;
 
 import java.util.Objects;
 
-public class EmtConfigParser {
+public final class EmtConfigParser {
     public static class ConfigItem {
         private String modid;
         private String item;

@@ -10,7 +10,7 @@ import java.lang.reflect.Field;
 
 // Reference: <https://github.com/Red-Studio-Ragnarok/Red-Core/blob/cc3b67cb66c9f84ddc52404771145b13734da714/mc/1-8---1-12/src/main/java/dev/redstudio/redcore/utils/OptiNotFine.java>
 @SideOnly(Side.CLIENT)
-public class EmtOptifine {
+public final class EmtOptifine {
     private static final String OPTIFINE_CLASS = "optifine.Installer";
     private static final String SHADERS_CLASS = "net.optifine.shaders.Shaders";
     private static final String SHADER_PACK_LOADED_FIELD = "shaderPackLoaded";

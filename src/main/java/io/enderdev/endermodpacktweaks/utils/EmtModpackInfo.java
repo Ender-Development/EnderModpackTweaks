@@ -11,7 +11,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class EmtModpackInfo {
+public final class EmtModpackInfo {
     private String modpackName = CfgModpack.MODPACK.modpackName;
     private String modpackVersion = CfgModpack.MODPACK.modpackVersion;
     private String modpackAuthor = CfgModpack.MODPACK.modpackAuthor;
