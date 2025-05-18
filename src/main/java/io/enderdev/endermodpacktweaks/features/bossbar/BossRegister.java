@@ -18,7 +18,7 @@ public class BossRegister {
         BOSSES.add(new BossType("da:void_blossom", "void_blossom", "green_progress", 16, 8, 169, 185, 47));
         BOSSES.add(new BossType("da:night_lich", "night_lich", "blue_progress", 18, 22, 175, 219, 49));
         BOSSES.add(new BossType("da:great_wyrk", "ancient_wyrk", "ice_progress", 15, 13, 172, 198, 50));
-        BOSSES.add(new BossType("da:flame_knight", "flame_knight", "red_progress", 33, 21, 167, 200, 56));
+        BOSSES.add(new BossType("da:flame_knight", "flame_knight", "red_progress", 30, 21, 167, 200, 53));
         BOSSES.add(new BossType("srparasites:anc_dreadnaut", "anc_dreadnaut", "awaken_progress", 25, 7, 167, 181, 66));
         BOSSES.add(new BossType("srparasites:anc_overlord", "anc_overlord", "awaken_progress", 30, 8, 167, 183, 63));
         BOSSES.add(new BossType("srparasites:beckon_siv", "beckon_siv", "parasitic_progress", 43, 8, 165, 181, 65));
