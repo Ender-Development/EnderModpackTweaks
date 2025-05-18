@@ -1,5 +1,6 @@
 package io.enderdev.endermodpacktweaks.proxy;
 
+import io.enderdev.endermodpacktweaks.EnderModpackTweaks;
 import io.enderdev.endermodpacktweaks.config.CfgFeatures;
 import io.enderdev.endermodpacktweaks.config.CfgMinecraft;
 import io.enderdev.endermodpacktweaks.config.CfgModpack;
@@ -13,6 +14,8 @@ import io.enderdev.endermodpacktweaks.features.nofovchange.FovHandler;
 import io.enderdev.endermodpacktweaks.features.noinventorycrafting.InventoryHandler;
 import io.enderdev.endermodpacktweaks.features.nonametags.NameTagHandler;
 import io.enderdev.endermodpacktweaks.features.nooverlay.OverlayHandler;
+import io.enderdev.endermodpacktweaks.features.packupdater.UpdateHandler;
+import io.enderdev.endermodpacktweaks.features.packupdater.Updater;
 import io.enderdev.endermodpacktweaks.patches.mysticallib.EffectManager;
 import io.enderdev.endermodpacktweaks.utils.EmtOptifine;
 import io.enderdev.endermodpacktweaks.utils.EmtRender;
@@ -21,6 +24,8 @@ import net.minecraft.client.settings.GameSettings;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.*;
+
+import java.io.IOException;
 
 public class ClientProxy extends CommonProxy implements IProxy {
     // EMT Internal
@@ -77,6 +82,10 @@ public class ClientProxy extends CommonProxy implements IProxy {
                 healthBarHandler.instancing = true;
         }
 
+        if (CfgModpack.PACK_UPDATER.enable) {
+            MinecraftForge.EVENT_BUS.register(new UpdateHandler());
+        }
+
         // init getters
         EmtRender.getModelViewMatrix();
         EmtRender.getPartialTick();
@@ -85,6 +94,23 @@ public class ClientProxy extends CommonProxy implements IProxy {
     @Override
     public void init(FMLInitializationEvent event) {
         super.init(event);
+        if (CfgModpack.PACK_UPDATER.enable) {
+            try {
+                if (!CfgModpack.MODPACK.modpackVersion.isEmpty()) {
+                    Updater.INSTANCE.checkForUpdate();
+                } else {
+                    EnderModpackTweaks.LOGGER.error("Modpack Version hasn't been configured!");
+                }
+            } catch (IOException e) {
+                EnderModpackTweaks.LOGGER.error("Unable to check for updates for the modpack! Is the URL in the config malformed,");
+                EnderModpackTweaks.LOGGER.error("or is the version String in the URL not correctly formatted?");
+                EnderModpackTweaks.LOGGER.error(String.valueOf(e));
+            } catch (NumberFormatException e) {
+                EnderModpackTweaks.LOGGER.error("Unable to parse the version number correctly!");
+                EnderModpackTweaks.LOGGER.error("Is the version element from the URL malformed?");
+                EnderModpackTweaks.LOGGER.error(String.valueOf(e));
+            }
+        }
     }
 
     @Override

@@ -34,6 +34,7 @@ public class CompatModsHandler {
             put("bonemealmod", () -> CfgFeatures.INSTANT_BONE_MEAL.enable);
             put("controlling", () -> CfgFeatures.IMPROVED_KEYBINDS.enable);
             put("witherproof", () -> CfgFeatures.BOSS_PROOF_BLOCKS.enable);
+            put("packupdater", () -> CfgModpack.PACK_UPDATER.enable);
         }
     });
 

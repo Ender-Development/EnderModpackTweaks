@@ -75,6 +75,8 @@ cfg.endermodpacktweaks.modpack.options_menu_buttons.twitch=Twitch Button
 cfg.endermodpacktweaks.modpack.options_menu_buttons.twitch.tooltip=A button to open the Twitch channel.
 cfg.endermodpacktweaks.modpack.options_menu_buttons.youtube=YouTube Button
 cfg.endermodpacktweaks.modpack.options_menu_buttons.youtube.tooltip=A button to open the YouTube channel.
+cfg.endermodpacktweaks.modpack.pack_updater=Pack Updater
+cfg.endermodpacktweaks.modpack.pack_updater.tooltip=Check if there is a newer version of the current modpack available.
 cfg.endermodpacktweaks.modpack.server_message=Server Message
 cfg.endermodpacktweaks.modpack.server_message.tooltip=Adds a message to the server log when the modpack is loaded.
 

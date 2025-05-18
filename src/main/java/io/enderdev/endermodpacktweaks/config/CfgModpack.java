@@ -32,6 +32,11 @@ public class CfgModpack {
         @Config.Name("[03] Modpack Author")
         @Config.Comment("The author of the modpack.")
         public String modpackAuthor = "";
+
+        @Config.RequiresMcRestart
+        @Config.Name("[04] Modpack URL")
+        @Config.Comment("A URL for the pack download.")
+        public String modpackDownload = "";
     }
 
     @Config.Name("crash_info")
@@ -114,6 +119,22 @@ public class CfgModpack {
                 this.url = url;
             }
         }
+    }
+
+    @Config.Name("Pack Updater")
+    @Config.LangKey("cfg.endermodpacktweaks.modpack.pack_updater")
+    @Config.Comment("Check a JSON file from a given URL and compare it with the current modpack version.")
+    public static final PackUpdater PACK_UPDATER = new PackUpdater();
+
+    public static class PackUpdater {
+        @Config.RequiresMcRestart
+        @Config.Name("[01] Enable Server Message")
+        @Config.Comment("Enable the Server Message feature. This adds a message to the server console when the server starts.")
+        public boolean enable = false;
+
+        @Config.Name("[02] Version JSON Url")
+        @Config.Comment("The URL to the JSON file that contains the newest version information.")
+        public String jsonUrl = "";
     }
 
     @Config.Name("Server Message")

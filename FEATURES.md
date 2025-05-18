@@ -7,6 +7,7 @@
 - my own version of the mod, since the original one is ARR licensed and only available for modern versions
 - utilizes [AssetMover](https://www.curseforge.com/minecraft/mc-mods/assetmover) to obtain the textures without breaking the license
 - now also contains some custom made ones by `维生素` and `thomaslovlin`
+- Rats Boss Bars borrowed from [Dynamitastic](https://www.curseforge.com/minecraft/texture-packs/improved-boss-bars-rats-mod)
 
 ### 🔘 Menu Buttons
 
@@ -271,6 +272,13 @@
 
 - licensed under MIT
 - instead of one long list, entries are now separated by categories
+
+### [Mod Pack Update Checker](https://www.curseforge.com/minecraft/mc-mods/mod-pack-update-checker)
+
+- licensed under WTFPL
+- originally made for RotN
+- last update was in October 2020
+- merged as it can be seen as a modpack tool
 
 ### [Neat](https://www.curseforge.com/minecraft/mc-mods/neat)
 
