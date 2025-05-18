@@ -323,4 +323,9 @@ dependencies {
     if (project.debug_simplestoragenetwork.toBoolean()) {
         runtimeOnly "curse.maven:simple-storage-network-268495:5755625"
     }
+
+    compileOnly rfg.deobf("curse.maven:rats-ratn-edition-439001:3711122")
+    if (project.debug_rats.toBoolean()) {
+        runtimeOnly "curse.maven:rats-ratn-edition-439001:3711122"
+    }
 }

@@ -50,7 +50,7 @@ public class ImprovedBossBarRenderer extends Gui {
         }
         ScaledResolution scaledresolution = new ScaledResolution(mc);
         GlStateManager.pushMatrix();
-        int middleX = (scaledresolution.getScaledWidth() / 2) - (boss.getBarWidth() / 2);
+        int middleX = (scaledresolution.getScaledWidth() / 2) - (boss.getOverlayWidth() / 2);
         renderBar(middleX + boss.getBarOffsetX(), y + boss.getBarOffsetY(), boss.getBarWidth(), info, boss.getBar());
         renderOverlay(middleX, y, boss.getOverlay());
         GlStateManager.popMatrix();

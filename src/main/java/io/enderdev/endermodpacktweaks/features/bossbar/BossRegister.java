@@ -23,5 +23,8 @@ public class BossRegister {
         BOSSES.add(new BossType("srparasites:anc_overlord", "anc_overlord", "awaken_progress", 30, 8, 167, 183, 63));
         BOSSES.add(new BossType("srparasites:beckon_siv", "beckon_siv", "parasitic_progress", 43, 8, 165, 181, 65));
         BOSSES.add(new BossType("srparasites:dispatcher_siv", "dispatcher_siv", "parasitic_progress", 44, 8, 165, 181, 66));
+        BOSSES.add(new BossType("rats:marbled_cheese_golem", "ratlanteanautomaton", "yellow_progress", 13, 5, 174, 183, 43));
+        BOSSES.add(new BossType("rats:black_death", "blackdeath", "red_progress", 15, 20, 156, 196, 42));
+        BOSSES.add(new BossType("rats:neo_ratlantean", "neoratlantean", "blue_progress", 12, 6, 174, 186, 42));
     }
 }

@@ -5,3 +5,8 @@ Artists:
 - "anc_overlord.png" - thomaslovlin
 - "beckon_siv.png" - thomaslovlin
 - "dispatcher_siv.png" - thomaslovlin
+- "blackdeath.png" - Dynamitastic (MIT)
+- "flyingdutchrat.png" - Dynamitastic (MIT)
+- "neo-ratlantean.png" - Dynamitastic (MIT)
+- "ratbaron.png" - Dynamitastic (MIT)
+- "ratlanteanautomaton.png" - Dynamitastic (MIT)
