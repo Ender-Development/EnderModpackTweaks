@@ -39,6 +39,43 @@ public class CfgModpack {
         public String modpackDownload = "";
     }
 
+    @Config.Name("customization")
+    @Config.LangKey("cfg.endermodpacktweaks.modpack.customization")
+    @Config.Comment("Customize the game window.")
+    public static final Customization CUSTOMIZATION = new Customization();
+
+    public static class Customization {
+        @Config.RequiresMcRestart
+        @Config.Name("[01] Enable Window Customization")
+        @Config.Comment("Customize the window of the game.")
+        public boolean enable = false;
+
+        @Config.RequiresMcRestart
+        @Config.Name("[02] Change window title")
+        @Config.Comment("Set the window title to the modpack name")
+        public boolean windowTitle = false;
+
+        @Config.RequiresMcRestart
+        @Config.Name("[03] Window title format")
+        @Config.Comment({
+                "Customize how the window title is displayed",
+                "[name] - will be replaced by the modpack name",
+                "[version] - will be replaced by the modpack version",
+                "[author] - will be replaced by the modpack author"
+        })
+        public String windowTitleFormat = "[name] ([version]) by [author]";
+
+        @Config.RequiresMcRestart
+        @Config.Name("[04] Replace window icon")
+        @Config.Comment("Replace the default icon with a custom one.")
+        public boolean windowIcon = false;
+
+        @Config.RequiresMcRestart
+        @Config.Name("[05] Window icon path")
+        @Config.Comment("Override the path to the icon.")
+        public String windowIconPath = "config/endermodpacktweaks/icon.png";
+    }
+
     @Config.Name("crash_info")
     @Config.LangKey("cfg.endermodpacktweaks.modpack.crash_info")
     @Config.Comment("Add additional modpack information to the crash report.")
@@ -61,6 +98,28 @@ public class CfgModpack {
                 "This will override the config values."
         })
         public boolean readFromManifest = true;
+    }
+
+    @Config.Name("default_server")
+    @Config.LangKey("cfg.endermodpacktweaks.modpack.default_server")
+    @Config.Comment("Add a default server to your modpack.")
+    public static final DefaultServer DEFAULT_SERVER = new DefaultServer();
+
+    public static class DefaultServer {
+        @Config.RequiresMcRestart
+        @Config.Name("[01] Enable Default Server")
+        @Config.Comment("Allows adding a default server.")
+        public boolean enable = false;
+
+        @Config.RequiresMcRestart
+        @Config.Name("[02] Server Name")
+        @Config.Comment("The name of the dedicated server to add.")
+        public String serverName = "Localhost";
+
+        @Config.RequiresMcRestart
+        @Config.Name("[02] Server IP")
+        @Config.Comment("The IP of the dedicated server to add.")
+        public String serverIp = "127.0.0.1:25555";
     }
 
     @Config.Name("options_menu_buttons")
@@ -128,8 +187,8 @@ public class CfgModpack {
 
     public static class PackUpdater {
         @Config.RequiresMcRestart
-        @Config.Name("[01] Enable Server Message")
-        @Config.Comment("Enable the Server Message feature. This adds a message to the server console when the server starts.")
+        @Config.Name("[01] Enable Pack Updater")
+        @Config.Comment("Enable the Pack Update Check feature. Check an external json url if there is a newer modpack version available.")
         public boolean enable = false;
 
         @Config.Name("[02] Version JSON Url")

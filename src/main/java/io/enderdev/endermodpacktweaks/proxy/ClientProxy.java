@@ -8,7 +8,9 @@ import io.enderdev.endermodpacktweaks.core.EMTAssetMover;
 import io.enderdev.endermodpacktweaks.features.additionalmastervolume.MasterVolumeHandler;
 import io.enderdev.endermodpacktweaks.features.healthbar.HealthBarHandler;
 import io.enderdev.endermodpacktweaks.features.keybinds.KeybindHandler;
+import io.enderdev.endermodpacktweaks.features.modpackinfo.IconHandler;
 import io.enderdev.endermodpacktweaks.features.modpackinfo.ModpackInfoEventHandler;
+import io.enderdev.endermodpacktweaks.features.modpackinfo.ServerHandler;
 import io.enderdev.endermodpacktweaks.features.noautojump.AutoJumpHandler;
 import io.enderdev.endermodpacktweaks.features.nofovchange.FovHandler;
 import io.enderdev.endermodpacktweaks.features.noinventorycrafting.InventoryHandler;
@@ -24,6 +26,7 @@ import net.minecraft.client.settings.GameSettings;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.*;
+import org.lwjgl.opengl.Display;
 
 import java.io.IOException;
 
@@ -86,6 +89,14 @@ public class ClientProxy extends CommonProxy implements IProxy {
             MinecraftForge.EVENT_BUS.register(new UpdateHandler());
         }
 
+        if (CfgModpack.CUSTOMIZATION.enable && CfgModpack.CUSTOMIZATION.windowIcon) {
+            IconHandler.changeIcon();
+        }
+
+        if (CfgModpack.DEFAULT_SERVER.enable && !CfgModpack.DEFAULT_SERVER.serverIp.isEmpty() && !CfgModpack.DEFAULT_SERVER.serverName.isEmpty()) {
+            ServerHandler.addServer();
+        }
+
         // init getters
         EmtRender.getModelViewMatrix();
         EmtRender.getPartialTick();
@@ -131,6 +142,13 @@ public class ClientProxy extends CommonProxy implements IProxy {
         super.construct(event);
         if (Loader.isModLoaded("assetmover") && CfgFeatures.BOSS_BAR.enable) {
             EMTAssetMover.getAssets();
+        }
+        if (CfgModpack.CUSTOMIZATION.enable && CfgModpack.CUSTOMIZATION.windowTitle) {
+            String title = CfgModpack.CUSTOMIZATION.windowTitleFormat
+                    .replace("[name]", CfgModpack.MODPACK.modpackName)
+                    .replace("[version]", CfgModpack.MODPACK.modpackVersion)
+                    .replace("[author]", CfgModpack.MODPACK.modpackAuthor);
+            Display.setTitle(title);
         }
     }
 

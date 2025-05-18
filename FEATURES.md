@@ -268,6 +268,12 @@
 - licensed under MIT
 - single class mod, merged
 
+### [It's the little things](https://www.curseforge.com/minecraft/mc-mods/its-the-little-things)
+
+- licensed under MIT
+- title can now use general modpack information
+- path to icon can be customized
+
 ### [Material Changer](https://www.curseforge.com/minecraft/mc-mods/material-changer)
 
 - licensed under MIT
