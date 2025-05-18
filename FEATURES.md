@@ -273,6 +273,7 @@
 - licensed under MIT
 - title can now use general modpack information
 - path to icon can be customized
+- general cleanup
 
 ### [Material Changer](https://www.curseforge.com/minecraft/mc-mods/material-changer)
 
