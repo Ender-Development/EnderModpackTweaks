@@ -116,10 +116,8 @@ public class ClientProxy extends CommonProxy implements IProxy {
     @Override
     public void serverStarting(FMLServerStartingEvent event) {
         super.serverStarting(event);
-        if (CfgMinecraft.CLIENT.enable && CfgMinecraft.CLIENT.disableItemNames) {
-            GameSettings gameSettings = Minecraft.getMinecraft().gameSettings;
-            gameSettings.heldItemTooltips = false;
-        }
+        GameSettings gameSettings = Minecraft.getMinecraft().gameSettings;
+        gameSettings.heldItemTooltips = !(CfgMinecraft.CLIENT.enable && CfgMinecraft.CLIENT.disableItemNames);
     }
 
     @Override

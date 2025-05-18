@@ -2,6 +2,10 @@
 
 ## [0.5.5]
 
+- 🆕 added boss bars to 'Rats'
+- 🆕 allow the mob health renderer to linger, when using the "focused only" mode
+- 🧰 fix boss bar renderer being off center
+- 🧰 fix Item Name Hide tweak breaking under certain circumstances
 - ⚙ various small improvements by rozbrajaczpoziomow
 
 ## [0.5.4]
