@@ -230,7 +230,7 @@ public final class HealthBarDirectRenderHelper {
     }
 
     // Everything in this method randomly becomes null, pls ignore!
-    @SuppressWarnings("all")
+    @SuppressWarnings("ConstantValue")
     public static void renderIcon(int vertexX, int vertexY, ItemStack stack, int intU, int intV) {
         if (stack == null || stack.isEmpty()) {
             return;

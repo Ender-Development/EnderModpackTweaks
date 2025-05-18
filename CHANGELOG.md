@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.5.5]
+
+- ⚙ various small improvements by rozbrajaczpoziomow
+
 ## [0.5.4]
 
 - 🔄 improved Mob Health Bar rendering time again (thanks to tttsaurus)

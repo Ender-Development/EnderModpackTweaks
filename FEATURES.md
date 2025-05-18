@@ -288,7 +288,7 @@
 ### [Witherproof](https://www.curseforge.com/minecraft/mc-mods/witherproof)
 
 - licensed under LGPLv2.1
-- mimic it's functionality
+- mimic its functionality
 
 ## 🔀 Mod Integration
 

@@ -69,8 +69,7 @@ public class EMTLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader {
             f_transformerExceptions.setAccessible(true);
             Set<String> transformerExceptions = (Set<String>) f_transformerExceptions.get(Launch.classLoader);
             transformerExceptions.remove("tyra314.toolprogression");
-        }
-        catch (NoSuchFieldException | IllegalAccessException e) {
+        } catch (NoSuchFieldException | IllegalAccessException e) {
             throw new RuntimeException(e);
         }
     }
@@ -92,9 +91,8 @@ public class EMTLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader {
         return configs;
     }
 
-     @Override
-    public boolean shouldMixinConfigQueue(String mixinConfig)
-    {
+    @Override
+    public boolean shouldMixinConfigQueue(String mixinConfig) {
         BooleanSupplier sidedSupplier = EMTLoadingPlugin.isClient ? clientsideMixinConfigs.get(mixinConfig) : null;
         BooleanSupplier commonSupplier = commonMixinConfigs.get(mixinConfig);
         return sidedSupplier != null ? sidedSupplier.getAsBoolean() : commonSupplier == null || commonSupplier.getAsBoolean();

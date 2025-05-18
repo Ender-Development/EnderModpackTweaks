@@ -23,12 +23,13 @@ public class ThirstGuiMixin {
     @Shadow
     private Random rand;
 
-    //Position on the icons sheet
+    // Position on the icons sheet
     @Shadow
     private static final int texturepos_X = 0;
     @Shadow
     private static final int texturepos_Y = 0;
-    //Dimensions of the icon
+
+    // Dimensions of the icon
     @Shadow
     private static final int textureWidth = 9;
     @Shadow
@@ -65,11 +66,9 @@ public class ThirstGuiMixin {
 
             RenderUtil.drawTexturedModalRect(x, y, texturepos_X + bgXOffset, texturepos_Y, textureWidth, textureHeight);
 
-            if (halfIcon < thirst) //Full
-            {
+            if (halfIcon < thirst) {
                 RenderUtil.drawTexturedModalRect(x, y, texturepos_X + xOffset + (textureWidth * 4), texturepos_Y, textureWidth, textureHeight);
-            } else if (halfIcon == thirst) //Half
-            {
+            } else if (halfIcon == thirst) {
                 RenderUtil.drawTexturedModalRect(x, y, texturepos_X + xOffset + (textureWidth * 5), texturepos_Y, textureWidth, textureHeight);
             }
         }
@@ -82,7 +81,6 @@ public class ThirstGuiMixin {
                     int x = left - i * 8;
                     int y = top;
 
-
                     if (halfIcon < thirstSaturationInt) {
                         RenderUtil.drawTexturedModalRect(x, y, texturepos_X + (textureWidth * 14), texturepos_Y, textureWidth, textureHeight);
                     } else if (halfIcon == thirstSaturationInt) {
@@ -93,5 +91,4 @@ public class ThirstGuiMixin {
         }
         GlStateManager.disableBlend();
     }
-
 }
