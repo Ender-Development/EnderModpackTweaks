@@ -275,10 +275,11 @@
 ### [Neat](https://www.curseforge.com/minecraft/mc-mods/neat)
 
 - rewrote parts of it
-- achieved a small performance improvement
+- achieved a noticeable performance improvement
 - added a bunch more config options
 - only allow rendering when a specific item is equipped
 - allow specific items to increase the render distance of the health bar
+- allow the render to linger, when using the "focused only" mode
 
 ### [Pack Crash Info](https://www.curseforge.com/minecraft/mc-mods/pack-crash-info)
 

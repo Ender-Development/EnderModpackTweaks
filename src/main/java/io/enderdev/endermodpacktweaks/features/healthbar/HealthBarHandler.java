@@ -80,7 +80,9 @@ public class HealthBarHandler {
     //</editor-fold>
 
     private final Frustum frustum = new Frustum();
+    private final HashMap<EntityLivingBase, Long> lingerEntities = new HashMap<>();
 
+    @SuppressWarnings("unchecked")
     @SubscribeEvent
     public void onRenderWorldLast(RenderWorldLastEvent event) {
         // early escape
@@ -105,9 +107,23 @@ public class HealthBarHandler {
             // collect entities
             entities.clear();
             if (CfgFeatures.MOB_HEALTH_BAR.showOnlyFocused) {
+                long systemTime = Minecraft.getSystemTime();
                 Entity focused = getEntityLookedAt(MINECRAFT.player);
                 if (focused instanceof EntityLivingBase && focused.isEntityAlive()) {
                     collectHealthBarEntities(entities, (EntityLivingBase) focused, cameraEntity);
+                     if (CfgFeatures.MOB_HEALTH_BAR.focusedLinger != 0) {
+                        lingerEntities.put((EntityLivingBase) focused, systemTime + CfgFeatures.MOB_HEALTH_BAR.focusedLinger);
+                    }
+                }
+
+                Map.Entry<EntityLivingBase, Long>[] entries = lingerEntities.entrySet().toArray(new Map.Entry[lingerEntities.size()]);
+                for (Map.Entry<EntityLivingBase, Long> entry : entries) {
+                    EntityLivingBase entity = entry.getKey();
+                    if (systemTime >= entry.getValue()) {
+                        lingerEntities.remove(entity);
+                        continue;
+                    }
+                    collectHealthBarEntities(entities, entity, cameraEntity);
                 }
             } else {
                 frustum.setPosition(cameraPos.x, cameraPos.y, cameraPos.z);
@@ -122,7 +138,6 @@ public class HealthBarHandler {
                     }
                 }
             }
-
             entityCollectionStopWatch.start();
         }
 

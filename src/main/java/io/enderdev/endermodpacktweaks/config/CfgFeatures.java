@@ -302,14 +302,19 @@ public class CfgFeatures {
         public boolean showOnBosses = true;
 
         @Config.Name("[33] Show Health Bar on Focused")
-        @Config.Comment("Should the health bar only be shown for the entity looked at?")
+        @Config.Comment("Should the health bar only be shown for the entity you are looking at?")
         public boolean showOnlyFocused = false;
 
-        @Config.Name("[34] Show Debug Info")
+        @Config.Name("[34] Linger Health Bar on Focused")
+        @Config.Comment("How long should the health bar be shown for after you stop looking at an entity? In milliseconds, 0 to disable.")
+        @Config.RangeInt(min = 0)
+        public int focusedLinger = 1000;
+
+        @Config.Name("[35] Show Debug Info")
         @Config.Comment("Should additional debug information be shown with F3 active?")
         public boolean enableDebugInfo = true;
 
-        @Config.Name("[35] Mob Blacklist")
+        @Config.Name("[36] Mob Blacklist")
         @Config.Comment("Blacklist uses entity IDs. FORMAT: modid:entityid")
         public String[] mobBlacklist = new String[]{
                 "ArmorStand"
