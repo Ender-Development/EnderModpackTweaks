@@ -9,7 +9,7 @@ If you have any suggestions, feel free to let me know.
 
 ## Current Features
 
-For an up-to-date list of features, please refer to [▶ Features](https://github.com/Ender-Development/EnderModpackTweaks/FEATURES.md)
+For an up-to-date list of features, please refer to [▶ Features](./FEATURES.md)
 
 ## Possible Bugfixes
 
