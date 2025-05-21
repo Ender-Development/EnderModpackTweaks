@@ -180,7 +180,7 @@ public class CfgModpack {
         }
     }
 
-    @Config.Name("Pack Updater")
+    @Config.Name("pack_updater")
     @Config.LangKey("cfg.endermodpacktweaks.modpack.pack_updater")
     @Config.Comment("Check a JSON file from a given URL and compare it with the current modpack version.")
     public static final PackUpdater PACK_UPDATER = new PackUpdater();
@@ -196,7 +196,7 @@ public class CfgModpack {
         public String jsonUrl = "";
     }
 
-    @Config.Name("Server Message")
+    @Config.Name("server_message")
     @Config.LangKey("cfg.endermodpacktweaks.modpack.server_message")
     @Config.Comment("Similar to something that Nomifactory came up with.")
     public static final ServerMessage SERVER_MESSAGE = new ServerMessage();
@@ -205,11 +205,44 @@ public class CfgModpack {
         @Config.RequiresMcRestart
         @Config.Name("[01] Enable Server Message")
         @Config.Comment("Enable the Server Message feature. This adds a message to the server console when the server starts.")
-        public boolean enable = true;
+        public boolean enable = false;
 
         @Config.Name("[02] Server Name")
         @Config.Comment("The name of the server. Only used if 'Enable Server Message' is enabled.")
         public String serverName = "Minecraft";
+    }
+
+    @Config.Name("startup_timer")
+    @Config.LangKey("cfg.endermodpacktweaks.modpack.startup_timer")
+    @Config.Comment("Display how long it takes for your pack to load.")
+    public static final StartupTimer STARTUP_TIMER = new StartupTimer();
+
+    public static class StartupTimer {
+        @Config.RequiresMcRestart
+        @Config.Name("[01] Enable Startup Timer")
+        @Config.Comment("Enable the Startup Timer feature and display the pack load time.")
+        public boolean enable = true;
+
+        @Config.RequiresMcRestart
+        @Config.Name("[02] Timer History Size")
+        @Config.Comment("How many loading times should be kept in the history?")
+        public int sizeHistory = 10;
+
+        @Config.Name("[03] Display Startup Time")
+        @Config.Comment("Should the startup time be displayed in the main menu?")
+        public boolean display = true;
+
+        @Config.Name("[04] Display X-Offset")
+        @Config.Comment("The x offset of the time display.")
+        public int xOffset = 0;
+
+        @Config.Name("[05] Display Y-Offset")
+        @Config.Comment("The y offset of the time display.")
+        public int yOffset = 0;
+
+        @Config.Name("[06] Display Color")
+        @Config.Comment("The color of the time display. Format: #RRGGBAA")
+        public String color = "#FFFFFFFF";
     }
 
     @Mod.EventBusSubscriber(modid = Tags.MOD_ID)

@@ -81,7 +81,7 @@ dependencies {
 
     runtimeOnly rfg.deobf("curse.maven:lolasm-460609:5257348") // otherwise it will crash
     runtimeOnly rfg.deobf("curse.maven:vintagefix-871198:5010926") // otherwise it will crash
-    runtimeOnly rfg.deobf("curse.maven:modern-splash-629058:5282442") // otherwise it will crash
+    // runtimeOnly rfg.deobf("curse.maven:modern-splash-629058:5282442") // otherwise it will crash
 
     runtimeOnly rfg.deobf("maven.modrinth:flare:WQfh8odD")
 

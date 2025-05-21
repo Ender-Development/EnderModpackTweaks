@@ -18,6 +18,7 @@ import io.enderdev.endermodpacktweaks.features.nonametags.NameTagHandler;
 import io.enderdev.endermodpacktweaks.features.nooverlay.OverlayHandler;
 import io.enderdev.endermodpacktweaks.features.packupdater.UpdateHandler;
 import io.enderdev.endermodpacktweaks.features.packupdater.Updater;
+import io.enderdev.endermodpacktweaks.features.startuptimer.HistroyHandler;
 import io.enderdev.endermodpacktweaks.patches.mysticallib.EffectManager;
 import io.enderdev.endermodpacktweaks.utils.EmtOptifine;
 import io.enderdev.endermodpacktweaks.utils.EmtRender;
@@ -91,6 +92,10 @@ public class ClientProxy extends CommonProxy implements IProxy {
 
         if (CfgModpack.DEFAULT_SERVER.enable && !CfgModpack.DEFAULT_SERVER.serverIp.isEmpty() && !CfgModpack.DEFAULT_SERVER.serverName.isEmpty()) {
             ServerHandler.addServer();
+        }
+
+        if (CfgModpack.STARTUP_TIMER.enable) {
+            MinecraftForge.EVENT_BUS.register(new HistroyHandler());
         }
 
         // init getters

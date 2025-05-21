@@ -261,6 +261,11 @@
   - light the portal back to the overworld
   - generate an end gateway
 
+### [Startup Timer](https://www.curseforge.com/minecraft/mc-mods/startup-timer)
+
+- added my own version
+- has a few more config options
+
 ### [Hide Item Names](https://www.curseforge.com/minecraft/mc-mods/hide-item-names)
 
 - licensed under MIT

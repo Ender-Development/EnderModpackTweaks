@@ -3,6 +3,7 @@ package io.enderdev.endermodpacktweaks.core;
 import com.google.common.collect.ImmutableMap;
 import io.enderdev.endermodpacktweaks.config.CfgFeatures;
 import io.enderdev.endermodpacktweaks.config.CfgMinecraft;
+import io.enderdev.endermodpacktweaks.config.CfgModpack;
 import net.minecraft.launchwrapper.Launch;
 import net.minecraft.launchwrapper.LaunchClassLoader;
 import net.minecraftforge.common.ForgeVersion;
@@ -34,7 +35,7 @@ public class EMTLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader {
             put("mixins/mixins.emt.minecraft.obsidianspike.json", () -> CfgMinecraft.OBSIDIAN_SPIKE.enable);
             put("mixins/mixins.emt.minecraft.endisland.json", () -> CfgMinecraft.END_ISLAND.enable);
             put("mixins/mixins.emt.minecraft.bossproof.json", () -> CfgFeatures.BOSS_PROOF_BLOCKS.enable);
-            put("mixins/mixins.emt.minecraftforge.json", () -> true);
+            put("mixins/mixins.emt.minecraftforge.json", () -> CfgModpack.STARTUP_TIMER.enable);
         }
     });
 

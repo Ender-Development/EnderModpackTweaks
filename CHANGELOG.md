@@ -2,6 +2,7 @@
 
 ## [0.5.6]
 
+- 🆕 added my own version of a startup timer with additional config options
 - 🆕 update screen text can now be translated
 - 🔄 small improvement when comparing versions for the updater
 - 🧰 fixed update screen not showing

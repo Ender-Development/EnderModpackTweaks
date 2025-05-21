@@ -83,6 +83,8 @@ cfg.endermodpacktweaks.modpack.pack_updater=Pack Updater
 cfg.endermodpacktweaks.modpack.pack_updater.tooltip=Check if there is a newer version of the current modpack available.
 cfg.endermodpacktweaks.modpack.server_message=Server Message
 cfg.endermodpacktweaks.modpack.server_message.tooltip=Adds a message to the server log when the modpack is loaded.
+cfg.endermodpacktweaks.modpack.startup_timer=Startup Timer
+cfg.endermodpacktweaks.modpack.startup_timer.tooltip=Adds a startup timer to the splash screen as well as the main menu.
 
 cfg.endermodpacktweaks.tweaks.astral_sorcery=Astral Sorcery
 cfg.endermodpacktweaks.tweaks.astral_sorcery.tooltip=Tweaks for the Astral Sorcery mod.
@@ -163,6 +165,8 @@ msg.endermodpacktweaks.update.newversion=-> Available Version: [ %s ]
 
 msg.endermodpacktweaks.update.mainmenu=Continue to Main Menu
 msg.endermodpacktweaks.update.openurl=More Info (Opens Browser!)
+
+msg.endermodpacktweaks.timer=Startup took %sm %ss.
 
 keybind.endermodpacktweaks.toggle=Toggle Mob Health Display
 

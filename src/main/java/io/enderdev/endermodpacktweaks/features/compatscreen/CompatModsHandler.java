@@ -36,6 +36,8 @@ public class CompatModsHandler {
             put("witherproof", () -> CfgFeatures.BOSS_PROOF_BLOCKS.enable);
             put("packupdater", () -> CfgModpack.PACK_UPDATER.enable);
             put("itlt", () -> CfgModpack.CUSTOMIZATION.enable || CfgModpack.DEFAULT_SERVER.enable);
+            put("startuptimer", () -> CfgModpack.STARTUP_TIMER.enable);
+            put("modernsplash", () -> CfgModpack.STARTUP_TIMER.enable);
         }
     });
 
