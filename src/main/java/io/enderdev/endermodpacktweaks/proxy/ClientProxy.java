@@ -89,10 +89,6 @@ public class ClientProxy extends CommonProxy implements IProxy {
             MinecraftForge.EVENT_BUS.register(new UpdateHandler());
         }
 
-        if (CfgModpack.CUSTOMIZATION.enable && CfgModpack.CUSTOMIZATION.windowIcon) {
-            IconHandler.changeIcon();
-        }
-
         if (CfgModpack.DEFAULT_SERVER.enable && !CfgModpack.DEFAULT_SERVER.serverIp.isEmpty() && !CfgModpack.DEFAULT_SERVER.serverName.isEmpty()) {
             ServerHandler.addServer();
         }
@@ -143,12 +139,19 @@ public class ClientProxy extends CommonProxy implements IProxy {
         if (Loader.isModLoaded("assetmover") && CfgFeatures.BOSS_BAR.enable) {
             EMTAssetMover.getAssets();
         }
-        if (CfgModpack.CUSTOMIZATION.enable && CfgModpack.CUSTOMIZATION.windowTitle) {
-            String title = CfgModpack.CUSTOMIZATION.windowTitleFormat
-                    .replace("[name]", CfgModpack.MODPACK.modpackName)
-                    .replace("[version]", CfgModpack.MODPACK.modpackVersion)
-                    .replace("[author]", CfgModpack.MODPACK.modpackAuthor);
-            Display.setTitle(title);
+        if (CfgModpack.CUSTOMIZATION.enable) {
+
+            if (CfgModpack.CUSTOMIZATION.windowIcon) {
+                IconHandler.changeIcon();
+            }
+
+            if (CfgModpack.CUSTOMIZATION.windowTitle) {
+                String title = CfgModpack.CUSTOMIZATION.windowTitleFormat
+                        .replace("[name]", CfgModpack.MODPACK.modpackName)
+                        .replace("[version]", CfgModpack.MODPACK.modpackVersion)
+                        .replace("[author]", CfgModpack.MODPACK.modpackAuthor);
+                Display.setTitle(title);
+            }
         }
     }
 

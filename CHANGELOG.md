@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.6]
+
+- 🆕 update screen text can now be translated
+- 🔄 small improvement when comparing versions for the updater
+- 🧰 fixed update screen not showing
+- 🧰 fixed window icon getting changed later than window title
+
 ## [0.5.5]
 
 - 🆕 merged [It's the little things](https://www.curseforge.com/minecraft/mc-mods/its-the-little-things)
@@ -8,8 +15,8 @@
 - 🆕 merged [Mod Pack Update Checker](https://www.curseforge.com/minecraft/mc-mods/mod-pack-update-checker)
 - 🆕 added boss bars to 'Rats'
 - 🆕 allow the mob health renderer to linger, when using the "focused only" mode (thanks to rozbrajaczpoziomow)
-- 🧰 fix boss bar renderer being off center
-- 🧰 fix Item Name Hide tweak breaking under certain circumstances
+- 🧰 fixed boss bar renderer being off center
+- 🧰 fixed Item Name Hide tweak breaking under certain circumstances
 - ⚙ various small improvements by rozbrajaczpoziomow
 
 ## [0.5.4]

@@ -1,7 +1,7 @@
 package io.enderdev.endermodpacktweaks.features.modpackinfo;
 
-import io.enderdev.endermodpacktweaks.EnderModpackTweaks;
 import io.enderdev.endermodpacktweaks.config.CfgModpack;
+import io.enderdev.endermodpacktweaks.utils.EmtWeb;
 import lumien.custommainmenu.gui.GuiCustom;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.*;
@@ -10,8 +10,6 @@ import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import java.net.URI;
 
 @SideOnly(Side.CLIENT)
 public class ModpackInfoEventHandler implements GuiYesNoCallback {
@@ -47,15 +45,7 @@ public class ModpackInfoEventHandler implements GuiYesNoCallback {
             Minecraft.getMinecraft().displayGuiScreen(null);
             return;
         }
-        try {
-            String url = getUrl(id);
-            Class<?> oclass = Class.forName("java.awt.Desktop");
-            Object object = oclass.getMethod("getDesktop").invoke(null);
-            oclass.getMethod("browse", new Class[]{URI.class}).invoke(object, new URI(url));
-        } catch (Throwable throwable1) {
-            Throwable throwable = throwable1.getCause();
-            EnderModpackTweaks.LOGGER.error("Couldn't open link: {}", throwable == null ? "<UNKNOWN>" : throwable.getMessage());
-        }
+        EmtWeb.openUrl(getUrl(id));
     }
 
     private String getUrl(int id) {

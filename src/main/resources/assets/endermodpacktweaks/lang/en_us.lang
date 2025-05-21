@@ -156,6 +156,14 @@ msg.endermodpacktweaks.obsoletemods.warning1=Ender's Modpack Tweaks has replaced
 msg.endermodpacktweaks.obsoletemods.warning2=Therefore, the following mods are now incompatible with Ender's Modpack Tweaks:
 msg.endermodpacktweaks.obsoletemods.warning3=Consider removing them from your game or disabling the respective features.
 
+msg.endermodpacktweaks.update.title=An update is available for %s!
+msg.endermodpacktweaks.update.desc=Make sure you visit the modpack page soon to grab the latest. Update so you don't miss out on the new goodies the developers have added!
+msg.endermodpacktweaks.update.oldversion=-> Current Version: [ %s ]
+msg.endermodpacktweaks.update.newversion=-> Available Version: [ %s ]
+
+msg.endermodpacktweaks.update.mainmenu=Continue to Main Menu
+msg.endermodpacktweaks.update.openurl=More Info (Opens Browser!)
+
 keybind.endermodpacktweaks.toggle=Toggle Mob Health Display
 
 endermodpacktweaks.options.search=Search

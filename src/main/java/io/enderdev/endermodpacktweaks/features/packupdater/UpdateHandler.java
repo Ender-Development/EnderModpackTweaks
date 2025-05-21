@@ -8,12 +8,13 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class UpdateHandler {
-    public static boolean showGUI = Updater.INSTANCE.doesNeedUpdate();
+    private boolean flag;
 
     @SubscribeEvent
-    public void onOpenGui(final GuiOpenEvent event) {
-        if (event.getGui() instanceof GuiMainMenu && showGUI) {
+    public void onOpenGui(GuiOpenEvent event) {
+        if (event.getGui() instanceof GuiMainMenu && Updater.INSTANCE.doesNeedUpdate() && !flag) {
             event.setGui(new UpdateGUI(event.getGui()));
+            flag = true;
         }
     }
 }
