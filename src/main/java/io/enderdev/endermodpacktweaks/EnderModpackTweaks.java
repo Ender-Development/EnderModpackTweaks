@@ -36,6 +36,7 @@ public class EnderModpackTweaks {
             + "after:reskillable;"
             + "after:rustic;"
             + "after:simpledifficulty;"
+            + "after:tinyinv;"
             + "after:toolprogression;"
             + "after:waila;";
 

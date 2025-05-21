@@ -12,7 +12,7 @@ import java.util.Map;
 
 @SideOnly(Side.CLIENT)
 public class OverlayHandler {
-    @SubscribeEvent(priority = EventPriority.LOWEST)
+    @SubscribeEvent(priority = EventPriority.LOW)
     public void onRenderGameOverlay(RenderGameOverlayEvent.Pre event) {
         Map<RenderGameOverlayEvent.ElementType, Boolean> hideElements = new HashMap<RenderGameOverlayEvent.ElementType, Boolean>() {
             {

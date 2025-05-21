@@ -3,6 +3,7 @@
 ## [0.5.7]
 
 - 🆕 set a default startup time, if no history is found
+- 🧰 fixed compat with tinyinventory
 
 ## [0.5.6]
 

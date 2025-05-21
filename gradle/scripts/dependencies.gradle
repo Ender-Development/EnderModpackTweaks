@@ -328,4 +328,9 @@ dependencies {
     if (project.debug_rats.toBoolean()) {
         runtimeOnly "curse.maven:rats-ratn-edition-439001:3711122"
     }
+
+    compileOnly rfg.deobf("curse.maven:tinyinv-455299:3251677")
+    if (project.debug_tinyinv.toBoolean()) {
+        runtimeOnly "curse.maven:tinyinv-455299:3251677"
+    }
 }
