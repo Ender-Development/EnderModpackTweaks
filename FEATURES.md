@@ -234,8 +234,11 @@
 ### [Client Tweaks](https://www.curseforge.com/minecraft/mc-mods/client-tweaks)
 
 - licensed under MIT
-- disable Auto-Jump (this includes the Button in the Controls)
-- add a master Volume Slider to the main options screen
+- EMT doesn't contain all of it's features to avoid duplication
+- if you want a specific tweak from it let me know
+- the following tweaks are part of EMT right now:
+  - disable Auto-Jump (this includes the Button in the Controls)
+  - add a master Volume Slider to the main options screen
 
 ### [ChunkOMG](https://www.curseforge.com/minecraft/mc-mods/chunkomg)
 
@@ -286,6 +289,8 @@
 - originally made for RotN
 - last update was in October 2020
 - merged as it can be seen as a modpack tool
+- screen can now be localized
+- better version matching
 
 ### [Neat](https://www.curseforge.com/minecraft/mc-mods/neat)
 
