@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.5.7]
+
+- 🆕 set a default startup time, if no history is found
+
 ## [0.5.6]
 
 - 🆕 added my own version of a startup timer with additional config options

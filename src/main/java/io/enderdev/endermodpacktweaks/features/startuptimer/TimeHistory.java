@@ -44,8 +44,7 @@ public class TimeHistory {
         } catch (IOException e) {
             EnderModpackTweaks.LOGGER.error(String.valueOf(e));
         }
-
-        return 0;
+        return CfgModpack.STARTUP_TIMER.defaultTime;
     }
 
     public static void saveHistory(long startupTime) {

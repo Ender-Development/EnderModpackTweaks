@@ -243,6 +243,10 @@ public class CfgModpack {
         @Config.Name("[06] Display Color")
         @Config.Comment("The color of the time display. Format: #RRGGBAA")
         public String color = "#FFFFFFFF";
+
+        @Config.Name("[06] Default Startup Time")
+        @Config.Comment("The default startup time before the measuring took over. In milliseconds, 0 to disable.")
+        public int defaultTime = 0;
     }
 
     @Mod.EventBusSubscriber(modid = Tags.MOD_ID)
