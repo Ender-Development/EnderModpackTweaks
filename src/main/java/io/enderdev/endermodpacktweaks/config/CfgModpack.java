@@ -221,7 +221,7 @@ public class CfgModpack {
         @Config.RequiresMcRestart
         @Config.Name("[01] Enable Startup Timer")
         @Config.Comment("Enable the Startup Timer feature and display the pack load time.")
-        public boolean enable = true;
+        public boolean enable = false;
 
         @Config.RequiresMcRestart
         @Config.Name("[02] Timer History Size")
