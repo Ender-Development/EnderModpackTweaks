@@ -59,11 +59,12 @@ public class CfgModpack {
         @Config.Name("[03] Window title format")
         @Config.Comment({
                 "Customize how the window title is displayed",
+                "Format: <lang_key>;<your_title>",
                 "[name] - will be replaced by the modpack name",
                 "[version] - will be replaced by the modpack version",
                 "[author] - will be replaced by the modpack author"
         })
-        public String windowTitleFormat = "[name] ([version]) by [author]";
+        public String[] windowTitleFormat = new String[]{"en_us;[name] ([version]) by [author]"};
 
         @Config.RequiresMcRestart
         @Config.Name("[04] Replace window icon")

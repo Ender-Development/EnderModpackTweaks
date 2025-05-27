@@ -11,6 +11,7 @@ import io.enderdev.endermodpacktweaks.features.keybinds.KeybindHandler;
 import io.enderdev.endermodpacktweaks.features.modpackinfo.IconHandler;
 import io.enderdev.endermodpacktweaks.features.modpackinfo.ModpackInfoEventHandler;
 import io.enderdev.endermodpacktweaks.features.modpackinfo.ServerHandler;
+import io.enderdev.endermodpacktweaks.features.modpackinfo.TitleHandler;
 import io.enderdev.endermodpacktweaks.features.noautojump.AutoJumpHandler;
 import io.enderdev.endermodpacktweaks.features.nofovchange.FovHandler;
 import io.enderdev.endermodpacktweaks.features.noinventorycrafting.InventoryHandler;
@@ -145,17 +146,11 @@ public class ClientProxy extends CommonProxy implements IProxy {
             EMTAssetMover.getAssets();
         }
         if (CfgModpack.CUSTOMIZATION.enable) {
-
             if (CfgModpack.CUSTOMIZATION.windowIcon) {
                 IconHandler.changeIcon();
             }
-
             if (CfgModpack.CUSTOMIZATION.windowTitle) {
-                String title = CfgModpack.CUSTOMIZATION.windowTitleFormat
-                        .replace("[name]", CfgModpack.MODPACK.modpackName)
-                        .replace("[version]", CfgModpack.MODPACK.modpackVersion)
-                        .replace("[author]", CfgModpack.MODPACK.modpackAuthor);
-                Display.setTitle(title);
+                Display.setTitle(TitleHandler.getTitle());
             }
         }
     }
