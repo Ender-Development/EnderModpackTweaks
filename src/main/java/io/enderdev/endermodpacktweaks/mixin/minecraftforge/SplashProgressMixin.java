@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.lang.reflect.Field;
 
-
+@SuppressWarnings("all")
 @Mixin(targets = { "net/minecraftforge/fml/client/SplashProgress$2" })
 public abstract class SplashProgressMixin {
     @Shadow
