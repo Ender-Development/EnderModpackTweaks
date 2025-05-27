@@ -4,6 +4,7 @@
 
 - 🆕 set a default startup time, if no history is found
 - 🧰 fixed compat with tinyinventory
+- 🧰 fixed crash with startup time, when starting the pack to often
 
 ## [0.5.6]
 

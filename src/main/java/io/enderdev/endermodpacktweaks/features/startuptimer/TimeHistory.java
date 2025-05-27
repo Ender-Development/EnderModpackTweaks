@@ -84,7 +84,7 @@ public class TimeHistory {
 
         jw.name("times");
         jw.beginArray();
-        if (times.length > CfgModpack.STARTUP_TIMER.sizeHistory - 1) {
+        if (times.length > CfgModpack.STARTUP_TIMER.sizeHistory) {
             for (int i = times.length - CfgModpack.STARTUP_TIMER.sizeHistory - 1; i < times.length; i++) {
                 jw.value(times[i]);
             }
