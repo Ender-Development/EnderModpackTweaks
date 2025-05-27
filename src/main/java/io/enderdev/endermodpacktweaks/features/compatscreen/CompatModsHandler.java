@@ -38,6 +38,7 @@ public class CompatModsHandler {
             put("itlt", () -> CfgModpack.CUSTOMIZATION.enable || CfgModpack.DEFAULT_SERVER.enable);
             put("startuptimer", () -> CfgModpack.STARTUP_TIMER.enable);
             put("modernsplash", () -> CfgModpack.STARTUP_TIMER.enable);
+            put("forcedresourcepacks", () -> CfgFeatures.FORCED_RESOURCEPACK.enable);
         }
     });
 

@@ -261,10 +261,11 @@
   - light the portal back to the overworld
   - generate an end gateway
 
-### [Startup Timer](https://www.curseforge.com/minecraft/mc-mods/startup-timer)
+### [Forced Resourcepacks](https://www.curseforge.com/minecraft/mc-mods/forced-resourcepacks)
 
-- added my own version
-- has a few more config options
+- licensed under ARR
+- rewrote its functionality
+- added an option to not remove unlisted resourcepacks
 
 ### [Hide Item Names](https://www.curseforge.com/minecraft/mc-mods/hide-item-names)
 
@@ -280,6 +281,7 @@
 
 - licensed under MIT
 - title can now use general modpack information
+- title can now be localized via config
 - path to icon can be customized
 - general cleanup
 
@@ -310,6 +312,11 @@
 
 - licensed under ARR
 - rewrote its functionality from scratch
+
+### [Startup Timer](https://www.curseforge.com/minecraft/mc-mods/startup-timer)
+
+- added my own version
+- has a few more config options
 
 ### [Witherproof](https://www.curseforge.com/minecraft/mc-mods/witherproof)
 

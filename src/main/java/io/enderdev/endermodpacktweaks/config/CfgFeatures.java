@@ -38,6 +38,28 @@ public class CfgFeatures {
         public boolean enable = false;
     }
 
+    @Config.Name("forced_resourcepack")
+    @Config.LangKey("cfg.endermodpacktweaks.features.forced_resourcepack")
+    @Config.Comment("Autoload a selection of resourcepacks.")
+    public static final ForcedResourcepack FORCED_RESOURCEPACK = new ForcedResourcepack();
+
+    public static class ForcedResourcepack {
+        @Config.RequiresMcRestart
+        @Config.Name("[01] Enable Forced Resourcepacks")
+        @Config.Comment("Load Resourcepacks by default.")
+        public boolean enable = false;
+
+        @Config.RequiresMcRestart
+        @Config.Name("[02] Remove unlisted")
+        @Config.Comment("Should Resourcepacks that aren't on the list be removed?")
+        public boolean remove = false;
+
+        @Config.RequiresMcRestart
+        @Config.Name("[03] Default Resource Packs")
+        @Config.Comment("Resourcepacks will be loaded from first to last.")
+        public String[] resourcepacks = new String[]{};
+    }
+
     @Config.Name("improved_keybinds")
     @Config.LangKey("cfg.endermodpacktweaks.features.improved_keybinds")
     @Config.Comment("Improved keybinds for the game.")

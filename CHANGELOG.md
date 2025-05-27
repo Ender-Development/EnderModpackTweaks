@@ -2,7 +2,9 @@
 
 ## [0.5.7]
 
+- 🆕 added option to force specific resource packs
 - 🆕 set a default startup time, if no history is found
+- 🔄 window title can now be localized via config
 - 🧰 fixed compat with tinyinventory
 - 🧰 fixed crash with startup time, when starting the pack to often
 

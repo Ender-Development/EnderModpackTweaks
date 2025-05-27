@@ -6,6 +6,7 @@ import io.enderdev.endermodpacktweaks.config.CfgMinecraft;
 import io.enderdev.endermodpacktweaks.config.CfgModpack;
 import io.enderdev.endermodpacktweaks.core.EMTAssetMover;
 import io.enderdev.endermodpacktweaks.features.additionalmastervolume.MasterVolumeHandler;
+import io.enderdev.endermodpacktweaks.features.forcedresourcepack.ResourcePackHandler;
 import io.enderdev.endermodpacktweaks.features.healthbar.HealthBarHandler;
 import io.enderdev.endermodpacktweaks.features.keybinds.KeybindHandler;
 import io.enderdev.endermodpacktweaks.features.modpackinfo.IconHandler;
@@ -70,6 +71,10 @@ public class ClientProxy extends CommonProxy implements IProxy {
 
         if (CfgModpack.OPTIONS_MENU_BUTTONS.enable) {
             MinecraftForge.EVENT_BUS.register(new ModpackInfoEventHandler());
+        }
+
+        if (CfgFeatures.FORCED_RESOURCEPACK.enable) {
+            ResourcePackHandler.loadResourcepacks();
         }
 
         if (CfgFeatures.IMPROVED_KEYBINDS.enable) {

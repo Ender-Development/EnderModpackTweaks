@@ -10,6 +10,7 @@ import java.util.Arrays;
 @SideOnly(Side.CLIENT)
 public final class TitleHandler {
     public static String getTitle() {
+        Minecraft.getMinecraft().gameSettings.loadOptions();
         String language = Minecraft.getMinecraft().gameSettings.language;
         String[] titles = CfgModpack.CUSTOMIZATION.windowTitleFormat;
         // This is just here so the game doesn't crash when updating from a previous version.
