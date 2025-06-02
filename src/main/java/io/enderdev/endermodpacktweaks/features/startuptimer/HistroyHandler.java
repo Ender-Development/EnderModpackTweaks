@@ -7,6 +7,7 @@ import lumien.custommainmenu.gui.GuiCustom;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.util.Tuple;
 import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.fml.common.Loader;
@@ -42,7 +43,8 @@ public class HistroyHandler {
 
             String txt = I18n.format("msg.endermodpacktweaks.timer", minutes(), seconds());
             Color color = EmtColor.parseColorFromHexString(CfgModpack.STARTUP_TIMER.color);
-            Minecraft.getMinecraft().fontRenderer.drawStringWithShadow(txt, (float) ((event.getGui().width - Minecraft.getMinecraft().fontRenderer.getStringWidth(txt)) / 2) + CfgModpack.STARTUP_TIMER.xOffset, 10 + CfgModpack.STARTUP_TIMER.yOffset, color.getRGB());
+            Tuple<Integer, Integer> coordinates = getCoordinates(event.getGui().width, event.getGui().height, Minecraft.getMinecraft().fontRenderer.getStringWidth(txt), Minecraft.getMinecraft().fontRenderer.FONT_HEIGHT);
+            Minecraft.getMinecraft().fontRenderer.drawStringWithShadow(txt, coordinates.getFirst(), coordinates.getSecond(), color.getRGB());
         }
     }
 
@@ -52,5 +54,51 @@ public class HistroyHandler {
 
     private long seconds() {
         return (done_time / 1000) % 60;
+    }
+
+    private Tuple<Integer, Integer> getCoordinates(int width, int height, int stringLength, int stringHeight) {
+        int x;
+        int y;
+
+        switch (CfgModpack.STARTUP_TIMER.anchor) {
+            case TOP_CENTER:
+                x = (width - stringLength) / 2;
+                y = 0;
+                break;
+            case TOP_RIGHT:
+                x = width - stringLength;
+                y = 0;
+                break;
+            case MIDDLE_LEFT:
+                x = 0;
+                y = (height - stringHeight) / 2;
+                break;
+            case MIDDLE_CENTER:
+                x = (width - stringLength) / 2;
+                y = (height - stringHeight) / 2;
+                break;
+            case MIDDLE_RIGHT:
+                x = width - stringLength;
+                y = (height - stringHeight) / 2;
+                break;
+            case BOTTOM_LEFT:
+                x = 0;
+                y = height - stringHeight;
+                break;
+            case BOTTOM_CENTER:
+                x = (width - stringLength) / 2;
+                y = height - stringHeight;
+                break;
+            case BOTTOM_RIGHT:
+                x = width - stringLength;
+                y = height - stringHeight;
+                break;
+            case TOP_LEFT:
+            default:
+                x = 0;
+                y = 0;
+        }
+
+        return new Tuple<>(x + CfgModpack.STARTUP_TIMER.xOffset, y + CfgModpack.STARTUP_TIMER.yOffset);
     }
 }

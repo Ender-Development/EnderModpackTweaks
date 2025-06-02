@@ -239,7 +239,7 @@ public class CfgModpack {
 
         @Config.Name("[05] Display Y-Offset")
         @Config.Comment("The y offset of the time display.")
-        public int yOffset = 0;
+        public int yOffset = 10;
 
         @Config.Name("[06] Display Color")
         @Config.Comment("The color of the time display. Format: #RRGGBAA")
@@ -257,6 +257,10 @@ public class CfgModpack {
                 "[seconds] - will be replaced with the seconds it took for the pack to start"
         })
         public String timeFormat = "[minutes]m [seconds]s";
+
+        @Config.Name("[08] Default Display Location")
+        @Config.Comment("Where the Startup Time String should anchored to.")
+        public EnumGuiPosition anchor = EnumGuiPosition.TOP_CENTER;
     }
 
     @Mod.EventBusSubscriber(modid = Tags.MOD_ID)
