@@ -9,10 +9,8 @@ import io.enderdev.endermodpacktweaks.features.additionalmastervolume.MasterVolu
 import io.enderdev.endermodpacktweaks.features.forcedresourcepack.ResourcePackHandler;
 import io.enderdev.endermodpacktweaks.features.healthbar.HealthBarHandler;
 import io.enderdev.endermodpacktweaks.features.keybinds.KeybindHandler;
-import io.enderdev.endermodpacktweaks.features.modpackinfo.IconHandler;
 import io.enderdev.endermodpacktweaks.features.modpackinfo.ModpackInfoEventHandler;
 import io.enderdev.endermodpacktweaks.features.modpackinfo.ServerHandler;
-import io.enderdev.endermodpacktweaks.features.modpackinfo.TitleHandler;
 import io.enderdev.endermodpacktweaks.features.noautojump.AutoJumpHandler;
 import io.enderdev.endermodpacktweaks.features.nofovchange.FovHandler;
 import io.enderdev.endermodpacktweaks.features.noinventorycrafting.InventoryHandler;
@@ -29,7 +27,6 @@ import net.minecraft.client.settings.GameSettings;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.*;
-import org.lwjgl.opengl.Display;
 
 import java.io.IOException;
 
@@ -149,14 +146,6 @@ public class ClientProxy extends CommonProxy implements IProxy {
         super.construct(event);
         if (Loader.isModLoaded("assetmover") && CfgFeatures.BOSS_BAR.enable) {
             EMTAssetMover.getAssets();
-        }
-        if (CfgModpack.CUSTOMIZATION.enable) {
-            if (CfgModpack.CUSTOMIZATION.windowIcon) {
-                IconHandler.changeIcon();
-            }
-            if (CfgModpack.CUSTOMIZATION.windowTitle) {
-                Display.setTitle(TitleHandler.getTitle());
-            }
         }
     }
 

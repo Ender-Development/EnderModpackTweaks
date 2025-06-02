@@ -8,17 +8,19 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.opengl.Display;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.nio.file.Paths;
 
 @SideOnly(Side.CLIENT)
 public class IconHandler {
-    public static void changeIcon() {
+    public static void changeIcon() throws FileNotFoundException {
         final File icon = Paths.get(Minecraft.getMinecraft().gameDir.getAbsolutePath(), CfgModpack.CUSTOMIZATION.windowIconPath).toFile();
         if (icon.exists() && !icon.isDirectory()) {
             EnderModpackTweaks.LOGGER.debug("Found modpack icon!");
             Display.setIcon(IconLoader.load(icon));
         } else {
             EnderModpackTweaks.LOGGER.error("Unable to find modpack icon at {}!", icon.getAbsolutePath());
+            throw new FileNotFoundException("Unable to find modpack icon!");
         }
     }
 }
