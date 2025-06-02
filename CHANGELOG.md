@@ -1,12 +1,19 @@
 # Changelog
 
+## [0.5.8]
+
+- 🔄 window title and icon are now set before the window is created
+- 🔄 moved start up time string format to config, default is now equivalent with the main menu string
+- 🔄 main menu startup string can now be anchored to different positions
+- 🧰 fixed window icon not showing up in taskbar
+
 ## [0.5.7]
 
 - 🆕 added option to force specific resource packs
 - 🆕 set a default startup time, if no history is found
 - 🔄 window title can now be localized via config (please check your `modpack.cfg`)
 - 🧰 fixed compat with tinyinventory
-- 🧰 fixed crash with startup time, when starting the pack to often
+- 🧰 fixed crash with startup time, when starting the pack too often
 
 ## [0.5.6]
 
