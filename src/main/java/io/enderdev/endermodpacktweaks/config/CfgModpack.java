@@ -248,6 +248,15 @@ public class CfgModpack {
         @Config.Name("[06] Default Startup Time")
         @Config.Comment("The default startup time before the measuring took over. In milliseconds, 0 to disable.")
         public int defaultTime = 0;
+
+        @Config.RequiresMcRestart
+        @Config.Name("[07] Time format")
+        @Config.Comment({
+                "Customize how the start time is displayed",
+                "[minutes] - will be replaced with the minutes it took for the pack to start",
+                "[seconds] - will be replaced with the seconds it took for the pack to start"
+        })
+        public String timeFormat = "[minutes]m [seconds]s";
     }
 
     @Mod.EventBusSubscriber(modid = Tags.MOD_ID)

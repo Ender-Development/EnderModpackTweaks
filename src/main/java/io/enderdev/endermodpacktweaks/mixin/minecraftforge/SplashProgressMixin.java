@@ -1,6 +1,7 @@
 package io.enderdev.endermodpacktweaks.mixin.minecraftforge;
 
 import io.enderdev.endermodpacktweaks.EnderModpackTweaks;
+import io.enderdev.endermodpacktweaks.config.CfgModpack;
 import io.enderdev.endermodpacktweaks.features.startuptimer.HistroyHandler;
 import io.enderdev.endermodpacktweaks.features.startuptimer.TimeHistory;
 import net.minecraft.client.gui.FontRenderer;
@@ -69,13 +70,13 @@ public abstract class SplashProgressMixin {
         long minutes = (startupTime / 1000) / 60;
         long seconds = (startupTime / 1000) % 60;
 
-        String str = String.format("Startup: %sm%ss", minutes, seconds);
+        String str = "Startup: " + CfgModpack.STARTUP_TIMER.timeFormat.replace("[minutes]", String.valueOf(minutes)).replace("[seconds]", String.valueOf(seconds));
 
         if(TimeHistory.getEstimateTime() > 0){
             long ex_minutes = (TimeHistory.getEstimateTime() / 1000) / 60;
             long ex_seconds = (TimeHistory.getEstimateTime() / 1000) % 60;
 
-            str += String.format(" / %sm%ss", ex_minutes, ex_seconds);
+            str += " / " +  CfgModpack.STARTUP_TIMER.timeFormat.replace("[minutes]", String.valueOf(ex_minutes)).replace("[seconds]", String.valueOf(ex_seconds));
         }
 
         return str;

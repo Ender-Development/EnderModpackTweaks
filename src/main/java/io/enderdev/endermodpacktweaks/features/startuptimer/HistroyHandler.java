@@ -29,7 +29,7 @@ public class HistroyHandler {
         if (!flag && event.getGui() instanceof GuiMainMenu) {
             flag = true;
             done_time = System.currentTimeMillis() - startupInstant;
-            EnderModpackTweaks.LOGGER.info("Startup: {}m{}s", minutes(), seconds());
+            EnderModpackTweaks.LOGGER.info("Startup took: {}", CfgModpack.STARTUP_TIMER.timeFormat.replace("[minutes]", String.valueOf(minutes())).replace("[seconds]", String.valueOf(seconds())));
             TimeHistory.saveHistory(done_time);
         }
     }
