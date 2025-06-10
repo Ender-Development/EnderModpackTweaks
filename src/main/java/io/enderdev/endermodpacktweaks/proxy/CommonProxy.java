@@ -21,12 +21,15 @@ import io.enderdev.endermodpacktweaks.features.playerpotions.VanillaHandler;
 import io.enderdev.endermodpacktweaks.features.servermsg.ServerHandler;
 import io.enderdev.endermodpacktweaks.features.timesync.TimeEventHandler;
 import io.enderdev.endermodpacktweaks.features.worldoptions.WorldOptionsHandler;
+import net.minecraft.block.Block;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.*;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.oredict.OreDictionary;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 public class CommonProxy implements IProxy {
@@ -96,6 +99,25 @@ public class CommonProxy implements IProxy {
     }
 
     public void init(FMLInitializationEvent event) {
+        if (CfgFeatures.BOSS_PROOF_BLOCKS.enable) {
+            Arrays.stream(CfgFeatures.BOSS_PROOF_BLOCKS.defaultWither).forEach(entry -> {
+                Block block = Block.getBlockFromName(entry);
+                if (block != null) {
+                    OreDictionary.registerOre("proofWither", block);
+                } else {
+                    EnderModpackTweaks.LOGGER.error("Unable to parse witherproof block: {}", entry);
+                }
+            });
+
+            Arrays.stream(CfgFeatures.BOSS_PROOF_BLOCKS.defaultEnderDragon).forEach(entry -> {
+                Block block = Block.getBlockFromName(entry);
+                if (block != null) {
+                    OreDictionary.registerOre("proofEnderDragon", block);
+                } else {
+                    EnderModpackTweaks.LOGGER.error("Unable to parse enderdragonproof block: {}", entry);
+                }
+            });
+        }
     }
 
     public void postInit(FMLPostInitializationEvent event) {

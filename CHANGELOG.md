@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.5.9]
+
+- 🆕 set default gamerules via config (setting via world creation screen will be added later)
+- 🔄 added a few default entries for the boss proof ore dictionaries
+
 ## [0.5.8]
 
 - 🔄 window title and icon are now set before the window is created

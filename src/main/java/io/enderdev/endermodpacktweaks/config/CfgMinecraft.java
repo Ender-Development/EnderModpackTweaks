@@ -89,6 +89,28 @@ public class CfgMinecraft {
         public boolean disableFovChange = false;
     }
 
+    @Config.Name("default_gamerule")
+    @Config.LangKey("cfg.endermodpacktweaks.minecraft.default_gamerule")
+    @Config.Comment("Set gamerules for new worlds.")
+    public static final DefaultGamerule DEFAULT_GAMERULE = new DefaultGamerule();
+
+    public static class DefaultGamerule {
+        @Config.RequiresMcRestart
+        @Config.Name("[01] Enable Default Gamerules")
+        @Config.Comment("Allow you to set default gamerules.")
+        public boolean enable = false;
+
+        @Config.RequiresWorldRestart
+        @Config.Name("[02] Default Gamerules")
+        @Config.Comment({
+                "Set the default state of gamerules.",
+                "Format: <gamerule_name>;<value>",
+                "Example: 'keepInventory;true'",
+                "Example: 'randomTickSpeed;3"
+        })
+        public String[] gamerules = new String[]{};
+    }
+
     @Config.Name("dragon")
     @Config.LangKey("cfg.endermodpacktweaks.minecraft.dragon")
     @Config.Comment("Tweaks for the initial Dragon Fight.")
