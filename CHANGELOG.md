@@ -3,9 +3,9 @@
 ## [0.5.9]
 
 - 🆕 set default gamerules via config (setting via world creation screen will be added later)
-- 🆕 fixed an issue in [Modular Materials](https://www.curseforge.com/minecraft/mc-mods/modular-materials), where it registers it's oredicts too late
+- 🆕 fixed an issue in [Modular Materials](https://www.curseforge.com/minecraft/mc-mods/modular-materials), where it registers its oredicts too late
 - 🔄 added a few default entries for the boss proof ore dictionaries
-- 🧰 fmy implementation of controlling is now compatible with [NoCtrl](https://www.curseforge.com/minecraft/mc-mods/noctrl)
+- 🧰 my implementation of controlling is now compatible with [NoCtrl](https://www.curseforge.com/minecraft/mc-mods/noctrl)
 
 ## [0.5.8]
 

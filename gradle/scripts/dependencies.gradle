@@ -104,6 +104,7 @@ dependencies {
     // Mod Compatibility
 
     implementation rfg.deobf("curse.maven:custom-main-menu-226406:2857869")
+    compileOnly rfg.deobf("curse.maven:noctrl-302525:2614687")
 
     implementation rfg.deobf("curse.maven:bookshelf-228525:2836960")
     implementation rfg.deobf("curse.maven:mantle-74924:2713386")
