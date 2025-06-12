@@ -242,7 +242,7 @@ public class GuiNewControls extends GuiControls {
     /**
      * Handles mouse input.
      */
-    public void superSuperHandleMouseInput() {
+    public void superSuperHandleMouseInput() throws IOException {
         int i = Mouse.getEventX() * this.width / this.mc.displayWidth;
         int j = this.height - Mouse.getEventY() * this.height / this.mc.displayHeight - 1;
         int k = Mouse.getEventButton();
@@ -331,7 +331,7 @@ public class GuiNewControls extends GuiControls {
     /**
      * Called when the mouse is clicked. Args : mouseX, mouseY, clickedButton
      */
-    protected void mouseClicked(int mouseX, int mouseY, int mouseButton) {
+    protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException {
         if (this.buttonId != null) {
             this.buttonId.setKeyModifierAndCode(net.minecraftforge.client.settings.KeyModifier.getActiveModifier(), -100 + mouseButton);
             this.options.setOptionKeyBinding(this.buttonId, -100 + mouseButton);
