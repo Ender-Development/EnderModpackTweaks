@@ -333,4 +333,9 @@ dependencies {
     if (project.debug_tinyinv.toBoolean()) {
         runtimeOnly "curse.maven:tinyinv-455299:3251677"
     }
+
+    compileOnly rfg.deobf("curse.maven:modular-materials-381517:4593910")
+    if (project.debug_modularmaterials.toBoolean()) {
+        runtimeOnly "curse.maven:modular-materials-381517:4593910"
+    }
 }

@@ -50,6 +50,7 @@ public class EMTMixinLoader implements ILateMixinLoader {
             put("mixins/mixins.emt.arcaneworld.json", () -> Loader.isModLoaded("arcaneworld") && CfgTweaks.ARCANE_WORLD.enable);
             put("mixins/mixins.emt.custommainmenu.json", () -> Loader.isModLoaded("custommainmenu") && CfgModpack.OPTIONS_MENU_BUTTONS.cmmIntegration);
             put("mixins/mixins.emt.storagenetwork.json", () -> Loader.isModLoaded("storagenetwork") && CfgTweaks.SIMPLE_STORAGE_NETWORK.enable);
+            put("mixins/mixins.emt.modularmaterials.json", () -> Loader.isModLoaded("modularmaterials"));
         }
     });
 
