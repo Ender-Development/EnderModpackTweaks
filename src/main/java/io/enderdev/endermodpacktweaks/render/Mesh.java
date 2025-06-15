@@ -5,7 +5,6 @@ import org.lwjgl.opengl.*;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
-import java.nio.IntBuffer;
 
 public class Mesh {
     private float[] vertices;
@@ -149,7 +148,7 @@ public class Mesh {
 
             instancingVbo = GL15.glGenBuffers();
             GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, instancingVbo);
-            GL15.glBufferData(GL15.GL_ARRAY_BUFFER, instanceDataBuffer, GL15.GL_STATIC_DRAW);
+            GL15.glBufferData(GL15.GL_ARRAY_BUFFER, instanceDataBuffer, GL15.GL_DYNAMIC_DRAW);
 
             if (customInstancingLayout == null) {
                 GL20.glVertexAttribPointer(3, instanceDataUnitSize, GL11.GL_FLOAT, false, instanceDataUnitSize * Float.BYTES, 0);
@@ -172,115 +171,24 @@ public class Mesh {
         setup = true;
     }
 
-    public void updateVerticesByMappedBuffer(float[] newVertices) {
-        if (!setup)
-            throw new IllegalArgumentException("This mesh isn't set up so you can't update");
-        if (newVertices.length != verticesLength)
-            throw new IllegalArgumentException("New vertex array length must matches existing length");
-
-        int prevVbo = GL11.glGetInteger(GL15.GL_ARRAY_BUFFER_BINDING);
-        GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, vbo);
-
-        ByteBuffer mappedBuffer = GL30.glMapBufferRange(GL15.GL_ARRAY_BUFFER, 0, (long) verticesLength * Float.BYTES, GL30.GL_MAP_WRITE_BIT | GL30.GL_MAP_UNSYNCHRONIZED_BIT, vertexBuffer);
-
-        if (mappedBuffer != null) {
-            mappedBuffer.order(ByteOrder.nativeOrder()).asFloatBuffer().put(newVertices);
-            GL15.glUnmapBuffer(GL15.GL_ARRAY_BUFFER);
-        } else
-            throw new RuntimeException("Failed to map buffer");
-
-        GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, prevVbo);
-    }
-
-    public void updateVerticesByBufferSubData(float[] newVertices) {
-        if (!setup)
-            throw new IllegalArgumentException("This mesh isn't set up so you can't update");
-        if (newVertices.length != verticesLength)
-            throw new IllegalArgumentException("New vertex array length must matches existing length");
-
-        FloatBuffer vertexBuffer = ByteBuffer.allocateDirect(newVertices.length * Float.BYTES)
-                .order(ByteOrder.nativeOrder()).asFloatBuffer();
-        vertexBuffer.put(newVertices).flip();
-
-        int prevVbo = GL11.glGetInteger(GL15.GL_ARRAY_BUFFER_BINDING);
-        GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, vbo);
-        GL15.glBufferSubData(GL15.GL_ARRAY_BUFFER, 0, vertexBuffer);
-        GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, prevVbo);
-    }
-
-    public void updateIndicesByMappedBuffer(int[] newIndices) {
-        if (!setup)
-            throw new IllegalArgumentException("This mesh isn't set up so you can't update");
-        if (newIndices.length != indicesLength)
-            throw new IllegalArgumentException("New index array length must matches existing length");
-
-        int prevEbo = GL11.glGetInteger(GL15.GL_ELEMENT_ARRAY_BUFFER_BINDING);
-        GL15.glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, ebo);
-
-        ByteBuffer mappedBuffer = GL30.glMapBufferRange(GL15.GL_ELEMENT_ARRAY_BUFFER, 0, (long) indicesLength * Integer.BYTES, GL30.GL_MAP_WRITE_BIT | GL30.GL_MAP_UNSYNCHRONIZED_BIT, indexBuffer);
-
-        if (mappedBuffer != null) {
-            mappedBuffer.order(ByteOrder.nativeOrder()).asIntBuffer().put(newIndices);
-            GL15.glUnmapBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER);
-        } else
-            throw new RuntimeException("Failed to map buffer");
-
-        GL15.glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, prevEbo);
-    }
-
-    public void updateIndicesByBufferSubData(int[] newIndices) {
-        if (!setup)
-            throw new IllegalArgumentException("This mesh isn't set up so you can't update");
-        if (newIndices.length != indicesLength)
-            throw new IllegalArgumentException("New index array length must matches existing length");
-
-        IntBuffer indexBuffer = ByteBuffer.allocateDirect(newIndices.length * Integer.BYTES)
-                .order(ByteOrder.nativeOrder()).asIntBuffer();
-        indexBuffer.put(newIndices).flip();
-
-        int prevEbo = GL11.glGetInteger(GL15.GL_ELEMENT_ARRAY_BUFFER_BINDING);
-        GL15.glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, ebo);
-        GL15.glBufferSubData(GL15.GL_ELEMENT_ARRAY_BUFFER, 0, indexBuffer);
-        GL15.glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, prevEbo);
-    }
-
-    public void updateInstanceDataByMappedBuffer(float[] newInstanceData) {
+    public void updateInstanceDataByBufferSubData(int offset, float[] newInstanceData) {
         if (!instancing)
-            throw new IllegalArgumentException("This mesh doesn't support instancing");
+            throw new IllegalArgumentException("This mesh doesn't support instancing.");
         if (!setup)
-            throw new IllegalArgumentException("This mesh isn't set up so you can't update");
-        if (newInstanceData.length != instanceDataLength)
-            throw new IllegalArgumentException("New instance data length must matches existing length");
+            throw new IllegalArgumentException("This mesh isn't set up so you can't update.");
+        if (offset + newInstanceData.length * Float.BYTES > instanceDataLength * Float.BYTES)
+            throw new IllegalArgumentException("Allocated instancing VBO size must be greater than or equal to newInstanceData size after offset.");
+
+        instanceDataBuffer.position(0);
+        instanceDataBuffer.clear();
+        FloatBuffer floatView = instanceDataBuffer.asFloatBuffer();
+        floatView.clear();
+        floatView.put(newInstanceData);
+        floatView.flip();
 
         int prevVbo = GL11.glGetInteger(GL15.GL_ARRAY_BUFFER_BINDING);
         GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, instancingVbo);
-
-        ByteBuffer mappedBuffer = GL30.glMapBufferRange(GL15.GL_ARRAY_BUFFER, 0, (long) instanceDataLength * Float.BYTES, GL30.GL_MAP_WRITE_BIT | GL30.GL_MAP_UNSYNCHRONIZED_BIT, instanceDataBuffer);
-
-        if (mappedBuffer != null) {
-            mappedBuffer.order(ByteOrder.nativeOrder()).asFloatBuffer().put(newInstanceData);
-            GL15.glUnmapBuffer(GL15.GL_ARRAY_BUFFER);
-        } else
-            throw new RuntimeException("Failed to map buffer");
-
-        GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, prevVbo);
-    }
-
-    public void updateInstanceDataByBufferSubData(float[] newInstanceData) {
-        if (!instancing)
-            throw new IllegalArgumentException("This mesh doesn't support instancing");
-        if (!setup)
-            throw new IllegalArgumentException("This mesh isn't set up so you can't update");
-        if (newInstanceData.length != instanceDataLength)
-            throw new IllegalArgumentException("New instance data length must matches existing length");
-
-        FloatBuffer instanceDataBuffer = ByteBuffer.allocateDirect(newInstanceData.length * Float.BYTES)
-                .order(ByteOrder.nativeOrder()).asFloatBuffer();
-        instanceDataBuffer.put(newInstanceData).flip();
-
-        int prevVbo = GL11.glGetInteger(GL15.GL_ARRAY_BUFFER_BINDING);
-        GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, instancingVbo);
-        GL15.glBufferSubData(GL15.GL_ARRAY_BUFFER, 0, instanceDataBuffer);
+        GL15.glBufferSubData(GL15.GL_ARRAY_BUFFER, offset, instanceDataBuffer);
         GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, prevVbo);
     }
 

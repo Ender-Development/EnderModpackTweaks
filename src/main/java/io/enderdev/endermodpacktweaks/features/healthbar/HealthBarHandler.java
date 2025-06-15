@@ -59,10 +59,9 @@ public class HealthBarHandler {
 
     @SubscribeEvent
     public void onKeyInput(InputEvent.KeyInputEvent event) {
-        Minecraft mc = Minecraft.getMinecraft();
         boolean wasDown = down;
         down = key.isKeyDown();
-        if (mc.inGameHasFocus && down && !wasDown) {
+        if (MINECRAFT.inGameHasFocus && down && !wasDown) {
             shouldRender = !shouldRender;
         }
     }
@@ -80,7 +79,7 @@ public class HealthBarHandler {
     //</editor-fold>
 
     private final Frustum frustum = new Frustum();
-    private final HashMap<EntityLivingBase, Long> lingerEntities = new HashMap<>();
+    private final Map<EntityLivingBase, Long> lingerEntities = new HashMap<>();
 
     @SuppressWarnings("unchecked")
     @SubscribeEvent
@@ -116,8 +115,7 @@ public class HealthBarHandler {
                     }
                 }
 
-                Map.Entry<EntityLivingBase, Long>[] entries = lingerEntities.entrySet().toArray(new Map.Entry[lingerEntities.size()]);
-                for (Map.Entry<EntityLivingBase, Long> entry : entries) {
+                for (Map.Entry<EntityLivingBase, Long> entry : lingerEntities.entrySet()) {
                     EntityLivingBase entity = entry.getKey();
                     if (systemTime >= entry.getValue()) {
                         lingerEntities.remove(entity);
@@ -142,7 +140,7 @@ public class HealthBarHandler {
         }
 
         // instancing rect health bars
-        if (instancing && CfgFeatures.MOB_HEALTH_BAR.shapeBackground == EnumShapeType.STRAIGHT) {
+        if (instancing && entities.size() > 10 && CfgFeatures.MOB_HEALTH_BAR.shapeBackground == EnumShapeType.STRAIGHT) {
             if (HealthBarInstancingHelper.rectBackgroundRenderer == null) {
                 HealthBarInstancingHelper.rectBackgroundRenderer = (new RectInstancingRenderer(100)).init();
             }
