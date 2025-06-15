@@ -41,9 +41,9 @@ public final class HealthBarInstancingHelper {
                         Math.min(rectGraySpaceRenderer.getMaxInstance(),
                                 Math.min(rectBackgroundRenderer.getMaxInstance(), entities.size())));
 
-        float[] backgroundInstanceData = new float[rectBackgroundRenderer.getInstanceDataLength()];
-        float[] graySpaceInstanceData = new float[rectGraySpaceRenderer.getInstanceDataLength()];
-        float[] healthBarInstanceData = new float[rectHealthBarRenderer.getInstanceDataLength()];
+        float[] backgroundInstanceData = new float[entityListLength * RectInstancingRenderer.INSTANCE_DATA_UNIT_SIZE];
+        float[] graySpaceInstanceData = new float[entityListLength * RectInstancingRenderer.INSTANCE_DATA_UNIT_SIZE];
+        float[] healthBarInstanceData = new float[entityListLength * RectInstancingRenderer.INSTANCE_DATA_UNIT_SIZE];
 
         float padding = CfgFeatures.MOB_HEALTH_BAR.backgroundPadding;
         int bgHeight = CfgFeatures.MOB_HEALTH_BAR.backgroundHeight;
@@ -144,13 +144,13 @@ public final class HealthBarInstancingHelper {
         }
 
         rectBackgroundRenderer.getMesh().setInstancePrimCount(entityListLength);
-        rectBackgroundRenderer.getMesh().updateInstanceDataByBufferSubData(backgroundInstanceData);
+        rectBackgroundRenderer.getMesh().updateInstanceDataByBufferSubData(0, backgroundInstanceData);
 
         rectGraySpaceRenderer.getMesh().setInstancePrimCount(entityListLength);
-        rectGraySpaceRenderer.getMesh().updateInstanceDataByBufferSubData(graySpaceInstanceData);
+        rectGraySpaceRenderer.getMesh().updateInstanceDataByBufferSubData(0, graySpaceInstanceData);
 
         rectHealthBarRenderer.getMesh().setInstancePrimCount(entityListLength);
-        rectHealthBarRenderer.getMesh().updateInstanceDataByBufferSubData(healthBarInstanceData);
+        rectHealthBarRenderer.getMesh().updateInstanceDataByBufferSubData(0, healthBarInstanceData);
 
         // shader program is shared
         ShaderProgram program = rectBackgroundRenderer.getShaderProgram();

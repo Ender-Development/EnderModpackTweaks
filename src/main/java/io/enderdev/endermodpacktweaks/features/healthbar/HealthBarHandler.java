@@ -59,10 +59,9 @@ public class HealthBarHandler {
 
     @SubscribeEvent
     public void onKeyInput(InputEvent.KeyInputEvent event) {
-        Minecraft mc = Minecraft.getMinecraft();
         boolean wasDown = down;
         down = key.isKeyDown();
-        if (mc.inGameHasFocus && down && !wasDown) {
+        if (MINECRAFT.inGameHasFocus && down && !wasDown) {
             shouldRender = !shouldRender;
         }
     }
