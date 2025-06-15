@@ -327,6 +327,7 @@ dependencies {
 
     compileOnly rfg.deobf("curse.maven:rats-ratn-edition-439001:3711122")
     if (project.debug_rats.toBoolean()) {
+        runtimeOnly "curse.maven:llibrary-243298:2504999"
         runtimeOnly "curse.maven:rats-ratn-edition-439001:3711122"
     }
 
