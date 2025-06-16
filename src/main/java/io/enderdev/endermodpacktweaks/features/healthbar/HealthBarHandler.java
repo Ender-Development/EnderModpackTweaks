@@ -115,7 +115,8 @@ public class HealthBarHandler {
                     }
                 }
 
-                for (Map.Entry<EntityLivingBase, Long> entry : lingerEntities.entrySet()) {
+                Map.Entry<EntityLivingBase, Long>[] entries = lingerEntities.entrySet().toArray(new Map.Entry[lingerEntities.size()]);
+                for (Map.Entry<EntityLivingBase, Long> entry : entries) {
                     EntityLivingBase entity = entry.getKey();
                     if (systemTime >= entry.getValue()) {
                         lingerEntities.remove(entity);
