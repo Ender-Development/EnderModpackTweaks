@@ -115,15 +115,12 @@ public class HealthBarHandler {
                     }
                 }
 
-                Map.Entry<EntityLivingBase, Long>[] entries = lingerEntities.entrySet().toArray(new Map.Entry[lingerEntities.size()]);
-                for (Map.Entry<EntityLivingBase, Long> entry : entries) {
-                    EntityLivingBase entity = entry.getKey();
-                    if (systemTime >= entry.getValue()) {
-                        lingerEntities.remove(entity);
-                        continue;
-                    }
-                    collectHealthBarEntities(entities, entity, cameraEntity);
-                }
+                lingerEntities.entrySet().removeIf(entry -> {
+                    if (systemTime >= entry.getValue())
+                        return true;
+                    collectHealthBarEntities(entities, entry.getKey(), cameraEntity);
+                    return false;
+                });
             } else {
                 frustum.setPosition(cameraPos.x, cameraPos.y, cameraPos.z);
                 for (Entity entity : ((WorldClientAccessor) MINECRAFT.world).getEntityList()) {
