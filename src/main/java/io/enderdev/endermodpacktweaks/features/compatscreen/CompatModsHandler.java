@@ -37,7 +37,8 @@ public class CompatModsHandler {
             put("packupdater", () -> CfgModpack.PACK_UPDATER.enable);
             put("itlt", () -> CfgModpack.CUSTOMIZATION.enable || CfgModpack.DEFAULT_SERVER.enable);
             put("startuptimer", () -> CfgModpack.STARTUP_TIMER.enable);
-            put("modernsplash", () -> CfgModpack.STARTUP_TIMER.enable);
+            // "Modern Splash" is actually compatible as my main menu display still applies
+            // put("modernsplash", () -> CfgModpack.STARTUP_TIMER.enable);
             put("forcedresourcepacks", () -> CfgFeatures.FORCED_RESOURCEPACK.enable);
         }
     });
