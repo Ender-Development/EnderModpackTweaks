@@ -72,6 +72,22 @@ public class CfgFeatures {
         };
     }
 
+    @Config.Name("custom_credits")
+    @Config.LangKey("cfg.endermodpacktweaks.features.custom_credits")
+    @Config.Comment("Customize the credits screen with your own text.")
+    public static final CustomCredits CUSTOM_CREDITS = new CustomCredits();
+
+    public static class CustomCredits {
+        @Config.RequiresMcRestart
+        @Config.Name("[01] Enable Custom Credits")
+        @Config.Comment("Enable the Custom Credits feature. This allows you to customize the credits screen.")
+        public boolean enable = false;
+
+        @Config.Name("[02] Always Show Credits")
+        @Config.Comment("Should the credits always be shown? If false, they will only be shown once.")
+        public boolean alwaysShow = false;
+    }
+
     @Config.Name("forced_resourcepack")
     @Config.LangKey("cfg.endermodpacktweaks.features.forced_resourcepack")
     @Config.Comment("Autoload a selection of resourcepacks.")

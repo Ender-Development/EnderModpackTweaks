@@ -15,6 +15,8 @@ cfg.endermodpacktweaks.features.boss_bar=Enhanced Boss Bars
 cfg.endermodpacktweaks.features.boss_bar.tooltip=Replaces the boring default boss bars with something more fancy.
 cfg.endermodpacktweaks.features.boss_proof_blocks=Boss Proof Blocks
 cfg.endermodpacktweaks.features.boss_proof_blocks.tooltip=Make blocks indestructible by the Wither and Ender Dragon.
+cfg.endermodpacktweaks.features.custom_credits=Custom Credits
+cfg.endermodpacktweaks.features.custom_credits.tooltip=Replace the default credits with custom ones.
 cfg.endermodpacktweaks.features.forced_resourcepack=Forced Resourcepacks
 cfg.endermodpacktweaks.features.forced_resourcepack.tooltip=Load resourcepacks by default.
 endermodpacktweaks.forced_resourcepack.resourcepacks=Default Resourcepacks
@@ -90,6 +92,8 @@ cfg.endermodpacktweaks.modpack.server_message.tooltip=Adds a message to the serv
 cfg.endermodpacktweaks.modpack.startup_timer=Startup Timer
 cfg.endermodpacktweaks.modpack.startup_timer.tooltip=Adds a startup timer to the splash screen as well as the main menu.
 
+cfg.endermodpacktweaks.tweaks.arcane_world=Arcane World
+cfg.endermodpacktweaks.tweaks.arcane_world.tooltip=Tweaks for the Arcane World mod.
 cfg.endermodpacktweaks.tweaks.astral_sorcery=Astral Sorcery
 cfg.endermodpacktweaks.tweaks.astral_sorcery.tooltip=Tweaks for the Astral Sorcery mod.
 cfg.endermodpacktweaks.tweaks.bp_opener=Backpack Opener

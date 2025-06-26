@@ -22,6 +22,7 @@ import io.enderdev.endermodpacktweaks.features.servermsg.ServerHandler;
 import io.enderdev.endermodpacktweaks.features.timesync.TimeEventHandler;
 import io.enderdev.endermodpacktweaks.features.worldoptions.WorldOptionsHandler;
 import net.minecraft.block.Block;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Loader;
@@ -102,7 +103,7 @@ public class CommonProxy implements IProxy {
         if (CfgFeatures.BOSS_PROOF_BLOCKS.enable) {
             Arrays.stream(CfgFeatures.BOSS_PROOF_BLOCKS.defaultWither).forEach(entry -> {
                 Block block = Block.getBlockFromName(entry);
-                if (block != null) {
+                if (block != null && !(new ItemStack(block).isEmpty())) {
                     OreDictionary.registerOre("proofWither", block);
                 } else {
                     EnderModpackTweaks.LOGGER.error("Unable to parse witherproof block: {}", entry);
@@ -111,7 +112,7 @@ public class CommonProxy implements IProxy {
 
             Arrays.stream(CfgFeatures.BOSS_PROOF_BLOCKS.defaultEnderDragon).forEach(entry -> {
                 Block block = Block.getBlockFromName(entry);
-                if (block != null) {
+                if (block != null && !(new ItemStack(block).isEmpty())) {
                     OreDictionary.registerOre("proofEnderDragon", block);
                 } else {
                     EnderModpackTweaks.LOGGER.error("Unable to parse enderdragonproof block: {}", entry);

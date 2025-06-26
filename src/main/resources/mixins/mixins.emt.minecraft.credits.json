@@ -1,12 +1,10 @@
 {
-  "package": "io.enderdev.endermodpacktweaks.mixin.custommainmenu",
+  "package": "io.enderdev.endermodpacktweaks.mixin.minecraft",
   "refmap": "mixins.endermodpacktweaks.refmap.json",
   "target": "@env(DEFAULT)",
   "minVersion": "0.8.5",
   "compatibilityLevel": "JAVA_8",
-  "mixins": ["ActionOpenGUIMixin"],
+  "mixins": [],
   "server": [],
-  "client": [
-    "CMMEventHandlerMixin"
-  ]
+  "client": ["NetHandlerPlayClientMixin", "GuiMainMenuMixin"]
 }

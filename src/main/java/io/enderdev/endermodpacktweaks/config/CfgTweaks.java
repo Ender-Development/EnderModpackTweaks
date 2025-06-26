@@ -22,7 +22,6 @@ public class CfgTweaks {
         @Config.Comment("This fixes the lag in the other dimensions.")
         public boolean enable = true;
 
-        @Config.RequiresMcRestart
         @Config.Name("[02] Levitator accepts Redstone")
         @Config.Comment("Allow disabling the Levitator with a redstone signal.")
         public boolean redstoneControl = false;
