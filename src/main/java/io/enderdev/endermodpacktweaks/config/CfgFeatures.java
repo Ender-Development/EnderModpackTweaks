@@ -83,6 +83,16 @@ public class CfgFeatures {
         @Config.Name("[02] Always Show Credits")
         @Config.Comment("Should the credits always be shown? If false, they will only be shown once.")
         public boolean alwaysShow = false;
+
+        @Config.RequiresMcRestart
+        @Config.Name("[03] Custom poem path")
+        @Config.Comment("The path to the poem file. Relative to the modpack folder.")
+        public String pathPoem = "poem.txt";
+
+        @Config.RequiresMcRestart
+        @Config.Name("[04] Custom credits path")
+        @Config.Comment("The path to the custom credits file. Relative to the modpack folder.")
+        public String pathCredit = "credits.txt";
     }
 
     @Config.Name("forced_resourcepack")

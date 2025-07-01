@@ -1,14 +1,23 @@
 package io.enderdev.endermodpacktweaks.features.credits;
 
+import com.google.common.collect.Lists;
+import io.enderdev.endermodpacktweaks.EnderModpackTweaks;
+import io.enderdev.endermodpacktweaks.config.CfgFeatures;
+import io.enderdev.endermodpacktweaks.utils.EmtFile;
 import net.minecraft.client.gui.GuiWinGame;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.client.resources.IResource;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextFormatting;
+import org.apache.commons.io.IOUtils;
 import org.lwjgl.opengl.GL11;
 
-import java.util.ArrayList;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.util.Random;
 
 public class ImprovedCreditsGui extends GuiWinGame {
     private final float speed;
@@ -20,20 +29,62 @@ public class ImprovedCreditsGui extends GuiWinGame {
 
     @Override
     public void initGui() {
-        if (lines == null) {
-            lines = new ArrayList<>();
-            if (poem) {
-                lines.add("Congratulations!");
-                lines.add("You have completed the game.");
-                lines.add("Thank you for playing!");
-                lines.add("");
+        if (this.lines == null) {
+            this.lines = Lists.newArrayList();
+            IResource iresource = null;
+
+            try {
+                String s = "" + TextFormatting.WHITE + TextFormatting.OBFUSCATED + TextFormatting.GREEN + TextFormatting.AQUA;
+                int i = 274;
+
+                if (this.poem) {
+                    File poemFile = EmtFile.getFile(CfgFeatures.CUSTOM_CREDITS.pathPoem);
+                    InputStream inputstream = poemFile.exists() ? EmtFile.getInputStream(poemFile) : this.mc.getResourceManager().getResource(new ResourceLocation("texts/end.txt")).getInputStream();
+                    BufferedReader bufferedreader = new BufferedReader(new InputStreamReader(inputstream, StandardCharsets.UTF_8));
+                    Random random = new Random(8124371L);
+                    String s1;
+
+                    while ((s1 = bufferedreader.readLine()) != null) {
+                        String s2;
+                        String s3;
+
+                        for (s1 = s1.replaceAll("PLAYERNAME", this.mc.getSession().getUsername()); s1.contains(s); s1 = s2 + TextFormatting.WHITE + TextFormatting.OBFUSCATED + "XXXXXXXX".substring(0, random.nextInt(4) + 3) + s3) {
+                            int j = s1.indexOf(s);
+                            s2 = s1.substring(0, j);
+                            s3 = s1.substring(j + s.length());
+                        }
+
+                        this.lines.addAll(this.mc.fontRenderer.listFormattedStringToWidth(s1, 274));
+                        this.lines.add("");
+                    }
+
+                    inputstream.close();
+
+                    for (int k = 0; k < 8; ++k) {
+                        this.lines.add("");
+                    }
+                }
+
+                File creditsFile = EmtFile.getFile(CfgFeatures.CUSTOM_CREDITS.pathCredit);
+                InputStream inputstream1 = creditsFile.exists() ? EmtFile.getInputStream(creditsFile) : this.mc.getResourceManager().getResource(new ResourceLocation("texts/credits.txt")).getInputStream();
+                BufferedReader bufferedreader1 = new BufferedReader(new InputStreamReader(inputstream1, StandardCharsets.UTF_8));
+                String s4;
+
+                while ((s4 = bufferedreader1.readLine()) != null) {
+                    s4 = s4.replaceAll("PLAYERNAME", this.mc.getSession().getUsername());
+                    s4 = s4.replaceAll("\t", "    ");
+                    this.lines.addAll(this.mc.fontRenderer.listFormattedStringToWidth(s4, 274));
+                    this.lines.add("");
+                }
+
+                inputstream1.close();
+                this.totalScrollLength = this.lines.size() * 12;
+            } catch (Exception exception) {
+                EnderModpackTweaks.LOGGER.error("Couldn't load credits", exception);
+            } finally {
+                IOUtils.closeQuietly(iresource);
             }
-            lines.add("[C]=== Credits ===");
-            lines.add("[C]Written by the EnderModPack Tweaks team.");
-            lines.add("");
-            lines.add("[C]Never stop exploring! Never stop creating! Never stop enjoying!");
         }
-        totalScrollLength = lines.size() * 12;
     }
 
     @Override
