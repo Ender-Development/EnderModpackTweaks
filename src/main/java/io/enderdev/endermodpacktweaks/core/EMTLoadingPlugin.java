@@ -4,7 +4,6 @@ import com.google.common.collect.ImmutableMap;
 import io.enderdev.endermodpacktweaks.config.CfgFeatures;
 import io.enderdev.endermodpacktweaks.config.CfgMinecraft;
 import io.enderdev.endermodpacktweaks.config.CfgModpack;
-import io.enderdev.endermodpacktweaks.utils.EmtClass;
 import net.minecraft.launchwrapper.Launch;
 import net.minecraft.launchwrapper.LaunchClassLoader;
 import net.minecraftforge.common.ForgeVersion;
@@ -39,7 +38,6 @@ public class EMTLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader {
             put("mixins/mixins.emt.minecraftforge.json", () -> CfgModpack.STARTUP_TIMER.enable);
             put("mixins/mixins.emt.minecraft.window.json", () -> CfgModpack.CUSTOMIZATION.enable);
             put("mixins/mixins.emt.minecraft.credits.json", () -> CfgFeatures.CUSTOM_CREDITS.enable);
-            put("mixins/mixins.emt.fancymenu.json", () -> EmtClass.isClassPresent("de.keksuccino.fancymenu.mainwindow.MainWindowHandler"));
         }
     });
 
@@ -47,6 +45,7 @@ public class EMTLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader {
         {
             put("mixins/mixins.emt.minecraft.bossbar.json", () -> CfgFeatures.BOSS_BAR.enable);
             put("mixins/mixins.emt.minecraft.client.json", () -> true);
+            put("mixins/mixins.emt.fancymenu.json", () -> true);
         }
     });
 
