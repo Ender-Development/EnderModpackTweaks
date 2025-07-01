@@ -462,6 +462,22 @@ public class CfgTweaks {
         public boolean alwaysShowMatterInfo = false;
     }
 
+    @Config.Name("morph")
+    @Config.LangKey("cfg.endermodpacktweaks.tweaks.morph")
+    @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/morph")
+    public static final Morph MORPH = new Morph();
+
+    public static class Morph {
+        @Config.RequiresMcRestart
+        @Config.Name("[01] Enable Morph Tweaks")
+        @Config.Comment("Enable tweaks for the Morph mod.")
+        public boolean enable = false;
+
+        @Config.Name("[02] Override crappy flight")
+        @Config.Comment("Repalce the 'FlapFlight' ability with the 'Fly' ability, which is much better.")
+        public boolean betterFlight = false;
+    }
+
     @Config.Name("multi_builder_tool")
     @Config.LangKey("cfg.endermodpacktweaks.tweaks.multi_builder_tool")
     @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/multi-builder-tool")

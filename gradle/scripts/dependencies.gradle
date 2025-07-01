@@ -350,4 +350,11 @@ dependencies {
     if (project.debug_custommainmenu.toBoolean()) {
         runtimeOnly "curse.maven:custom-main-menu-226406:2857869"
     }
+
+    compileOnly rfg.deobf("curse.maven:ichunutil-229060:2801262")
+    compileOnly rfg.deobf("curse.maven:morph-229080:2995522")
+    if (project.debug_morph.toBoolean()) {
+        runtimeOnly "curse.maven:ichunutil-229060:2801262"
+        runtimeOnly "curse.maven:morph-229080:2995522"
+    }
 }

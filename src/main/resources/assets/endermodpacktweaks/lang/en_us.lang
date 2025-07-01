@@ -47,6 +47,8 @@ cfg.endermodpacktweaks.features.sync_time.tooltip=Syncs the ingame time with the
 
 cfg.endermodpacktweaks.minecraft.client=Client
 cfg.endermodpacktweaks.minecraft.client.tooltip=Tweaks the client side of the game.
+cfg.endermodpacktweaks.minecraft.default_gamerule=Default Game Rules
+cfg.endermodpacktweaks.minecraft.default_gamerule.tooltip=Sets the default game rules for the world.
 cfg.endermodpacktweaks.minecraft.dragon=Dragon
 cfg.endermodpacktweaks.minecraft.dragon.tooltip=Tweaks for the ender dragon fight.
 cfg.endermodpacktweaks.minecraft.end_gateway=End Gateway
@@ -130,6 +132,8 @@ cfg.endermodpacktweaks.tweaks.lightweight_blood_mechanics=Lightweight Blood Mech
 cfg.endermodpacktweaks.tweaks.lightweight_blood_mechanics.tooltip=Tweaks for the Lightweight Blood Mechanics mod.
 cfg.endermodpacktweaks.tweaks.matter_overdrive=Matter Overdrive
 cfg.endermodpacktweaks.tweaks.matter_overdrive.tooltip=Tweaks for the Matter Overdrive mod.
+cfg.endermodpacktweaks.tweaks.morph=Morph
+cfg.endermodpacktweaks.tweaks.morph.tooltip=Tweaks for the Morph mod.
 cfg.endermodpacktweaks.tweaks.multi_builder_tool=Multi Builder Tool
 cfg.endermodpacktweaks.tweaks.multi_builder_tool.tooltip=Tweaks for the Multi Builder Tool mod.
 cfg.endermodpacktweaks.tweaks.perfect_spawn=Perfect Spawn
