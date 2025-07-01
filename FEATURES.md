@@ -61,10 +61,15 @@
 - Player Effects
     - apply potion effects to the player based on hunger and health
     - similar to the effects of Simple Difficulty
+- Credits
+  - replace the default credits with a custom one
+  - replace the default end poem with a custom one
+  - trigger the credits via a command or advancement
 
 ### [Arcane World](https://www.curseforge.com/minecraft/mc-mods/arcane-world-fixed)
 
 - fix the lag when being in the arena or dungeon dimension
+- the `Levitator` can now be disabled with a redstone signal
 
 ### [Astral Sorcery](https://www.curseforge.com/minecraft/mc-mods/astral-sorcery)
 

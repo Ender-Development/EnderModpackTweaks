@@ -16,7 +16,7 @@ public final class TitleHandler {
         // This is just here so the game doesn't crash when updating from a previous version.
         if (titles == null || titles.length == 0) titles = new String[]{"en_us;[name] ([version]) by [author]"};
         return Arrays.stream(titles)
-                .filter(entry -> entry.split(";")[0].equals(language))
+                .filter(entry -> entry.split(";")[0].equals(language) && entry.split(";").length == 2)
                 .findFirst()
                 .orElse(titles[0])
                 .split(";")[1]

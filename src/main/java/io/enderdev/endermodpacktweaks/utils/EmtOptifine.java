@@ -22,11 +22,7 @@ public final class EmtOptifine {
 
     public static boolean isOptiFineInstalled() {
         if (!checkedOptiFineInstalled) {
-            try {
-                Class.forName(OPTIFINE_CLASS);
-            } catch (ClassNotFoundException ignored) {
-                isOptiFineInstalled = false;
-            }
+            isOptiFineInstalled = EmtClass.isClassPresent(OPTIFINE_CLASS);
             checkedOptiFineInstalled = true;
         }
         return isOptiFineInstalled;

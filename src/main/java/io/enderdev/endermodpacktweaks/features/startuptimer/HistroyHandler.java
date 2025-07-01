@@ -1,11 +1,13 @@
 package io.enderdev.endermodpacktweaks.features.startuptimer;
 
+import de.keksuccino.fancymenu.menu.fancy.guicreator.CustomGuiBase;
 import io.enderdev.endermodpacktweaks.EnderModpackTweaks;
 import io.enderdev.endermodpacktweaks.config.CfgModpack;
 import io.enderdev.endermodpacktweaks.utils.EmtColor;
 import lumien.custommainmenu.gui.GuiCustom;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiMainMenu;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.Tuple;
 import net.minecraftforge.client.event.GuiOpenEvent;
@@ -37,7 +39,7 @@ public class HistroyHandler {
 
     @SubscribeEvent
     public void onGuiDraw(GuiScreenEvent.DrawScreenEvent event) {
-        if (CfgModpack.STARTUP_TIMER.display && (event.getGui() instanceof GuiMainMenu || (Loader.isModLoaded("custommainmenu") && event.getGui() instanceof GuiCustom))) {
+        if (CfgModpack.STARTUP_TIMER.display && checkGui(event.getGui())) {
             float guiScale = (float) Minecraft.getMinecraft().gameSettings.guiScale;
             if (guiScale <= 0) guiScale = 1; // failsafe to prevent divide by 0
 
@@ -54,6 +56,12 @@ public class HistroyHandler {
 
     private long seconds() {
         return (done_time / 1000) % 60;
+    }
+
+    private boolean checkGui(GuiScreen guiScreen) {
+        return (guiScreen) instanceof GuiMainMenu
+                || (Loader.isModLoaded("custommainmenu") && guiScreen instanceof GuiCustom)
+                || (Loader.isModLoaded("fancymenu") && guiScreen instanceof CustomGuiBase);
     }
 
     private Tuple<Integer, Integer> getCoordinates(int width, int height, int stringLength, int stringHeight) {

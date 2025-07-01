@@ -42,16 +42,13 @@ public class CfgFeatures {
         @Config.Comment("These blocks will be unable to be broken by the wither.")
         public String[] defaultWither = new String[]{
                 "minecraft:bedrock",
-                "minecraft:end_portal",
                 "minecraft:end_portal_frame",
                 "minecraft:command_block",
                 "minecraft:repeating_command_block",
                 "minecraft:chain_command_block",
                 "minecraft:barrier",
                 "minecraft:structure_block",
-                "minecraft:structure_void",
-                "minecraft:piston_extension",
-                "minecraft:end_gateway"
+                "minecraft:structure_void"
         };
 
         @Config.RequiresMcRestart
@@ -59,16 +56,16 @@ public class CfgFeatures {
         @Config.Comment("These blocks will be unable to be broken by the ender dragon.")
         public String[] defaultEnderDragon = new String[]{
                 "minecraft:bedrock",
-                "minecraft:end_portal",
                 "minecraft:end_portal_frame",
                 "minecraft:command_block",
                 "minecraft:repeating_command_block",
                 "minecraft:chain_command_block",
                 "minecraft:barrier",
+                "minecraft:structure_block",
+                "minecraft:structure_void",
                 "minecraft:obsidian",
                 "minecraft:end_stone",
-                "minecraft:iron_bars",
-                "minecraft:end_gateway"
+                "minecraft:iron_bars"
         };
     }
 
