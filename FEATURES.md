@@ -154,6 +154,10 @@
 
 - fix registering OreDicts to late for `CraftTweaker` to access them
 
+### [Morph](https://www.curseforge.com/minecraft/mc-mods/morph)
+
+- tweak to replace the FlapFly ability with creative flight, so you no longer kill your spacebar when trying to fly
+
 ### [Multi Builder Tool](https://www.curseforge.com/minecraft/mc-mods/multi-builder-tool)
 
 - fix crash with [Flux Networks](https://github.com/igentuman/multi-builder-tool/issues/11)
