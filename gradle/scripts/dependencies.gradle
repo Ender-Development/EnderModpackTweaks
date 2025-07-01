@@ -102,8 +102,6 @@ dependencies {
     runtimeOnly "CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.1.20.698"
 
     // Mod Compatibility
-
-    implementation rfg.deobf("curse.maven:custom-main-menu-226406:2857869")
     compileOnly rfg.deobf("curse.maven:noctrl-302525:2614687")
 
     implementation rfg.deobf("curse.maven:bookshelf-228525:2836960")
@@ -339,5 +337,17 @@ dependencies {
     compileOnly rfg.deobf("curse.maven:modular-materials-381517:4593910")
     if (project.debug_modularmaterials.toBoolean()) {
         runtimeOnly "curse.maven:modular-materials-381517:4593910"
+    }
+
+    compileOnly rfg.deobf("curse.maven:konkrete-410295:4514895")
+    compileOnly rfg.deobf("curse.maven:fancymenu-367706:4655936")
+    if (project.debug_fancymenu.toBoolean()) {
+        runtimeOnly "curse.maven:konkrete-410295:4514895"
+        runtimeOnly "curse.maven:fancymenu-367706:4655936"
+    }
+
+    compileOnly rfg.deobf("curse.maven:custom-main-menu-226406:2857869")
+    if (project.debug_custommainmenu.toBoolean()) {
+        runtimeOnly "curse.maven:custom-main-menu-226406:2857869"
     }
 }
