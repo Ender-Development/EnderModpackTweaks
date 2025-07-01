@@ -1,5 +1,6 @@
 package io.enderdev.endermodpacktweaks.features.modpackinfo;
 
+import de.keksuccino.fancymenu.menu.fancy.guicreator.CustomGuiBase;
 import io.enderdev.endermodpacktweaks.config.CfgModpack;
 import io.enderdev.endermodpacktweaks.utils.EmtWeb;
 import lumien.custommainmenu.gui.GuiCustom;
@@ -68,6 +69,10 @@ public class ModpackInfoEventHandler implements GuiYesNoCallback {
     }
 
     private boolean guiCheck(Gui gui) {
-        return (gui instanceof GuiMainMenu) || (gui instanceof GuiIngameMenu) || (gui instanceof GuiOptions) || (Loader.isModLoaded("custommainmenu") && gui instanceof GuiCustom);
+        return (gui instanceof GuiMainMenu)
+                || (gui instanceof GuiIngameMenu)
+                || (gui instanceof GuiOptions)
+                || (Loader.isModLoaded("custommainmenu") && gui instanceof GuiCustom)
+                || (Loader.isModLoaded("fancymenu") && gui instanceof CustomGuiBase);
     }
 }
