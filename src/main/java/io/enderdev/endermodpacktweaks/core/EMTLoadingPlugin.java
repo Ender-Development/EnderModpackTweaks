@@ -80,7 +80,7 @@ public class EMTLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader {
 
     @Override
     public String getAccessTransformerClass() {
-        return null;
+        return "io.enderdev.endermodpacktweaks.core.EMTTransformer";
     }
 
     @Override
