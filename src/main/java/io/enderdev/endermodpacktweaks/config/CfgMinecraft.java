@@ -21,21 +21,13 @@ public class CfgMinecraft {
         @Config.Comment("Enable tweaks for the client.")
         public boolean enable = false;
 
-        @Config.Name("[02] Disable Inventory Crafting")
-        @Config.Comment({
-                "This tweak disables the crafting grid in the player inventory.",
-                "Useful for modpacks that want to make the player use a crafting table",
-                "or want to realize crafting in a different way."
-        })
-        public boolean disableInventoryCrafting = false;
-
         @Config.RequiresWorldRestart
-        @Config.Name("[03] Disable Item Names")
+        @Config.Name("[02] Disable Item Names")
         @Config.Comment("This tweak disables the rendering of item names above the hotbar.")
         public boolean disableItemNames = false;
 
         @Config.RequiresMcRestart
-        @Config.Name("[04] Max Render Distance")
+        @Config.Name("[03] Max Render Distance")
         @Config.Comment({
                 "Set the maximum render distance of the client.",
                 "I'm not responsible for any performance issues this may cause.",
@@ -44,47 +36,47 @@ public class CfgMinecraft {
         @Config.RangeInt(min = 2, max = 4096)
         public int maxRenderDistance = 32;
 
-        @Config.Name("[05] Hide Name Tags")
+        @Config.Name("[04] Hide Name Tags")
         @Config.Comment("Hide the name tags of entities.")
         public boolean hideNameTags = false;
 
-        @Config.Name("[06] Disable Auto Jump")
+        @Config.Name("[05] Disable Auto Jump")
         @Config.Comment("Disable the auto jump feature. It never should have been added in the first place.")
         public boolean disableAutoJump = false;
 
-        @Config.Name("[07] Additional Master Volume")
+        @Config.Name("[06] Additional Master Volume")
         @Config.Comment("Adds an additional master volume slider to the main options menu.")
         public boolean additionalMasterVolume = false;
 
-        @Config.Name("[08] Hide Potion Icons")
+        @Config.Name("[07] Hide Potion Icons")
         @Config.Comment("Hide the potion icons in the top right corner.")
         public boolean hidePotionIcons = false;
 
-        @Config.Name("[09] Hide Crosshair")
+        @Config.Name("[08] Hide Crosshair")
         @Config.Comment("Hide the crosshair.")
         public boolean hideCrosshair = false;
 
-        @Config.Name("[10] Hide Armor Bar")
+        @Config.Name("[09] Hide Armor Bar")
         @Config.Comment("Hide the armor bar.")
         public boolean hideArmorBar = false;
 
-        @Config.Name("[11] Hide Health Bar")
+        @Config.Name("[10] Hide Health Bar")
         @Config.Comment("Hide the health bar.")
         public boolean hideHealthBar = false;
 
-        @Config.Name("[12] Hide Hunger Bar")
+        @Config.Name("[11] Hide Hunger Bar")
         @Config.Comment("Hide the hunger bar.")
         public boolean hideHungerBar = false;
 
-        @Config.Name("[13] Hide Experience Bar")
+        @Config.Name("[12] Hide Experience Bar")
         @Config.Comment("Hide the experience bar.")
         public boolean hideExperienceBar = false;
 
-        @Config.Name("[14] Hide Air Bar")
+        @Config.Name("[13] Hide Air Bar")
         @Config.Comment("Hide the air bar.")
         public boolean hideAirBar = false;
 
-        @Config.Name("[15] Disable FOV Change")
+        @Config.Name("[14] Disable FOV Change")
         @Config.Comment("Disable the FOV change.")
         public boolean disableFovChange = false;
     }
@@ -267,6 +259,26 @@ public class CfgMinecraft {
         @Config.Name("[08] End Portal Structure (Active)")
         @Config.Comment("The structure that replaces the active end portal.")
         public String activePortalStructure = "endermodpacktweaks:end_portal_active";
+    }
+
+    @Config.Name("inventory_crafting")
+    @Config.LangKey("cfg.endermodpacktweaks.minecraft.inventory_crafting")
+    @Config.Comment("Tweak the Inventory Crafting mechanic.")
+    public static final InventoryCrafting INVENTORY_CRAFTING = new InventoryCrafting();
+
+    public static class InventoryCrafting {
+        @Config.RequiresMcRestart
+        @Config.Name("[01] Enable Inventory Crafting Tweaks")
+        @Config.Comment("Enable tweaks for the inventory crafting.")
+        public boolean enable = false;
+
+        @Config.Name("[02] Disable Crafting Grid")
+        @Config.Comment("Disable the crafting grid in the player inventory.")
+        public boolean disableCraftingGrid = false;
+
+        @Config.Name("[03] Unlock via Game Stage")
+        @Config.Comment("Unlock the crafting grid via a game stage.")
+        public String unlockGameStage = "unlock_crafting_grid";
     }
 
     @Config.Name("obsidian_spike")

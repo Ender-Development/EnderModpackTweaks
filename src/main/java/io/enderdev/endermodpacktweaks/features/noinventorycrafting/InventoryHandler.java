@@ -1,9 +1,12 @@
 package io.enderdev.endermodpacktweaks.features.noinventorycrafting;
 
+import io.enderdev.endermodpacktweaks.config.CfgMinecraft;
+import net.darkhax.gamestages.GameStageHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ContainerPlayer;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.inventory.Slot;
@@ -11,6 +14,7 @@ import net.minecraft.inventory.SlotCrafting;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.GuiContainerEvent;
 import net.minecraftforge.client.event.GuiScreenEvent;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -19,7 +23,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class InventoryHandler {
     @SubscribeEvent
     public void onGuiInit(GuiScreenEvent.InitGuiEvent.Post event) {
-        if (event.getGui() instanceof GuiInventory) {
+        if (check(event.getGui() instanceof GuiInventory)) {
             GuiInventory inv = (GuiInventory) event.getGui();
             ContainerPlayer container = (ContainerPlayer) inv.inventorySlots;
             for (int i = 0; i < container.inventorySlots.size(); i++) {
@@ -36,7 +40,7 @@ public class InventoryHandler {
 
     @SubscribeEvent
     public void renderBackground(GuiContainerEvent.DrawForeground event) {
-        if (event.getGuiContainer() instanceof GuiInventory) {
+        if (check(event.getGuiContainer() instanceof GuiInventory)) {
             GlStateManager.pushMatrix();
             GlStateManager.disableLighting();
 
@@ -46,5 +50,11 @@ public class InventoryHandler {
 
             GlStateManager.popMatrix();
         }
+    }
+
+    private boolean check(boolean guiCheck) {
+        EntityPlayer player = Minecraft.getMinecraft().player;
+        boolean gameStage = !Loader.isModLoaded("gamestages") || player == null || !GameStageHelper.hasStage(player, CfgMinecraft.INVENTORY_CRAFTING.unlockGameStage);
+        return guiCheck && CfgMinecraft.INVENTORY_CRAFTING.disableCraftingGrid && gameStage;
     }
 }

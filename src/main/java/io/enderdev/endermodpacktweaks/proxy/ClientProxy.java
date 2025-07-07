@@ -57,7 +57,7 @@ public class ClientProxy extends CommonProxy implements IProxy {
                 MinecraftForge.EVENT_BUS.register(new AutoJumpHandler());
             }
 
-            if (CfgMinecraft.CLIENT.disableInventoryCrafting) {
+            if (CfgMinecraft.INVENTORY_CRAFTING.enable) {
                 MinecraftForge.EVENT_BUS.register(new InventoryHandler());
             }
         }

@@ -6,7 +6,8 @@
 - 🆕 tweak for the `morph` mod to replace the FlapFly ability with creative flight
 - 🔄 even more performance improvements to the mob health renderer (thanks to tttsaurus)
 - 🔄 removed `modernsplash` from the "incompatible mods list"
-- 🔄 my game window and main menu tweaks are now compatible with `fancymenu`
+- 🔄 inventory crafting can now be unlocked via a gamestage
+- 🔄 my game window and main menu tweaks are now compatible with `fancymenu` (thanks to CaliforniaDemise)
 - 🧰 a few small improvements (thanks to rozbrajaczpoziomow)
 
 ## [0.5.9]
