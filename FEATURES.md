@@ -28,6 +28,7 @@
 - Inventory Crafting
     - option to disable the 2x2 crafting field in the inventory
     - the implementation isn't optimal as I would like to remove it completely, but it is a start
+    - the crafting field can now be unlocked with a game stage
 - End Gateway
     - change the bedrock to something else
     - replace the entire gateway with a structure file
@@ -58,6 +59,7 @@
 - Visuals
     - disable the display of the held item name above the hotbar
     - disable various overlays
+    - remove the 'Java Edition' text from the main menu
 - Player Effects
     - apply potion effects to the player based on hunger and health
     - similar to the effects of Simple Difficulty
