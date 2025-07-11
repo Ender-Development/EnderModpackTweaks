@@ -26,7 +26,7 @@ public abstract class BlockMachineMixin {
 
     @WrapOperation(method = "handleSpecificActivateEvent", at = @At(value = "INVOKE", target = "Lhellfirepvp/astralsorcery/common/util/MiscUtils;isPlayerFakeMP(Lnet/minecraft/entity/player/EntityPlayerMP;)Z"))
     private boolean onHandleSpecificActivateEvent(EntityPlayerMP specificPlayerClass, Operation<Boolean> original) {
-        return CfgTweaks.ASTRAL_SORCERY.allowFakePlayer || original.call(specificPlayerClass);
+        return !CfgTweaks.ASTRAL_SORCERY.allowFakePlayer && original.call(specificPlayerClass);
     }
 
     @WrapMethod(method = "onBlockActivated")

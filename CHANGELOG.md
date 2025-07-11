@@ -9,6 +9,7 @@
 - 🔄 inventory crafting can now be unlocked via a gamestage
 - 🔄 my game window and main menu tweaks are now compatible with `fancymenu` (thanks to CaliforniaDemise)
 - 🧰 a few small improvements (thanks to rozbrajaczpoziomow)
+- 🧰 fix broken Astral Sorcery mixin
 
 ## [0.5.9]
 
