@@ -75,6 +75,11 @@ public class CfgModpack {
         @Config.Name("[05] Window icon path")
         @Config.Comment("Override the path to the icon.")
         public String windowIconPath = "config/endermodpacktweaks/icon.png";
+
+        @Config.RequiresMcRestart
+        @Config.Name("[06] Remove 'Java Edition' from Main Menu")
+        @Config.Comment("Remove the 'Java Edition' text from the main menu.")
+        public boolean removeJavaEdition = false;
     }
 
     @Config.Name("crash_info")
