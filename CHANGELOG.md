@@ -5,6 +5,7 @@
 - 🆕 the `Arcane World` Levitator can now be controlled with redstone
 - 🆕 tweak for the `morph` mod to replace the FlapFly ability with creative flight
 - 🆕 remove the 'Java Edition' text from the main menu
+- 🆕 fix for the broken texture in `Redstone Repository`
 - 🔄 even more performance improvements to the mob health renderer (thanks to tttsaurus)
 - 🔄 removed `modernsplash` from the "incompatible mods list"
 - 🔄 inventory crafting can now be unlocked via a gamestage
