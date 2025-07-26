@@ -63,6 +63,8 @@ cfg.endermodpacktweaks.minecraft.obsidian_spike=Obsidian Spike
 cfg.endermodpacktweaks.minecraft.obsidian_spike.tooltip=Tweaks for the obsidian spike.
 cfg.endermodpacktweaks.minecraft.nether_portal=Nether Portal
 cfg.endermodpacktweaks.minecraft.nether_portal.tooltip=Tweaks for the nether portal.
+cfg.endermodpacktweaks.minecraft.wither=Wither
+cfg.endermodpacktweaks.minecraft.wither.tooltip=Tweaks for the wither boss.
 cfg.endermodpacktweaks.minecraft.world=World
 cfg.endermodpacktweaks.minecraft.world.tooltip=Tweaks for the world like difficulty and gamemode.
 

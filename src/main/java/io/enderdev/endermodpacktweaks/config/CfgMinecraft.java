@@ -379,6 +379,22 @@ public class CfgMinecraft {
         public boolean disallowTraverse = false;
     }
 
+    @Config.Name("wither")
+    @Config.LangKey("cfg.endermodpacktweaks.minecraft.wither")
+    @Config.Comment("Tweaks for the Wither Boss.")
+    public static final Wither WITHER = new Wither();
+
+    public static class Wither {
+        @Config.RequiresMcRestart
+        @Config.Name("[01] Enable Wither Tweaks")
+        @Config.Comment("Enable tweaks for the Wither Boss.")
+        public boolean enable = false;
+
+        @Config.Name("[02] Disable building the Wither")
+        @Config.Comment("Disallow players to build the Wither Boss.")
+        public boolean disableBuilding = false;
+    }
+
     @Config.Name("world")
     @Config.LangKey("cfg.endermodpacktweaks.minecraft.world")
     @Config.Comment("Tweaks for world generation and world settings.")
