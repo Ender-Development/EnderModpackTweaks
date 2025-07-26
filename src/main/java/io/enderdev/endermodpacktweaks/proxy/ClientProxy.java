@@ -144,8 +144,12 @@ public class ClientProxy extends CommonProxy implements IProxy {
     @Override
     public void construct(FMLConstructionEvent event) throws Exception {
         super.construct(event);
-        if (Loader.isModLoaded("assetmover") && CfgFeatures.BOSS_BAR.enable) {
-            EMTAssetMover.getAssets();
+        if (!Loader.isModLoaded("assetmover")) return;
+        if (CfgFeatures.BOSS_BAR.enable) {
+            EMTAssetMover.getInternalAssets();
+        }
+        if (CfgModpack.CUSTOM_ASSETS.enable && CfgModpack.CUSTOM_ASSETS.assetMoverJsonFiles.length > 0) {
+            EMTAssetMover.getExternalAssets();
         }
     }
 

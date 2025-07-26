@@ -106,6 +106,23 @@ public class CfgModpack {
         public boolean readFromManifest = true;
     }
 
+    @Config.Name("custom_assets")
+    @Config.LangKey("cfg.endermodpacktweaks.modpack.custom_assets")
+    @Config.Comment("Utilize the AssetMover API to move assets from CurseForge or other Minecraft versions to your modpack.")
+    public static final CustomAssets CUSTOM_ASSETS = new CustomAssets();
+
+    public static class CustomAssets {
+        @Config.RequiresMcRestart
+        @Config.Name("[01] Enable Custom Assets")
+        @Config.Comment("Enable the Custom Assets feature.")
+        public boolean enable = false;
+
+        @Config.RequiresMcRestart
+        @Config.Name("[02] AssetMover JSON files")
+        @Config.Comment("List of paths to JSON files that contain the asset information. All paths are relative to the instance folder.")
+        public String[] assetMoverJsonFiles = new String[]{};
+    }
+
     @Config.Name("default_server")
     @Config.LangKey("cfg.endermodpacktweaks.modpack.default_server")
     @Config.Comment("Add a default server to your modpack.")

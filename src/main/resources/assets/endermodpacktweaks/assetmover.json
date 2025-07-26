@@ -1,6 +1,7 @@
 [
     {
-        "project": "Enhanced Boss Bar",
+        "source": "curseforge",
+        "note": "Get the textures from the Enhanced Boss Bar mod.",
         "projectID": 1063296,
         "fileID": 5529872,
         "textures": [

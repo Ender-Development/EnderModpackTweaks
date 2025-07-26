@@ -28,6 +28,8 @@ public class EnderModpackTweaks {
             + "after:itemstages;"
             + "after:ibm;"
             + "after:matteroverdrive;"
+            + "after:modularmaterials;"
+            + "after:morph;"
             + "after:mbtool;"
             + "after:perfectspawn;"
             + "after:potioncore;"
