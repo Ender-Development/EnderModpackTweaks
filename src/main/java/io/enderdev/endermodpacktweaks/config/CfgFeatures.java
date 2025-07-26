@@ -94,7 +94,7 @@ public class CfgFeatures {
 
         @Config.Name("[05] Custom credits logo")
         @Config.Comment("Resource location for the logo in the credits screen.")
-        public String resourceLocationLogo = "endermodpacktweaks:textures/logo.png";
+        public String resourceLocationLogo = "minecraft:textures/gui/title/minecraft.png";
     }
 
     @Config.Name("forced_resourcepack")

@@ -6,12 +6,18 @@
 - 🆕 tweak for the `morph` mod to replace the FlapFly ability with creative flight
 - 🆕 remove the 'Java Edition' text from the main menu
 - 🆕 fix for the broken texture in `Redstone Repository`
+- 🆕 immunity to `The Beneath` darkness, depeding on the player equipment
+- 🆕 disable the "spawning" of Wither, Iron Golem and Snow Golem by building them
+- 🆕 give modpack authors access to the functionality of assetmover
+- 🆕 modpack authors can now override the default end poem and minecraft credits
 - 🔄 even more performance improvements to the mob health renderer (thanks to tttsaurus)
 - 🔄 removed `modernsplash` from the "incompatible mods list"
-- 🔄 inventory crafting can now be unlocked via a gamestage
+- 🔄 inventory crafting can now be unlocked via a game stage
 - 🔄 my game window and main menu tweaks are now compatible with `fancymenu` (thanks to CaliforniaDemise)
 - 🧰 a few small improvements (thanks to rozbrajaczpoziomow)
 - 🧰 fix broken Astral Sorcery mixin
+- 🧰 fix weird display bug when using my `Reskillable` tweak
+- 🧰 fix boss bar compatibility with `Raids Backport`
 
 ## [0.5.9]
 

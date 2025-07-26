@@ -2,6 +2,11 @@
 
 ## 🆕 Features
 
+### 🪪 Custom Credits
+
+- replace the default credits with a custom one
+- replace the default end poem with a custom one
+
 ### 🐲 [Enhanced Boss Bars](https://www.curseforge.com/minecraft/mc-mods/enhanced-boss-bars) for 1.12.2
 
 - my own version of the mod, since the original one is ARR licensed and only available for modern versions
@@ -21,52 +26,57 @@
 - this makes minecraft days actually 24 hours long
 - added an option that disables sleeping
 
-## 👩🏻‍🔧 Tweaks
-
-### 🌎 Minecraft
+## 🌎 Minecraft
 
 - Inventory Crafting
-    - option to disable the 2x2 crafting field in the inventory
-    - the implementation isn't optimal as I would like to remove it completely, but it is a start
-    - the crafting field can now be unlocked with a game stage
+  - option to disable the 2x2 crafting field in the inventory
+  - the implementation isn't optimal as I would like to remove it completely, but it is a start
+  - the crafting field can now be unlocked with a game stage
 - End Gateway
-    - change the bedrock to something else
-    - replace the entire gateway with a structure file
-    - change the radius and the height the gateway can generate
-    - replace this file `endermodpacktweaks:structures/end_gateway.nbt`
-    - alternatively change the location in the config file
+  - change the bedrock to something else
+  - replace the entire gateway with a structure file
+  - change the radius and the height the gateway can generate
+  - replace this file `endermodpacktweaks:structures/end_gateway.nbt`
+  - alternatively change the location in the config file
 - End Portal
-    - change the bedrock / torches / endstone that is generated
-    - replace the entire portal with a structure file
-    - replace these files `endermodpacktweaks:structures/end_portal.nbt` and `endermodpacktweaks:structures/end_portal_active.nbt`
-    - alternatively change the location in the config file
+  - change the bedrock / torches / endstone that is generated
+  - replace the entire portal with a structure file
+  - replace these files `endermodpacktweaks:structures/end_portal.nbt` and `endermodpacktweaks:structures/end_portal_active.nbt`
+  - alternatively change the location in the config file
 - Obsidian Spikes
-    - change the obsidian that is generated
-    - change the radius and the height the spikes can generate
-    - change the number of spikes that generate
-    - force every spike to be guarded
+  - change the obsidian that is generated
+  - change the radius and the height the spikes can generate
+  - change the number of spikes that generate
+  - force every spike to be guarded
 - Nether Portal Tweaks
-    - allow portal creation in the end
-    - disallow the traverse of entities
-    - disallow the creation of portals in the first place
+  - allow portal creation in the end
+  - disallow the traverse of entities
+  - disallow the creation of portals in the first place
 - Difficulty Tweaks
-    - force a specific difficulty
-    - lock the difficulty so it can't be changed afterwards
+  - force a specific difficulty
+  - lock the difficulty so it can't be changed afterwards
 - Gamemode Tweaks
-    - force a specific gamemode
-    - force hardcore
-    - allow commands
+  - force a specific gamemode
+  - force hardcore
+  - allow commands
 - Visuals
-    - disable the display of the held item name above the hotbar
-    - disable various overlays
-    - remove the 'Java Edition' text from the main menu
+  - disable the display of the held item name above the hotbar
+  - disable various overlays
+  - remove the 'Java Edition' text from the main menu
 - Player Effects
     - apply potion effects to the player based on hunger and health
     - similar to the effects of Simple Difficulty
-- Credits
-  - replace the default credits with a custom one
-  - replace the default end poem with a custom one
-  - trigger the credits via a command or advancement
+- Wither
+  - disable building the wither
+- Golems
+  - disable building iron golems
+  - disable building snow golems
+
+## 👩🏻‍🔧 Tweaks
+
+### [AssetMover](https://www.curseforge.com/minecraft/mc-mods/assetmover)
+
+- wrote a wrapper to give modpack developers access to its functionality
 
 ### [Arcane World](https://www.curseforge.com/minecraft/mc-mods/arcane-world-fixed)
 
@@ -220,6 +230,11 @@
 ### [Simple Storage Network](https://www.curseforge.com/minecraft/mc-mods/simple-storage-network)
 
 - disable the auto select of the search bar
+
+### [The Beneath](https://www.curseforge.com/minecraft/mc-mods/the-beneath)
+
+- disable the darkness damage
+- disable the darkness damage when having a specific item equipped
 
 ### [Tool Progression](https://www.curseforge.com/minecraft/mc-mods/tool-progression)
 
