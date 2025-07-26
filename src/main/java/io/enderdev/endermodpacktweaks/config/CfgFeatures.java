@@ -81,18 +81,20 @@ public class CfgFeatures {
         public boolean enable = false;
 
         @Config.Name("[02] Always Show Credits")
-        @Config.Comment("Should the credits always be shown? If false, they will only be shown once.")
+        @Config.Comment("Should the credits always be shown, when leaving the end? If false, they will only be shown once.")
         public boolean alwaysShow = false;
 
-        @Config.RequiresMcRestart
         @Config.Name("[03] Custom poem path")
-        @Config.Comment("The path to the poem file. Relative to the modpack folder.")
-        public String pathPoem = "poem.txt";
+        @Config.Comment("The path to the poem file. Relative to the instance folder.")
+        public String pathPoem = "";
 
-        @Config.RequiresMcRestart
         @Config.Name("[04] Custom credits path")
-        @Config.Comment("The path to the custom credits file. Relative to the modpack folder.")
-        public String pathCredit = "credits.txt";
+        @Config.Comment("The path to the custom credits file. Relative to the instance folder.")
+        public String pathCredit = "";
+
+        @Config.Name("[05] Custom credits logo")
+        @Config.Comment("Resource location for the logo in the credits screen.")
+        public String resourceLocationLogo = "endermodpacktweaks:textures/logo.png";
     }
 
     @Config.Name("forced_resourcepack")

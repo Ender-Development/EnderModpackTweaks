@@ -9,13 +9,14 @@ import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.client.resources.IResource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
-import org.apache.commons.io.IOUtils;
 import org.lwjgl.opengl.GL11;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.Random;
 
@@ -31,12 +32,8 @@ public class ImprovedCreditsGui extends GuiWinGame {
     public void initGui() {
         if (this.lines == null) {
             this.lines = Lists.newArrayList();
-            IResource iresource = null;
-
             try {
                 String s = "" + TextFormatting.WHITE + TextFormatting.OBFUSCATED + TextFormatting.GREEN + TextFormatting.AQUA;
-                int i = 274;
-
                 if (this.poem) {
                     File poemFile = EmtFile.getFile(CfgFeatures.CUSTOM_CREDITS.pathPoem);
                     InputStream inputstream = poemFile.exists() ? EmtFile.getInputStream(poemFile) : this.mc.getResourceManager().getResource(new ResourceLocation("texts/end.txt")).getInputStream();
@@ -66,23 +63,21 @@ public class ImprovedCreditsGui extends GuiWinGame {
                 }
 
                 File creditsFile = EmtFile.getFile(CfgFeatures.CUSTOM_CREDITS.pathCredit);
-                InputStream inputstream1 = creditsFile.exists() ? EmtFile.getInputStream(creditsFile) : this.mc.getResourceManager().getResource(new ResourceLocation("texts/credits.txt")).getInputStream();
-                BufferedReader bufferedreader1 = new BufferedReader(new InputStreamReader(inputstream1, StandardCharsets.UTF_8));
+                InputStream inputstream = creditsFile.exists() ? EmtFile.getInputStream(creditsFile) : this.mc.getResourceManager().getResource(new ResourceLocation("texts/credits.txt")).getInputStream();
+                BufferedReader bufferedreader = new BufferedReader(new InputStreamReader(inputstream, StandardCharsets.UTF_8));
                 String s4;
 
-                while ((s4 = bufferedreader1.readLine()) != null) {
+                while ((s4 = bufferedreader.readLine()) != null) {
                     s4 = s4.replaceAll("PLAYERNAME", this.mc.getSession().getUsername());
                     s4 = s4.replaceAll("\t", "    ");
                     this.lines.addAll(this.mc.fontRenderer.listFormattedStringToWidth(s4, 274));
                     this.lines.add("");
                 }
 
-                inputstream1.close();
+                inputstream.close();
                 this.totalScrollLength = this.lines.size() * 12;
             } catch (Exception exception) {
                 EnderModpackTweaks.LOGGER.error("Couldn't load credits", exception);
-            } finally {
-                IOUtils.closeQuietly(iresource);
             }
         }
     }
@@ -92,7 +87,7 @@ public class ImprovedCreditsGui extends GuiWinGame {
         drawWinGameScreen(mouseX, mouseY, partialTicks);
         time += partialTicks;
 
-        this.mc.getTextureManager().bindTexture(new ResourceLocation("endermodpacktweaks", "textures/logo.png"));
+        this.mc.getTextureManager().bindTexture(new ResourceLocation(CfgFeatures.CUSTOM_CREDITS.resourceLocationLogo));
         int textureWidth = GlStateManager.glGetTexLevelParameteri(GL11.GL_TEXTURE_2D, 0, GL11.GL_TEXTURE_WIDTH);
         int textureHeight = GlStateManager.glGetTexLevelParameteri(GL11.GL_TEXTURE_2D, 0, GL11.GL_TEXTURE_HEIGHT);
 
@@ -103,7 +98,7 @@ public class ImprovedCreditsGui extends GuiWinGame {
         GlStateManager.pushMatrix();
         GlStateManager.translate(0.0F, f, 0.0F);
         drawLogo(x, y, textureWidth, textureHeight);
-        drawCredits(x, y + textureHeight + 10, f);
+        drawCredits(this.width / 2 - 137, y + textureHeight + 10, f);
         GlStateManager.popMatrix();
         drawVignette();
     }
