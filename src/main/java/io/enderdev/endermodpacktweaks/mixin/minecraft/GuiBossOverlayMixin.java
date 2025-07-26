@@ -8,7 +8,9 @@ import io.enderdev.endermodpacktweaks.features.bossbar.ImprovedBossBarRenderer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiBossOverlay;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.world.BossInfo;
+import net.minecraftforge.fml.common.Loader;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -39,6 +41,9 @@ public class GuiBossOverlayMixin {
             return original.call(instance, text, x, y, color);
         }
         if (!enderModpackTweaks$improvedBossBarRenderer.hasOverlay(text)) {
+            return original.call(instance, text, x, y, color);
+        }
+        if (Loader.isModLoaded("raids") && text.contains(I18n.format("event.raids.raid"))) {
             return original.call(instance, text, x, y, color);
         }
         return 0;

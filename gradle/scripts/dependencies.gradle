@@ -371,4 +371,10 @@ dependencies {
         runtimeOnly "curse.maven:redstone-arsenal-70631:2939416"
         runtimeOnly "curse.maven:redstone-repository-revolved-300750:3483422"
     }
+
+    if (project.debug_raids.toBoolean()) {
+        runtimeOnly "curse.maven:atlas-lib-463826:6802260"
+        runtimeOnly "curse.maven:crossbows-backport-973881:5749402"
+        runtimeOnly "curse.maven:raids-backport-977633:6811394"
+    }
 }
