@@ -12,6 +12,7 @@ public final class EmtConfigHandler<T extends EmtConfigParser.ConfigItem> {
     private final List<T> configItems = new ArrayList<>();
     private final String[] configData;
     private final Function<String, T> parser;
+    private boolean initialized = false;
 
     public EmtConfigHandler(String[] configData, Function<String, T> parser) {
         this.configData = configData;
@@ -27,7 +28,16 @@ public final class EmtConfigHandler<T extends EmtConfigParser.ConfigItem> {
                 EnderModpackTweaks.LOGGER.error("Error parsing config data: {}", line, e);
             }
         }
+        initialized = true;
         return this;
+    }
+
+    /**
+     * Check if the handler has been initialized.
+     * @return True if the handler is initialized, false otherwise.
+     */
+    public boolean isInitialized() {
+        return initialized;
     }
 
     /**

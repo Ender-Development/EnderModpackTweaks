@@ -23,7 +23,7 @@ public final class EmtConfigParser {
 
         public boolean compare(Object obj) {
             if (obj instanceof ItemStack) {
-                return this.meta == -1 ? ((ItemStack) obj).isItemEqualIgnoreDurability(this.toItemStack()) : ((ItemStack) obj).isItemEqual(this.toItemStack());
+                return this.meta == -1 ? ((ItemStack) obj).getItem() == toItemStack().getItem() : ((ItemStack) obj).isItemEqual(this.toItemStack());
             }
             if (obj instanceof ConfigItem) {
                 ConfigItem other = (ConfigItem) obj;

@@ -63,6 +63,31 @@ public class CfgTweaks {
         public String[] validItems = new String[]{};
     }
 
+    @Config.Name("beneath")
+    @Config.LangKey("cfg.endermodpacktweaks.tweaks.beneath")
+    @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/the-beneath")
+    public static final Beneath BENEATH = new Beneath();
+
+    public static class Beneath {
+        @Config.RequiresMcRestart
+        @Config.Name("[01] Enable Beneath Tweaks")
+        @Config.Comment("Enable tweaks for the Beneath mod.")
+        public boolean enable = false;
+
+        @Config.Name("[02] Disable Darkness Effect")
+        @Config.Comment("Disable the darkness effect in the Beneath dimension.")
+        public boolean disableDarknessEffect = false;
+
+        @Config.RequiresMcRestart
+        @Config.Name("[03] Disable Darkness Effect Immunity")
+        @Config.Comment({
+                "Disable the darkness effect while having one of the following items equipped:",
+                "Format: modid:itemid[:metadata]",
+                "Example: minecraft:diamond_helmet"
+        })
+        public String[] darknessImmunityItems = new String[]{};
+    }
+
     @Config.Name("better_end")
     @Config.LangKey("cfg.endermodpacktweaks.tweaks.better_end")
     @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/betterendforge-backport")

@@ -54,6 +54,7 @@ public class EMTMixinLoader implements ILateMixinLoader {
             put("mixins/mixins.emt.noctrl.json", () -> Loader.isModLoaded("noctrl"));
             put("mixins/mixins.emt.morph.json", () -> Loader.isModLoaded("morph") && CfgTweaks.MORPH.enable);
             put("mixins/mixins.emt.redstonerepository.json", () -> Loader.isModLoaded("redstonerepository"));
+            put("mixins/mixins.emt.beneath.json", () -> Loader.isModLoaded("beneath") && CfgTweaks.BENEATH.enable);
         }
     });
 

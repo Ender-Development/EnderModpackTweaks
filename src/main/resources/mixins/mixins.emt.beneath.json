@@ -1,0 +1,12 @@
+{
+    "package": "io.enderdev.endermodpacktweaks.mixin.beneath",
+    "refmap": "mixins.endermodpacktweaks.refmap.json",
+    "target": "@env(DEFAULT)",
+    "minVersion": "0.8.5",
+    "compatibilityLevel": "JAVA_8",
+    "mixins": [
+        "BeneathEventHandlerMixin"
+    ],
+    "server": [],
+    "client": []
+}

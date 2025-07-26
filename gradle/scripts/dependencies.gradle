@@ -377,4 +377,9 @@ dependencies {
         runtimeOnly "curse.maven:crossbows-backport-973881:5749402"
         runtimeOnly "curse.maven:raids-backport-977633:6811394"
     }
+
+    compileOnly rfg.deobf("curse.maven:the-beneath-254629:3425551")
+    if (project.debug_beneath.toBoolean()) {
+        runtimeOnly "curse.maven:the-beneath-254629:3425551"
+    }
 }
