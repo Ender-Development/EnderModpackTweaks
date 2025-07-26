@@ -51,7 +51,7 @@ public class ReskillableEvents {
                     EntityPlayer player = event.getGui().mc.player;
                     if (playerDataCheck(player)) {
                         event.getGui().drawHoveringText(I18n.format("endermodpacktweaks.reskillable.level_max", CfgTweaks.RESKILLABLE.maxLevel), event.getMouseX(), event.getMouseY());
-                    } else {
+                    } else if (CfgTweaks.RESKILLABLE.maxLevel > 0) {
                         event.getGui().drawHoveringText(I18n.format("endermodpacktweaks.reskillable.level_left", CfgTweaks.RESKILLABLE.maxLevel - getSum(player)), event.getMouseX(), event.getMouseY());
                     }
                 }
