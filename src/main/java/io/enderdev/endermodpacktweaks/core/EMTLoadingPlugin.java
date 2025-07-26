@@ -39,6 +39,7 @@ public class EMTLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader {
             put("mixins/mixins.emt.minecraft.window.json", () -> CfgModpack.CUSTOMIZATION.enable);
             put("mixins/mixins.emt.minecraft.credits.json", () -> CfgFeatures.CUSTOM_CREDITS.enable || CfgModpack.CUSTOMIZATION.removeJavaEdition);
             put("mixins/mixins.emt.minecraft.wither.json", () -> CfgMinecraft.WITHER.enable);
+            put("mixins/mixins.emt.minecraft.golem.json", () -> CfgMinecraft.GOLEM.enable);
         }
     });
 

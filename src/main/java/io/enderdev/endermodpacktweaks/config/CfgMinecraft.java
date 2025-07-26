@@ -261,6 +261,26 @@ public class CfgMinecraft {
         public String activePortalStructure = "endermodpacktweaks:end_portal_active";
     }
 
+    @Config.Name("golem")
+    @Config.LangKey("cfg.endermodpacktweaks.minecraft.golem")
+    @Config.Comment("Tweaks for the Golem Spawning Mechanic.")
+    public static final Golem GOLEM = new Golem();
+
+    public static class Golem {
+        @Config.RequiresMcRestart
+        @Config.Name("[01] Enable Golem Tweaks")
+        @Config.Comment("Enable tweaks for the Golem Spawning Mechanic.")
+        public boolean enable = false;
+
+        @Config.Name("[02] Disable Iron Golem Spawning")
+        @Config.Comment("Disable the spawning of Iron Golems.")
+        public boolean disableIronGolem = false;
+
+        @Config.Name("[03] Disable Snow Golem Spawning")
+        @Config.Comment("Disable the spawning of Snow Golems.")
+        public boolean disableSnowGolem = false;
+    }
+
     @Config.Name("inventory_crafting")
     @Config.LangKey("cfg.endermodpacktweaks.minecraft.inventory_crafting")
     @Config.Comment("Tweak the Inventory Crafting mechanic.")
