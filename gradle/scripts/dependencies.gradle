@@ -382,4 +382,9 @@ dependencies {
     if (project.debug_beneath.toBoolean()) {
         runtimeOnly "curse.maven:the-beneath-254629:3425551"
     }
+
+    compileOnly rfg.deobf("curse.maven:taoism-258124:5604845")
+    if (project.debug_taoism.toBoolean()) {
+        runtimeOnly "curse.maven:taoism-258124:5604845"
+    }
 }

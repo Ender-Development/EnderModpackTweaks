@@ -1,12 +1,15 @@
 # Changelog
 
+## [0.5.11]
+- 🆕 lock the `Taoism` combat mode behind a game stage (supports my game stage localization tweak)
+
 ## [0.5.10]
 
 - 🆕 the `Arcane World` Levitator can now be controlled with redstone
 - 🆕 tweak for the `morph` mod to replace the FlapFly ability with creative flight
 - 🆕 remove the 'Java Edition' text from the main menu
 - 🆕 fix for the broken texture in `Redstone Repository`
-- 🆕 immunity to `The Beneath` darkness, depeding on the player equipment
+- 🆕 immunity to `The Beneath` darkness, depending on the player equipment
 - 🆕 disable the "spawning" of Wither, Iron Golem and Snow Golem by building them
 - 🆕 give modpack authors access to the functionality of assetmover
 - 🆕 modpack authors can now override the default end poem and minecraft credits

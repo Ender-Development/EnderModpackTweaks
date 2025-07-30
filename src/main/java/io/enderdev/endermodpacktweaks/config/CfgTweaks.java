@@ -866,6 +866,22 @@ public class CfgTweaks {
         public boolean autoSelect = false;
     }
 
+    @Config.Name("taoism")
+    @Config.LangKey("cfg.endermodpacktweaks.tweaks.taoism")
+    @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/taoism")
+    public static final Taoism TAOISM = new Taoism();
+
+    public static class Taoism {
+        @Config.RequiresMcRestart
+        @Config.Name("[01] Enable Taoism Tweaks")
+        @Config.Comment("Enable tweaks for the Taoism mod.")
+        public boolean enable = false;
+
+        @Config.Name("[02] Unlock via Game Stage")
+        @Config.Comment("Unlock the combat mode via a game stage.")
+        public String unlockGameStage = "unlock_combat_mode";
+    }
+
     @Config.Name("tool_progression")
     @Config.LangKey("cfg.endermodpacktweaks.tweaks.tool_progression")
     @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/tool-progression")

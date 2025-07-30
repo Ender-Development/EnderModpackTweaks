@@ -172,6 +172,8 @@ endermodpacktweaks.tweaks.simple_difficulty.temperaturepotions=Temperature Potio
 endermodpacktweaks.tweaks.simple_difficulty.thirstpotions=Thirst Potions
 cfg.endermodpacktweaks.tweaks.simple_storage_network=Simple Storage Network
 cfg.endermodpacktweaks.tweaks.simple_storage_network.tooltip=Tweaks for the Simple Storage Network mod.
+cfg.endermodpacktweaks.tweaks.taoism=Taoism
+cfg.endermodpacktweaks.tweaks.taoism.tooltip=Tweaks for the Taoism mod.
 cfg.endermodpacktweaks.tweaks.tool_progression=Tool Progression
 cfg.endermodpacktweaks.tweaks.tool_progression.tooltip=Tweaks for the Tool Progression mod.
 cfg.endermodpacktweaks.tweaks.waila=Waila / Hwyla
@@ -212,6 +214,8 @@ endermodpacktweaks.itemphysic.render_tooltip=%dx %s
 
 endermodpacktweaks.reskillable.level_max=§4Can't level up, already at max level of %d§r
 endermodpacktweaks.reskillable.level_left=§2%d levels left until reaching max level§r
+
+endermodpacktweaks.taoism.combat_locked=§4Combat mode needs stage:§r %s§4!§r
 
 tile.quark:endstone_speleothem.name=Endstone Speleothem
 tile.quark:obsidian_speleothem.name=Obsidian Speleothem
