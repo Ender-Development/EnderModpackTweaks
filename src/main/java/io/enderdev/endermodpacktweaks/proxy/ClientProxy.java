@@ -82,11 +82,13 @@ public class ClientProxy extends CommonProxy implements IProxy {
             healthBarHandler = new HealthBarHandler();
             MinecraftForge.EVENT_BUS.register(healthBarHandler);
 
-            int majorGlVersion = EmtRender.getMajorGlVersion();
-            int minorGlVersion = EmtRender.getMinorGlVersion();
-            // requires gl version 3.3 or above
-            if (majorGlVersion > 3 || (majorGlVersion == 3 && minorGlVersion >= 3))
-                healthBarHandler.instancing = true;
+            if (CfgFeatures.MOB_HEALTH_BAR.enableInstancing) {
+                int majorGlVersion = EmtRender.getMajorGlVersion();
+                int minorGlVersion = EmtRender.getMinorGlVersion();
+                // requires gl version 3.3 or above
+                if (majorGlVersion > 3 || (majorGlVersion == 3 && minorGlVersion >= 3))
+                    healthBarHandler.instancing = true;
+            }
         }
 
         if (CfgModpack.PACK_UPDATER.enable) {

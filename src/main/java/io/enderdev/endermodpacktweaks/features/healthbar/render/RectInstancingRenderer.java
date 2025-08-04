@@ -18,11 +18,11 @@ import java.nio.FloatBuffer;
 import java.util.Map;
 
 /**
- * Only works for {@link HealthBarInstancingHelper}
+ * This is a dedicated class that only works for {@link HealthBarInstancingHelper}
  *
  * @see HealthBarInstancingHelper#renderRectHealthBars(Map, float, Vector3f, Vector2f)
  */
-public class RectInstancingRenderer extends MeshRenderer {
+public final class RectInstancingRenderer extends MeshRenderer {
     public static final float SIDE_LENGTH = 1f;
     public static final int INSTANCE_DATA_UNIT_SIZE = 8;
 

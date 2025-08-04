@@ -39,13 +39,13 @@ public final class HealthBarInstancingHelper {
     // should have the same visual behavior as HealthBarDirectRenderHelper.renderHealthBar()
     public static void renderRectHealthBars(Map<EntityLivingBase, HealthBarData> entities, float partialTicks, Vector3f worldOffset, Vector2f cameraRot) {
         if (rectBackgroundRenderer == null) {
-            rectBackgroundRenderer = (new RectInstancingRenderer(100)).init();
+            rectBackgroundRenderer = (new RectInstancingRenderer(CfgFeatures.MOB_HEALTH_BAR.maxInstancingCount)).init();
         }
         if (rectGraySpaceRenderer == null) {
-            rectGraySpaceRenderer = (new RectInstancingRenderer(100)).init();
+            rectGraySpaceRenderer = (new RectInstancingRenderer(CfgFeatures.MOB_HEALTH_BAR.maxInstancingCount)).init();
         }
         if (rectHealthBarRenderer == null) {
-            rectHealthBarRenderer = (new RectInstancingRenderer(100)).init();
+            rectHealthBarRenderer = (new RectInstancingRenderer(CfgFeatures.MOB_HEALTH_BAR.maxInstancingCount)).init();
         }
 
         int entityListLength =
