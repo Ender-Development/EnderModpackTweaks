@@ -37,7 +37,7 @@ public final class HealthBarInstancingHelper {
     private static RectInstancingRenderer rectHealthBarRenderer = null;
 
     // should have the same visual behavior as HealthBarDirectRenderHelper.renderHealthBar()
-    public static void renderRectHealthBars(Map<EntityLivingBase, HealthBarData> entities, float partialTicks, Vector3f worldOffset, Vector2f cameraRot) {
+    public static void renderRectHealthBars(Map<EntityLivingBase, HealthBarData> entities, float partialTicks, float deltaTime, Vector3f worldOffset, Vector2f cameraRot) {
         if (rectBackgroundRenderer == null) {
             rectBackgroundRenderer = (new RectInstancingRenderer(CfgFeatures.MOB_HEALTH_BAR.maxInstancingCount)).init();
         }
@@ -113,7 +113,12 @@ public final class HealthBarInstancingHelper {
             graySpaceInstanceData[i * 8 + 6] = -HealthBarHandler.HEALTH_BAR_HUD_SCALE * 2;
 
             float maxHealth = entity.getMaxHealth();
-            float health = Math.min(maxHealth, entity.getHealth());
+            float health;
+            if (CfgFeatures.MOB_HEALTH_BAR.enableSmoothAnimation && healthBarData.healthSmoothDamp != null) {
+                health = Math.min(maxHealth, healthBarData.healthSmoothDamp.evaluate(deltaTime));
+            } else {
+                health = Math.min(maxHealth, entity.getHealth());
+            }
             float healthSize = size * (health / maxHealth);
 
             // Health Bar

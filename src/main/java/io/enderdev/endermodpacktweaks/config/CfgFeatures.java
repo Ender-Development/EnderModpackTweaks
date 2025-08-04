@@ -408,6 +408,14 @@ public class CfgFeatures {
         @Config.Name("[38] Max Instancing Count")
         @Config.Comment("Max number of instanced health bars")
         public int maxInstancingCount = 100;
+
+        @Config.Name("[39] Smooth Health Bar Animation")
+        @Config.Comment("Enable smooth health bar animation")
+        public boolean enableSmoothAnimation = true;
+
+        @Config.Name("[40] Health Bar Animation Smooth Time")
+        @Config.Comment("Animation smooth time")
+        public float animationSmoothTime = 0.3f;
     }
 
     @Config.Name("player_effects")

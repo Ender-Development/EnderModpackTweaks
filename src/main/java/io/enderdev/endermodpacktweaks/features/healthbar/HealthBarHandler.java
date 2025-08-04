@@ -4,7 +4,6 @@ import io.enderdev.endermodpacktweaks.config.CfgFeatures;
 import io.enderdev.endermodpacktweaks.config.EnumShapeType;
 import io.enderdev.endermodpacktweaks.features.healthbar.render.HealthBarDirectRenderHelper;
 import io.enderdev.endermodpacktweaks.features.healthbar.render.HealthBarInstancingHelper;
-import io.enderdev.endermodpacktweaks.features.healthbar.render.RectInstancingRenderer;
 import io.enderdev.endermodpacktweaks.mixin.minecraft.WorldClientAccessor;
 import io.enderdev.endermodpacktweaks.utils.EmtConfigHandler;
 import io.enderdev.endermodpacktweaks.utils.EmtConfigParser;
@@ -76,7 +75,7 @@ public class HealthBarHandler {
 
     //<editor-fold desc="entity collection">
     // render health bar for these entities
-    private final Map<EntityLivingBase, HealthBarData> entities = new HashMap<>();
+    private Map<EntityLivingBase, HealthBarData> entities = new HashMap<>();
     private final StopWatch entityCollectionStopWatch = new StopWatch();
     public double entityCollectionInterval = 0.025d;
     //</editor-fold>
@@ -84,15 +83,35 @@ public class HealthBarHandler {
     private final Frustum frustum = new Frustum();
     private final Map<EntityLivingBase, Long> lingerEntities = new HashMap<>();
 
-    @SuppressWarnings("unchecked")
+    private Long lastTimeNano = null;
+    private float deltaTimeSecond = 0f;
+
     @SubscribeEvent
     public void onRenderWorldLast(RenderWorldLastEvent event) {
         // early escape
-        if (MINECRAFT.player == null) return;
-        if ((!CfgFeatures.MOB_HEALTH_BAR.renderInF1 && !Minecraft.isGuiEnabled()) || !shouldRender) return;
-        if (CfgFeatures.MOB_HEALTH_BAR.onlyRenderWithEquipment.length != 0 && !whitelist.equipped(MINECRAFT.player)) return;
+        if (MINECRAFT.player == null) {
+            return;
+        }
+        if ((!CfgFeatures.MOB_HEALTH_BAR.renderInF1 && !Minecraft.isGuiEnabled()) || !shouldRender) {
+            return;
+        }
+        if (CfgFeatures.MOB_HEALTH_BAR.onlyRenderWithEquipment.length != 0 && !whitelist.equipped(MINECRAFT.player)) {
+            return;
+        }
         Entity cameraEntity = MINECRAFT.getRenderViewEntity();
-        if (cameraEntity == null || !cameraEntity.isEntityAlive()) return;
+        if (cameraEntity == null || !cameraEntity.isEntityAlive()) {
+            return;
+        }
+
+        // delta time calculation
+        if (lastTimeNano == null) {
+            lastTimeNano = System.nanoTime();
+            deltaTimeSecond = 0f;
+        } else {
+            long time = System.nanoTime();
+            deltaTimeSecond = (float) ((time - lastTimeNano) / 1e9d);
+            lastTimeNano = time;
+        }
 
         BlockPos cameraBlockPos = cameraEntity.getPosition();
         Vector3f worldOffset = EmtRender.getWorldOffset();
@@ -108,12 +127,13 @@ public class HealthBarHandler {
             entityCollectionStopWatch.reset();
 
             // collect entities
-            entities.clear();
+            Map<EntityLivingBase, HealthBarData> newEntities = new HashMap<>();
+
             if (CfgFeatures.MOB_HEALTH_BAR.showOnlyFocused) {
                 long systemTime = Minecraft.getSystemTime();
                 Entity focused = getEntityLookedAt(MINECRAFT.player);
                 if (focused instanceof EntityLivingBase && focused.isEntityAlive()) {
-                    collectHealthBarEntities(entities, (EntityLivingBase) focused, cameraEntity);
+                    collectHealthBarEntities(newEntities, (EntityLivingBase) focused, cameraEntity);
                      if (CfgFeatures.MOB_HEALTH_BAR.focusedLinger != 0) {
                         lingerEntities.put((EntityLivingBase) focused, systemTime + CfgFeatures.MOB_HEALTH_BAR.focusedLinger);
                     }
@@ -122,7 +142,7 @@ public class HealthBarHandler {
                 lingerEntities.entrySet().removeIf(entry -> {
                     if (systemTime >= entry.getValue())
                         return true;
-                    collectHealthBarEntities(entities, entry.getKey(), cameraEntity);
+                    collectHealthBarEntities(newEntities, entry.getKey(), cameraEntity);
                     return false;
                 });
             } else {
@@ -134,23 +154,50 @@ public class HealthBarHandler {
                             && (entity.ignoreFrustumCheck || frustum.isBoundingBoxInFrustum(entity.getEntityBoundingBox()))
                             && entity.isEntityAlive()
                             && entity.getRecursivePassengers().isEmpty()) {
-                        collectHealthBarEntities(entities, (EntityLivingBase) entity, cameraEntity);
+                        collectHealthBarEntities(newEntities, (EntityLivingBase) entity, cameraEntity);
                     }
                 }
             }
+
+            if (CfgFeatures.MOB_HEALTH_BAR.enableSmoothAnimation) {
+                // set health smooth damp
+                for (Map.Entry<EntityLivingBase, HealthBarData> entry : newEntities.entrySet()) {
+                    HealthBarData oldData = entities.get(entry.getKey());
+                    if (oldData != null) {
+                        if (entry.getValue().healthSmoothDamp != null && oldData.healthSmoothDamp != null) {
+                            entry.getValue().healthSmoothDamp.setFrom(oldData.healthSmoothDamp.getFrom());
+                        }
+                    } else {
+                        if (entry.getValue().healthSmoothDamp != null) {
+                            entry.getValue().healthSmoothDamp.setFrom(entry.getKey().getHealth());
+                        }
+                    }
+                }
+            }
+
+            entities = newEntities;
+
             entityCollectionStopWatch.start();
         }
 
+        if (CfgFeatures.MOB_HEALTH_BAR.enableSmoothAnimation) {
+            for (Map.Entry<EntityLivingBase, HealthBarData> entry : entities.entrySet()) {
+                if (entry.getValue().healthSmoothDamp != null) {
+                    entry.getValue().healthSmoothDamp.setTo(entry.getKey().getHealth());
+                }
+            }
+        }
+
         // instancing rect health bars
-        if (instancing && entities.size() > 10 && CfgFeatures.MOB_HEALTH_BAR.shapeBackground == EnumShapeType.STRAIGHT) {
-            HealthBarInstancingHelper.renderRectHealthBars(entities, partialTicks, worldOffset, cameraRot);
+        if (instancing && entities.size() > 5 && CfgFeatures.MOB_HEALTH_BAR.shapeBackground == EnumShapeType.STRAIGHT) {
+            HealthBarInstancingHelper.renderRectHealthBars(entities, partialTicks, deltaTimeSecond, worldOffset, cameraRot);
         } else {
             // optifine compat: disable shader program
             int oldProgram = GL11.glGetInteger(GL20.GL_CURRENT_PROGRAM);
             if (oldProgram != 0) GL20.glUseProgram(0);
             for (Map.Entry<EntityLivingBase, HealthBarData> entry : entities.entrySet()) {
                 // fixed-func health bar rendering
-                HealthBarDirectRenderHelper.renderHealthBar(entry.getKey(), entry.getValue(), partialTicks, worldOffset, cameraRot);
+                HealthBarDirectRenderHelper.renderHealthBar(entry.getKey(), entry.getValue(), partialTicks, deltaTimeSecond, worldOffset, cameraRot);
             }
             if (oldProgram != 0) GL20.glUseProgram(oldProgram);
         }
@@ -206,7 +253,14 @@ public class HealthBarHandler {
                     name = I18n.format("entity.Villager.name");
                 }
 
-                entities.put(entity, new HealthBarData(name, index++));
+                HealthBarData data;
+                if (CfgFeatures.MOB_HEALTH_BAR.enableSmoothAnimation) {
+                    data = new HealthBarData(name, index++, CfgFeatures.MOB_HEALTH_BAR.animationSmoothTime);
+                } else {
+                    data = new HealthBarData(name, index++);
+                }
+
+                entities.put(entity, data);
             }
         }
     }

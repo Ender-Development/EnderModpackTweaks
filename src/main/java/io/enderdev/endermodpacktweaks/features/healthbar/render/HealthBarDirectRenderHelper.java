@@ -38,7 +38,7 @@ public final class HealthBarDirectRenderHelper {
     // Boss
     private static final ItemStack BOSS_SKULL = new ItemStack(Items.SKULL);
 
-    public static void renderHealthBar(EntityLivingBase entity, HealthBarData healthBarData, float partialTicks, Vector3f worldOffset, Vector2f cameraRot) {
+    public static void renderHealthBar(EntityLivingBase entity, HealthBarData healthBarData, float partialTicks, float deltaTime, Vector3f worldOffset, Vector2f cameraRot) {
         String entityID = EntityList.getEntityString(entity);
         boolean boss = !entity.isNonBoss();
 
@@ -47,7 +47,12 @@ public final class HealthBarDirectRenderHelper {
         float entityZ = (float) (entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) * partialTicks);
 
         float maxHealth = entity.getMaxHealth();
-        float health = Math.min(maxHealth, entity.getHealth());
+        float health;
+        if (CfgFeatures.MOB_HEALTH_BAR.enableSmoothAnimation && healthBarData.healthSmoothDamp != null) {
+            health = Math.min(maxHealth, healthBarData.healthSmoothDamp.evaluate(deltaTime));
+        } else {
+            health = Math.min(maxHealth, entity.getHealth());
+        }
         float percent = (int) ((health / maxHealth) * 100F);
 
         GlStateManager.pushMatrix();
