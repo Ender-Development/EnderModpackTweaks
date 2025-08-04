@@ -1,7 +1,9 @@
-package io.enderdev.endermodpacktweaks.features.healthbar;
+package io.enderdev.endermodpacktweaks.features.healthbar.render;
 
 import io.enderdev.endermodpacktweaks.config.CfgFeatures;
 import io.enderdev.endermodpacktweaks.config.EnumShapeType;
+import io.enderdev.endermodpacktweaks.features.healthbar.HealthBarData;
+import io.enderdev.endermodpacktweaks.features.healthbar.HealthBarHandler;
 import io.enderdev.endermodpacktweaks.utils.EmtColor;
 import io.enderdev.endermodpacktweaks.utils.EmtRender;
 import net.minecraft.client.Minecraft;
@@ -36,7 +38,7 @@ public final class HealthBarDirectRenderHelper {
     // Boss
     private static final ItemStack BOSS_SKULL = new ItemStack(Items.SKULL);
 
-    public static void renderHealthBar(EntityLivingBase entity, HealthBarData healthBarData, float partialTicks, Vector3f cameraPos, Vector2f cameraRot) {
+    public static void renderHealthBar(EntityLivingBase entity, HealthBarData healthBarData, float partialTicks, Vector3f worldOffset, Vector2f cameraRot) {
         String entityID = EntityList.getEntityString(entity);
         boolean boss = !entity.isNonBoss();
 
@@ -49,7 +51,7 @@ public final class HealthBarDirectRenderHelper {
         float percent = (int) ((health / maxHealth) * 100F);
 
         GlStateManager.pushMatrix();
-        GlStateManager.translate(entityX - cameraPos.x,  entityY - cameraPos.y + entity.height + (float) CfgFeatures.MOB_HEALTH_BAR.heightAbove, entityZ - cameraPos.z);
+        GlStateManager.translate(entityX - worldOffset.x,  entityY - worldOffset.y + entity.height + (float) CfgFeatures.MOB_HEALTH_BAR.heightAbove, entityZ - worldOffset.z);
         GL11.glNormal3f(0.0F, 1.0F, 0.0F);
         GlStateManager.rotate(- (float) Math.toDegrees(cameraRot.x), 0.0F, 1.0F, 0.0F);
         GlStateManager.rotate((float) Math.toDegrees(cameraRot.y), 1.0F, 0.0F, 0.0F);

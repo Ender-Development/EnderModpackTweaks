@@ -335,7 +335,7 @@ public final class EmtRender {
 
     //<editor-fold desc="camera">
     // <https://github.com/tttsaurus/Ingame-Info-Reborn/blob/master/src/main/java/com/tttsaurus/ingameinfo/common/core/render/RenderHints.java>
-    public static Vector3f getCameraPos() {
+    public static Vector3f getWorldOffset() {
         double partialTick = getPartialTick();
 
         Entity viewEntity = Minecraft.getMinecraft().getRenderViewEntity();
@@ -343,6 +343,19 @@ public final class EmtRender {
 
         double camX = viewEntity.lastTickPosX + (viewEntity.posX - viewEntity.lastTickPosX) * partialTick;
         double camY = viewEntity.lastTickPosY + (viewEntity.posY - viewEntity.lastTickPosY) * partialTick;
+        double camZ = viewEntity.lastTickPosZ + (viewEntity.posZ - viewEntity.lastTickPosZ) * partialTick;
+
+        return new Vector3f((float) camX, (float) camY, (float) camZ);
+    }
+
+    public static Vector3f getCameraPos() {
+        double partialTick = getPartialTick();
+
+        Entity viewEntity = Minecraft.getMinecraft().getRenderViewEntity();
+        if (viewEntity == null) return new Vector3f(0, 0, 0);
+
+        double camX = viewEntity.lastTickPosX + (viewEntity.posX - viewEntity.lastTickPosX) * partialTick;
+        double camY = viewEntity.lastTickPosY + (viewEntity.posY - viewEntity.lastTickPosY) * partialTick + viewEntity.getEyeHeight();
         double camZ = viewEntity.lastTickPosZ + (viewEntity.posZ - viewEntity.lastTickPosZ) * partialTick;
 
         return new Vector3f((float) camX, (float) camY, (float) camZ);
