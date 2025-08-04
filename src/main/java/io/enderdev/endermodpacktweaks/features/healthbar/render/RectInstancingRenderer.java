@@ -1,4 +1,4 @@
-package io.enderdev.endermodpacktweaks.features.healthbar;
+package io.enderdev.endermodpacktweaks.features.healthbar.render;
 
 import io.enderdev.endermodpacktweaks.EnderModpackTweaks;
 import io.enderdev.endermodpacktweaks.render.Mesh;
@@ -11,10 +11,18 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL33;
 import org.lwjgl.util.vector.Matrix4f;
+import org.lwjgl.util.vector.Vector2f;
+import org.lwjgl.util.vector.Vector3f;
 
 import java.nio.FloatBuffer;
+import java.util.Map;
 
-public class RectInstancingRenderer extends MeshRenderer {
+/**
+ * This is a dedicated class that only works for {@link HealthBarInstancingHelper}
+ *
+ * @see HealthBarInstancingHelper#renderRectHealthBars(Map, float, Vector3f, Vector2f)
+ */
+public final class RectInstancingRenderer extends MeshRenderer {
     public static final float SIDE_LENGTH = 1f;
     public static final int INSTANCE_DATA_UNIT_SIZE = 8;
 
@@ -30,7 +38,7 @@ public class RectInstancingRenderer extends MeshRenderer {
         return maxInstance * INSTANCE_DATA_UNIT_SIZE;
     }
 
-    public RectInstancingRenderer(int maxInstance) {
+    protected RectInstancingRenderer(int maxInstance) {
         super(null, null);
         this.maxInstance = maxInstance;
     }

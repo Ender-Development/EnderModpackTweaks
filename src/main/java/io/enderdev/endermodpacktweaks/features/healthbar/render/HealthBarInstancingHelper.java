@@ -1,6 +1,8 @@
-package io.enderdev.endermodpacktweaks.features.healthbar;
+package io.enderdev.endermodpacktweaks.features.healthbar.render;
 
 import io.enderdev.endermodpacktweaks.config.CfgFeatures;
+import io.enderdev.endermodpacktweaks.features.healthbar.HealthBarData;
+import io.enderdev.endermodpacktweaks.features.healthbar.HealthBarHandler;
 import io.enderdev.endermodpacktweaks.render.shader.ShaderProgram;
 import io.enderdev.endermodpacktweaks.utils.EmtColor;
 import io.enderdev.endermodpacktweaks.utils.EmtRender;
@@ -30,12 +32,22 @@ public final class HealthBarInstancingHelper {
     private static final Minecraft MINECRAFT = Minecraft.getMinecraft();
     private static final FloatBuffer FLOAT_BUFFER_16 = ByteBuffer.allocateDirect(16 << 2).order(ByteOrder.nativeOrder()).asFloatBuffer();
 
-    protected static RectInstancingRenderer rectBackgroundRenderer = null;
-    protected static RectInstancingRenderer rectGraySpaceRenderer = null;
-    protected static RectInstancingRenderer rectHealthBarRenderer = null;
+    private static RectInstancingRenderer rectBackgroundRenderer = null;
+    private static RectInstancingRenderer rectGraySpaceRenderer = null;
+    private static RectInstancingRenderer rectHealthBarRenderer = null;
 
     // should have the same visual behavior as HealthBarDirectRenderHelper.renderHealthBar()
-    public static void renderRectHealthBars(Map<EntityLivingBase, HealthBarData> entities, float partialTicks, Vector3f cameraPos, Vector2f cameraRot) {
+    public static void renderRectHealthBars(Map<EntityLivingBase, HealthBarData> entities, float partialTicks, float deltaTime, Vector3f worldOffset, Vector2f cameraRot) {
+        if (rectBackgroundRenderer == null) {
+            rectBackgroundRenderer = (new RectInstancingRenderer(CfgFeatures.MOB_HEALTH_BAR.maxInstancingCount)).init();
+        }
+        if (rectGraySpaceRenderer == null) {
+            rectGraySpaceRenderer = (new RectInstancingRenderer(CfgFeatures.MOB_HEALTH_BAR.maxInstancingCount)).init();
+        }
+        if (rectHealthBarRenderer == null) {
+            rectHealthBarRenderer = (new RectInstancingRenderer(CfgFeatures.MOB_HEALTH_BAR.maxInstancingCount)).init();
+        }
+
         int entityListLength =
                 Math.min(rectHealthBarRenderer.getMaxInstance(),
                         Math.min(rectGraySpaceRenderer.getMaxInstance(),
@@ -101,7 +113,12 @@ public final class HealthBarInstancingHelper {
             graySpaceInstanceData[i * 8 + 6] = -HealthBarHandler.HEALTH_BAR_HUD_SCALE * 2;
 
             float maxHealth = entity.getMaxHealth();
-            float health = Math.min(maxHealth, entity.getHealth());
+            float health;
+            if (CfgFeatures.MOB_HEALTH_BAR.enableSmoothAnimation && healthBarData.healthSmoothDamp != null) {
+                health = Math.min(maxHealth, healthBarData.healthSmoothDamp.evaluate(deltaTime));
+            } else {
+                health = Math.min(maxHealth, entity.getHealth());
+            }
             float healthSize = size * (health / maxHealth);
 
             // Health Bar
@@ -168,7 +185,7 @@ public final class HealthBarInstancingHelper {
         program.use();
         program.setUniform("modelView", EmtRender.getModelViewMatrix());
         program.setUniform("projection", EmtRender.getProjectionMatrix());
-        program.setUniform("camPos", cameraPos.x, cameraPos.y, cameraPos.z);
+        program.setUniform("camPos", worldOffset.x, worldOffset.y, worldOffset.z);
         program.setUniform("transformation", FLOAT_BUFFER_16);
         program.setUniform("color", bgColor.getRed() / 255f, bgColor.getGreen() / 255f, bgColor.getBlue() / 255f, bgColor.getAlpha() / 255f);
         program.unuse();
@@ -200,7 +217,7 @@ public final class HealthBarInstancingHelper {
             EntityLivingBase entity = entry.getKey();
             HealthBarData healthBarData = entry.getValue();
 
-            renderHealthBarInfoSeparately(entity, healthBarData, partialTicks, cameraPos, cameraRot);
+            renderHealthBarInfoSeparately(entity, healthBarData, partialTicks, worldOffset, cameraRot);
 
             i++;
         }

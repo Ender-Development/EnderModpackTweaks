@@ -400,6 +400,22 @@ public class CfgFeatures {
         public String[] mobBlacklist = new String[]{
                 "ArmorStand"
         };
+
+        @Config.Name("[37] Health Bar Instancing")
+        @Config.Comment("Enable instancing (a rendering technique) if the OpenGL version requirement and several conditions are met")
+        public boolean enableInstancing = true;
+
+        @Config.Name("[38] Max Instancing Count")
+        @Config.Comment("Max number of instanced health bars")
+        public int maxInstancingCount = 100;
+
+        @Config.Name("[39] Smooth Health Bar Animation")
+        @Config.Comment("Enable smooth health bar animation")
+        public boolean enableSmoothAnimation = true;
+
+        @Config.Name("[40] Health Bar Animation Smooth Time")
+        @Config.Comment("Animation smooth time")
+        public float animationSmoothTime = 0.3f;
     }
 
     @Config.Name("player_effects")
