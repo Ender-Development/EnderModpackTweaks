@@ -20,6 +20,7 @@ import io.enderdev.endermodpacktweaks.features.playerpotions.SimpleDifficultyHan
 import io.enderdev.endermodpacktweaks.features.playerpotions.VanillaHandler;
 import io.enderdev.endermodpacktweaks.features.servermsg.ServerHandler;
 import io.enderdev.endermodpacktweaks.features.timesync.TimeEventHandler;
+import io.enderdev.endermodpacktweaks.features.worldoptions.GameruleHandler;
 import io.enderdev.endermodpacktweaks.features.worldoptions.WorldOptionsHandler;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
@@ -70,6 +71,10 @@ public class CommonProxy implements IProxy {
 
         if (CfgMinecraft.WORLD.enable) {
             MinecraftForge.EVENT_BUS.register(new WorldOptionsHandler());
+        }
+
+        if (CfgMinecraft.DEFAULT_GAMERULE.enable) {
+             MinecraftForge.EVENT_BUS.register(new GameruleHandler());
         }
 
         if (CfgTweaks.ELENAI_DODGE.enable
