@@ -933,6 +933,18 @@ public class CfgTweaks {
         public String[] overrideBlockName = new String[]{};
     }
 
+    @Config.Name("weeping_angels")
+    @Config.LangKey("cfg.endermodpacktweaks.tweaks.weeping_angels")
+    @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/weeping-angels-mod")
+    public static final WeepingAngels WEEPING_ANGELS = new WeepingAngels();
+
+    public static class WeepingAngels {
+        @Config.RequiresMcRestart
+        @Config.Name("[01] Enable Weeping Angels Tweaks")
+        @Config.Comment("Enable tweaks for the Weeping Angels mod.")
+        public boolean enable = false;
+    }
+
     @Mod.EventBusSubscriber(modid = Tags.MOD_ID)
     public static class ConfigEventHandler {
         @SubscribeEvent

@@ -181,6 +181,8 @@ cfg.endermodpacktweaks.tweaks.tool_progression.tooltip=Tweaks for the Tool Progr
 cfg.endermodpacktweaks.tweaks.waila=Waila / Hwyla
 cfg.endermodpacktweaks.tweaks.waila.tooltip=Tweaks for the Waila / Hwyla mods.
 endermodpacktweaks.tweaks.waila.overrideblockname=Override Block Name
+cfg.endermodpacktweaks.tweaks.weeping_angels=Weeping Angels
+cfg.endermodpacktweaks.tweaks.weeping_angels.tooltip=Tweaks for the Weeping Angels mod.
 
 msg.endermodpacktweaks.obsoletemods.warning1=Ender's Modpack Tweaks has replaced and improved upon functionalities from other mods.
 msg.endermodpacktweaks.obsoletemods.warning2=Therefore, the following mods are now incompatible with Ender's Modpack Tweaks:

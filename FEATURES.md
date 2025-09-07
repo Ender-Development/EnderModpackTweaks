@@ -250,6 +250,10 @@
 
 - allow lying about the block the player is looking at
 
+### [Weeping Angels](https://www.curseforge.com/minecraft/mc-mods/weeeping-angels-mod)
+
+- actually allow to blacklist the overworld dimension from the angel teleportation machanic
+
 ## 💱 Replacements
 
 ### [Anti FOV Change](https://www.curseforge.com/minecraft/mc-mods/anti-fov-change)
