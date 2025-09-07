@@ -7,41 +7,8 @@ import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-@Mod(modid = Tags.MOD_ID, name = Tags.MOD_NAME, version = Tags.VERSION, dependencies = EnderModpackTweaks.DEPENDENCIES)
+@Mod(modid = Tags.MOD_ID, name = Tags.MOD_NAME, version = Tags.VERSION, dependencies = Tags.DEPENDENCIES)
 public class EnderModpackTweaks {
-    /**
-     * This list misses 'mysicallib' as it causes a circular dependency.
-     */
-    public static final String DEPENDENCIES = "required-after:mixinbooter;after:fermiumbooter;after:assetmover;required-after:configanytime;"
-            + "after:astralsorcery;"
-            + "after:betterend;"
-            + "after:crissaegrim;"
-            + "after:darkutils;"
-            + "after:defaultworldgenerator;"
-            + "after:dshuds;"
-            + "after:elenaidodge;"
-            + "after:enderstorage;"
-            + "after:firstaid;"
-            + "after:fluxnetworks;"
-            + "after:gamestages;"
-            + "after:itemphysic;"
-            + "after:itemstages;"
-            + "after:ibm;"
-            + "after:matteroverdrive;"
-            + "after:modularmaterials;"
-            + "after:morph;"
-            + "after:mbtool;"
-            + "after:perfectspawn;"
-            + "after:potioncore;"
-            + "after:pyrotech;"
-            + "after:quark;"
-            + "after:reskillable;"
-            + "after:rustic;"
-            + "after:simpledifficulty;"
-            + "after:tinyinv;"
-            + "after:toolprogression;"
-            + "after:waila;";
-
     public static final Logger LOGGER = LogManager.getLogger(Tags.MOD_NAME);
 
     public static final String COMMON_PROXY = "io.enderdev.endermodpacktweaks.proxy.CommonProxy";

@@ -92,7 +92,7 @@ dependencies {
     runtimeOnly "curse.maven:geckolib-388172:4020277"
     // runtimeOnly "curse.maven:renderlib-624967:6327296"
 
-    implementation "com.cleanroommc:configanytime:3.0"
+    implementation "com.cleanroommc:configanytime:" + project.config_anytime_version
     implementation rfg.deobf("maven.modrinth:nether-api:1m3gvzYh")
     implementation("com.cleanroommc:groovyscript:1.2.3") { transitive = false } // so it doesn't installs JEI
 
@@ -386,5 +386,15 @@ dependencies {
     compileOnly rfg.deobf("curse.maven:taoism-258124:5604845")
     if (project.debug_taoism.toBoolean()) {
         runtimeOnly "curse.maven:taoism-258124:5604845"
+    }
+
+    compileOnly rfg.deobf("curse.maven:better-with-everything-896908:5202745")
+    if (project.debug_betterwitheverything.toBoolean()) {
+        runtimeOnly "curse.maven:better-with-everything-896908:5202745"
+    }
+
+    compileOnly rfg.deobf("curse.maven:weeping-angels-mod-291249:2928003")
+    if (project.debug_weepingangels.toBoolean()) {
+        runtimeOnly "curse.maven:weeping-angels-mod-291249:2928003"
     }
 }
