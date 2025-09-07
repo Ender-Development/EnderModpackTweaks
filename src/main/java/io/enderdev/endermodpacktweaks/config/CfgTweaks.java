@@ -306,6 +306,18 @@ public class CfgTweaks {
         public boolean enable = false;
     }
 
+    @Config.Name("fancy_menu")
+    @Config.LangKey("cfg.endermodpacktweaks.tweaks.fancy_menu")
+    @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/fancy-menu")
+    public static final FancyMenu FANCY_MENU = new FancyMenu();
+
+    public static class FancyMenu {
+        @Config.RequiresMcRestart
+        @Config.Name("[01] Enable Fancy Menu Tweaks")
+        @Config.Comment("Enable tweaks for the Fancy Menu mod.")
+        public boolean enable = false;
+    }
+
     @Config.Name("first_aid")
     @Config.LangKey("cfg.endermodpacktweaks.tweaks.first_aid")
     @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/first-aid")

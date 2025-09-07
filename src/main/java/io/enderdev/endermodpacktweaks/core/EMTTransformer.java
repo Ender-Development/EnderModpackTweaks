@@ -19,7 +19,9 @@ public class EMTTransformer implements IClassTransformer, Opcodes {
 
     @Override
     public byte[] transform(String name, String transformedName, byte[] basicClass) {
-        if (transformedName.equals("de.keksuccino.fancymenu.mainwindow.MainWindowHandler")) return transformMainWindowHandler(basicClass);
+        // This is currently solved via mixin, because for whatever reason the ASM approach didn't work
+        // Keeping this here for reference or in case someone wants to try and fix it
+        // if (transformedName.equals("de.keksuccino.fancymenu.mainwindow.MainWindowHandler")) return transformMainWindowHandler(basicClass);
         return basicClass;
     }
 

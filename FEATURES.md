@@ -135,6 +135,10 @@
 
 - add potion effects according to the stamina of the player
 
+### [FancyMenu](https://www.curseforge.com/minecraft/mc-mods/fancymenu)
+
+- made it compatible with my main menu tweaks
+
 ### [First Aid](https://www.curseforge.com/minecraft/mc-mods/first-aid)
 
 - center the HUD, so it's easier to place next to the hotbar, independent of the screen width
