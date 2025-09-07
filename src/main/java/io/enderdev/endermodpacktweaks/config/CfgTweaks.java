@@ -100,6 +100,18 @@ public class CfgTweaks {
         public boolean enable = true;
     }
 
+    @Config.Name("better_with_everything")
+    @Config.LangKey("cfg.endermodpacktweaks.tweaks.better_with_everything")
+    @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/better-with-everything")
+    public static final BetterWithEverything BETTER_WITH_EVERYTHING = new BetterWithEverything();
+
+    public static class BetterWithEverything {
+        @Config.RequiresMcRestart
+        @Config.Name("[01] Enable Better With Everything Tweaks")
+        @Config.Comment("Enable tweaks for the Better With Everything mod.")
+        public boolean enable = false;
+    }
+
     @Config.Name("cases")
     @Config.LangKey("cfg.endermodpacktweaks.tweaks.cases")
     @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/cases")

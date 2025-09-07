@@ -97,6 +97,10 @@
 - override a few hardcoded values to make it compatible with my other end tweaks
 - **these may be removed in the future when the mod author actually makes them configurable**
 
+### [Better With Everything](https://www.curseforge.com/minecraft/mc-mods/better-with-everything)
+
+- override the check for a vanilla Flint and Steel, allowing mods that extend the base class to work as well
+
 ### [Cases](https://www.curseforge.com/minecraft/mc-mods/cases)
 
 - allow skipping the case opening animation
