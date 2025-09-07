@@ -397,4 +397,9 @@ dependencies {
     if (project.debug_weepingangels.toBoolean()) {
         runtimeOnly "curse.maven:weeping-angels-mod-291249:2928003"
     }
+
+    compileOnly rfg.deobf("curse.maven:laser-creeper-robot-dino-riders-from-space-229086:2568686")
+    if (project.debug_lcrdrfs.toBoolean()) {
+        runtimeOnly "curse.maven:laser-creeper-robot-dino-riders-from-space-229086:2568686"
+    }
 }

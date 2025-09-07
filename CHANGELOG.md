@@ -1,7 +1,13 @@
 # Changelog
 
 ## [0.5.11]
+
 - 🆕 lock the `Taoism` combat mode behind a game stage (supports my game stage localization tweak)
+- 🆕 mixin to allow blacklisting the overworld in the `Weeping Angels` mod
+- 🆕 mixin to allow all items that extend `ItemFlintAndSteel` to work with Better With Everything dynamite
+- 🔄 improved mob health renderer to display a name tag, when the mob has a custom name (can be disabled in the config)
+- 🧰 fix broken Default Gamerules
+- 🧰 fix Modpack Menu Buttons being dependent on framerate
 
 ## [0.5.10]
 
