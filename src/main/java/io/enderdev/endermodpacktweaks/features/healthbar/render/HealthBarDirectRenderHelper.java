@@ -35,12 +35,14 @@ public final class HealthBarDirectRenderHelper {
     private static final ItemStack ROTTEN_FLESH = new ItemStack(Items.ROTTEN_FLESH);
     private static final ItemStack TOTEM_OF_UNDYING = new ItemStack(Items.TOTEM_OF_UNDYING);
     private static final ItemStack SKULL = new ItemStack(Items.SKULL, 1, 4);
+    private static final ItemStack NAMETAG = new ItemStack(Items.NAME_TAG);
     // Boss
     private static final ItemStack BOSS_SKULL = new ItemStack(Items.SKULL);
 
     public static void renderHealthBar(EntityLivingBase entity, HealthBarData healthBarData, float partialTicks, float deltaTime, Vector3f worldOffset, Vector2f cameraRot) {
         String entityID = EntityList.getEntityString(entity);
         boolean boss = !entity.isNonBoss();
+        boolean named = entity.hasCustomName();
 
         float entityX = (float) (entity.lastTickPosX + (entity.posX - entity.lastTickPosX) * partialTicks);
         float entityY = (float) (entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * partialTicks);
@@ -205,6 +207,11 @@ public final class HealthBarDirectRenderHelper {
         MINECRAFT.renderEngine.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
         if (stack != null && CfgFeatures.MOB_HEALTH_BAR.showAttributes) {
             renderIcon(off, 0, stack, 16, 16);
+            off -= 16;
+        }
+
+        if (named && CfgFeatures.MOB_HEALTH_BAR.showNameTag) {
+            renderIcon(off, 0, NAMETAG, 16, 16);
             off -= 16;
         }
 

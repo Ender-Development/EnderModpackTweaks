@@ -416,6 +416,10 @@ public class CfgFeatures {
         @Config.Name("[40] Health Bar Animation Smooth Time")
         @Config.Comment("Animation smooth time")
         public float animationSmoothTime = 0.3f;
+
+        @Config.Name("[41] Indicate Custom Name")
+        @Config.Comment("Should a Name Tag icon be shown next to the name if the mob has a custom name?")
+        public boolean showNameTag = true;
     }
 
     @Config.Name("player_effects")
