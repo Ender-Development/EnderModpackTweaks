@@ -10,12 +10,12 @@ import java.util.function.BooleanSupplier;
 
 public class OptionsButtonHandler {
     private static final Map<SlideButton, BooleanSupplier> slideButtonRegister = new HashMap<SlideButton, BooleanSupplier>() {{
-        put(new SlideButton(50, 0, 0, CfgModpack.OPTIONS_MENU_BUTTONS.CHANGELOG_BUTTON.buttonText).setIcon(0, 1), () -> CfgModpack.OPTIONS_MENU_BUTTONS.CHANGELOG_BUTTON.enable);
-        put(new SlideButton(51, 0, 0, CfgModpack.OPTIONS_MENU_BUTTONS.DONATION_BUTTON.buttonText).setIcon(1, 0), () -> CfgModpack.OPTIONS_MENU_BUTTONS.DONATION_BUTTON.enable);
-        put(new SlideButton(52, 0, 0, CfgModpack.OPTIONS_MENU_BUTTONS.GITHUB_BUTTON.buttonText).setIcon(0, 0), () -> CfgModpack.OPTIONS_MENU_BUTTONS.GITHUB_BUTTON.enable);
-        put(new SlideButton(53, 0, 0, CfgModpack.OPTIONS_MENU_BUTTONS.DISCORD_BUTTON.buttonText).setIcon(1, 1), () -> CfgModpack.OPTIONS_MENU_BUTTONS.DISCORD_BUTTON.enable);
-        put(new SlideButton(54, 0, 0, CfgModpack.OPTIONS_MENU_BUTTONS.TWITCH_BUTTON.buttonText).setIcon(2, 0), () -> CfgModpack.OPTIONS_MENU_BUTTONS.TWITCH_BUTTON.enable);
-        put(new SlideButton(55, 0, 0, CfgModpack.OPTIONS_MENU_BUTTONS.YOUTUBE_BUTTON.buttonText).setIcon(3, 0), () -> CfgModpack.OPTIONS_MENU_BUTTONS.YOUTUBE_BUTTON.enable);
+        put(new SlideButton(50, CfgModpack.OPTIONS_MENU_BUTTONS.CHANGELOG_BUTTON.buttonText).setIcon(0, 1), () -> CfgModpack.OPTIONS_MENU_BUTTONS.CHANGELOG_BUTTON.enable);
+        put(new SlideButton(51, CfgModpack.OPTIONS_MENU_BUTTONS.DONATION_BUTTON.buttonText).setIcon(1, 0), () -> CfgModpack.OPTIONS_MENU_BUTTONS.DONATION_BUTTON.enable);
+        put(new SlideButton(52, CfgModpack.OPTIONS_MENU_BUTTONS.GITHUB_BUTTON.buttonText).setIcon(0, 0), () -> CfgModpack.OPTIONS_MENU_BUTTONS.GITHUB_BUTTON.enable);
+        put(new SlideButton(53, CfgModpack.OPTIONS_MENU_BUTTONS.DISCORD_BUTTON.buttonText).setIcon(1, 1), () -> CfgModpack.OPTIONS_MENU_BUTTONS.DISCORD_BUTTON.enable);
+        put(new SlideButton(54, CfgModpack.OPTIONS_MENU_BUTTONS.TWITCH_BUTTON.buttonText).setIcon(2, 0), () -> CfgModpack.OPTIONS_MENU_BUTTONS.TWITCH_BUTTON.enable);
+        put(new SlideButton(55, CfgModpack.OPTIONS_MENU_BUTTONS.YOUTUBE_BUTTON.buttonText).setIcon(3, 0), () -> CfgModpack.OPTIONS_MENU_BUTTONS.YOUTUBE_BUTTON.enable);
     }};
 
     private final ArrayList<SlideButton> slideButtons = new ArrayList<>();

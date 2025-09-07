@@ -18,6 +18,7 @@ public class SlideButton extends GuiButton {
     private static final ResourceLocation SLIDE_BUTTON_ICON_TEXTURE = new ResourceLocation(Tags.MOD_ID, "textures/gui/icons.png");
 
     private final EmtTime time = new EmtTime(45);
+    public final static int CORNER_WIDTH = 26;
 
     private int iconX;
     private int iconY;
@@ -29,12 +30,12 @@ public class SlideButton extends GuiButton {
 
     public SlideButton(int buttonId, int x, int y, int widthIn, int heightIn, String buttonText) {
         super(buttonId, x, y, widthIn, heightIn, buttonText);
-        this.xOffset = this.width - 26;
+        this.xOffset = this.width - CORNER_WIDTH;
         this.xOpened = this.xOffset;
     }
 
-    public SlideButton(int buttonId, int x, int y, String buttonText) {
-        this(buttonId, x, y, 100, 20, buttonText);
+    public SlideButton(int buttonId, String buttonText) {
+        this(buttonId, 0, 0, 100, 20, buttonText);
     }
 
     public SlideButton setIcon(int indexX, int indexY) {
