@@ -148,7 +148,7 @@ public class CfgFeatures {
 
     @Config.Name("material_tweaker")
     @Config.LangKey("cfg.endermodpacktweaks.features.material_tweaker")
-    @Config.Comment("A tool is not to your linkings? Tweak it to your likings!")
+    @Config.Comment("A tool is not to your liking? Tweak it's stats until it is!")
     public static final MaterialTweaker MATERIAL_TWEAKER = new MaterialTweaker();
 
     public static class MaterialTweaker {
