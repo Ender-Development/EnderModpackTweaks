@@ -957,6 +957,18 @@ public class CfgTweaks {
         public boolean enable = false;
     }
 
+    @Config.Name("biome_tweaker")
+    @Config.LangKey("cfg.endermodpacktweaks.tweaks.biome_tweaker")
+    @Config.Comment("https://www.curseforge.com/minecraft/mc-mods/biometweaker")
+    public static final BiomeTweaker BIOME_TWEAKER = new BiomeTweaker();
+
+    public static class BiomeTweaker {
+        @Config.RequiresMcRestart
+        @Config.Name("[01] Enable Biome Tweaker Tweaks")
+        @Config.Comment("Enable tweaks for the Biome Tweaker mod.")
+        public boolean enable = false;
+    }
+
     @Mod.EventBusSubscriber(modid = Tags.MOD_ID)
     public static class ConfigEventHandler {
         @SubscribeEvent

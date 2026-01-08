@@ -402,4 +402,9 @@ dependencies {
     if (project.debug_lcrdrfs.toBoolean()) {
         runtimeOnly "curse.maven:laser-creeper-robot-dino-riders-from-space-229086:2568686"
     }
+
+    compileOnly rfg.deobf("curse.maven:biometweaker-228895:3112142")
+    if (project.debug_biometweaks.toBoolean()) {
+        runtimeOnly "curse.maven:biometweaker-228895:3112142"
+    }
 }
