@@ -59,6 +59,7 @@ public class EMTMixinLoader implements ILateMixinLoader {
             put("mixins/mixins.emt.betterwitheverything.json", () -> Loader.isModLoaded("betterwithmods") && CfgTweaks.BETTER_WITH_EVERYTHING.enable);
             put("mixins/mixins.emt.weepingangels.json", () -> Loader.isModLoaded("weeping-angels") && CfgTweaks.WEEPING_ANGELS.enable);
             put("mixins/mixins.emt.biometweaker.json", () -> Loader.isModLoaded("biometweaker") && CfgTweaks.BIOME_TWEAKER.enable);
+            put("mixins/mixins.emt.exnihilo.json", () -> Loader.isModLoaded("exnihilocreatio") && CfgTweaks.EX_NIHILO.enable);
         }
     });
 
