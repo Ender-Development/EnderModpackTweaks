@@ -1,12 +1,12 @@
 {
-    "package": "io.enderdev.endermodpacktweaks.mixin.exnihilo",
-    "refmap": "mixins.endermodpacktweaks.refmap.json",
-    "target": "@env(DEFAULT)",
-    "minVersion": "0.8.5",
-    "compatibilityLevel": "JAVA_8",
-    "mixins": [
-        "OreRegistryMixin"
-    ],
-    "server": [],
-    "client": []
+	"package": "io.enderdev.endermodpacktweaks.mixin.exnihilo",
+	"refmap": "mixins.endermodpacktweaks.refmap.json",
+	"target": "@env(DEFAULT)",
+	"minVersion": "0.8.5",
+	"compatibilityLevel": "JAVA_8",
+	"mixins": [
+		"OreRegistryMixin"
+	],
+	"server": [],
+	"client": []
 }
