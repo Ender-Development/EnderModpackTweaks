@@ -1,12 +1,12 @@
 {
-  "package": "io.enderdev.endermodpacktweaks.mixin.custommainmenu",
-  "refmap": "mixins.endermodpacktweaks.refmap.json",
-  "target": "@env(DEFAULT)",
-  "minVersion": "0.8.5",
-  "compatibilityLevel": "JAVA_8",
-  "mixins": ["ActionOpenGUIMixin"],
-  "server": [],
-  "client": [
-    "CMMEventHandlerMixin"
-  ]
+    "package": "io.enderdev.endermodpacktweaks.mixin.custommainmenu",
+    "refmap": "mixins.endermodpacktweaks.refmap.json",
+    "target": "@env(DEFAULT)",
+    "minVersion": "0.8.5",
+    "compatibilityLevel": "JAVA_8",
+    "mixins": ["ActionOpenGUIMixin"],
+    "server": [],
+    "client": [
+        "CMMEventHandlerMixin"
+    ]
 }

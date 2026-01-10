@@ -127,13 +127,16 @@ dependencies {
         runtimeOnly "curse.maven:realistic-torches-roa-edition-1110941:5764041"
     }
 
-    compileOnly rfg.deobf("com.github.jbredwards:fluidlogged-api:47f153989e")
-    compileOnly rfg.deobf("curse.maven:forgelin-continuous-456403:5946402")
+    compileOnly rfg.deobf("com.github.jbredwards:fluidlogged-api:1.12.2-Latest-SNAPSHOT")
+    compileOnly rfg.deobf("curse.maven:forgelin-continuous-456403:7400891")
     compileOnly rfg.deobf("curse.maven:greenery-574029:5913357")
     if (project.debug_greenery.toBoolean()) {
-        runtimeOnly "com.github.jbredwards:fluidlogged-api:47f153989e"
-        runtimeOnly "curse.maven:forgelin-continuous-456403:5946402"
+        runtimeOnly "com.github.jbredwards:fluidlogged-api:1.12.2-Latest-SNAPSHOT"
         runtimeOnly "curse.maven:greenery-574029:5913357"
+    }
+
+    if (project.debug_greenery.toBoolean() || project.debug_exnihilo.toBoolean()) {
+        runtimeOnly "curse.maven:forgelin-continuous-456403:7400891"
     }
 
     compileOnly rfg.deobf("curse.maven:rustic-256141:6031613")
@@ -401,5 +404,15 @@ dependencies {
     compileOnly rfg.deobf("curse.maven:laser-creeper-robot-dino-riders-from-space-229086:2568686")
     if (project.debug_lcrdrfs.toBoolean()) {
         runtimeOnly "curse.maven:laser-creeper-robot-dino-riders-from-space-229086:2568686"
+    }
+
+    compileOnly rfg.deobf("curse.maven:biometweaker-228895:3112142")
+    if (project.debug_biometweaks.toBoolean()) {
+        runtimeOnly "curse.maven:biometweaker-228895:3112142"
+    }
+
+    compileOnly "curse.maven:ex-nihilo-creatio-274456:2817545"
+    if (project.debug_exnihilo.toBoolean()) {
+        runtimeOnly "curse.maven:ex-nihilo-creatio-274456:2817545"
     }
 }

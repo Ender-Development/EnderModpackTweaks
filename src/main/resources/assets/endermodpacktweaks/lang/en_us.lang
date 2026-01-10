@@ -185,6 +185,10 @@ cfg.endermodpacktweaks.tweaks.waila.tooltip=Tweaks for the Waila / Hwyla mods.
 endermodpacktweaks.tweaks.waila.overrideblockname=Override Block Name
 cfg.endermodpacktweaks.tweaks.weeping_angels=Weeping Angels
 cfg.endermodpacktweaks.tweaks.weeping_angels.tooltip=Tweaks for the Weeping Angels mod.
+cfg.endermodpacktweaks.tweaks.biometweaker=BiomeTweaker
+cfg.endermodpacktweaks.tweaks.biometweaker.tooltip=Tweaks for the BiomeTweaker mod.
+cfg.endermodpacktweaks.tweaks.exnihilo=Ex Nihilo: Creatio
+cfg.endermodpacktweaks.tweaks.exnihilo.tooltip=Tweaks for the Ex Nihilo: Creatio mod.
 
 msg.endermodpacktweaks.obsoletemods.warning1=Ender's Modpack Tweaks has replaced and improved upon functionalities from other mods.
 msg.endermodpacktweaks.obsoletemods.warning2=Therefore, the following mods are now incompatible with Ender's Modpack Tweaks:

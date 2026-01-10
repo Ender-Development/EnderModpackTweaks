@@ -7,6 +7,6 @@
     "mixins": [],
     "server": [],
     "client": [
-      "MinecraftMixin"
+        "MinecraftMixin"
     ]
 }
