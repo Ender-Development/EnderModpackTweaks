@@ -36,9 +36,16 @@ repositories {
     mavenLocal() // Must be last for caching to work
 }
 
+configurations {
+    shade
+    implementation.extendsFrom shade
+}
+
 dependencies {
     // Include StripLatestForgeRequirements by default for the dev env, saves everyone a hassle
     runtimeOnly 'com.cleanroommc:strip-latest-forge-requirements:1.0'
+    // Include OSXNarratorBlocker by default for the dev env, for M1+ Macs
+    runtimeOnly 'com.cleanroommc:osxnarratorblocker:1.0'
 
     // Example - Dependency descriptor:
     // 'com.google.code.gson:gson:2.8.6' << group: com.google.code.gson, name:gson, version:2.8.6
@@ -415,4 +422,22 @@ dependencies {
     if (project.debug_exnihilo.toBoolean()) {
         runtimeOnly "curse.maven:ex-nihilo-creatio-274456:2817545"
     }
+}
+
+// Need reobfJar to use uber jars, so dependencies that are shaded in are present
+// Only redirect reobfJar through shadowJar when there's actually something to shade
+if (!configurations.shade.dependencies.empty) {
+    tasks.named('reobfJar').configure {
+        inputJar.set(tasks.named('shadowJar').flatMap({ it.archiveFile }))
+    }
+}
+
+// By default, it will use a "uberdev" suffix, and only pack shade configuration dependencies
+// Uberdev: dev jar w/ dependencies, NOT a reobfuscated artifact!
+// The end result (reobfJar) will have a non-suffixed name, as unlike normal shading envs, reobfJar is the end task
+tasks.shadowJar {
+    // Shadow wires shadowJar into the assemble task, so it runs even when nothing is shaded
+    enabled = !project.configurations.shade.dependencies.empty
+    archiveClassifier = 'uberdev'
+    configurations = [ project.configurations.shade ]
 }
