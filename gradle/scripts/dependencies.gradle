@@ -422,6 +422,11 @@ dependencies {
     if (project.debug_exnihilo.toBoolean()) {
         runtimeOnly "curse.maven:ex-nihilo-creatio-274456:2817545"
     }
+
+    compileOnly rfg.deobf("curse.maven:the-twilight-forest-deforestation-edition-1063334:6808448")
+    if (project.debug_twilightforest.toBoolean()) {
+        runtimeOnly "curse.maven:the-twilight-forest-deforestation-edition-1063334:6808448"
+    }
 }
 
 // Need reobfJar to use uber jars, so dependencies that are shaded in are present

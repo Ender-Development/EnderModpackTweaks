@@ -6,6 +6,7 @@ import io.enderdev.endermodpacktweaks.config.CfgMinecraft;
 import io.enderdev.endermodpacktweaks.config.CfgModpack;
 import io.enderdev.endermodpacktweaks.core.EMTAssetMover;
 import io.enderdev.endermodpacktweaks.features.additionalmastervolume.MasterVolumeHandler;
+import io.enderdev.endermodpacktweaks.features.bossbar.BossRegister;
 import io.enderdev.endermodpacktweaks.features.forcedresourcepack.ResourcePackHandler;
 import io.enderdev.endermodpacktweaks.features.healthbar.HealthBarHandler;
 import io.enderdev.endermodpacktweaks.features.keybinds.KeybindHandler;
@@ -146,9 +147,13 @@ public class ClientProxy extends CommonProxy implements IProxy {
     @Override
     public void construct(FMLConstructionEvent event) throws Exception {
         super.construct(event);
-        if (!Loader.isModLoaded("assetmover")) return;
+        if (!Loader.isModLoaded("assetmover")) {
+            EnderModpackTweaks.LOGGER.debug("AssetMover isn't installed, so no related features will be functional!");
+            return;
+        }
         if (CfgFeatures.BOSS_BAR.enable) {
             EMTAssetMover.getInternalAssets();
+            BossRegister.init();
         }
         if (CfgModpack.CUSTOM_ASSETS.enable && CfgModpack.CUSTOM_ASSETS.assetMoverJsonFiles.length > 0) {
             EMTAssetMover.getExternalAssets();

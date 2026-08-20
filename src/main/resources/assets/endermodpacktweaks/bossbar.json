@@ -1,0 +1,467 @@
+[
+  {
+    "name": "minecraft:wither",
+    "default": true,
+    "width": 189,
+    "height": 48,
+    "overlay": {
+      "texture": "endermodpacktweaks:textures/gui/boss_bars/wither.png"
+    },
+    "bar": {
+      "texture": "endermodpacktweaks:textures/gui/bars/purple_progress.png",
+      "offset": {
+        "x": 10,
+        "y": 15
+      },
+      "limit": {
+        "x": 169,
+        "y": 5
+      }
+    },
+    "background": {
+      "texture": "endermodpacktweaks:textures/gui/bars/background.png",
+      "offset": {
+        "x": 10,
+        "y": 15
+      },
+      "limit": {
+        "x": 169,
+        "y": 5
+      }
+    }
+  },
+  {
+    "name": "minecraft:ender_dragon",
+    "default": true,
+    "width": 186,
+    "height": 41,
+    "overlay": {
+      "texture": "endermodpacktweaks:textures/gui/boss_bars/ender_dragon.png"
+    },
+    "bar": {
+      "texture": "endermodpacktweaks:textures/gui/bars/pink_progress.png",
+      "offset": {
+        "x": 12,
+        "y": 15
+      },
+      "limit": {
+        "x": 162,
+        "y": 5
+      }
+    },
+    "background": {
+      "texture": "endermodpacktweaks:textures/gui/bars/background.png",
+      "offset": {
+        "x": 12,
+        "y": 15
+      },
+      "limit": {
+        "x": 162,
+        "y": 5
+      }
+    }
+  },
+  {
+    "name": "mowziesmobs:ferrous_wroughtnaut",
+    "default": true,
+    "width": 190,
+    "height": 54,
+    "overlay": {
+      "texture": "endermodpacktweaks:textures/gui/boss_bars/ferrous_wroughtnaut.png"
+    },
+    "bar": {
+      "texture": "endermodpacktweaks:textures/gui/bars/red_progress.png",
+      "offset": {
+        "x": 11,
+        "y": 17
+      },
+      "limit": {
+        "x": 163,
+        "y": 5
+      }
+    },
+    "background": {
+      "texture": "endermodpacktweaks:textures/gui/bars/background.png",
+      "offset": {
+        "x": 11,
+        "y": 17
+      },
+      "limit": {
+        "x": 163,
+        "y": 5
+      }
+    }
+  },
+  {
+    "name": "mowziesmobs:frostmaw",
+    "default": true,
+    "width": 190,
+    "height": 49,
+    "overlay": {
+      "texture": "endermodpacktweaks:textures/gui/boss_bars/frostmaw.png"
+    },
+    "bar": {
+      "texture": "endermodpacktweaks:textures/gui/bars/ice_progress.png",
+      "offset": {
+        "x": 20,
+        "y": 13
+      },
+      "limit": {
+        "x": 150,
+        "y": 5
+      }
+    },
+    "background": {
+      "texture": "endermodpacktweaks:textures/gui/bars/background.png",
+      "offset": {
+        "x": 20,
+        "y": 13
+      },
+      "limit": {
+        "x": 150,
+        "y": 5
+      }
+    }
+  },
+  {
+    "name": "da:void_blossom",
+    "default": true,
+    "width": 185,
+    "height": 47,
+    "overlay": {
+      "texture": "endermodpacktweaks:textures/gui/boss_bars/void_blossom.png"
+    },
+    "bar": {
+      "texture": "endermodpacktweaks:textures/gui/bars/green_progress.png",
+      "offset": {
+        "x": 8,
+        "y": 16
+      },
+      "limit": {
+        "x": 169,
+        "y": 5
+      }
+    },
+    "background": {
+      "texture": "endermodpacktweaks:textures/gui/bars/background.png",
+      "offset": {
+        "x": 8,
+        "y": 16
+      },
+      "limit": {
+        "x": 169,
+        "y": 5
+      }
+    }
+  },
+  {
+    "name": "da:night_lich",
+    "default": true,
+    "width": 219,
+    "height": 49,
+    "overlay": {
+      "texture": "endermodpacktweaks:textures/gui/boss_bars/night_lich.png"
+    },
+    "bar": {
+      "texture": "endermodpacktweaks:textures/gui/bars/blue_progress.png",
+      "offset": {
+        "x": 22,
+        "y": 18
+      },
+      "limit": {
+        "x": 175,
+        "y": 5
+      }
+    },
+    "background": {
+      "texture": "endermodpacktweaks:textures/gui/bars/background.png",
+      "offset": {
+        "x": 22,
+        "y": 18
+      },
+      "limit": {
+        "x": 175,
+        "y": 5
+      }
+    }
+  },
+  {
+    "name": "da:great_wyrk",
+    "default": true,
+    "width": 198,
+    "height": 50,
+    "overlay": {
+      "texture": "endermodpacktweaks:textures/gui/boss_bars/ancient_wyrk.png"
+    },
+    "bar": {
+      "texture": "endermodpacktweaks:textures/gui/bars/ice_progress.png",
+      "offset": {
+        "x": 13,
+        "y": 15
+      },
+      "limit": {
+        "x": 172,
+        "y": 5
+      }
+    },
+    "background": {
+      "texture": "endermodpacktweaks:textures/gui/bars/background.png",
+      "offset": {
+        "x": 13,
+        "y": 15
+      },
+      "limit": {
+        "x": 172,
+        "y": 5
+      }
+    }
+  },
+  {
+    "name": "da:flame_knight",
+    "default": true,
+    "width": 200,
+    "height": 53,
+    "overlay": {
+      "texture": "endermodpacktweaks:textures/gui/boss_bars/flame_knight.png"
+    },
+    "bar": {
+      "texture": "endermodpacktweaks:textures/gui/bars/red_progress.png",
+      "offset": {
+        "x": 21,
+        "y": 30
+      },
+      "limit": {
+        "x": 167,
+        "y": 5
+      }
+    },
+    "background": {
+      "texture": "endermodpacktweaks:textures/gui/bars/background.png",
+      "offset": {
+        "x": 21,
+        "y": 30
+      },
+      "limit": {
+        "x": 167,
+        "y": 5
+      }
+    }
+  },
+  {
+    "name": "srparasites:anc_dreadnaut",
+    "default": true,
+    "width": 181,
+    "height": 66,
+    "overlay": {
+      "texture": "endermodpacktweaks:textures/gui/boss_bars/anc_dreadnaut.png"
+    },
+    "bar": {
+      "texture": "endermodpacktweaks:textures/gui/bars/awaken_progress.png",
+      "offset": {
+        "x": 7,
+        "y": 25
+      },
+      "limit": {
+        "x": 167,
+        "y": 5
+      }
+    },
+    "background": {
+      "texture": "endermodpacktweaks:textures/gui/bars/background.png",
+      "offset": {
+        "x": 7,
+        "y": 25
+      },
+      "limit": {
+        "x": 167,
+        "y": 5
+      }
+    }
+  },
+  {
+    "name": "srparasites:anc_overlord",
+    "default": true,
+    "width": 183,
+    "height": 63,
+    "overlay": {
+      "texture": "endermodpacktweaks:textures/gui/boss_bars/anc_overlord.png"
+    },
+    "bar": {
+      "texture": "endermodpacktweaks:textures/gui/bars/awaken_progress.png",
+      "offset": {
+        "x": 8,
+        "y": 30
+      },
+      "limit": {
+        "x": 167,
+        "y": 5
+      }
+    },
+    "background": {
+      "texture": "endermodpacktweaks:textures/gui/bars/background.png",
+      "offset": {
+        "x": 8,
+        "y": 30
+      },
+      "limit": {
+        "x": 167,
+        "y": 5
+      }
+    }
+  },
+  {
+    "name": "srparasites:beckon_siv",
+    "default": true,
+    "width": 181,
+    "height": 65,
+    "overlay": {
+      "texture": "endermodpacktweaks:textures/gui/boss_bars/beckon_siv.png"
+    },
+    "bar": {
+      "texture": "endermodpacktweaks:textures/gui/bars/parasitic_progress.png",
+      "offset": {
+        "x": 8,
+        "y": 43
+      },
+      "limit": {
+        "x": 165,
+        "y": 5
+      }
+    },
+    "background": {
+      "texture": "endermodpacktweaks:textures/gui/bars/background.png",
+      "offset": {
+        "x": 8,
+        "y": 43
+      },
+      "limit": {
+        "x": 165,
+        "y": 5
+      }
+    }
+  },
+  {
+    "name": "srparasites:dispatcher_siv",
+    "default": true,
+    "width": 181,
+    "height": 66,
+    "overlay": {
+      "texture": "endermodpacktweaks:textures/gui/boss_bars/dispatcher_siv.png"
+    },
+    "bar": {
+      "texture": "endermodpacktweaks:textures/gui/bars/parasitic_progress.png",
+      "offset": {
+        "x": 8,
+        "y": 44
+      },
+      "limit": {
+        "x": 165,
+        "y": 5
+      }
+    },
+    "background": {
+      "texture": "endermodpacktweaks:textures/gui/bars/background.png",
+      "offset": {
+        "x": 8,
+        "y": 44
+      },
+      "limit": {
+        "x": 165,
+        "y": 5
+      }
+    }
+  },
+  {
+    "name": "rats:marbled_cheese_golem",
+    "default": true,
+    "width": 183,
+    "height": 43,
+    "overlay": {
+      "texture": "endermodpacktweaks:textures/gui/boss_bars/ratlanteanautomaton.png"
+    },
+    "bar": {
+      "texture": "endermodpacktweaks:textures/gui/bars/yellow_progress.png",
+      "offset": {
+        "x": 5,
+        "y": 13
+      },
+      "limit": {
+        "x": 174,
+        "y": 5
+      }
+    },
+    "background": {
+      "texture": "endermodpacktweaks:textures/gui/bars/background.png",
+      "offset": {
+        "x": 5,
+        "y": 13
+      },
+      "limit": {
+        "x": 174,
+        "y": 5
+      }
+    }
+  },
+  {
+    "name": "rats:black_death",
+    "default": true,
+    "width": 196,
+    "height": 42,
+    "overlay": {
+      "texture": "endermodpacktweaks:textures/gui/boss_bars/blackdeath.png"
+    },
+    "bar": {
+      "texture": "endermodpacktweaks:textures/gui/bars/red_progress.png",
+      "offset": {
+        "x": 20,
+        "y": 15
+      },
+      "limit": {
+        "x": 156,
+        "y": 5
+      }
+    },
+    "background": {
+      "texture": "endermodpacktweaks:textures/gui/bars/background.png",
+      "offset": {
+        "x": 20,
+        "y": 15
+      },
+      "limit": {
+        "x": 156,
+        "y": 5
+      }
+    }
+  },
+  {
+    "name": "rats:neo_ratlantean",
+    "default": true,
+    "width": 186,
+    "height": 42,
+    "overlay": {
+      "texture": "endermodpacktweaks:textures/gui/boss_bars/neoratlantean.png"
+    },
+    "bar": {
+      "texture": "endermodpacktweaks:textures/gui/bars/blue_progress.png",
+      "offset": {
+        "x": 6,
+        "y": 12
+      },
+      "limit": {
+        "x": 174,
+        "y": 5
+      }
+    },
+    "background": {
+      "texture": "endermodpacktweaks:textures/gui/bars/background.png",
+      "offset": {
+        "x": 6,
+        "y": 12
+      },
+      "limit": {
+        "x": 174,
+        "y": 5
+      }
+    }
+  }
+]
